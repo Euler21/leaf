@@ -6,6 +6,7 @@ import os
 import sys
 import random
 import tensorflow as tf
+import ray
 
 import metrics.writer as metrics_writer
 
@@ -56,6 +57,9 @@ def main():
     # Create client model, and share params with server model
     tf.reset_default_graph()
     client_model = ClientModel(args.seed, *model_params)
+
+    # Initialize ray
+    ray.init()
 
     # Create server
     server = Server(client_model)
@@ -108,7 +112,7 @@ def online(clients):
 def create_clients(users, groups, train_data, test_data, model):
     if len(groups) == 0:
         groups = [[] for _ in users]
-    clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
+    clients = [Client.remote(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
     return clients
 
 

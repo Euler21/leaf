@@ -1,7 +1,10 @@
 import random
 import warnings
+import ray
+import sys
 
 
+@ray.remote
 class Client:
     
     def __init__(self, client_id, group=None, train_data={'x' : [],'y' : []}, eval_data={'x' : [],'y' : []}, model=None):
@@ -10,6 +13,25 @@ class Client:
         self.group = group
         self.train_data = train_data
         self.eval_data = eval_data
+
+    def set_params(self, model_params):
+        """Sets the parameters for self.model.
+
+        Args:
+            model_params: Parameters to set.
+        """
+        self.model.set_params(model_params)
+
+    def get_info(self):
+        """Returns info on the client for the server.
+
+        Return:
+            id: Id of this client.
+            group: Group of this client
+            num_samples: Number of samples held by this client.
+        """
+        return (self.id, self.group, self.num_samples)
+
 
     def train(self, num_epochs=1, batch_size=10, minibatch=None):
         """Trains on self.model using the client's train_data.
@@ -20,6 +42,7 @@ class Client:
             minibatch: fraction of client's data to apply minibatch sgd,
                 None to use FedAvg
         Return:
+            id: id of this client
             comp: number of FLOPs executed in training process
             num_samples: number of samples used in training
             update: set of weights
@@ -38,7 +61,7 @@ class Client:
             num_epochs = 1
             comp, update = self.model.train(data, num_epochs, num_data)
         num_train_samples = len(data['y'])
-        return comp, num_train_samples, update
+        return self.id, comp, num_train_samples, update
 
     def test(self, set_to_use='test'):
         """Tests self.model on self.test_data.
@@ -46,6 +69,7 @@ class Client:
         Args:
             set_to_use. Set to test on. Should be in ['train', 'test'].
         Return:
+            id of this client
             dict of metrics returned by the model.
         """
         assert set_to_use in ['train', 'test', 'val']
@@ -53,7 +77,7 @@ class Client:
             data = self.train_data
         elif set_to_use == 'test' or set_to_use == 'val':
             data = self.eval_data
-        return self.model.test(data)
+        return self.id, self.model.test(data)
 
     @property
     def num_test_samples(self):

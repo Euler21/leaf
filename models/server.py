@@ -1,4 +1,5 @@
 import numpy as np
+import ray
 
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
 
@@ -51,18 +52,22 @@ class Server:
         """
         if clients is None:
             clients = self.selected_clients
-        sys_metrics = {
-            c.id: {BYTES_WRITTEN_KEY: 0,
-                   BYTES_READ_KEY: 0,
-                   LOCAL_COMPUTATIONS_KEY: 0} for c in clients}
+        sys_metrics = {}
+
         for c in clients:
-            c.model.set_params(self.model)
-            comp, num_samples, update = c.train(num_epochs, batch_size, minibatch)
+            c.set_params.remote(self.model)
 
-            sys_metrics[c.id][BYTES_READ_KEY] += c.model.size
-            sys_metrics[c.id][BYTES_WRITTEN_KEY] += c.model.size
-            sys_metrics[c.id][LOCAL_COMPUTATIONS_KEY] = comp
+        results = ray.get([c.train.remote(num_epochs, batch_size, minibatch) for c in clients])
 
+
+        for cid, comp, num_samples, update in results:
+            if cid not in sys_metrics.keys():
+                sys_metrics[cid] = {BYTES_WRITTEN_KEY: 0,
+                                    BYTES_READ_KEY: 0,
+                                    LOCAL_COMPUTATIONS_KEY: 0}
+            sys_metrics[cid][BYTES_READ_KEY] += sys.getsizeof(model)
+            sys_metrics[cid][BYTES_WRITTEN_KEY] += sys.getsizeof(update)
+            sys_metrics[cid][LOCAL_COMPUTATIONS_KEY] = comp
             self.updates.append((num_samples, update))
 
         return sys_metrics
@@ -94,9 +99,10 @@ class Server:
             clients_to_test = self.selected_clients
 
         for client in clients_to_test:
-            client.model.set_params(self.model)
-            c_metrics = client.test(set_to_use)
-            metrics[client.id] = c_metrics
+            client.set_params.remote(self.model)
+        results = ray.get([c.test.remote(set_to_use) for c in client])
+        for cid, c_metrics in results:
+            metrics[cid] = c_metrics
         
         return metrics
 
@@ -111,10 +117,10 @@ class Server:
         if clients is None:
             clients = self.selected_clients
 
-        ids = [c.id for c in clients]
-        groups = {c.id: c.group for c in clients}
-        num_samples = {c.id: c.num_samples for c in clients}
-        return ids, groups, num_samples
+        results = ray.get([c.get_info.remote() for c in clients])
+        ids, groups, num_samples = zip(*results)
+
+        return list(ids), list(groups), list(num_samples)
 
     def save_model(self, path):
         """Saves the server model on checkpoints/dataset/model.ckpt."""
