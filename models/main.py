@@ -10,6 +10,7 @@ import tensorflow as tf
 import metrics.writer as metrics_writer
 
 from baseline_constants import MAIN_PARAMS, MODEL_PARAMS
+from client_server import ClientServer
 from client import Client
 from server import Server
 from model import ServerModel
@@ -42,6 +43,7 @@ def main():
     num_rounds = args.num_rounds if args.num_rounds != -1 else tup[0]
     eval_every = args.eval_every if args.eval_every != -1 else tup[1]
     clients_per_round = args.clients_per_round if args.clients_per_round != -1 else tup[2]
+    num_client_servers = args.num_client_servers
 
     # Suppress tf warnings
     tf.logging.set_verbosity(tf.logging.WARN)
@@ -55,29 +57,36 @@ def main():
 
     # Create client model, and share params with server model
     tf.reset_default_graph()
-    client_model = ClientModel(args.seed, *model_params)
+    server_model = ClientModel(args.seed, *model_params)
+    
+    # Create clients
+    client_servers = setup_client_servers(args.dataset, 
+                                          args.seed,
+                                          model_params,
+                                          ClientModel,
+                                          args.use_val_set, 
+                                          num_client_servers)
 
     # Create server
-    server = Server(client_model)
+    server = Server(server_model, client_servers)
 
-    # Create clients
-    clients = setup_clients(args.dataset, client_model, args.use_val_set)
-    client_ids, client_groups, client_num_samples = server.get_clients_info(clients)
-    print('Clients in Total: %d' % len(clients))
+    # clients = setup_clients(args.dataset, client_model, args.use_val_set)
+    client_ids, client_groups, client_num_samples = server.get_clients_info(all_clients=True)
+    print('Clients in Total: %d' % len(client_ids))
 
     # Initial status
     print('--- Random Initialization ---')
     stat_writer_fn = get_stat_writer_function(client_ids, client_groups, client_num_samples, args)
     sys_writer_fn = get_sys_writer_function(args)
-    print_stats(0, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set)
+    print_stats(0, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
 
     # Simulate training
     for i in range(num_rounds):
         print('--- Round %d of %d: Training %d Clients ---' % (i + 1, num_rounds, clients_per_round))
 
         # Select clients to train this round
-        server.select_clients(i, online(clients), num_clients=clients_per_round)
-        c_ids, c_groups, c_num_samples = server.get_clients_info(server.selected_clients)
+        server.select_clients(i, num_clients=clients_per_round)
+        c_ids, c_groups, c_num_samples = server.get_clients_info()
 
         # Simulate server model training on selected clients' data
         sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch)
@@ -88,7 +97,7 @@ def main():
 
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
-            print_stats(i + 1, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set)
+            print_stats(i + 1, server, c_num_samples, args, stat_writer_fn, args.use_val_set)
     
     # Save server model
     ckpt_path = os.path.join('checkpoints', args.dataset)
@@ -104,15 +113,49 @@ def online(clients):
     """We assume all users are always online."""
     return clients
 
+def partition_data(n, train_data, test_data):
+    # TODO: change to take in users list
+    train_data = list(train_data.items())
+    test_data = list(test_data.items())
+    train_len = len(train_data)
+    test_len = len(test_data)
+    train_chunk_size = train_len // n
+    test_chunk_size = test_len // n
+    train_data_part = [dict(train_data[i*train_chunk_size : (i+1)*train_chunk_size])
+                       for i in range(n - 1)]
+    test_data_part = [dict(test_data[i*test_chunk_size : (i+1)*test_chunk_size]) 
+                      for i in range(n - 1)]
+    train_data_part.append(dict(train_data[(n-1)*train_chunk_size :]))
+    test_data_part.append(dict(test_data[(n-1)*test_chunk_size :]))
+    return zip(train_data_part, test_data_part)
 
-def create_clients(users, groups, train_data, test_data, model):
+def create_client_servers(seed, 
+                          params, 
+                          users, 
+                          groups, 
+                          train_data, 
+                          test_data, 
+                          model_cls, 
+                          num_client_servers):
     if len(groups) == 0:
         groups = [[] for _ in users]
-    clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
-    return clients
+    else:
+        # TODO: add group support
+        raise NotImplementedError("groups not yet supported") 
+    partition = partition_data(num_client_servers, train_data, test_data)
+    return [ClientServer(seed, 
+                         params, 
+                         users, 
+                         groups, 
+                         cs_train_data, 
+                         cs_test_data, 
+                         model_cls) 
+            for cs_train_data, cs_test_data in partition]
+    #clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
+    #return clients
 
 
-def setup_clients(dataset, model=None, use_val_set=False):
+def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, num_client_servers=1):
     """Instantiates clients based on given train and test data directories.
 
     Return:
@@ -124,9 +167,9 @@ def setup_clients(dataset, model=None, use_val_set=False):
 
     users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 
-    clients = create_clients(users, groups, train_data, test_data, model)
+    client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, model_cls, num_client_servers)
 
-    return clients
+    return client_servers
 
 
 def get_stat_writer_function(ids, groups, num_samples, args):
@@ -148,14 +191,14 @@ def get_sys_writer_function(args):
 
 
 def print_stats(
-    num_round, server, clients, num_samples, args, writer, use_val_set):
+    num_round, server, num_samples, args, writer, use_val_set):
     
-    train_stat_metrics = server.test_model(clients, set_to_use='train')
+    train_stat_metrics = server.test_model(clients_to_test=None, set_to_use='train')
     print_metrics(train_stat_metrics, num_samples, prefix='train_')
     writer(num_round, train_stat_metrics, 'train')
 
     eval_set = 'test' if not use_val_set else 'val'
-    test_stat_metrics = server.test_model(clients, set_to_use=eval_set)
+    test_stat_metrics = server.test_model(clients_to_test=None, set_to_use=eval_set)
     print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set))
     writer(num_round, test_stat_metrics, eval_set)
 
