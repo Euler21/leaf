@@ -113,21 +113,21 @@ def online(clients):
     """We assume all users are always online."""
     return clients
 
-def partition_data(n, train_data, test_data):
-    # TODO: change to take in users list
-    train_data = list(train_data.items())
-    test_data = list(test_data.items())
-    train_len = len(train_data)
-    test_len = len(test_data)
-    train_chunk_size = train_len // n
-    test_chunk_size = test_len // n
-    train_data_part = [dict(train_data[i*train_chunk_size : (i+1)*train_chunk_size])
-                       for i in range(n - 1)]
-    test_data_part = [dict(test_data[i*test_chunk_size : (i+1)*test_chunk_size]) 
-                      for i in range(n - 1)]
-    train_data_part.append(dict(train_data[(n-1)*train_chunk_size :]))
-    test_data_part.append(dict(test_data[(n-1)*test_chunk_size :]))
-    return zip(train_data_part, test_data_part)
+def partition_data(n, users, groups, train_data, test_data):
+    chunk_size = len(users) // n
+    users_part = [users[i*chunk_size : (i+1)*chunk_size]
+                 for i in range(n - 1)]
+    groups_part = [groups[i*chunk_size : (i+1)*chunk_size]
+                 for i in range(n - 1)]
+
+    users_part.append(users[(n-1)*chunk_size :])
+
+    train_data_part = [{u: train_data[u] for u in us} 
+                       for us in users_part]
+    test_data_part = [{u: test_data[u] for u in us} 
+                       for us in users_part]
+
+    return zip(users_part, groups_part, train_data_part, test_data_part)
 
 def create_client_servers(seed, 
                           params, 
@@ -139,18 +139,21 @@ def create_client_servers(seed,
                           num_client_servers):
     if len(groups) == 0:
         groups = [[] for _ in users]
-    else:
-        # TODO: add group support
-        raise NotImplementedError("groups not yet supported") 
-    partition = partition_data(num_client_servers, train_data, test_data)
+    assert(len(groups) == len(users))
+
+    partition = partition_data(num_client_servers,
+                               users,
+                               groups,
+                               train_data,
+                               test_data)
     return [ClientServer(seed, 
                          params, 
-                         users, 
-                         groups, 
+                         cs_users, 
+                         cs_groups, 
                          cs_train_data, 
                          cs_test_data, 
                          model_cls) 
-            for cs_train_data, cs_test_data in partition]
+            for cs_users, cs_groups, cs_train_data, cs_test_data in partition]
     #clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
     #return clients
 
