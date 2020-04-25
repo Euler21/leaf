@@ -1,8 +1,10 @@
 import numpy as np
+import ray
 
 from client import Client
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
 
+@ray.remote
 class ClientServer:
     
     def __init__(self, seed, params, users, groups, train_data, test_data, model_cls):

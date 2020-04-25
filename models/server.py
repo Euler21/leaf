@@ -1,4 +1,5 @@
 import numpy as np
+import ray
 
 from client_server import ClientServer
 
@@ -22,7 +23,12 @@ class Server:
         Return:
             list of (num_train_samples, num_test_samples)
         """
-        return [p for cs in self.client_servers for p in cs.select_clients(my_round, num_clients)]
+        samples_futures = []
+        for cs in self.client_servers:
+            samples_future = cs.select_clients.remote(my_round, num_clients)
+            samples_futures.append(samples_future)
+
+        return [p for future in samples_futures for p in ray.get(future)]
 
     def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
         """Trains self.model on given clients.
@@ -48,8 +54,15 @@ class Server:
         if clients is not None:
             raise NotImplementedError("Client selection not yet implemented")
         sys_metrics = {}
+        metrics_updates_futures = []
         for cs in self.client_servers:
-            metrics, updates = cs.train_model(num_epochs, batch_size, minibatch)
+            metrics_updates_future = cs.train_model.remote(
+                num_epochs, batch_size, minibatch)
+            metrics_updates_futures.append(metrics_updates_future)
+
+        for future in metrics_updates_futures:
+            # if we don't want this to block sequentially, can switch to ray.wait
+            metrics, updates = ray.get(future)
             sys_metrics.update(metrics)
             self.updates += updates
 
@@ -67,7 +80,7 @@ class Server:
         self.model = averaged_soln
         self.updates = []
         for cs in self.client_servers:
-            cs.update_model(self.model)
+            cs.update_model.remote(self.model)
 
     def test_model(self, clients_to_test=None, set_to_use='test'):
         """Tests self.model on given clients.
@@ -83,8 +96,13 @@ class Server:
         if clients_to_test is not None:
             raise NotImplementedError("Client selection not yet implemented")
 
+        metrics_futures = []
         for cs in self.client_servers:
-            metrics.update(cs.test_model(clients_to_test=None, set_to_use=set_to_use))
+            metrics_future = cs.test_model.remote(
+                clients_to_test=None, set_to_use=set_to_use)
+            metrics_futures.append(metrics_future)
+        for future in metrics_futures:
+            metrics.update(ray.get(future))
         
         return metrics
 
@@ -102,8 +120,15 @@ class Server:
         ids = []
         groups = {}
         num_samples = {}
+        client_info_futures = []
         for cs in self.client_servers:
-            cs_ids, cs_groups, cs_num_samples = cs.get_clients_info(all_clients=all_clients, clients=clients)
+            client_info_future = cs.get_clients_info.remote(
+                all_clients=all_clients, clients=clients)
+            client_info_futures.append(client_info_future)
+
+        for future in client_info_futures:
+            # if we don't want this to block sequentially, can switch to ray.wait
+            cs_ids, cs_groups, cs_num_samples = ray.get(future)
             ids += cs_ids
             groups.update(cs_groups)
             num_samples.update(cs_num_samples)
@@ -118,5 +143,5 @@ class Server:
 
     def close_model(self):
         for cs in self.client_servers:
-            cs.close_model()
+            cs.close_model.remote()
         self.server_model.close()
