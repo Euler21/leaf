@@ -91,7 +91,7 @@ def main():
         # Simulate server model training on selected clients' data
         sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch)
         sys_writer_fn(i + 1, c_ids, sys_metrics, c_groups, c_num_samples)
-        
+
         # Update server model
         server.update_model()
 
@@ -114,13 +114,11 @@ def online(clients):
     return clients
 
 def partition_data(n, users, groups, train_data, test_data):
-    chunk_size = len(users) // n
-    users_part = [users[i*chunk_size : (i+1)*chunk_size]
-                 for i in range(n - 1)]
-    groups_part = [groups[i*chunk_size : (i+1)*chunk_size]
-                 for i in range(n - 1)]
+    # divide the list into n pieces more evenly =]
+    index_part = np.array_split(np.arange(len(users)), n)
 
-    users_part.append(users[(n-1)*chunk_size :])
+    users_part = [[users[i] for i in indices] for indices in index_part]
+    groups_part = [[groups[i] for i in indices] for indices in index_part]
 
     train_data_part = [{u: train_data[u] for u in us} 
                        for us in users_part]
@@ -146,6 +144,7 @@ def create_client_servers(seed,
                                groups,
                                train_data,
                                test_data)
+
     return [ClientServer(seed, 
                          params, 
                          cs_users, 
