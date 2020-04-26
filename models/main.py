@@ -5,6 +5,7 @@ import numpy as np
 import os
 import sys
 import random
+import ray
 import tensorflow as tf
 
 import metrics.writer as metrics_writer
@@ -59,6 +60,10 @@ def main():
     tf.reset_default_graph()
     server_model = ClientModel(args.seed, *model_params)
     
+    # please swap the two lines below if deploying on cluster.
+    # ray.init(address='', temp_dir='')
+    ray.init()
+
     # Create clients
     client_servers = setup_client_servers(args.dataset, 
                                           args.seed,
@@ -108,6 +113,8 @@ def main():
 
     # Close models
     server.close_model()
+    # stop Ray driver after job finish
+    ray.shutdown()
 
 def online(clients):
     """We assume all users are always online."""
@@ -145,7 +152,8 @@ def create_client_servers(seed,
                                train_data,
                                test_data)
 
-    return [ClientServer(seed, 
+    # this will return list of ObjectIDs for ClientServer actors
+    return [ClientServer.remote(seed, 
                          params, 
                          cs_users, 
                          cs_groups, 
