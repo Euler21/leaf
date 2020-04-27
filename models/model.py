@@ -24,7 +24,12 @@ class Model(ABC):
             tf.set_random_seed(123 + self.seed)
             self.features, self.labels, self.train_op, self.eval_metric_ops, self.loss = self.create_model()
             self.saver = tf.train.Saver()
-        self.sess = tf.Session(graph=self.graph)
+        self.sess = tf.Session(
+                graph=self.graph,
+                config=tf.ConfigProto(
+                    inter_op_parallelism_threads=1,
+                    intra_op_parallelism_threads=1
+            ))
 
         self.size = graph_size(self.graph)
 

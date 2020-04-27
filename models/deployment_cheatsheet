@@ -1,0 +1,28 @@
+# use pip install --user <packagename>
+# or
+# conda create -n myenv
+# source activate myenv  (somehow conda activate is not working for everyone/requires some extra permission)
+
+# https://ray.readthedocs.io/en/latest/deploying-on-slurm.html  notes on how to config sbatch job
+# and my addition to this doc https://github.com/ray-project/ray/pull/8183
+#
+# if on login node, use:  redis-cli -h <address> -p <port>  to test connection to the redis
+#
+# don't use globle common or globle home for storage because they either limit access or size that compute node can have
+# use $SCRATCH for application input output instead!!!
+#
+# it's better to config ray to user the port whitelisted here:
+# https://docs.nersc.gov/services/spin/reference_guide/#firewall-configuration
+#
+# create interactive node
+# salloc -N 2 -C haswell -q interactive -t 00:20:00
+#
+# submitting with srun, it's important to use --block to keep the ray process alive on each compute node
+#
+# because one tensorflow session will try to reserve many cpus resources by itself,
+# its important to limit this behavior when having multiple tf session running in parallel.
+#
+# examples of leaf run
+# python3 main.py -dataset femnist -model cnn --num-rounds 5 --eval-every 1 --clients-per-round 15 --num-epochs 20 -lr 0.01 --num-client-servers 40
+#
+# 
