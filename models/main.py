@@ -61,7 +61,7 @@ def main():
     server_model = ClientModel(args.seed, *model_params)
     
     # please swap the two lines below if deploying on cluster.
-    # ray.init(address='', temp_dir='')
+    #ray.init(address='auto', redis_password='5241590000000000')
     ray.init()
 
     # Create clients
