@@ -110,7 +110,11 @@ def main():
     
     cs_training_times = [ray.get(cs.get_training_time.remote())
                          for cs in server.client_servers]
-    print("Client Server training time: ", " ".join(str(cs_training_times)))
+    print("Client Server training time: ", str(cs_training_times))
+
+    cs_num_samples = [ray.get(cs.get_total_samples.remote())
+                         for cs in server.client_servers]
+    print("Client Server num samples: ", str(cs_num_samples))
 
     # Save server model
     ckpt_path = os.path.join('checkpoints', args.dataset)

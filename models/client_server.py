@@ -18,6 +18,7 @@ class ClientServer:
         self.updates = []
         # total training includes client selection and client training
         self.total_training = 0
+        self.total_num_samples = 0
 
     def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -76,7 +77,7 @@ class ClientServer:
             sys_metrics[c.id][LOCAL_COMPUTATIONS_KEY] = comp
 
             self.updates.append((num_samples, update))
-
+            self.total_num_samples += num_samples
         t2 = datetime.now()
         self.total_training += (t2-t1).total_seconds()
         return sys_metrics, self.updates
@@ -129,6 +130,9 @@ class ClientServer:
 
     def get_training_time(self):
         return self.total_training
+
+    def get_total_samples(self):
+        return self.total_num_samples
 
     def save_model(self, path):
         """Saves the server model on checkpoints/dataset/model.ckpt."""
