@@ -27,9 +27,10 @@ class Model(ABC):
         self.sess = tf.Session(
                 graph=self.graph,
                 config=tf.ConfigProto(
-                    inter_op_parallelism_threads=1,
-                    intra_op_parallelism_threads=1
-            ))
+                    inter_op_parallelism_threads=2,
+                    intra_op_parallelism_threads=2
+                )
+                )
 
         self.size = graph_size(self.graph)
 

@@ -7,6 +7,7 @@ import sys
 import random
 import ray
 import tensorflow as tf
+from datetime import datetime
 
 import metrics.writer as metrics_writer
 
@@ -85,6 +86,7 @@ def main():
     sys_writer_fn = get_sys_writer_function(args)
     print_stats(0, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
 
+    t1 = datetime.now()
     # Simulate training
     for i in range(num_rounds):
         print('--- Round %d of %d: Training %d Clients ---' % (i + 1, num_rounds, clients_per_round))
@@ -103,7 +105,8 @@ def main():
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
             print_stats(i + 1, server, c_num_samples, args, stat_writer_fn, args.use_val_set)
-    
+    t2 = datetime.now()
+    print("training time: ", t2-t1)
     # Save server model
     ckpt_path = os.path.join('checkpoints', args.dataset)
     if not os.path.exists(ckpt_path):
