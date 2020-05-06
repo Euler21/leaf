@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import numpy as np
 import ray
 
@@ -14,6 +16,8 @@ class ClientServer:
         self.model = self.client_model.get_params()
         self.selected_clients = []
         self.updates = []
+        # total training includes client selection and client training
+        self.total_training = 0
 
     def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -26,11 +30,14 @@ class ClientServer:
         Return:
             list of (num_train_samples, num_test_samples)
         """
+        t1 = datetime.now()
         possible_clients = self.clients
         num_clients = min(num_clients, len(possible_clients))
         np.random.seed(my_round)
         self.selected_clients = np.random.choice(possible_clients, num_clients, replace=False)
 
+        t2 = datetime.now()
+        self.total_training += (t2-t1).total_seconds()
         return [(c.num_train_samples, c.num_test_samples) for c in self.selected_clients]
 
     def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
@@ -52,6 +59,9 @@ class ClientServer:
         """
         if clients is not None:
             raise NotImplementedError("Client selection not yet implemented")
+
+        t1 = datetime.now()
+
         clients = self.selected_clients
         sys_metrics = {
             c.id: {BYTES_WRITTEN_KEY: 0,
@@ -67,6 +77,8 @@ class ClientServer:
 
             self.updates.append((num_samples, update))
 
+        t2 = datetime.now()
+        self.total_training += (t2-t1).total_seconds()
         return sys_metrics, self.updates
 
     def update_model(self, new_model):
@@ -114,6 +126,9 @@ class ClientServer:
         groups = {c.id: c.group for c in clients}
         num_samples = {c.id: c.num_samples for c in clients}
         return ids, groups, num_samples
+
+    def get_training_time(self):
+        return self.total_training
 
     def save_model(self, path):
         """Saves the server model on checkpoints/dataset/model.ckpt."""

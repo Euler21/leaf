@@ -62,8 +62,8 @@ def main():
     server_model = ClientModel(args.seed, *model_params)
     
     # please swap the two lines below if deploying on cluster.
-    #ray.init(address='auto', redis_password='5241590000000000')
-    ray.init()
+    ray.init(address='auto', redis_password='5241590000000000', lru_evict=True)
+    #ray.init()
 
     # Create clients
     client_servers = setup_client_servers(args.dataset, 
@@ -106,7 +106,12 @@ def main():
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
             print_stats(i + 1, server, c_num_samples, args, stat_writer_fn, args.use_val_set)
     t2 = datetime.now()
-    print("training time: ", t2-t1)
+    print("Overall training time: ", t2-t1)
+    
+    cs_training_times = [ray.get(cs.get_training_time.remote())
+                         for cs in server.client_servers]
+    print("Client Server training time: ", " ".join(str(cs_training_times)))
+
     # Save server model
     ckpt_path = os.path.join('checkpoints', args.dataset)
     if not os.path.exists(ckpt_path):
