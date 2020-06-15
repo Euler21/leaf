@@ -67,3 +67,30 @@ def read_data(train_data_dir, test_data_dir):
     assert train_groups == test_groups
 
     return train_clients, train_groups, train_data, test_data
+
+
+def ternarize(gradients):
+    '''
+    Quantize gradient to {-1, 0, 1}.
+    Introduced in
+    [TernGrad: Ternary Gradients to Reduce Communication in Distributed Deep
+     Learning](https://arxiv.org/pdf/1705.07878.pdf)
+
+    Args:
+        gradients: list of numpy.ndarray
+
+    Return:
+        ternary_grad: sign of each elements in input gradients rescaled by the
+        largest element, with small values clipped by some probability.
+    '''
+    ternary_grad = []
+
+    s = max([np.amax(abs(grad)) for grad in gradients])
+    for grad in gradients:
+        sign = np.sign(grad)
+        mask = (np.random.rand(*grad.shape) < (abs(grad)/s))
+        # according to the TernGrad paper, clip small values with probability
+        # 1 - abs(g_tk)/s_t
+        ternary_grad.append(s*np.multiply(sign, mask))
+
+    return ternary_grad
