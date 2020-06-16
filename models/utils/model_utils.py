@@ -85,8 +85,11 @@ def ternarize(gradients):
     '''
     ternary_grad = []
 
-    s = max([np.amax(abs(grad)) for grad in gradients])
     for grad in gradients:
+        std = np.std(grad)
+
+        s = min(np.amax(abs(grad)), 2.5*std)
+
         sign = np.sign(grad)
         mask = (np.random.rand(*grad.shape) < (abs(grad)/s))
         # according to the TernGrad paper, clip small values with probability
