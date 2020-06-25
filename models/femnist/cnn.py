@@ -24,14 +24,16 @@ class ClientModel(Model):
           kernel_size=[5, 5],
           padding="same",
           activation=tf.nn.relu)
-        pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
+        bn1 = tf.layers.batch_normalization(inputs=conv1)
+        pool1 = tf.layers.max_pooling2d(inputs=bn1, pool_size=[2, 2], strides=2)
         conv2 = tf.layers.conv2d(
             inputs=pool1,
             filters=64,
             kernel_size=[5, 5],
             padding="same",
             activation=tf.nn.relu)
-        pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+        bn2 = tf.layers.batch_normalization(inputs=conv2)
+        pool2 = tf.layers.max_pooling2d(inputs=bn2, pool_size=[2, 2], strides=2)
         pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
         dense = tf.layers.dense(inputs=pool2_flat, units=2048, activation=tf.nn.relu)
         logits = tf.layers.dense(inputs=dense, units=self.num_classes)

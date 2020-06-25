@@ -39,6 +39,7 @@ class Client:
             num_epochs = 1
             comp, update = self.model.train(data, num_epochs, num_data)
         num_train_samples = len(data['y'])
+        #return comp, num_train_samples, update
         return comp, num_train_samples, ternarize(update)
 
     def test(self, set_to_use='test'):
