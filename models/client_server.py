@@ -3,14 +3,27 @@ import ray
 
 from client import Client
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
+from utils.model_utils import read_file
 
 @ray.remote
 class ClientServer:
     
-    def __init__(self, seed, params, users, groups, train_data, test_data, model_cls):
+    def __init__(
+            self, seed, params, users, groups, train_data, test_data, model_cls, train_data_path=None, test_data_path=None):
         self.client_model = model_cls(seed, *params)
-        self.clients = [Client(u, g, train_data[u], test_data[u], self.client_model) 
-                        for u, g in zip(users, groups)]
+
+        if train_data_path:
+            train_data = defaultdict(lambda : None)
+            test_data = defaultdict(lambda : None)
+            train_groups, test_groups = [], []
+            read_data_file(train_data_path, [], train_groups, train_data)
+            read_data_file(test_data_path, [], test_groups, test_data)
+            users = list(sorted(data.keys()))
+            groups = train_groups
+
+        self.clients = [
+            Client(u, g, train_data[u], test_data[u], self.client_model) 
+            for u, g in zip(users, groups)]
         self.model = self.client_model.get_params()
         self.selected_clients = []
         self.updates = []

@@ -17,7 +17,7 @@ from server import Server
 from model import ServerModel
 
 from utils.args import parse_args
-from utils.model_utils import read_data
+from utils.model_utils import read_data, split_shard_path
 
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
 SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
@@ -70,7 +70,8 @@ def main():
                                           model_params,
                                           ClientModel,
                                           args.use_val_set, 
-                                          num_client_servers)
+                                          num_client_servers,
+                                          defer_data_loading=args.defer_data_loading)
 
     # Create server
     server = Server(server_model, client_servers)
@@ -165,7 +166,23 @@ def create_client_servers(seed,
     #return clients
 
 
-def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, num_client_servers=1):
+def create_shard_client_servers(
+        seed, params, train_data_dir, test_data_dir, model_cls):
+    sharding = split_shard_path(train_data_dir, test_data_dir)
+
+    client_server_ids = []
+    for train_data_path, test_data_path in sharding:
+        cs = ClientServer.options(num_cpus=30).remote(
+                seed, params, [], [], [], [], model_cls
+                train_data_path, test_data_path
+            )
+        client_server_ids.append(cs)
+
+    return client_server_ids
+
+
+
+def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, num_client_servers=1, defer_data_loading=False):
     """Instantiates clients based on given train and test data directories.
 
     Return:
@@ -174,10 +191,17 @@ def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, nu
     eval_set = 'test' if not use_val_set else 'val'
     train_data_dir = os.path.join('..', 'data', dataset, 'data', 'train')
     test_data_dir = os.path.join('..', 'data', dataset, 'data', eval_set)
+    if not defer_data_loading:
+        users, groups, train_data, test_data = read_data(
+            train_data_dir, test_data_dir)
 
-    users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
-
-    client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, model_cls, num_client_servers)
+        client_servers = create_client_servers(
+            seed, params, users, groups, train_data, test_data, model_cls,
+            num_client_servers)
+    else:
+        # for now we are creating same number of client_servers as number of data shards
+        client_servers = create_shard_client_servers(
+            seed, params, train_data_dir, test_data_dir, model_cls)
 
     return client_servers
 
@@ -186,7 +210,8 @@ def get_stat_writer_function(ids, groups, num_samples, args):
 
     def writer_fn(num_round, metrics, partition):
         metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, partition, args.metrics_dir, '{}_{}'.format(args.metrics_name, 'stat'))
+            num_round, ids, metrics, groups, num_samples, partition,
+            args.metrics_dir, '{}_{}'.format(args.metrics_name, 'stat'))
 
     return writer_fn
 
@@ -195,7 +220,8 @@ def get_sys_writer_function(args):
 
     def writer_fn(num_round, ids, metrics, groups, num_samples):
         metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, 'train', args.metrics_dir, '{}_{}'.format(args.metrics_name, 'sys'))
+            num_round, ids, metrics, groups, num_samples, 'train',
+            args.metrics_dir, '{}_{}'.format(args.metrics_name, 'sys'))
 
     return writer_fn
 

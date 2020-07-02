@@ -53,6 +53,9 @@ def parse_args():
                     help='number of client servers to distribute to;',
                     type=int,
                     default=1)
+    parser.add_argument('--defer-data-loading',
+                    help='load data from client server;',
+                    action='store_true')
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()
