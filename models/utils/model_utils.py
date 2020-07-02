@@ -26,6 +26,16 @@ def batch_data(data, batch_size, seed):
         yield (batched_x, batched_y)
 
 
+def read_data_file(data_file_path, clients, groups, data):
+    with open(data_file_path, 'r') as inf:
+        cdata = json.load(inf)
+    clients.extend(cdata['users'])
+    if 'hierarchies' in cdata:
+        groups.extend(cdata['hierarchies'])
+    data.update(cdata['user_data'])
+
+    return
+
 def read_dir(data_dir):
     clients = []
     groups = []
@@ -35,12 +45,7 @@ def read_dir(data_dir):
     files = [f for f in files if f.endswith('.json')]
     for f in files:
         file_path = os.path.join(data_dir,f)
-        with open(file_path, 'r') as inf:
-            cdata = json.load(inf)
-        clients.extend(cdata['users'])
-        if 'hierarchies' in cdata:
-            groups.extend(cdata['hierarchies'])
-        data.update(cdata['user_data'])
+        read_data_file(file_path, clients, groups, data)
 
     clients = list(sorted(data.keys()))
     return clients, groups, data
@@ -67,3 +72,17 @@ def read_data(train_data_dir, test_data_dir):
     assert train_groups == test_groups
 
     return train_clients, train_groups, train_data, test_data
+
+
+def shard_path_in_dir(data_dir):
+    files = os.listdir(data_dir)
+    files_path = [
+        os.path.join(data_dir,f) for f in files if f.endswith('.json')
+    ]
+    return sorted(files)
+
+
+def split_shard_path(train_data_dir, test_data_dir):
+    train_file_paths = shard_path_in_dir(train_data_dir)
+    test_file_paths = shard_path_in_dir(test_data_dir)
+    return zip(train_file_paths, test_file_paths)
