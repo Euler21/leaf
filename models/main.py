@@ -62,7 +62,7 @@ def main():
     
     # please swap the two lines below if deploying on cluster.
     #ray.init(address='auto', redis_password='5241590000000000')
-    ray.init()
+    ray.init(lru_evict=True)
 
     # Create clients
     client_servers = setup_client_servers(args.dataset, 
@@ -172,8 +172,8 @@ def create_shard_client_servers(
 
     client_server_ids = []
     for train_data_path, test_data_path in sharding:
-        cs = ClientServer.options(num_cpus=30).remote(
-                seed, params, [], [], [], [], model_cls
+        cs = ClientServer.options(num_cpus=10).remote(
+                seed, params, [], [], [], [], model_cls,
                 train_data_path, test_data_path
             )
         client_server_ids.append(cs)

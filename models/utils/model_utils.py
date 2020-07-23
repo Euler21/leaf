@@ -79,7 +79,7 @@ def shard_path_in_dir(data_dir):
     files_path = [
         os.path.join(data_dir,f) for f in files if f.endswith('.json')
     ]
-    return sorted(files)
+    return sorted(files_path)
 
 
 def split_shard_path(train_data_dir, test_data_dir):

@@ -3,7 +3,7 @@ import ray
 
 from client import Client
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
-from utils.model_utils import read_file
+from utils.model_utils import read_data_file
 
 @ray.remote
 class ClientServer:
