@@ -34,7 +34,7 @@ def read_data_file(data_file_path, clients, groups, data):
         groups.extend(cdata['hierarchies'])
     data.update(cdata['user_data'])
 
-    return
+    return data, groups
 
 def read_dir(data_dir):
     clients = []
@@ -45,7 +45,7 @@ def read_dir(data_dir):
     files = [f for f in files if f.endswith('.json')]
     for f in files:
         file_path = os.path.join(data_dir,f)
-        read_data_file(file_path, clients, groups, data)
+        data, groups = read_data_file(file_path, clients, groups, data)
 
     clients = list(sorted(data.keys()))
     return clients, groups, data

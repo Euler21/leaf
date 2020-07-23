@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import numpy as np
 import ray
 
@@ -16,14 +18,15 @@ class ClientServer:
             train_data = defaultdict(lambda : None)
             test_data = defaultdict(lambda : None)
             train_groups, test_groups = [], []
-            read_data_file(train_data_path, [], train_groups, train_data)
-            read_data_file(test_data_path, [], test_groups, test_data)
-            users = list(sorted(data.keys()))
-            groups = train_groups
+            train_data, train_groups = read_data_file(train_data_path, [], train_groups, train_data)
+            test_datai, test_groups = read_data_file(test_data_path, [], test_groups, test_data)
+            users = list(sorted(train_data.keys()))
+            groups = train_groups if len(train_groups) != 0 else [[] for _ in users]
 
         self.clients = [
             Client(u, g, train_data[u], test_data[u], self.client_model) 
             for u, g in zip(users, groups)]
+ 
         self.model = self.client_model.get_params()
         self.selected_clients = []
         self.updates = []
