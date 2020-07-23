@@ -26,7 +26,6 @@ class ClientServer:
         self.clients = [
             Client(u, g, train_data[u], test_data[u], self.client_model) 
             for u, g in zip(users, groups)]
- 
         self.model = self.client_model.get_params()
         self.selected_clients = []
         self.updates = []
