@@ -1,0 +1,45 @@
+python3 main.py -dataset femnist -model cnn --num-rounds 3 --eval-every 3 --clients-per-round 40 --num-epochs 5 -lr 0.01 --num-client-servers 1
+
+train_accuracy: 0.0730172, 10th percentile: 0.0306329, 50th percentile: 0.0776772, 90th percentile 0.165754
+train_loss: 3.69586, 10th percentile: 3.44911, 50th percentile: 3.54056, 90th percentile 3.94728
+test_accuracy: 0.074875, 10th percentile: 0, 50th percentile: 0.061553, 90th percentile 0.167647
+test_loss: 3.71288, 10th percentile: 3.31266, 50th percentile: 3.65894, 90th percentile 4.00702
+Overall training time:  0:06:37.841847
+Client Server training time:  [385.55763]
+Client Server num samples:  [22984]
+
+python3 main.py -dataset femnist -model cnn --num-rounds 3 --eval-every 3 --clients-per-round 20 --num-epochs 5 -lr 0.01 --num-client-servers 2
+train_accuracy: 0.162261, 10th percentile: 0.0746934, 50th percentile: 0.20943, 90th percentile 0.264423
+train_loss: 3.67354, 10th percentile: 3.05849, 50th percentile: 3.52247, 90th percentile 3.96498
+test_accuracy: 0.169524, 10th percentile: 0.0230769, 50th percentile: 0.166667, 90th percentile 0.358929
+test_loss: 3.64315, 10th percentile: 3.01115, 50th percentile: 3.59563, 90th percentile 3.93003
+Overall training time:  0:04:04.598643
+Client Server training time:  [234.906172, 155.186087]
+Client Server num samples:  [13424, 8465]
+
+python3 main.py -dataset femnist -model cnn --num-rounds 3 --eval-every 3 --clients-per-round 10 --num-epochs 5 -lr 0.01 --num-client-servers 4
+train_accuracy: 0.0704252, 10th percentile: 0.0360601, 50th percentile: 0.0790526, 90th percentile 0.123876
+train_loss: 3.65153, 10th percentile: 3.31775, 50th percentile: 3.51899, 90th percentile 3.861
+test_accuracy: 0.068896, 10th percentile: 0, 50th percentile: 0.0526316, 90th percentile 0.202222
+test_loss: 3.67422, 10th percentile: 3.24315, 50th percentile: 3.61256, 90th percentile 3.92216
+Overall training time:  0:02:31.193637
+Client Server training time:  [142.314956, 105.256396, 81.508518, 76.75468699999999]
+Client Server num samples:  [7606, 5549, 4220, 3966]
+
+python3 main.py -dataset femnist -model cnn --num-rounds 3 --eval-every 3 --clients-per-round 5 --num-epochs 5 -lr 0.01 --num-client-servers 8
+train_accuracy: 0.105162, 10th percentile: 0.0309168, 50th percentile: 0.120173, 90th percentile 0.178962
+train_loss: 3.66624, 10th percentile: 3.30784, 50th percentile: 3.55546, 90th percentile 3.88872
+test_accuracy: 0.0988951, 10th percentile: 0, 50th percentile: 0.0916667, 90th percentile 0.222222
+test_loss: 3.67998, 10th percentile: 3.20588, 50th percentile: 3.65072, 90th percentile 3.95082
+Overall training time:  0:01:36.829416
+Client Server training time:  [88.40561600000001, 80.306173, 64.754166, 45.71526, 43.408305, 47.036862, 40.081927, 50.993528999999995]
+Client Server num samples:  [4469, 3991, 3046, 2033, 1917, 2101, 1784, 2217]
+
+local:
+train_accuracy: 0.105162, 10th percentile: 0.0309168, 50th percentile: 0.120173, 90th percentile 0.178962
+train_loss: 3.66624, 10th percentile: 3.30784, 50th percentile: 3.55546, 90th percentile 3.88872
+test_accuracy: 0.0988951, 10th percentile: 0, 50th percentile: 0.0916667, 90th percentile 0.222222
+test_loss: 3.67998, 10th percentile: 3.20588, 50th percentile: 3.65072, 90th percentile 3.95082
+Overall training time:  0:05:39.963710
+Client Server training time:  [67.287848, 60.153408, 45.92249, 31.578981, 29.378715999999997, 32.373135000000005, 28.216912, 34.186806999999995]
+Client Server num samples:  [4469, 3991, 3046, 2033, 1917, 2101, 1784, 2217]
