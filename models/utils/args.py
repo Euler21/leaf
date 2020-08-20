@@ -53,6 +53,12 @@ def parse_args():
                     help='number of client servers to distribute to;',
                     type=int,
                     default=1)
+    parser.add_argument('--multi-node',
+                    help='Allow Ray to connect with multiple compute node',
+                    action='store_true')
+    parser.add_argument('--no-parallel',
+                    help='Disable Ray and run local mode',
+                    action='store_true')
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()

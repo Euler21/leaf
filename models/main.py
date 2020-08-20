@@ -60,9 +60,10 @@ def main():
     tf.reset_default_graph()
     server_model = ClientModel(args.seed, *model_params)
     
-    # please swap the two lines below if deploying on cluster.
-    #ray.init(address='auto', redis_password='5241590000000000')
-    ray.init()
+    if args.multi_node:
+        ray.init(address='auto', redis_password='5241590000000000')
+    else:
+        ray.init(local_mode=args.no_parallel)
 
     # Create clients
     client_servers = setup_client_servers(args.dataset, 

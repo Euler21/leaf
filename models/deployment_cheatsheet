@@ -1,28 +1,54 @@
-# use pip install --user <packagename>
-# or
-# conda create -n myenv
-# source activate myenv  (somehow conda activate is not working for everyone/requires some extra permission)
+to install new packages on Cori
+WITHOUT virtual env:
+$module load python
+$pip install --user <packagename>
+try this line below
+$export PATH="$PYTHONUSERBASE/bin${PATH:+":$PATH"}"
 
-# https://ray.readthedocs.io/en/latest/deploying-on-slurm.html  notes on how to config sbatch job
-# and my addition to this doc https://github.com/ray-project/ray/pull/8183
-#
-# if on login node, use:  redis-cli -h <address> -p <port>  to test connection to the redis
-#
-# don't use globle common or globle home for storage because they either limit access or size that compute node can have
-# use $SCRATCH for application input output instead!!!
-#
-# it's better to config ray to user the port whitelisted here:
-# https://docs.nersc.gov/services/spin/reference_guide/#firewall-configuration
-#
-# create interactive node
-# salloc -N 2 -C haswell -q interactive -t 00:20:00
-#
-# submitting with srun, it's important to use --block to keep the ray process alive on each compute node
-#
-# because one tensorflow session will try to reserve many cpus resources by itself,
-# its important to limit this behavior when having multiple tf session running in parallel.
-#
-# examples of leaf run
-# python3 main.py -dataset femnist -model cnn --num-rounds 5 --eval-every 1 --clients-per-round 15 --num-epochs 20 -lr 0.01 --num-client-servers 40
-#
-# 
+or WITH virtual env:
+$conda create -n myenv
+$source activate myenv
+(somehow conda activate may not work for everyone/requires some extra permission)
+
+https://ray.readthedocs.io/en/latest/deploying-on-slurm.html  notes on how to config sbatch job for ray
+#################################################################################
+
+if on login node, use:  redis-cli -h <address> -p <port>  to test connection to the redis
+
+don't use globle common or globle home for storage because they either limit access or size that compute node can have
+use $SCRATCH for application input output instead!!!
+
+it's better to config ray to user the port whitelisted here:
+https://docs.nersc.gov/services/spin/reference_guide/#firewall-configuration
+
+#################################################################################
+For manual run, create interactive node
+$salloc -N 1 -C haswell -q interactive -t 00:20:00
+
+use -t <hh:mm:ss> to specify how long you want to use the compute node(s)
+use -N <n> to allocate n compute node(s) together.
+If n = 1, the python code will properly setup ray on its own.
+If n >= 2, make sure to remember the nid of each compute node.
+(When running salloc, it shows a list of nids for all allocated compute node, user will connect to the first compute node on that list automatically.)
+
+setup ray on compute node(s) with srun, it's important to use --block to keep the ray process alive on each compute node and use & to keep process runing from background.
+
+first configure the head node(this command will return some information, copy the ip and password in it):
+$ray start --head --block --redis-port 55079 --redis-shard-ports 55080 --object-manager-port 55081 --node-manager-port 55082 --include-webui no --resources='{"nodes":1}' &
+
+configure all worker nodes(if you allocated 4 compute nodes, then run this 3 times):
+$srun -N 1 -w <nid_of_a_compute_node> ray start --block --address=<ip_returned_from_command_above> --object-manager-port 55081 --node-manager-port 55082  --redis-password=<password_returned_from_command_above> --resources='{"nodes":1}' &
+
+#################################################################################
+
+because one tensorflow session will try to reserve many cpus resources by itself,
+its important to limit this behavior when having multiple tf session running in parallel.
+e.g. tf.Session(graph=self.graph,config=tf.ConfigProto(inter_op_parallelism_threads=1,intra_op_parallelism_threads=1))
+
+examples of leaf run
+On one compute node:
+$python3 main.py -dataset femnist -model cnn --num-rounds 5 --eval-every 1 --clients-per-round 15 --num-epochs 20 -lr 0.01 --num-client-servers 40
+On multiple compute node:
+append --multi-node flag to this command
+Debugging with single process:
+append --no-parallel flag to this command
