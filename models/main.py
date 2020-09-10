@@ -20,6 +20,8 @@ from utils.model_utils import read_data
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
 SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
 
+DATA_PATH=['global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
+
 def main():
 
     args = parse_args()
@@ -119,8 +121,10 @@ def setup_clients(dataset, model=None, use_val_set=False):
         all_clients: list of Client objects.
     """
     eval_set = 'test' if not use_val_set else 'val'
-    train_data_dir = os.path.join('..', 'data', dataset, 'data', 'train')
-    test_data_dir = os.path.join('..', 'data', dataset, 'data', eval_set)
+    train_dir = DATA_PATH + ['data', dataset, 'train']
+    test_dir = DATA_PATH + ['data', dataset, eval_set]
+    train_data_dir = os.path.join(*train_dir)
+    test_data_dir = os.path.join(*test_dir)
 
     users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 
