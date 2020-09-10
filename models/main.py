@@ -20,7 +20,7 @@ from utils.model_utils import read_data
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
 SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
 
-DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
+DATA_PATH=['global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 
 def main():
 
