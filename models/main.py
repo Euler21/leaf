@@ -16,9 +16,6 @@ from model import ServerModel
 from utils.args import parse_args
 from utils.model_utils import read_data
 
-STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
-SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
-
 DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 
 def main():
@@ -44,8 +41,8 @@ def main():
     eval_every = args.eval_every if args.eval_every != -1 else tup[1]
     clients_per_round = args.clients_per_round if args.clients_per_round != -1 else tup[2]
 
-    # Suppress tf warnings
-    tf.logging.set_verbosity(tf.logging.WARN)
+    # Suppress tf warnings; changed from WARN to ERROR 
+    tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
     # Create 2 models
     model_params = MODEL_PARAMS[model_path]
