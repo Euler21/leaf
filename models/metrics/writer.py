@@ -23,7 +23,8 @@ def print_metrics(
         num_samples,
         partition,
         metrics_dir, 
-        metrics_name):
+        metrics_name,
+        print_round_start):
     """Prints or appends the given metrics in a csv.
 
     The resulting dataframe is of the form:
@@ -66,7 +67,7 @@ def print_metrics(
             current_client[metric] = metric_value
         client_data.loc[len(client_data)] = current_client
 
-    mode = 'w' if round_number == 0 else 'a'
+    mode = 'w' if round_number == print_round_start else 'a'
     print_dataframe(client_data, path, mode)
 
 
