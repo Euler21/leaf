@@ -48,7 +48,6 @@ def _set_plot_properties(properties):
     if 'ylabel' in properties:
         plt.ylabel(properties['ylabel'])
 
-
 def plot_accuracy_vs_round_number(stat_metrics, weighted=False, plot_stds=False,
         figsize=(10, 8), title_fontsize=16, **kwargs):
     """Plots the clients' average test accuracy vs. the round number.
@@ -67,7 +66,7 @@ def plot_accuracy_vs_round_number(stat_metrics, weighted=False, plot_stds=False,
     if weighted:
         accuracies = stat_metrics.groupby(NUM_ROUND_KEY).apply(_weighted_mean, ACCURACY_KEY, NUM_SAMPLES_KEY)
         accuracies = accuracies.reset_index(name=ACCURACY_KEY)
-
+        
         stds = stat_metrics.groupby(NUM_ROUND_KEY).apply(_weighted_std, ACCURACY_KEY, NUM_SAMPLES_KEY)
         stds = stds.reset_index(name=ACCURACY_KEY)
     else:
@@ -79,8 +78,8 @@ def plot_accuracy_vs_round_number(stat_metrics, weighted=False, plot_stds=False,
     else:
         plt.plot(accuracies[NUM_ROUND_KEY], accuracies[ACCURACY_KEY])
 
-    percentile_10 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False).quantile(0.1)
-    percentile_90 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False).quantile(0.9)
+    percentile_10 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False)[[NUM_ROUND_KEY, ACCURACY_KEY]].quantile(0.1)
+    percentile_90 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False)[[NUM_ROUND_KEY, ACCURACY_KEY]].quantile(0.9)
 
     plt.plot(percentile_10[NUM_ROUND_KEY], percentile_10[ACCURACY_KEY], linestyle=':')
     plt.plot(percentile_90[NUM_ROUND_KEY], percentile_90[ACCURACY_KEY], linestyle=':')
