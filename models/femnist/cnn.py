@@ -13,6 +13,7 @@ class ClientModel(Model):
         super(ClientModel, self).__init__(seed, lr)
 
     def create_model(self):
+        print("Creating CNN!")
         """Model function for CNN."""
         features = tf.placeholder(
             tf.float32, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')

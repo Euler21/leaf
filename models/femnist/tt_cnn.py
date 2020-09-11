@@ -9,11 +9,13 @@ IMAGE_SIZE = 28
 
 
 class ClientModel(Model):
-    def __init__(self, seed, lr, num_classes):
+    def __init__(self, seed, lr, num_classes, dense_rank):
         self.num_classes = num_classes
+        self.dense_rank = dense_rank
         super(ClientModel, self).__init__(seed, lr)
 
     def create_model(self):
+        print("Creating TT-CNN!")
         """Model function for CNN."""
         features = tf.placeholder(
             tf.float32, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
@@ -36,7 +38,7 @@ class ClientModel(Model):
         pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
 
         # Dense layer replacement with a TT Neural Network 
-        denseLayer = t3f.nn.KerasDense([14, 14, 16], [16, 8, 16], activation=tf.nn.relu)
+        denseLayer = t3f.nn.KerasDense([14, 14, 16], [16, 16, 8], activation=tf.nn.relu, tt_rank=self.dense_rank)
         dense = denseLayer(inputs=pool2_flat) 
         logits = tf.layers.dense(inputs=dense, units=self.num_classes)
         predictions = {
