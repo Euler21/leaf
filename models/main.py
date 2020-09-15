@@ -71,7 +71,7 @@ def train_federated(config):
     print('--- Random Initialization ---')
     stat_writer_fn = get_stat_writer_function(client_ids, client_groups, client_num_samples, args)
     sys_writer_fn = get_sys_writer_function(args)
-    print_stats(0, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set)
+    print_stats(0, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set, sys_metrics=None)
 
     # Simulate training
     for i in range(num_rounds):
@@ -90,7 +90,7 @@ def train_federated(config):
 
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
-            print_stats(i + 1, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set)
+            print_stats(i + 1, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set, sys_metrics)
 
     # TODO: Checkpointing disabled, should really enable... 
     # Save server model
@@ -152,7 +152,7 @@ def get_sys_writer_function(args):
 
 
 def print_stats(
-    num_round, server, clients, num_samples, args, writer, use_val_set):
+    num_round, server, clients, num_samples, args, writer, use_val_set, sys_metrics):
     
     train_stat_metrics = server.test_model(clients, set_to_use='train')
     print_metrics(train_stat_metrics, num_samples, prefix='train_', raytunelog=False) # For now, just log the test performance
@@ -160,11 +160,19 @@ def print_stats(
 
     eval_set = 'test' if not use_val_set else 'val'
     test_stat_metrics = server.test_model(clients, set_to_use=eval_set)
-    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set), raytunelog=True)
+
+    # Another hack: Add the number of bytes communicated in the epoch (a sys metric) to the stats printout here.
+    # This is very unsafe, it only works because this time, we're not changing the model size at all. 
+    if sys_metrics is None:
+        epoch_bytes = 0
+    else:
+        epoch_bytes = next(iter(sys_metrics.values()))['bytes_read'] 
+ 
+    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set), raytunelog=True, epoch_bytes=epoch_bytes)
     writer(num_round, test_stat_metrics, eval_set)
 
 
-def print_metrics(metrics, weights, prefix='', raytunelog=False):
+def print_metrics(metrics, weights, prefix='', raytunelog=False, epoch_bytes=None):
     """Prints weighted averages of the given metrics.
 
     Args:
@@ -188,15 +196,15 @@ def print_metrics(metrics, weights, prefix='', raytunelog=False):
                  ten_percentile,
                  fifty_percentile,
                  ninety_percentile))
-        if raytunelog and metric=='accuracy':                   # This is a bit of a hack, should fix...
+        if raytunelog and metric=='accuracy':          # This is another hack; should fix this. 
             tune.report(accuracy=average_metric, ten_percentile=ten_percentile, \
-                 fifty_percentile=fifty_percentile, ninety_percentile=ninety_percentile) 
+                 fifty_percentile=fifty_percentile, ninety_percentile=ninety_percentile, epoch_bytes=epoch_bytes) 
 
 # TODO: This restrics RAYLEAF to only FEMNIST, just for the purpose of testing the model. 
 if __name__ == '__main__':
     sched = ASHAScheduler(metric='accuracy')
     config={
-        "lr": 0.06, # tune.uniform(0.06, 0.09),
+        "lr": tune.uniform(0.005, 0.09),
         "num_classes": 62,
         "dense_rank": tune.choice([1, 2, 4, 6, 8, 10]),
         "factorization": tune.choice(
