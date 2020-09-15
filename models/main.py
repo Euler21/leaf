@@ -92,7 +92,7 @@ def main():
     ckpt_path = os.path.join('checkpoints', args.dataset)
     if not os.path.exists(ckpt_path):
         os.makedirs(ckpt_path)
-    save_path = server.save_model(os.path.join(ckpt_path, '{}.ckpt'.format(args.model)))
+    save_path = server.save_model(os.path.join(ckpt_path, '{}_{}.ckpt'.format(args.model, args.metrics_name)))
     print('Model saved in path: %s' % save_path)
 
     # Close models
