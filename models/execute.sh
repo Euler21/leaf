@@ -10,5 +10,5 @@
 
 . modules.sh
 
-python main.py -dataset femnist -model cnn -lr 0.06 --minibatch 0.1 --clients-per-round 10 --num-rounds 2000 --metrics-name cnn_baseline 
+python main.py -dataset femnist -model tt_cnn -lr 0.06 --minibatch 0.1 --clients-per-round 10 --num-rounds 30 --metrics-name tt_cnn 
 

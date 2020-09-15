@@ -1,5 +1,5 @@
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 def __num_elems(shape):
     '''Returns the number of elements in the given shape

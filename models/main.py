@@ -16,16 +16,17 @@ from model import ServerModel
 from utils.args import parse_args
 from utils.model_utils import read_data
 
+from ray import tune
+from ray.tune.schedulers import ASHAScheduler
+
 DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 
-def main():
+args = parse_args() 
 
-    args = parse_args()
-
-    # Set the random seed if provided (affects client sampling, and batching)
+def train_federated(config):
     random.seed(1 + args.seed)
     np.random.seed(12 + args.seed)
-    tf.set_random_seed(123 + args.seed)
+    tf.compat.v1.set_random_seed(123 + args.seed)
 
     model_path = '%s/%s.py' % (args.dataset, args.model)
     if not os.path.exists(model_path):
@@ -33,27 +34,30 @@ def main():
     model_path = '%s.%s' % (args.dataset, args.model)
     
     print('############################## %s ##############################' % model_path)
+
     mod = importlib.import_module(model_path)
-    ClientModel = getattr(mod, 'ClientModel')
+    ClientModel = getattr(mod, 'ClientModel') 
 
     tup = MAIN_PARAMS[args.dataset][args.t]
     num_rounds = args.num_rounds if args.num_rounds != -1 else tup[0]
     eval_every = args.eval_every if args.eval_every != -1 else tup[1]
     clients_per_round = args.clients_per_round if args.clients_per_round != -1 else tup[2]
 
+    config["seed"] = args.seed
+
     # Suppress tf warnings; changed from WARN to ERROR 
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
     # Create 2 models
-    model_params = MODEL_PARAMS[model_path]
-    if args.lr != -1:
-        model_params_list = list(model_params)
-        model_params_list[0] = args.lr
-        model_params = tuple(model_params_list)
+    # model_params = MODEL_PARAMS[model_path]
+    # if args.lr != -1:
+    #    model_params_list = list(model_params)
+    #    model_params_list[0] = args.lr
+    #    model_params = tuple(model_params_list)
 
     # Create client model, and share params with server model
-    tf.reset_default_graph()
-    client_model = ClientModel(args.seed, *model_params)
+    tf.compat.v1.reset_default_graph()
+    client_model = ClientModel(**config)
 
     # Create server
     server = Server(client_model)
@@ -87,13 +91,14 @@ def main():
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
             print_stats(i + 1, server, clients, client_num_samples, args, stat_writer_fn, args.use_val_set)
-    
+
+    # TODO: Checkpointing disabled, should really enable... 
     # Save server model
-    ckpt_path = os.path.join('checkpoints', args.dataset)
-    if not os.path.exists(ckpt_path):
-        os.makedirs(ckpt_path)
-    save_path = server.save_model(os.path.join(ckpt_path, '{}_{}.ckpt'.format(args.model, args.metrics_name)))
-    print('Model saved in path: %s' % save_path)
+    # ckpt_path = os.path.join('checkpoints', args.dataset)
+    # if not os.path.exists(ckpt_path):
+    #     os.makedirs(ckpt_path)
+    # save_path = server.save_model(os.path.join(ckpt_path, '{}_{}.ckpt'.format(args.model, args.metrics_name)))
+    # print('Model saved in path: %s' % save_path)
 
     # Close models
     server.close_model()
@@ -150,16 +155,16 @@ def print_stats(
     num_round, server, clients, num_samples, args, writer, use_val_set):
     
     train_stat_metrics = server.test_model(clients, set_to_use='train')
-    print_metrics(train_stat_metrics, num_samples, prefix='train_')
+    print_metrics(train_stat_metrics, num_samples, prefix='train_', raytunelog=False) # For now, just log the test performance
     writer(num_round, train_stat_metrics, 'train')
 
     eval_set = 'test' if not use_val_set else 'val'
     test_stat_metrics = server.test_model(clients, set_to_use=eval_set)
-    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set))
+    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set), raytunelog=True)
     writer(num_round, test_stat_metrics, eval_set)
 
 
-def print_metrics(metrics, weights, prefix=''):
+def print_metrics(metrics, weights, prefix='', raytunelog=False):
     """Prints weighted averages of the given metrics.
 
     Args:
@@ -173,13 +178,40 @@ def print_metrics(metrics, weights, prefix=''):
     to_ret = None
     for metric in metric_names:
         ordered_metric = [metrics[c][metric] for c in sorted(metrics)]
+        average_metric=np.average(ordered_metric, weights=ordered_weights)
+        ten_percentile=np.percentile(ordered_metric, 10)
+        fifty_percentile=np.percentile(ordered_metric, 50)
+        ninety_percentile=np.percentile(ordered_metric, 90)
         print('%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g' \
               % (prefix + metric,
-                 np.average(ordered_metric, weights=ordered_weights),
-                 np.percentile(ordered_metric, 10),
-                 np.percentile(ordered_metric, 50),
-                 np.percentile(ordered_metric, 90)))
+                 average_metric,
+                 ten_percentile,
+                 fifty_percentile,
+                 ninety_percentile))
+        if raytunelog and metric=='accuracy':                   # This is a bit of a hack, should fix...
+            tune.report(accuracy=average_metric, ten_percentile=ten_percentile, \
+                 fifty_percentile=fifty_percentile, ninety_percentile=ninety_percentile) 
 
-
+# TODO: This restrics RAYLEAF to only FEMNIST, just for the purpose of testing the model. 
 if __name__ == '__main__':
-    main()
+    sched = ASHAScheduler(metric='accuracy')
+    config={
+        "lr": 0.06, # tune.uniform(0.06, 0.09),
+        "num_classes": 62,
+        "dense_rank": tune.choice([1, 2, 4, 6, 8, 10]),
+        "factorization": tune.choice(
+	[
+            [[56, 56], [32, 64]],         # 2D factorization 
+	    [[14, 14, 16], [16, 16, 8]],  # 3D factorization
+            [[7, 8, 8, 7], [4, 8, 8, 8]]  # 4D factorization
+	]
+       )
+    }
+    analysis = tune.run(train_federated,
+                        name='tt_cnn',
+                        scheduler=sched,
+                        stop={"accuracy": 0.99,
+                              "training_iteration": 30},
+                        num_samples=1,
+                        config=config) 
+

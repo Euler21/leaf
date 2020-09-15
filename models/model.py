@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 import os
 import sys
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from baseline_constants import ACCURACY_KEY
 

@@ -1,17 +1,17 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import t3f
 
 from model import Model
 import numpy as np
 
-
 IMAGE_SIZE = 28
 
 
 class ClientModel(Model):
-    def __init__(self, seed, lr, num_classes, dense_rank):
+    def __init__(self, seed, lr, num_classes, dense_rank, factorization):
         self.num_classes = num_classes
         self.dense_rank = dense_rank
+        self.factorization = factorization
         super(ClientModel, self).__init__(seed, lr)
 
     def create_model(self):
@@ -38,8 +38,8 @@ class ClientModel(Model):
         pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
 
         # Dense layer replacement with a TT Neural Network 
-        denseLayer = t3f.nn.KerasDense([14, 14, 16], [16, 16, 8], activation=tf.nn.relu, tt_rank=self.dense_rank)
-        dense = denseLayer(inputs=pool2_flat) 
+        denseLayer = t3f.nn.KerasDense(self.factorization[0], self.factorization[1], activation=tf.nn.relu, tt_rank=self.dense_rank)
+        dense = denseLayer(pool2_flat) 
         logits = tf.layers.dense(inputs=dense, units=self.num_classes)
         predictions = {
           "classes": tf.argmax(input=logits, axis=1),
