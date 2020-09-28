@@ -15,7 +15,7 @@ class ClientModel(Model):
     def create_model(self):
         """Model function for CNN."""
         features = tf.placeholder(
-            tf.float16, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
+            tf.bfloat16, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
         labels = tf.placeholder(tf.int64, shape=[None], name='labels')
         input_layer = tf.reshape(features, [-1, IMAGE_SIZE, IMAGE_SIZE, 1])
         conv1 = tf.layers.conv2d(

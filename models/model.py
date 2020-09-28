@@ -26,10 +26,9 @@ class Model(ABC):
             self.saver = tf.train.Saver()
         self.sess = tf.Session(
                 graph=self.graph,
-                config=tf.ConfigProto(
-                    inter_op_parallelism_threads=1,
-                    intra_op_parallelism_threads=1
-            ))
+                # config=tf.ConfigProto(inter_op_parallelism_threads=1,
+                #     intra_op_parallelism_threads=1)
+            )
 
         self.size = graph_size(self.graph)
 
@@ -46,12 +45,14 @@ class Model(ABC):
         with self.graph.as_default():
             all_vars = tf.trainable_variables()
             for variable, value in zip(all_vars, model_params):
-                variable.load(value, self.sess)
+                # variable.load(value, self.sess)
+                variable.load(tf.cast(value, tf.bfloat16).eval(session=self.sess), self.sess)
 
     def get_params(self):
         with self.graph.as_default():
             model_params = self.sess.run(tf.trainable_variables())
-        return model_params
+        # return model_params
+        return [param.astype(np.float32) for param in model_params]
 
     @property
     def optimizer(self):
@@ -127,7 +128,7 @@ class Model(ABC):
                 feed_dict={self.features: x_vecs, self.labels: labels}
             )
         acc = float(tot_acc) / x_vecs.shape[0]
-        return {ACCURACY_KEY: acc, 'loss': loss}
+        return {ACCURACY_KEY: acc, 'loss': loss.astype(np.float32)}
 
     def close(self):
         self.sess.close()

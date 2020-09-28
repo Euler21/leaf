@@ -75,6 +75,7 @@ class Server:
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))
+
         averaged_soln = [v / total_weight for v in base]
 
         self.model = averaged_soln
