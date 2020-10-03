@@ -1,32 +1,34 @@
 import numpy as np
+import ray
 
-from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
+from client_server import ClientServer
 
 class Server:
     
-    def __init__(self, client_model):
-        self.client_model = client_model
-        self.model = client_model.get_params()
+    def __init__(self, server_model, client_servers):
+        self.server_model = server_model
+        self.client_servers = client_servers
+        self.model = server_model.get_params()
         self.selected_clients = []
         self.updates = []
 
-    def select_clients(self, my_round, possible_clients, num_clients=20):
+    def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
         
         Note that within function, num_clients is set to
             min(num_clients, len(possible_clients)).
 
         Args:
-            possible_clients: Clients from which the server can select.
             num_clients: Number of clients to select; default 20
         Return:
             list of (num_train_samples, num_test_samples)
         """
-        num_clients = min(num_clients, len(possible_clients))
-        np.random.seed(my_round)
-        self.selected_clients = np.random.choice(possible_clients, num_clients, replace=False)
+        samples_futures = []
+        for cs in self.client_servers:
+            samples_future = cs.select_clients.remote(my_round, num_clients)
+            samples_futures.append(samples_future)
 
-        return [(c.num_train_samples, c.num_test_samples) for c in self.selected_clients]
+        return [p for future in samples_futures for p in ray.get(future)]
 
     def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
         """Trains self.model on given clients.
@@ -49,21 +51,20 @@ class Server:
             bytes_read: number of bytes read by each client from server
                 dictionary with client ids as keys and integer values.
         """
-        if clients is None:
-            clients = self.selected_clients
-        sys_metrics = {
-            c.id: {BYTES_WRITTEN_KEY: 0,
-                   BYTES_READ_KEY: 0,
-                   LOCAL_COMPUTATIONS_KEY: 0} for c in clients}
-        for c in clients:
-            c.model.set_params(self.model)
-            comp, num_samples, update = c.train(num_epochs, batch_size, minibatch)
+        if clients is not None:
+            raise NotImplementedError("Client selection not yet implemented")
+        sys_metrics = {}
+        metrics_updates_futures = []
+        for cs in self.client_servers:
+            metrics_updates_future = cs.train_model.remote(
+                num_epochs, batch_size, minibatch)
+            metrics_updates_futures.append(metrics_updates_future)
 
-            sys_metrics[c.id][BYTES_READ_KEY] += c.model.size
-            sys_metrics[c.id][BYTES_WRITTEN_KEY] += c.model.size
-            sys_metrics[c.id][LOCAL_COMPUTATIONS_KEY] = comp
-
-            self.updates.append((num_samples, update))
+        for future in metrics_updates_futures:
+            # if we don't want this to block sequentially, can switch to ray.wait
+            metrics, updates = ray.get(future)
+            sys_metrics.update(metrics)
+            self.updates += updates
 
         return sys_metrics
 
@@ -78,8 +79,10 @@ class Server:
 
         self.model = averaged_soln
         self.updates = []
+        for cs in self.client_servers:
+            cs.update_model.remote(self.model)
 
-    def test_model(self, clients_to_test, set_to_use='test'):
+    def test_model(self, clients_to_test=None, set_to_use='test'):
         """Tests self.model on given clients.
 
         Tests model on self.selected_clients if clients_to_test=None.
@@ -90,17 +93,20 @@ class Server:
         """
         metrics = {}
 
-        if clients_to_test is None:
-            clients_to_test = self.selected_clients
+        if clients_to_test is not None:
+            raise NotImplementedError("Client selection not yet implemented")
 
-        for client in clients_to_test:
-            client.model.set_params(self.model)
-            c_metrics = client.test(set_to_use)
-            metrics[client.id] = c_metrics
+        metrics_futures = []
+        for cs in self.client_servers:
+            metrics_future = cs.test_model.remote(
+                clients_to_test=None, set_to_use=set_to_use)
+            metrics_futures.append(metrics_future)
+        for future in metrics_futures:
+            metrics.update(ray.get(future))
         
         return metrics
 
-    def get_clients_info(self, clients):
+    def get_clients_info(self, all_clients=False, clients=None):
         """Returns the ids, hierarchies and num_samples for the given clients.
 
         Returns info about self.selected_clients if clients=None;
@@ -108,20 +114,34 @@ class Server:
         Args:
             clients: list of Client objects.
         """
-        if clients is None:
-            clients = self.selected_clients
+        if clients is not None:
+            raise NotImplementedError("Client selection not yet implemented")
 
-        ids = [c.id for c in clients]
-        groups = {c.id: c.group for c in clients}
-        num_samples = {c.id: c.num_samples for c in clients}
+        ids = []
+        groups = {}
+        num_samples = {}
+        client_info_futures = []
+        for cs in self.client_servers:
+            client_info_future = cs.get_clients_info.remote(
+                all_clients=all_clients, clients=clients)
+            client_info_futures.append(client_info_future)
+
+        for future in client_info_futures:
+            # if we don't want this to block sequentially, can switch to ray.wait
+            cs_ids, cs_groups, cs_num_samples = ray.get(future)
+            ids += cs_ids
+            groups.update(cs_groups)
+            num_samples.update(cs_num_samples)
         return ids, groups, num_samples
 
     def save_model(self, path):
         """Saves the server model on checkpoints/dataset/model.ckpt."""
         # Save server model
-        self.client_model.set_params(self.model)
-        model_sess =  self.client_model.sess
-        return self.client_model.saver.save(model_sess, path)
+        self.server_model.set_params(self.model)
+        model_sess =  self.server_model.sess
+        return self.server_model.saver.save(model_sess, path)
 
     def close_model(self):
-        self.client_model.close()
+        for cs in self.client_servers:
+            cs.close_model.remote()
+        self.server_model.close()

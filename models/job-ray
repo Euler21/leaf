@@ -1,0 +1,51 @@
+#!/bin/bash
+#SBATCH -N 3
+#SBATCH -C knl
+#SBATCH -q debug
+#SBATCH -J cs267
+#SBATCH -t 00:05:00
+
+worker_num=2
+
+
+module load python
+echo $PYTHONUSERBASE
+
+if [[ ":$PATH:" != *":$PYTHONUSERBASE/bin:"*  ]]; then
+        export PATH="$PYTHONUSERBASE/bin${PATH:+":$PATH"}"  # Adding local Cori user python path
+fi
+
+nodes=$(scontrol show hostnames $SLURM_JOB_NODELIST) # Getting the node names
+nodes_array=( $nodes )
+
+node1=${nodes_array[0]}
+
+suffix=':55079'
+ip_head=$node1$suffix
+#redis_password=$(uuidgen)
+redis_password='8b1fc32b-14cd-407c-b0d7-352ca48e98aa'
+OBJECT_STORE_MEM=88719476736
+
+export ip_head
+
+echo "xxx Start head:"
+echo $ip_head
+
+srun -N 1 -w $node1 ray start --head --block --redis-port 55079 --redis-shard-ports 55080 --object-manager-port 55081 --node-manager-port 55082  --redis-password=$redis_password --resources='{"nodes":1}' --object-store-memory=$OBJECT_STORE_MEM --include-webui no --redis-max-clients 10000 & # Starting the head
+sleep 50
+
+echo "xxx Start workers"
+
+for ((  i=1; i<=$worker_num; i++ ))
+do
+  srun -N 1 -w ${nodes_array[$i]} ray start --block --address=$ip_head --object-manager-port 55081 --node-manager-port 55082  --redis-password=$redis_password --resources='{"nodes":1}' --object-store-memory=$OBJECT_STORE_MEM &
+  sleep 5
+
+done
+
+#echo "xxx trainer"
+
+
+#run the application:
+python -u ray-test.py
+

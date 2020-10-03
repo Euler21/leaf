@@ -62,6 +62,10 @@ def print_metrics(
         }
 
         current_metrics = metrics.get(c_id, {})
+        # TODO: this is a hack to get around bug with client ids not present
+        #       in metrics dict. Need to figure out better solution.
+        if len(current_metrics) == 0:
+            continue
         for metric, metric_value in current_metrics.items():
             current_client[metric] = metric_value
         client_data.loc[len(client_data)] = current_client
