@@ -3,9 +3,7 @@ import tensorflow as tf
 from model import Model
 import numpy as np
 
-
 IMAGE_SIZE = 28
-
 
 class ClientModel(Model):
     def __init__(self, seed, lr, num_classes):
@@ -15,26 +13,11 @@ class ClientModel(Model):
     def create_model(self):
         """Model function for CNN."""
         features = tf.placeholder(
-            tf.float16, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
+            tf.bfloat16, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
         labels = tf.placeholder(tf.int64, shape=[None], name='labels')
-        input_layer = tf.reshape(features, [-1, IMAGE_SIZE, IMAGE_SIZE, 1])
-        conv1 = tf.layers.conv2d(
-          inputs=input_layer,
-          filters=32,
-          kernel_size=[5, 5],
-          padding="same",
-          activation=tf.nn.relu)
-        pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
-        conv2 = tf.layers.conv2d(
-            inputs=pool1,
-            filters=64,
-            kernel_size=[5, 5],
-            padding="same",
-            activation=tf.nn.relu)
-        pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
-        pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
-        dense = tf.layers.dense(inputs=pool2_flat, units=2048, activation=tf.nn.relu)
-        logits = tf.layers.dense(inputs=dense, units=self.num_classes)
+        dense1 = tf.layers.dense(inputs=features, units=64, activation=tf.nn.sigmoid)
+        dense2 = tf.layers.dense(inputs=dense1, units=64, activation=tf.nn.sigmoid)
+        logits = tf.layers.dense(inputs=dense2, units=self.num_classes)
         predictions = {
           "classes": tf.argmax(input=logits, axis=1),
           "probabilities": tf.nn.softmax(logits, name="softmax_tensor")

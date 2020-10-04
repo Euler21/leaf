@@ -46,7 +46,7 @@ class Model(ABC):
             all_vars = tf.trainable_variables()
             for variable, value in zip(all_vars, model_params):
                 # variable.load(value, self.sess)
-                variable.load(tf.cast(value, tf.bfloat16).eval(session=self.sess), self.sess)
+                variable.load(tf.cast(value, tf.float16).eval(session=self.sess), self.sess)
 
     def get_params(self):
         with self.graph.as_default():
