@@ -74,7 +74,9 @@ def print_metrics(
 def print_dataframe(df, path, mode='w'):
     """Writes the given dataframe in path as a csv"""
     header = mode == 'w'
-    df.to_csv(path, mode=mode, header=header, index=False)
+
+    # TODO: This is temporarily disabled so that all of the files don't overwrite each other!
+    # df.to_csv(path, mode=mode, header=header, index=False)
 
 
 def get_metrics_names(metrics):

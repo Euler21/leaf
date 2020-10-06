@@ -205,19 +205,11 @@ if __name__ == '__main__':
     sched = ASHAScheduler(metric='accuracy')
     config={
         "lr": 0.06, # tune.uniform(0.005, 0.09),
-        "num_classes": 62,
-        "dense_rank": 8,
-        "factorization": tune.grid_search(
-	[
-            [[56, 56], [32, 64]],         # 2D factorization 
-	    [[14, 14, 16], [16, 16, 8]],  # 3D factorization
-            [[7, 8, 8, 7], [4, 8, 8, 8]]  # 4D factorization
-	]
-       )
+        "num_classes": 62
     }
     analysis = tune.run(train_federated,
-                        name='tt_cnn',
-                        # scheduler=sched,
+                        name='cnn',
+                        scheduler=sched,
                         stop={"accuracy": 0.99,
                               "training_iteration": 3000},
                         num_samples=1,
