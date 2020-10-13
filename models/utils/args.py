@@ -59,6 +59,11 @@ def parse_args():
     parser.add_argument('--no-parallel',
                     help='Disable Ray and run local mode',
                     action='store_true')
+    parser.add_argument('--model-precision',
+                    help='The precision to store model weights',
+                    type=str,
+                    default='float32',
+                    required=False)
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()

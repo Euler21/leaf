@@ -9,7 +9,7 @@ from model import Model
 from utils.language_utils import letter_to_vec, word_to_indices
 
 class ClientModel(Model):
-    def __init__(self, seed, lr, seq_len, num_classes, n_hidden):
+    def __init__(self, seed, lr, seq_len, num_classes, n_hidden, **kwargs):
         self.seq_len = seq_len
         self.num_classes = num_classes
         self.n_hidden = n_hidden

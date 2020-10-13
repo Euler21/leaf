@@ -1,19 +1,22 @@
+import numpy as np
 import tensorflow as tf
 
 from model import Model
-import numpy as np
+from model.utils.tf_utils import get_dtype_with_precision
+
 
 IMAGE_SIZE = 28
 
 class ClientModel(Model):
-    def __init__(self, seed, lr, num_classes):
+    def __init__(self, seed, lr, num_classes, model_precision='float32', **kwargs):
         self.num_classes = num_classes
+        self.dtype = get_dtype_with_precision(model_precision)
         super(ClientModel, self).__init__(seed, lr)
 
     def create_model(self):
         """Model function for CNN."""
         features = tf.placeholder(
-            tf.bfloat16, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
+            self.dtype, shape=[None, IMAGE_SIZE * IMAGE_SIZE], name='features')
         labels = tf.placeholder(tf.int64, shape=[None], name='labels')
         dense1 = tf.layers.dense(inputs=features, units=64, activation=tf.nn.sigmoid)
         dense2 = tf.layers.dense(inputs=dense1, units=64, activation=tf.nn.sigmoid)

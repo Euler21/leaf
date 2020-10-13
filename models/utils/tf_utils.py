@@ -37,3 +37,15 @@ def graph_size(graph):
             var_size = tot_elems * dtype_size
             tot_size += var_size
     return tot_size
+
+def get_dtype_with_precision(model_precision):
+    '''
+    Returns the tensorflow datatype corresponding to give precision
+    '''
+    datatype_map = {
+        'float32': tf.float32,
+        'float16': tf.float16,
+        'bfloat16': tf.bfloat16,
+    }
+
+    return datatype_map[model_precision]

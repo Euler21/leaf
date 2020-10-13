@@ -13,7 +13,7 @@ VOCAB_DIR = 'sent140/embs.json'
 
 class ClientModel(Model):
 
-    def __init__(self, lr, num_classes, input_dim=None):
+    def __init__(self, lr, num_classes, input_dim=None, **kwargs):
         self.num_classes = num_classes
         _, _, self.vocab = get_word_emb_arr(VOCAB_DIR)
         if not input_dim:

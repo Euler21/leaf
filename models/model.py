@@ -26,8 +26,9 @@ class Model(ABC):
             self.saver = tf.train.Saver()
         self.sess = tf.Session(
                 graph=self.graph,
-                # config=tf.ConfigProto(inter_op_parallelism_threads=1,
-                #     intra_op_parallelism_threads=1)
+                config=tf.ConfigProto(
+                    inter_op_parallelism_threads=1,
+                    intra_op_parallelism_threads=1)
             )
 
         self.size = graph_size(self.graph)

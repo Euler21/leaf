@@ -16,7 +16,7 @@ VOCABULARY_PATH = '../data/reddit/vocab/reddit_vocab.pck'
 # and https://r2rt.com/recurrent-neural-networks-in-tensorflow-iii-variable-length-sequences.html
 class ClientModel(Model):
     def __init__(self, seed, lr, seq_len, n_hidden, num_layers,
-        keep_prob=1.0, max_grad_norm=5, init_scale=0.1):
+        keep_prob=1.0, max_grad_norm=5, init_scale=0.1, model_precision='float32', **kwargs):
 
         self.seq_len = seq_len
         self.n_hidden = n_hidden

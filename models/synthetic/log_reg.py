@@ -11,7 +11,7 @@ from utils.model_utils import batch_data
 
 class ClientModel(Model):
 
-    def __init__(self, seed, lr, num_classes, input_dim):
+    def __init__(self, seed, lr, num_classes, input_dim, **kwargs):
         self.num_classes = num_classes
         self.input_dim = input_dim
         super(ClientModel, self).__init__(seed, lr)

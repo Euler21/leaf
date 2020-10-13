@@ -14,7 +14,7 @@ VOCAB_DIR = 'sent140/embs.json'
 
 class ClientModel(Model):
 
-    def __init__(self, seed, lr, seq_len, num_classes, n_hidden, emb_arr=None):
+    def __init__(self, seed, lr, seq_len, num_classes, n_hidden, emb_arr=None, **kwargs):
         self.seq_len = seq_len
         self.num_classes = num_classes
         self.n_hidden = n_hidden

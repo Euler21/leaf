@@ -57,9 +57,12 @@ def main():
         model_params_list[0] = args.lr
         model_params = tuple(model_params_list)
 
+    model_kwargs = {'model_precision': args.model_precision}
+
     # Create client model, and share params with server model
     tf.reset_default_graph()
-    server_model = ClientModel(args.seed, *model_params)
+    server_model = ClientModel(
+        args.seed, *model_params, **model_kwargs)
     
     if args.multi_node:
         ray.init(address='auto', redis_password='5241590000000000')
@@ -70,9 +73,10 @@ def main():
     client_servers = setup_client_servers(args.dataset, 
                                           args.seed,
                                           model_params,
+                                          model_kwargs,
                                           ClientModel,
-                                          args.use_val_set, 
-                                          num_client_servers)
+                                          use_val_set=args.use_val_set, 
+                                          num_client_servers=num_client_servers)
 
     # Create server
     server = Server(server_model, client_servers)
@@ -139,13 +143,14 @@ def partition_data(n, users, groups, train_data, test_data):
 
     return zip(users_part, groups_part, train_data_part, test_data_part)
 
-def create_client_servers(seed, 
-                          params, 
-                          users, 
-                          groups, 
-                          train_data, 
-                          test_data, 
-                          model_cls, 
+def create_client_servers(seed,
+                          params,
+                          model_kwargs,
+                          users,
+                          groups,
+                          train_data,
+                          test_data,
+                          model_cls,
                           num_client_servers):
     if len(groups) == 0:
         groups = [[] for _ in users]
@@ -158,12 +163,13 @@ def create_client_servers(seed,
                                test_data)
 
     # this will return list of ObjectIDs for ClientServer actors
-    return [ClientServer.remote(seed, 
-                         params, 
-                         cs_users, 
-                         cs_groups, 
-                         cs_train_data, 
-                         cs_test_data, 
+    return [ClientServer.remote(seed,
+                         params,
+                         model_kwargs,
+                         cs_users,
+                         cs_groups,
+                         cs_train_data,
+                         cs_test_data,
                          model_cls) 
             for cs_users, cs_groups, cs_train_data, cs_test_data in partition]
     #clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
