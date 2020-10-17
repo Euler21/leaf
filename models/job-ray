@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -N 3
 #SBATCH -C knl
-#SBATCH -q debug
+#SBATCH -q regular
 #SBATCH -J cs267
-#SBATCH -t 00:05:00
+#SBATCH -t 01:00:00
 
 worker_num=2
 
@@ -47,5 +47,4 @@ done
 
 
 #run the application:
-python -u ray-test.py
-
+python -u main.py -dataset femnist -model cnn --num-rounds 5 --eval-every 1 --clients-per-round 10 --num-epochs 20 -lr 0.01 --num-client-servers 40 --multi-node
