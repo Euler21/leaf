@@ -30,7 +30,13 @@ class Server:
 
         return [p for future in samples_futures for p in ray.get(future)]
 
-    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
+    def train_model(
+            self,
+            num_epochs=1,
+            batch_size=10,
+            minibatch=None,
+            clients=None,
+            sync_grad=False):
         """Trains self.model on given clients.
         
         Trains model on self.selected_clients if clients=None;
@@ -57,7 +63,8 @@ class Server:
         metrics_updates_futures = []
         for cs in self.client_servers:
             metrics_updates_future = cs.train_model.remote(
-                num_epochs, batch_size, minibatch)
+                num_epochs=num_epochs, batch_size=batch_size,
+                minibatch=minibatch, sync_grad=sync_grad)
             metrics_updates_futures.append(metrics_updates_future)
 
         for future in metrics_updates_futures:
@@ -68,14 +75,22 @@ class Server:
 
         return sys_metrics
 
-    def update_model(self):
+    def update_model(self, sync_grad=False):
         total_weight = 0.
+        init_weights = self.model
         base = [0] * len(self.updates[0][1])
         for (client_samples, client_model) in self.updates:
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))
-        averaged_soln = [v / total_weight for v in base]
+
+        if sync_grad:
+            averaged_soln = [
+                init_weights[i].astype(np.float64) + (base[i] / total_weight)
+                for i in range(len(base))
+            ]
+        else:
+            averaged_soln = [v / total_weight for v in base]
 
         self.model = averaged_soln
         self.updates = []

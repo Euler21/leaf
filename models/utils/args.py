@@ -59,6 +59,10 @@ def parse_args():
     parser.add_argument('--no-parallel',
                     help='Disable Ray and run local mode',
                     action='store_true')
+    parser.add_argument('--sync-grad',
+                    help='Gather gradient from client model to the server, '
+                    'instead of model weights',
+                    action='store_true')
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()

@@ -29,11 +29,18 @@ class ClientServer:
         possible_clients = self.clients
         num_clients = min(num_clients, len(possible_clients))
         np.random.seed(my_round)
-        self.selected_clients = np.random.choice(possible_clients, num_clients, replace=False)
+        self.selected_clients = np.random.choice(
+            possible_clients, num_clients, replace=False)
 
         return [(c.num_train_samples, c.num_test_samples) for c in self.selected_clients]
 
-    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
+    def train_model(
+            self,
+            num_epochs=1,
+            batch_size=10,
+            minibatch=None,
+            clients=None,
+            sync_grad=False):
         """Trains self.model on given clients.
         
         Trains model on self.selected_clients if clients=None;
@@ -59,7 +66,9 @@ class ClientServer:
                    LOCAL_COMPUTATIONS_KEY: 0} for c in clients}
         for c in clients:
             c.model.set_params(self.model)
-            comp, num_samples, update = c.train(num_epochs, batch_size, minibatch)
+            comp, num_samples, update = c.train(
+                num_epochs=num_epochs, batch_size=batch_size,
+                minibatch=minibatch, sync_grad=sync_grad)
 
             sys_metrics[c.id][BYTES_READ_KEY] += c.model.size
             sys_metrics[c.id][BYTES_WRITTEN_KEY] += c.model.size

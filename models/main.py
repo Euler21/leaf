@@ -96,11 +96,13 @@ def main():
         c_ids, c_groups, c_num_samples = server.get_clients_info()
 
         # Simulate server model training on selected clients' data
-        sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch)
+        sys_metrics = server.train_model(
+            num_epochs=args.num_epochs, batch_size=args.batch_size,
+            minibatch=args.minibatch, sync_grad=args.sync_grad)
         sys_writer_fn(i + 1, c_ids, sys_metrics, c_groups, c_num_samples)
 
         # Update server model
-        server.update_model()
+        server.update_model(sync_grad=args.sync_grad)
 
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:

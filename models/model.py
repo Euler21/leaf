@@ -76,7 +76,7 @@ class Model(ABC):
         """
         return None, None, None, None, None
 
-    def train(self, data, num_epochs=1, batch_size=10):
+    def train(self, data, num_epochs=1, batch_size=10, sync_grad=False):
         """
         Trains the client model.
 
@@ -89,10 +89,17 @@ class Model(ABC):
             update: List of np.ndarray weights, with each weight array
                 corresponding to a variable in the resulting graph
         """
+        init_weights = self.get_params()
+
         for _ in range(num_epochs):
             self.run_epoch(data, batch_size)
 
-        update = self.get_params()
+        weights = self.get_params()
+        if sync_grad:
+            update = [weights[i] - init_weights[i] for i in range(len(weights))]
+        else:
+            update = weights
+
         comp = num_epochs * (len(data['y'])//batch_size) * batch_size * self.flops
         return comp, update
 

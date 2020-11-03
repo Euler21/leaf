@@ -4,14 +4,20 @@ import warnings
 
 class Client:
     
-    def __init__(self, client_id, group=None, train_data={'x' : [],'y' : []}, eval_data={'x' : [],'y' : []}, model=None):
+    def __init__(
+            self,
+            client_id,
+            group=None,
+            train_data={'x' : [],'y' : []},
+            eval_data={'x' : [],'y' : []},
+            model=None):
         self._model = model
         self.id = client_id
         self.group = group
         self.train_data = train_data
         self.eval_data = eval_data
 
-    def train(self, num_epochs=1, batch_size=10, minibatch=None):
+    def train(self, num_epochs=1, batch_size=10, minibatch=None, sync_grad=False):
         """Trains on self.model using the client's train_data.
 
         Args:
@@ -27,7 +33,8 @@ class Client:
         """
         if minibatch is None:
             data = self.train_data
-            comp, update = self.model.train(data, num_epochs, batch_size)
+            comp, update = self.model.train(
+                data, num_epochs=num_epochs, batch_size=batch_size, sync_grad=sync_grad)
         else:
             frac = min(1.0, minibatch)
             num_data = max(1, int(frac*len(self.train_data["x"])))
@@ -36,7 +43,8 @@ class Client:
 
             # Minibatch trains for only 1 epoch - multiple local epochs don't make sense!
             num_epochs = 1
-            comp, update = self.model.train(data, num_epochs, num_data)
+            comp, update = self.model.train(
+                data, num_epochs=num_epochs, batch_size=num_data, sync_grad=sync_grad)
         num_train_samples = len(data['y'])
         return comp, num_train_samples, update
 
