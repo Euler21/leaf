@@ -2,6 +2,8 @@ import random
 import warnings
 
 
+from utils.model_utils import ternarize
+
 class Client:
     
     def __init__(
@@ -46,7 +48,7 @@ class Client:
             comp, update = self.model.train(
                 data, num_epochs=num_epochs, batch_size=num_data, sync_grad=sync_grad)
         num_train_samples = len(data['y'])
-        return comp, num_train_samples, update
+        return comp, num_train_samples, ternarize(update)
 
     def test(self, set_to_use='test'):
         """Tests self.model on self.test_data.
