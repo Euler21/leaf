@@ -5,12 +5,13 @@ from client_server import ClientServer
 
 class Server:
     
-    def __init__(self, server_model, client_servers):
+    def __init__(self, server_model, client_servers, sketcher):
         self.server_model = server_model
         self.client_servers = client_servers
         self.model = server_model.get_params()
         self.selected_clients = []
         self.updates = []
+        self.sketcher = sketcher
 
     def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -71,7 +72,7 @@ class Server:
     def update_model(self):
         total_weight = 0.
         base = [0] * len(self.updates[0][1])
-        for (client_samples, client_model) in self.updates:
+        for (client_samples, client_model) in map(self.sketcher.uncompress, self.updates):
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))

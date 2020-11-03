@@ -7,9 +7,9 @@ from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTAT
 @ray.remote
 class ClientServer:
     
-    def __init__(self, seed, params, users, groups, train_data, test_data, model_cls):
+    def __init__(self, seed, params, users, groups, train_data, test_data, sketcher, model_cls):
         self.client_model = model_cls(seed, *params)
-        self.clients = [Client(u, g, train_data[u], test_data[u], self.client_model) 
+        self.clients = [Client(u, g, train_data[u], test_data[u], sketcher, self.client_model) 
                         for u, g in zip(users, groups)]
         self.model = self.client_model.get_params()
         self.selected_clients = []

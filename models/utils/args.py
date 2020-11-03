@@ -59,6 +59,10 @@ def parse_args():
     parser.add_argument('--no-parallel',
                     help='Disable Ray and run local mode',
                     action='store_true')
+    parser.add_argument('--sketcher',
+                    help='Set sketching algorithm to use',
+                    type=str,
+                    default='VoidSketcher')
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()

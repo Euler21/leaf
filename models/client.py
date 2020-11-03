@@ -1,15 +1,17 @@
 import random
 import warnings
 
+from utils.compression_utils import VoidSketcher
 
 class Client:
     
-    def __init__(self, client_id, group=None, train_data={'x' : [],'y' : []}, eval_data={'x' : [],'y' : []}, model=None):
+    def __init__(self, client_id, group=None, train_data={'x' : [],'y' : []}, eval_data={'x' : [],'y' : []}, sketcher=VoidSketcher(), model=None):
         self._model = model
         self.id = client_id
         self.group = group
         self.train_data = train_data
         self.eval_data = eval_data
+        self.sketcher = sketcher
 
     def train(self, num_epochs=1, batch_size=10, minibatch=None):
         """Trains on self.model using the client's train_data.
@@ -38,7 +40,7 @@ class Client:
             num_epochs = 1
             comp, update = self.model.train(data, num_epochs, num_data)
         num_train_samples = len(data['y'])
-        return comp, num_train_samples, update
+        return comp, num_train_samples, self.sketcher.compress(update)
 
     def test(self, set_to_use='test'):
         """Tests self.model on self.test_data.

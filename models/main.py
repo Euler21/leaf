@@ -18,6 +18,7 @@ from model import ServerModel
 
 from utils.args import parse_args
 from utils.model_utils import read_data
+from utils.compression_utils import *
 
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
 SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
@@ -46,6 +47,7 @@ def main():
     eval_every = args.eval_every if args.eval_every != -1 else tup[1]
     clients_per_round = args.clients_per_round if args.clients_per_round != -1 else tup[2]
     num_client_servers = args.num_client_servers
+    sketcher = eval(args.sketcher + '()')
 
     # Suppress tf warnings
     tf.logging.set_verbosity(tf.logging.WARN)
@@ -70,12 +72,13 @@ def main():
     client_servers = setup_client_servers(args.dataset, 
                                           args.seed,
                                           model_params,
+                                          sketcher,
                                           ClientModel,
                                           args.use_val_set, 
                                           num_client_servers)
 
     # Create server
-    server = Server(server_model, client_servers)
+    server = Server(server_model, client_servers, sketcher)
 
     # clients = setup_clients(args.dataset, client_model, args.use_val_set)
     client_ids, client_groups, client_num_samples = server.get_clients_info(all_clients=True)
@@ -142,6 +145,7 @@ def create_client_servers(seed,
                           groups, 
                           train_data, 
                           test_data, 
+                          sketcher,
                           model_cls, 
                           num_client_servers):
     if len(groups) == 0:
@@ -161,13 +165,14 @@ def create_client_servers(seed,
                          cs_groups, 
                          cs_train_data, 
                          cs_test_data, 
+                         sketcher,
                          model_cls) 
             for cs_users, cs_groups, cs_train_data, cs_test_data in partition]
     #clients = [Client(u, g, train_data[u], test_data[u], model) for u, g in zip(users, groups)]
     #return clients
 
 
-def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, num_client_servers=1):
+def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set=False, num_client_servers=1):
     """Instantiates clients based on given train and test data directories.
 
     Return:
@@ -182,7 +187,7 @@ def setup_client_servers(dataset, seed, params, model_cls, use_val_set=False, nu
     test_data_dir = os.path.join(*test_dir)
     users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 
-    client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, model_cls, num_client_servers)
+    client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, sketcher, model_cls, num_client_servers)
 
     return client_servers
 
