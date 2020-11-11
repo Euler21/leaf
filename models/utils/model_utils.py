@@ -26,21 +26,26 @@ def batch_data(data, batch_size, seed):
         yield (batched_x, batched_y)
 
 
+def read_file(file_path):
+    with open(file_path, 'r') as inf:
+        cdata = json.load(inf)
+    
+    users = cdata['users']
+    hierarchies = cdata['hierarchies'] if 'hierarchies' in cdata else []
+    user_data = cdata['user_data']
+    return users, hierarchies, user_data
+
 def read_dir(data_dir):
     clients = []
     groups = []
     data = defaultdict(lambda : None)
 
-    files = os.listdir(data_dir)
-    files = [f for f in files if f.endswith('.json')]
-    for f in files:
-        file_path = os.path.join(data_dir,f)
-        with open(file_path, 'r') as inf:
-            cdata = json.load(inf)
-        clients.extend(cdata['users'])
-        if 'hierarchies' in cdata:
-            groups.extend(cdata['hierarchies'])
-        data.update(cdata['user_data'])
+    file_paths = list_json_paths(data_dir)
+    for file_path in file_paths:
+        users, hierarchies, user_data = read_file(file_path)
+        clients.extend(users)
+        groups.extend(hierarchies)
+        data.update(user_data)
 
     clients = list(sorted(data.keys()))
     return clients, groups, data
@@ -67,3 +72,22 @@ def read_data(train_data_dir, test_data_dir):
     assert train_groups == test_groups
 
     return train_clients, train_groups, train_data, test_data
+
+
+def generate_data_shard(train_data_dir, test_data_dir):
+    train_paths = list_json_paths(train_data_dir)
+    test_paths = list_json_paths(test_data_dir)
+    k = len*(train_paths)
+    n = num_client_servers
+    # distribute data among all client servers as evenly as possible
+    # i.e. client servers created by each data file should not differ by more than 1
+    client_servers_per_file = [n//k + 1]*(n % k) + [n//k]*(k - n % k)
+    # Assume the corresponding train and test files named in the same pattern
+    # i.e. 01_train.json -- 01_test.json, 02_train.json -- 02_test.json etc
+    for train_path, test_path, num_cs in zip(sorted(train_paths), sorted(test_paths), client_servers_per_file):
+        yield train_path, test_path, num_cs
+
+
+def list_json_paths(data_dir):
+    files = os.listdir(data_dir)
+    return [os.path.join(data_dir, f) for f in files if f.endswith('.json')]

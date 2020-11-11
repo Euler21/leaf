@@ -63,6 +63,9 @@ def parse_args():
                     help='Set sketching algorithm to use',
                     type=str,
                     default='VoidSketcher')
+    parser.add_argument('--defer-data-loading',
+                        help='load data from client server;',
+                        action='store_true')
  
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()

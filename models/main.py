@@ -17,7 +17,7 @@ from server import Server
 from model import ServerModel
 
 from utils.args import parse_args
-from utils.model_utils import read_data
+from utils.model_utils import generate_data_shard, list_json_paths, read_data, read_file
 from utils.compression_utils import *
 
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
@@ -75,7 +75,8 @@ def main():
                                           sketcher,
                                           ClientModel,
                                           args.use_val_set, 
-                                          num_client_servers)
+                                          num_client_servers,
+                                          deferred_loading=args.defer_data_loading)
 
     # Create server
     server = Server(server_model, client_servers, sketcher)
@@ -172,7 +173,22 @@ def create_client_servers(seed,
     #return clients
 
 
-def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set=False, num_client_servers=1):
+@ray.remote(resources={"Node": 1})
+def load_data_and_create_client_servers(seed, params, train_path, test_path, sketcher, model_cls, num_client_servers):
+    """
+    
+    """
+    # refactor this with read_dir
+    train_users, train_groups, train_data = read_file(train_path)
+    test_users, test_groups, test_data = read_file(test_path)
+
+    assert train_users == test_users
+    assert train_groups == test_groups
+
+    return create_client_servers(seed, params, train_users, train_groups, train_data, test_data, sketcher, model_cls, num_client_servers)
+
+
+def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set=False, num_client_servers=1, deferred_loading=False):
     """Instantiates clients based on given train and test data directories.
 
     Return:
@@ -185,9 +201,17 @@ def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set
     test_dir = DATA_PATH + ['data', dataset, eval_set]
     train_data_dir = os.path.join(*train_dir)
     test_data_dir = os.path.join(*test_dir)
-    users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 
-    client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, sketcher, model_cls, num_client_servers)
+    # 
+    if deferred_loading:
+        client_servers = []
+        for train_path, test_path, num_cs in generate_data_shard(train_data_dir, test_data_dir):
+            client_servers += ray.get(
+                load_data_and_create_client_servers.remote(seed, params, train_path, test_path, sketcher, model_cls, num_cs))
+    else:
+        users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
+
+        client_servers = create_client_servers(seed, params, users, groups, train_data, test_data, sketcher, model_cls, num_client_servers)
 
     return client_servers
 
