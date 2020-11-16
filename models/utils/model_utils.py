@@ -74,10 +74,10 @@ def read_data(train_data_dir, test_data_dir):
     return train_clients, train_groups, train_data, test_data
 
 
-def generate_data_shard(train_data_dir, test_data_dir):
+def generate_data_shard(train_data_dir, test_data_dir, num_client_servers=1):
     train_paths = list_json_paths(train_data_dir)
     test_paths = list_json_paths(test_data_dir)
-    k = len*(train_paths)
+    k = len(train_paths)
     n = num_client_servers
     # distribute data among all client servers as evenly as possible
     # i.e. client servers created by each data file should not differ by more than 1

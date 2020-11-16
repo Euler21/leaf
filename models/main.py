@@ -173,7 +173,8 @@ def create_client_servers(seed,
     #return clients
 
 
-@ray.remote(resources={"Node": 1})
+#@ray.remote(resources={"Node": 1})
+@ray.remote
 def load_data_and_create_client_servers(seed, params, train_path, test_path, sketcher, model_cls, num_client_servers):
     """
     
@@ -181,7 +182,7 @@ def load_data_and_create_client_servers(seed, params, train_path, test_path, ske
     # refactor this with read_dir
     train_users, train_groups, train_data = read_file(train_path)
     test_users, test_groups, test_data = read_file(test_path)
-
+    print("Loading data: {}".format(train_path))
     assert train_users == test_users
     assert train_groups == test_groups
 
@@ -205,9 +206,11 @@ def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set
     # 
     if deferred_loading:
         client_servers = []
-        for train_path, test_path, num_cs in generate_data_shard(train_data_dir, test_data_dir):
-            client_servers += ray.get(
-                load_data_and_create_client_servers.remote(seed, params, train_path, test_path, sketcher, model_cls, num_cs))
+        futures = []
+        for train_path, test_path, num_cs in generate_data_shard(train_data_dir, test_data_dir, num_client_servers=num_client_servers):
+            futures.append(load_data_and_create_client_servers.remote(seed, params, train_path, test_path, sketcher, model_cls, num_cs))
+        for future in futures:
+            client_servers += ray.get(future)
     else:
         users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 
