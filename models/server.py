@@ -1,4 +1,5 @@
 import numpy as np
+import io
 
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
 
@@ -9,6 +10,8 @@ class Server:
         self.model = client_model.get_params()
         self.selected_clients = []
         self.updates = []
+        self.svd_file = open('/global/homes/v/vbharadw/svd_file.txt', 'w')
+        self.svd_freq = 0
 
     def select_clients(self, my_round, possible_clients, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -68,16 +71,25 @@ class Server:
         return sys_metrics
 
     def update_model(self):
+        self.svd_freq += 1
         total_weight = 0.
         base = [0] * len(self.updates[0][1])
         for (client_samples, client_model) in self.updates:
             total_weight += client_samples
             for i, v in enumerate(client_model):
+                # Temporarily disabled computing the singular values
+                if False and self.svd_freq % 5 == 0 and i==len(self.model) - 4: # use the 2048 x 2048 FC layer, hopefully
+                     print("Computing SVD!")
+                     data = v.astype(np.float64) - self.model[i]
+                     print("Shape: {}".format(np.shape(data)))
+                     s = np.linalg.svd(data, compute_uv=False)
+                     self.svd_file.write("{}\n".format(','.join([str(v) for v in s])))
                 base[i] += (client_samples * v.astype(np.float64))
         averaged_soln = [v / total_weight for v in base]
 
         self.model = averaged_soln
         self.updates = []
+
 
     def test_model(self, clients_to_test, set_to_use='test'):
         """Tests self.model on given clients.

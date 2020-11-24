@@ -118,8 +118,8 @@ def setup_clients(dataset, model=None, use_val_set=False):
         all_clients: list of Client objects.
     """
     eval_set = 'test' if not use_val_set else 'val'
-    train_data_dir = os.path.join('..', 'data', dataset, 'data', 'train')
-    test_data_dir = os.path.join('..', 'data', dataset, 'data', eval_set)
+    train_data_dir = os.path.join('/global/project/projectdirs/mp156/rayleaf_dataset', 'data', dataset, 'train')
+    test_data_dir = os.path.join('/global/project/projectdirs/mp156/rayleaf_dataset', 'data', dataset, eval_set)
 
     users, groups, train_data, test_data = read_data(train_data_dir, test_data_dir)
 

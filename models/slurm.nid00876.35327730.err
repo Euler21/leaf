@@ -1,0 +1,38 @@
+2020-10-20 10:34:03,095	INFO resource_spec.py:231 -- Starting Ray with 75.98 GiB memory available for workers and up to 36.55 GiB for objects. You can adjust these settings with ray.init(memory=<bytes>, object_store_memory=<bytes>).
+2020-10-20 10:34:03,788	INFO services.py:1193 -- View the Ray dashboard at [1m[32mlocalhost:8265[39m[22m
+2020-10-20 10:34:05,531	WARNING function_runner.py:503 -- Function checkpointing is disabled. This may result in unexpected behavior when using checkpointing features or certain schedulers. To enable, set the train function arguments to be `func(config, checkpoint_dir=None)`.
+2020-10-20 10:34:14.382551: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2020-10-20 10:34:14.411388: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2020-10-20 10:34:14.411602: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00876): /proc/driver/nvidia/version does not exist
+2020-10-20 10:34:14.412112: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-10-20 10:34:14.422403: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2300075000 Hz
+2020-10-20 10:34:14.426433: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x2ab590000b10 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-10-20 10:34:14.426579: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+2020-10-20 10:35:43,339	WARNING util.py:137 -- The `process_trial` operation took 45.44247627258301 seconds to complete, which may be a performance bottleneck.
+2020-10-20 10:35:43,375	WARNING ray_trial_executor.py:414 -- Over the last 60 seconds, the Tune event loop has been backlogged processing new results. Consider increasing your period of result reporting to improve performance.
+2020-10-20 10:36:28,897	WARNING util.py:137 -- The `process_trial` operation took 45.52164888381958 seconds to complete, which may be a performance bottleneck.
+2020-10-20 10:37:14,023	WARNING util.py:137 -- The `process_trial` operation took 45.100937366485596 seconds to complete, which may be a performance bottleneck.
+2020-10-20 10:37:14,057	WARNING ray_trial_executor.py:414 -- Over the last 60 seconds, the Tune event loop has been backlogged processing new results. Consider increasing your period of result reporting to improve performance.
+*** Aborted at 1603215478 (unix time) try "date -d @1603215478" if you are using GNU date ***
+PC: @                0x0 (unknown)
+2020-10-20 10:37:58,615	ERROR import_thread.py:93 -- ImportThread: Connection closed by server.
+*** SIGTERM (@0x7fae) received by PID 30976 (TID 0x2aaaaab2ed80) from PID 32686; stack trace: ***
+    @     0x2aaaaace62d0 (unknown)
+    @     0x2aaaaace4410 do_futex_wait
+    @     0x2aaaaace4523 __new_sem_wait_slow
+    @     0x55555566d9e9 PyThread_acquire_lock_timed
+    @     0x5555556f2fac lock_PyThread_acquire_lock
+    @     0x5555556b8744 _PyMethodDef_RawFastCallKeywords
+    @     0x5555556c03cf _PyMethodDescr_FastCallKeywords
+    @     0x55555572407c _PyEval_EvalFrameDefault
+    @     0x555555668539 _PyEval_EvalCodeWithName
+    @     0x5555556b7ef5 _PyFunction_FastCallKeywords
+    @     0x55555571fa93 _PyEval_EvalFrameDefault
+    @     0x555555668539 _PyEval_EvalCodeWithName
+    @     0x5555556b7f57 _PyFunction_FastCallKeywords
+    @     0x5555557208cc _PyEval_EvalFrameDefault
+    @     0x5555556b7ccb _PyFunction_FastCallKeywords

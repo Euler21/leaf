@@ -79,8 +79,8 @@ def plot_accuracy_vs_round_number(stat_metrics, weighted=False, plot_stds=False,
     else:
         plt.plot(accuracies[NUM_ROUND_KEY], accuracies[ACCURACY_KEY])
 
-    percentile_10 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False).quantile(0.1)
-    percentile_90 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False).quantile(0.9)
+    percentile_10 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False)[[NUM_ROUND_KEY, ACCURACY_KEY]].quantile(0.1)
+    percentile_90 = stat_metrics.groupby(NUM_ROUND_KEY, as_index=False)[[NUM_ROUND_KEY, ACCURACY_KEY]].quantile(0.9)
 
     plt.plot(percentile_10[NUM_ROUND_KEY], percentile_10[ACCURACY_KEY], linestyle=':')
     plt.plot(percentile_90[NUM_ROUND_KEY], percentile_90[ACCURACY_KEY], linestyle=':')
