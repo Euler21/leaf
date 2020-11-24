@@ -22,7 +22,7 @@ from utils.compression_utils import *
 
 STAT_METRICS_PATH = 'metrics/stat_metrics.csv'
 SYS_METRICS_PATH = 'metrics/sys_metrics.csv'
-DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
+DATA_PATH = ['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 
 def main():
 
@@ -67,6 +67,11 @@ def main():
         ray.init(address='auto', redis_password='5241590000000000')
     else:
         ray.init(local_mode=args.no_parallel)
+    global NODE_COUNT
+    global THREAD_COUNT
+    resources = ray.cluster_resources()
+    NODE_COUNT = resources.get('nodes',1)
+    THREAD_COUNT = resources['CPU']
 
     # Create clients
     client_servers = setup_client_servers(args.dataset, 
@@ -173,11 +178,11 @@ def create_client_servers(seed,
     #return clients
 
 
-#@ray.remote(resources={"Node": 1})
 @ray.remote
 def load_data_and_create_client_servers(seed, params, train_path, test_path, sketcher, model_cls, num_client_servers):
     """
-    
+    load training data from one file and test data from another,
+    create ClientServer actors with roughly equal amount of data across them
     """
     # refactor this with read_dir
     train_users, train_groups, train_data = read_file(train_path)
@@ -198,17 +203,22 @@ def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set
     eval_set = 'test' if not use_val_set else 'val'
     # train_data_dir = os.path.join('..', 'data', dataset, 'data', 'train')
     # test_data_dir = os.path.join('..', 'data', dataset, 'data', eval_set)
+    dataset += '_full'
     train_dir = DATA_PATH + ['data', dataset, 'train']
     test_dir = DATA_PATH + ['data', dataset, eval_set]
     train_data_dir = os.path.join(*train_dir)
     test_data_dir = os.path.join(*test_dir)
 
-    # 
+    # load data files from different processes if deferred_loading is true
     if deferred_loading:
         client_servers = []
         futures = []
+        num_shards = len(list_json_paths(train_data_dir))
+        THREAD_PER_NODE = THREAD_COUNT / NODE_COUNT
+        thread_per_shard = int(math.floor( THREAD_PER_NODE / math.ceil((num_shards/NODE_COUNT)) ))
+
         for train_path, test_path, num_cs in generate_data_shard(train_data_dir, test_data_dir, num_client_servers=num_client_servers):
-            futures.append(load_data_and_create_client_servers.remote(seed, params, train_path, test_path, sketcher, model_cls, num_cs))
+            futures.append(load_data_and_create_client_servers.options(num_cpus=thread_per_shard).remote(seed, params, train_path, test_path, sketcher, model_cls, num_cs))
         for future in futures:
             client_servers += ray.get(future)
     else:
