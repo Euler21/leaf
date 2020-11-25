@@ -2,7 +2,7 @@ import numpy as np
 import io
 
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, LOCAL_COMPUTATIONS_KEY
-
+from sklearn.utils.extmath import randomized_svd
 class Server:
     
     def __init__(self, client_model):
@@ -78,12 +78,20 @@ class Server:
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 # Temporarily disabled computing the singular values
-                if False and self.svd_freq % 5 == 0 and i==len(self.model) - 4: # use the 2048 x 2048 FC layer, hopefully
-                     print("Computing SVD!")
-                     data = v.astype(np.float64) - self.model[i]
-                     print("Shape: {}".format(np.shape(data)))
-                     s = np.linalg.svd(data, compute_uv=False)
-                     self.svd_file.write("{}\n".format(','.join([str(v) for v in s])))
+                # if False and self.svd_freq % 5 == 0 and i==len(self.model) - 4: # use the 2048 x 2048 FC layer, hopefully
+                #     print("Computing SVD!")
+                #     data = v.astype(np.float64) - self.model[i]
+                #     print("Shape: {}".format(np.shape(data)))
+                #     s = np.linalg.svd(data, compute_uv=False)
+                #     self.svd_file.write("{}\n".format(','.join([str(v) for v in s])))
+                
+                # Compute an SVD, uncompress before averaging (so we only see the drop in accuracy
+                # if i == len(self.model) - 4:
+                #      data = v.astype(np.float64) - self.model[i]
+                #      assert(np.shape(data)[0] == 3136 and np.shape(data)[1] == 2048)
+                #      res = randomized_svd(data, n_components=20, n_iter=2, power_iteration_normalizer='LU')
+                #      v = np.matmul(np.matmul(res[0], np.diag(res[1])), res[2]) + self.model[i]
+                      
                 base[i] += (client_samples * v.astype(np.float64))
         averaged_soln = [v / total_weight for v in base]
 

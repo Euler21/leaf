@@ -39,7 +39,21 @@ MODEL_PARAMS = {
     'sent140.stacked_lstm': (0.0003, 25, 2, 100), # lr, seq_len, num_classes, num_hidden
     'sent140.bag_log_reg': (0.0003, 2), # lr, num_classes
     'femnist.cnn': (0.0003, 62), # lr, num_classes
-    'femnist.tt_cnn': (0.0003, 62, 6), # lr, num_classes, dense_tt_rank 
+    'femnist.cnn32': (0.0003, 62), # lr, num_classes
+    'femnist.cnn16': (0.0003, 62), # lr, num_classes
+    'femnist.cnn8': (0.0003, 62), # lr, num_classes
+    'femnist.cnn4': (0.0003, 62), # lr, num_classes
+    'femnist.cnnd1000': (0.0003, 62), # lr, num_classes
+    'femnist.cnnd500': (0.0003, 62), # lr, num_classes
+    'femnist.cnnd100': (0.0003, 62), # lr, num_classes
+    'femnist.cnnd50': (0.0003, 62), # lr, num_classes
+    'femnist.cnnd25': (0.0003, 62), # lr, num_classes
+
+    'femnist.tt_cnn2': (0.0003, 62, 6), # lr, num_classes, dense_tt_rank, last parameter is dummy for now
+    'femnist.tt_cnn4': (0.0003, 62, 6), # lr, num_classes, dense_tt_rank, ""
+    'femnist.tt_cnn6': (0.0003, 62, 6), # lr, num_classes, dense_tt_rank, "" 
+    'femnist.tt_cnn8': (0.0003, 62, 6), # lr, num_classes, dense_tt_rank, "" 
+
     'femnist.tucker_cnn': (0.0003, 62, 5), # lr, num_classes, dense_tucker_rank 
     'shakespeare.stacked_lstm': (0.0003, 80, 80, 256), # lr, seq_len, num_classes, num_hidden
     'celeba.cnn': (0.1, 2), # lr, num_classes
