@@ -72,7 +72,8 @@ class Server:
     def update_model(self):
         total_weight = 0.
         base = [0] * len(self.updates[0][1])
-        for (client_samples, client_model) in map(self.sketcher.uncompress, self.updates):
+        for (client_samples, compressed_update) in self.updates:
+            client_model = self.sketcher.uncompress(compressed_update)
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))
