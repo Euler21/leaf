@@ -1,0 +1,27 @@
+python3 main.py -dataset femnist -model cnn --num-rounds 5 --eval-every 1 --clients-per-round 15 --num-epochs 20 -lr 0.01 --num-client-servers 40 --sketcher SVD
+
+Round 1:
+train_accuracy: 0.0942163, 10th percentile: 0.0404225, 50th percentile: 0.089084, 90th percentile 0.191342
+train_loss: 3.65617, 10th percentile: 3.37304, 50th percentile: 3.49614, 90th percentile 3.88891
+test_accuracy: 0.0785127, 10th percentile: 0, 50th percentile: 0.0588235, 90th percentile 0.180214
+test_loss: 3.67534, 10th percentile: 3.22442, 50th percentile: 3.62056, 90th percentile 4.02794
+--- Round 2 of 5: Training 15 Clients ---
+train_accuracy: 0.32256, 10th percentile: 0.129341, 50th percentile: 0.339398, 90th percentile 0.562291
+train_loss: 3.31453, 10th percentile: 2.88793, 50th percentile: 3.16735, 90th percentile 3.64959
+test_accuracy: 0.31313, 10th percentile: 0.0611765, 50th percentile: 0.3125, 90th percentile 0.607778
+test_loss: 3.34641, 10th percentile: 2.67522, 50th percentile: 3.31854, 90th percentile 3.84548
+--- Round 3 of 5: Training 15 Clients ---
+train_accuracy: 0.461104, 10th percentile: 0.280898, 50th percentile: 0.477727, 90th percentile 0.649891
+train_loss: 2.12871, 10th percentile: 1.60472, 50th percentile: 2.06138, 90th percentile 2.79262
+test_accuracy: 0.461178, 10th percentile: 0.235294, 50th percentile: 0.470588, 90th percentile 0.733333
+test_loss: 2.17129, 10th percentile: 1.41164, 50th percentile: 2.17698, 90th percentile 2.98291
+--- Round 4 of 5: Training 15 Clients ---
+train_accuracy: 0.544892, 10th percentile: 0.352793, 50th percentile: 0.53938, 90th percentile 0.695858
+train_loss: 1.74682, 10th percentile: 1.19381, 50th percentile: 1.68927, 90th percentile 2.604
+test_accuracy: 0.533197, 10th percentile: 0.28315, 50th percentile: 0.525658, 90th percentile 0.745
+test_loss: 1.80079, 10th percentile: 0.954198, 50th percentile: 1.77095, 90th percentile 2.83146
+--- Round 5 of 5: Training 15 Clients ---
+train_accuracy: 0.582244, 10th percentile: 0.377008, 50th percentile: 0.58511, 90th percentile 0.73223
+train_loss: 1.62694, 10th percentile: 0.997582, 50th percentile: 1.56801, 90th percentile 2.54433
+test_accuracy: 0.56859, 10th percentile: 0.333333, 50th percentile: 0.565034, 90th percentile 0.777778
+test_loss: 1.68955, 10th percentile: 0.879781, 50th percentile: 1.63603, 90th percentile 2.82251
