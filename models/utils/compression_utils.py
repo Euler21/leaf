@@ -18,22 +18,17 @@ class VoidSketcher(Sketcher):
     def uncompress(self, compressed_updates):
         return compressed_updates
 
-class TruncatedSVD(Sketcher):
-    def compress(self, updates):
-        return updates
-    def uncompress(self, compressed_updates):
-        return compressed_updates
 class SVD(Sketcher):
     def compress(self, updates):
         compressed_updates = []
-#         rank = 400
+        rank = 400
         for i in range(len(updates)):
             update = updates[i]
             if update.shape == (3136, 2048):
                 u, s, v = np.linalg.svd(updates[i], full_matrices=False)
-#                 u = u[:, :rank]
-#                 s = s[:rank]
-#                 v = v[:rank, :]
+                u = u[:, :rank]
+                s = s[:rank]
+                v = v[:rank, :]
                 c = [u,s,v]
 #                 print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
 
