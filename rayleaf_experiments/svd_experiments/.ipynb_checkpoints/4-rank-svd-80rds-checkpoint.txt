@@ -1,0 +1,638 @@
+rank = 4
+
+(rayleaf) arissa@nid00238:/global/u2/a/arissa/RayLeaf/leaf/models> python3 main.py -dataset femnist -model cnn --num-rounds 80 --eval-every 5 --clients-per-round 2 --nu-lr 0.06 --num-client-servers 5 --sketcher SVD
+2020-11-28 19:12:23.851974: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+2020-11-28 19:12:23.851998: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+############################## femnist.cnn ##############################
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.keras.layers.Conv2D` instead.
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.MaxPooling2D instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.
+2020-11-28 19:12:29.257987: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-11-28 19:12:29.263859: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+2020-11-28 19:12:29.263966: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555558efd590 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-28 19:12:29.263978: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-28 19:12:29.265246: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2020-11-28 19:12:29.268991: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2020-11-28 19:12:29.269021: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10000
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              1
+-min_occurrence             0
+-step                       -1
+-order_by                   float_ops
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  true
+-select                     float_ops
+-output                     stdout:
+
+==================Model Analysis Report======================
+Incomplete shape.
+Incomplete shape.
+
+Doc:
+scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+
+Profile:
+node name | # float_ops
+_TFProfRoot (--/13.20m flops)
+  dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+    dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+    dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+  dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+    dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+    dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+    conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+    conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+    conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+    conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+  sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+
+======================End of Report==========================
+2020-11-28 19:12:29,886 INFO services.py:1090 -- View the Ray dashboard at http://127.0.0.1:8265
+(pid=12693) 2020-11-28 19:12:41.155617: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=12693) 2020-11-28 19:12:41.155635: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=12697) 2020-11-28 19:12:41.532066: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=12697) 2020-11-28 19:12:41.532086: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=12702) 2020-11-28 19:12:41.713738: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=12702) 2020-11-28 19:12:41.713758: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=12712) 2020-11-28 19:12:41.909253: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=12712) 2020-11-28 19:12:41.909274: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=12708) 2020-11-28 19:12:42.136819: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=12708) 2020-11-28 19:12:42.136839: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=12702) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Use `tf.keras.layers.Conv2D` instead.
+(pid=12702) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Please use `layer.__call__` method instead.
+(pid=12702) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Use keras.layers.MaxPooling2D instead.
+(pid=12702) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Use keras.layers.Dense instead.
+(pid=12712) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Use `tf.keras.layers.Conv2D` instead.
+(pid=12712) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Please use `layer.__call__` method instead.
+(pid=12712) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Use keras.layers.MaxPooling2D instead.
+(pid=12712) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Use keras.layers.Dense instead.
+(pid=12702) 2020-11-28 19:12:48.052382: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=12702) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=12702) 2020-11-28 19:12:48.058693: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+(pid=12702) 2020-11-28 19:12:48.058836: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555559441750 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=12702) 2020-11-28 19:12:48.058855: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=12702) 2020-11-28 19:12:48.060228: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=12702) 2020-11-28 19:12:48.064362: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=12702) 2020-11-28 19:12:48.064385: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+(pid=12708) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Use `tf.keras.layers.Conv2D` instead.
+(pid=12708) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Please use `layer.__call__` method instead.
+(pid=12712) 2020-11-28 19:12:48.100598: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=12712) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=12712) 2020-11-28 19:12:48.106753: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+(pid=12712) 2020-11-28 19:12:48.106870: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555ba40190 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=12712) 2020-11-28 19:12:48.106883: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=12712) 2020-11-28 19:12:48.108222: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=12712) 2020-11-28 19:12:48.112220: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=12712) 2020-11-28 19:12:48.112249: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+(pid=12708) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Use keras.layers.MaxPooling2D instead.
+(pid=12702) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=12702) Incomplete shape.
+(pid=12702) Incomplete shape.
+(pid=12702) Incomplete shape.
+(pid=12702) Incomplete shape.
+(pid=12702) 
+(pid=12702) =========================Options=============================
+(pid=12702) -max_depth                  10000
+(pid=12702) -min_bytes                  0
+(pid=12702) -min_peak_bytes             0
+(pid=12702) -min_residual_bytes         0
+(pid=12702) -min_output_bytes           0
+(pid=12702) -min_micros                 0
+(pid=12702) -min_accelerator_micros     0
+(pid=12702) -min_cpu_micros             0
+(pid=12702) -min_params                 0
+(pid=12702) -min_float_ops              1
+(pid=12702) -min_occurrence             0
+(pid=12702) -step                       -1
+(pid=12702) -order_by                   float_ops
+(pid=12702) -account_type_regexes       .*
+(pid=12702) -start_name_regexes         .*
+(pid=12702) -trim_name_regexes          
+(pid=12702) -show_name_regexes          .*
+(pid=12702) -hide_name_regexes          
+(pid=12702) -account_displayed_op_only  true
+(pid=12702) -select                     float_ops
+(pid=12702) -output                     stdout:
+(pid=12702) 
+(pid=12702) ==================Model Analysis Report======================
+(pid=12702) 
+(pid=12702) Doc:
+(pid=12702) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=12702) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=12702) 
+(pid=12702) Profile:
+(pid=12702) node name | # float_ops
+(pid=12702) _TFProfRoot (--/13.20m flops)
+(pid=12702)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=12702)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=12702)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12702)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=12702)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=12702)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12702)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=12702)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=12702)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12702)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=12702)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=12702)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12702)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=12702)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=12702)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=12702) 
+(pid=12702) ======================End of Report==========================
+(pid=12708) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Use keras.layers.Dense instead.
+(pid=12712) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=12712) Incomplete shape.
+(pid=12712) Incomplete shape.
+(pid=12712) Incomplete shape.
+(pid=12712) Incomplete shape.
+(pid=12712) 
+(pid=12712) =========================Options=============================
+(pid=12712) -max_depth                  10000
+(pid=12712) -min_bytes                  0
+(pid=12712) -min_peak_bytes             0
+(pid=12712) -min_residual_bytes         0
+(pid=12712) -min_output_bytes           0
+(pid=12712) -min_micros                 0
+(pid=12712) -min_accelerator_micros     0
+(pid=12712) -min_cpu_micros             0
+(pid=12712) -min_params                 0
+(pid=12712) -min_float_ops              1
+(pid=12712) -min_occurrence             0
+(pid=12712) -step                       -1
+(pid=12712) -order_by                   float_ops
+(pid=12712) -account_type_regexes       .*
+(pid=12712) -start_name_regexes         .*
+(pid=12712) -trim_name_regexes          
+(pid=12712) -show_name_regexes          .*
+(pid=12712) -hide_name_regexes          
+(pid=12712) -account_displayed_op_only  true
+(pid=12712) -select                     float_ops
+(pid=12712) -output                     stdout:
+(pid=12712) 
+(pid=12712) ==================Model Analysis Report======================
+(pid=12712) 
+(pid=12712) Doc:
+(pid=12712) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=12712) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=12712) 
+(pid=12712) Profile:
+(pid=12712) node name | # float_ops
+(pid=12712) _TFProfRoot (--/13.20m flops)
+(pid=12712)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=12712)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=12712)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12712)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=12712)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=12712)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12712)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=12712)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=12712)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12712)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=12712)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=12712)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12712)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=12712)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=12712)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=12712) 
+(pid=12712) ======================End of Report==========================
+(pid=12708) 2020-11-28 19:12:48.279712: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=12708) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=12708) 2020-11-28 19:12:48.285932: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+(pid=12708) 2020-11-28 19:12:48.286052: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555bb45680 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=12708) 2020-11-28 19:12:48.286065: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=12708) 2020-11-28 19:12:48.287737: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=12708) 2020-11-28 19:12:48.292051: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=12708) 2020-11-28 19:12:48.292069: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+(pid=12708) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=12708) Incomplete shape.
+(pid=12708) Incomplete shape.
+(pid=12708) Incomplete shape.
+(pid=12708) Incomplete shape.
+(pid=12708) 
+(pid=12708) =========================Options=============================
+(pid=12708) -max_depth                  10000
+(pid=12708) -min_bytes                  0
+(pid=12708) -min_peak_bytes             0
+(pid=12708) -min_residual_bytes         0
+(pid=12708) -min_output_bytes           0
+(pid=12708) -min_micros                 0
+(pid=12708) -min_accelerator_micros     0
+(pid=12708) -min_cpu_micros             0
+(pid=12708) -min_params                 0
+(pid=12708) -min_float_ops              1
+(pid=12708) -min_occurrence             0
+(pid=12708) -step                       -1
+(pid=12708) -order_by                   float_ops
+(pid=12708) -account_type_regexes       .*
+(pid=12708) -start_name_regexes         .*
+(pid=12708) -trim_name_regexes          
+(pid=12708) -show_name_regexes          .*
+(pid=12708) -hide_name_regexes          
+(pid=12708) -account_displayed_op_only  true
+(pid=12708) -select                     float_ops
+(pid=12708) -output                     stdout:
+(pid=12708) 
+(pid=12708) ==================Model Analysis Report======================
+(pid=12708) 
+(pid=12708) Doc:
+(pid=12708) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=12708) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=12708) 
+(pid=12708) Profile:
+(pid=12708) node name | # float_ops
+(pid=12708) _TFProfRoot (--/13.20m flops)
+(pid=12708)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=12708)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=12708)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12708)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=12708)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=12708)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12708)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=12708)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=12708)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12708)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=12708)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=12708)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12708)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=12708)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=12708)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=12708) 
+(pid=12708) ======================End of Report==========================
+(pid=12697) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Use `tf.keras.layers.Conv2D` instead.
+(pid=12697) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Please use `layer.__call__` method instead.
+(pid=12697) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Use keras.layers.MaxPooling2D instead.
+(pid=12697) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Use keras.layers.Dense instead.
+(pid=12697) 2020-11-28 19:12:48.837475: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=12697) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=12697) 2020-11-28 19:12:48.844659: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+(pid=12697) 2020-11-28 19:12:48.844786: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555d76f9f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=12697) 2020-11-28 19:12:48.844799: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=12697) 2020-11-28 19:12:48.846225: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=12697) 2020-11-28 19:12:48.850470: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=12697) 2020-11-28 19:12:48.850491: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+(pid=12693) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Use `tf.keras.layers.Conv2D` instead.
+(pid=12693) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Please use `layer.__call__` method instead.
+(pid=12697) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=12697) Incomplete shape.
+(pid=12697) Incomplete shape.
+(pid=12697) Incomplete shape.
+(pid=12697) Incomplete shape.
+(pid=12697) 
+(pid=12697) =========================Options=============================
+(pid=12697) -max_depth                  10000
+(pid=12697) -min_bytes                  0
+(pid=12697) -min_peak_bytes             0
+(pid=12697) -min_residual_bytes         0
+(pid=12697) -min_output_bytes           0
+(pid=12697) -min_micros                 0
+(pid=12697) -min_accelerator_micros     0
+(pid=12697) -min_cpu_micros             0
+(pid=12697) -min_params                 0
+(pid=12697) -min_float_ops              1
+(pid=12697) -min_occurrence             0
+(pid=12697) -step                       -1
+(pid=12697) -order_by                   float_ops
+(pid=12697) -account_type_regexes       .*
+(pid=12697) -start_name_regexes         .*
+(pid=12697) -trim_name_regexes          
+(pid=12697) -show_name_regexes          .*
+(pid=12697) -hide_name_regexes          
+(pid=12697) -account_displayed_op_only  true
+(pid=12697) -select                     float_ops
+(pid=12697) -output                     stdout:
+(pid=12697) 
+(pid=12697) ==================Model Analysis Report======================
+(pid=12697) 
+(pid=12697) Doc:
+(pid=12697) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=12697) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=12697) 
+(pid=12697) Profile:
+(pid=12697) node name | # float_ops
+(pid=12697) _TFProfRoot (--/13.20m flops)
+(pid=12697)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=12697)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=12697)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12697)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=12697)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=12697)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12697)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=12697)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=12697)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12697)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=12697)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=12697)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12697)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=12697)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=12697)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=12697) 
+(pid=12697) ======================End of Report==========================
+(pid=12693) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Use keras.layers.MaxPooling2D instead.
+(pid=12693) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Use keras.layers.Dense instead.
+(pid=12693) 2020-11-28 19:12:49.054239: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=12693) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=12693) 2020-11-28 19:12:49.059604: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299895000 Hz
+(pid=12693) 2020-11-28 19:12:49.059744: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555559558a60 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=12693) 2020-11-28 19:12:49.059756: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=12693) 2020-11-28 19:12:49.062472: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=12693) 2020-11-28 19:12:49.065909: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=12693) 2020-11-28 19:12:49.065926: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00238): /proc/driver/nvidia/version does not exist
+(pid=12693) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Clients in Total: 194
+--- Random Initialization ---
+(pid=12693) Incomplete shape.
+(pid=12693) Incomplete shape.
+(pid=12693) Incomplete shape.
+(pid=12693) Incomplete shape.
+(pid=12693) 
+(pid=12693) =========================Options=============================
+(pid=12693) -max_depth                  10000
+(pid=12693) -min_bytes                  0
+(pid=12693) -min_peak_bytes             0
+(pid=12693) -min_residual_bytes         0
+(pid=12693) -min_output_bytes           0
+(pid=12693) -min_micros                 0
+(pid=12693) -min_accelerator_micros     0
+(pid=12693) -min_cpu_micros             0
+(pid=12693) -min_params                 0
+(pid=12693) -min_float_ops              1
+(pid=12693) -min_occurrence             0
+(pid=12693) -step                       -1
+(pid=12693) -order_by                   float_ops
+(pid=12693) -account_type_regexes       .*
+(pid=12693) -start_name_regexes         .*
+(pid=12693) -trim_name_regexes          
+(pid=12693) -show_name_regexes          .*
+(pid=12693) -hide_name_regexes          
+(pid=12693) -account_displayed_op_only  true
+(pid=12693) -select                     float_ops
+(pid=12693) -output                     stdout:
+(pid=12693) 
+(pid=12693) ==================Model Analysis Report======================
+(pid=12693) 
+(pid=12693) Doc:
+(pid=12693) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=12693) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=12693) 
+(pid=12693) Profile:
+(pid=12693) node name | # float_ops
+(pid=12693) _TFProfRoot (--/13.20m flops)
+(pid=12693)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=12693)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=12693)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12693)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=12693)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=12693)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12693)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=12693)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=12693)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12693)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=12693)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=12693)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=12693)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=12693)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=12693)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=12693) 
+(pid=12693) ======================End of Report==========================
+--- Round 1 of 80: Training 2 Clients ---
+(pid=12702) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=12702) Instructions for updating:
+(pid=12702) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=12712) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=12712) Instructions for updating:
+(pid=12712) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=12708) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=12708) Instructions for updating:
+(pid=12708) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=12697) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=12697) Instructions for updating:
+(pid=12697) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=12693) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=12693) Instructions for updating:
+(pid=12693) Prefer Variable.assign which has equivalent behavior in 2.X.
+--- Round 2 of 80: Training 2 Clients ---
+--- Round 3 of 80: Training 2 Clients ---
+--- Round 4 of 80: Training 2 Clients ---
+--- Round 5 of 80: Training 2 Clients ---
+train_accuracy: 0.130925, 10th percentile: 0.0810664, 50th percentile: 0.143137, 90th percentile 0.204502
+train_loss: 3.39024, 10th percentile: 3.11749, 50th percentile: 3.3392, 90th percentile 3.63814
+test_accuracy: 0.0850552, 10th percentile: 0, 50th percentile: 0.0995086, 90th percentile 0.159752
+test_loss: 3.57549, 10th percentile: 3.2139, 50th percentile: 3.50447, 90th percentile 3.8979
+--- Round 6 of 80: Training 2 Clients ---
+--- Round 7 of 80: Training 2 Clients ---
+--- Round 8 of 80: Training 2 Clients ---
+--- Round 9 of 80: Training 2 Clients ---
+--- Round 10 of 80: Training 2 Clients ---
+train_accuracy: 0.401755, 10th percentile: 0.316225, 50th percentile: 0.444321, 90th percentile 0.49741
+train_loss: 2.29737, 10th percentile: 1.87698, 50th percentile: 2.1093, 90th percentile 2.65659
+test_accuracy: 0.392654, 10th percentile: 0.2875, 50th percentile: 0.373214, 90th percentile 0.696528
+test_loss: 2.32569, 10th percentile: 1.75944, 50th percentile: 2.29884, 90th percentile 2.7536
+--- Round 11 of 80: Training 2 Clients ---
+--- Round 12 of 80: Training 2 Clients ---
+--- Round 13 of 80: Training 2 Clients ---
+--- Round 14 of 80: Training 2 Clients ---
+--- Round 15 of 80: Training 2 Clients ---
+train_accuracy: 0.341985, 10th percentile: 0.248878, 50th percentile: 0.337393, 90th percentile 0.396063
+train_loss: 2.70227, 10th percentile: 2.28414, 50th percentile: 2.71468, 90th percentile 3.52662
+test_accuracy: 0.380818, 10th percentile: 0.214286, 50th percentile: 0.338542, 90th percentile 0.452622
+test_loss: 2.66172, 10th percentile: 2.01862, 50th percentile: 2.56095, 90th percentile 4.39803
+--- Round 16 of 80: Training 2 Clients ---
+--- Round 17 of 80: Training 2 Clients ---
+--- Round 18 of 80: Training 2 Clients ---
+--- Round 19 of 80: Training 2 Clients ---
+--- Round 20 of 80: Training 2 Clients ---
+train_accuracy: 0.446617, 10th percentile: 0.317104, 50th percentile: 0.45054, 90th percentile 0.508349
+train_loss: 2.14432, 10th percentile: 1.79892, 50th percentile: 2.16735, 90th percentile 2.93348
+test_accuracy: 0.499456, 10th percentile: 0.403922, 50th percentile: 0.514706, 90th percentile 0.606667
+test_loss: 1.98714, 10th percentile: 1.61262, 50th percentile: 1.95392, 90th percentile 2.2497
+--- Round 21 of 80: Training 2 Clients ---
+--- Round 22 of 80: Training 2 Clients ---
+--- Round 23 of 80: Training 2 Clients ---
+--- Round 24 of 80: Training 2 Clients ---
+--- Round 25 of 80: Training 2 Clients ---
+train_accuracy: 0.451829, 10th percentile: 0.370494, 50th percentile: 0.447672, 90th percentile 0.516341
+train_loss: 2.11388, 10th percentile: 1.7295, 50th percentile: 1.89473, 90th percentile 2.74678
+test_accuracy: 0.439492, 10th percentile: 0.286928, 50th percentile: 0.416409, 90th percentile 0.531324
+test_loss: 2.50305, 10th percentile: 1.80713, 50th percentile: 2.56891, 90th percentile 3.147
+--- Round 26 of 80: Training 2 Clients ---
+--- Round 27 of 80: Training 2 Clients ---
+--- Round 28 of 80: Training 2 Clients ---
+--- Round 29 of 80: Training 2 Clients ---
+--- Round 30 of 80: Training 2 Clients ---
+train_accuracy: 0.501202, 10th percentile: 0.404145, 50th percentile: 0.505936, 90th percentile 0.586599
+train_loss: 1.82112, 10th percentile: 1.47853, 50th percentile: 1.72159, 90th percentile 2.39491
+test_accuracy: 0.473539, 10th percentile: 0.288, 50th percentile: 0.470588, 90th percentile 0.634722
+test_loss: 1.94543, 10th percentile: 1.56024, 50th percentile: 1.7814, 90th percentile 3.0692
+--- Round 31 of 80: Training 2 Clients ---
+--- Round 32 of 80: Training 2 Clients ---
+--- Round 33 of 80: Training 2 Clients ---
+--- Round 34 of 80: Training 2 Clients ---
+--- Round 35 of 80: Training 2 Clients ---
+train_accuracy: 0.488751, 10th percentile: 0.320625, 50th percentile: 0.422898, 90th percentile 0.563691
+train_loss: 1.93948, 10th percentile: 1.42714, 50th percentile: 2.30455, 90th percentile 2.73625
+test_accuracy: 0.500546, 10th percentile: 0.3, 50th percentile: 0.50641, 90th percentile 0.666667
+test_loss: 2.02841, 10th percentile: 1.23604, 50th percentile: 2.19285, 90th percentile 3.14448
+--- Round 36 of 80: Training 2 Clients ---
+--- Round 37 of 80: Training 2 Clients ---
+--- Round 38 of 80: Training 2 Clients ---
+--- Round 39 of 80: Training 2 Clients ---
+train_accuracy: 0.497594, 10th percentile: 0.290678, 50th percentile: 0.512108, 90th percentile 0.564288
+train_loss: 1.93679, 10th percentile: 1.6125, 50th percentile: 1.72258, 90th percentile 3.14892
+test_accuracy: 0.541243, 10th percentile: 0.485714, 50th percentile: 0.514706, 90th percentile 0.627206
+test_loss: 1.9646, 10th percentile: 1.40284, 50th percentile: 1.95092, 90th percentile 2.92324
+--- Round 41 of 80: Training 2 Clients ---
+--- Round 42 of 80: Training 2 Clients ---
+--- Round 43 of 80: Training 2 Clients ---
+--- Round 44 of 80: Training 2 Clients ---
+train_accuracy: 0.544752, 10th percentile: 0.380658, 50th percentile: 0.548016, 90th percentile 0.60189
+train_loss: 1.6855, 10th percentile: 1.42163, 50th percentile: 1.78589, 90th percentile 2.64425
+test_accuracy: 0.513068, 10th percentile: 0.310877, 50th percentile: 0.432749, 90th percentile 0.590602
+test_loss: 1.88137, 10th percentile: 1.41861, 50th percentile: 1.8591, 90th percentile 2.90463
+--- Round 46 of 80: Training 2 Clients ---
+--- Round 47 of 80: Training 2 Clients ---
+--- Round 48 of 80: Training 2 Clients ---
+--- Round 49 of 80: Training 2 Clients ---
+--- Round 50 of 80: Training 2 Clients ---
+train_accuracy: 0.539509, 10th percentile: 0.419917, 50th percentile: 0.537625, 90th percentile 0.600713
+train_loss: 1.68755, 10th percentile: 1.3373, 50th percentile: 1.59792, 90th percentile 2.67119
+test_accuracy: 0.534525, 10th percentile: 0.305495, 50th percentile: 0.469669, 90th percentile 0.65935
+test_loss: 1.8751, 10th percentile: 1.02021, 50th percentile: 1.80598, 90th percentile 3.96804
+--- Round 51 of 80: Training 2 Clients ---
+--- Round 52 of 80: Training 2 Clients ---
+--- Round 53 of 80: Training 2 Clients ---
+--- Round 54 of 80: Training 2 Clients ---
+--- Round 55 of 80: Training 2 Clients ---
+train_accuracy: 0.562864, 10th percentile: 0.480933, 50th percentile: 0.616161, 90th percentile 0.7
+train_loss: 1.59696, 10th percentile: 1.10674, 50th percentile: 1.48937, 90th percentile 2.18614
+test_accuracy: 0.518566, 10th percentile: 0.431197, 50th percentile: 0.519231, 90th percentile 0.71875
+test_loss: 1.79155, 10th percentile: 1.13783, 50th percentile: 1.83626, 90th percentile 2.34873
+--- Round 56 of 80: Training 2 Clients ---
+--- Round 57 of 80: Training 2 Clients ---
+--- Round 58 of 80: Training 2 Clients ---
+--- Round 59 of 80: Training 2 Clients ---
+--- Round 60 of 80: Training 2 Clients ---
+train_accuracy: 0.599082, 10th percentile: 0.367088, 50th percentile: 0.62581, 90th percentile 0.683958
+train_loss: 1.42393, 10th percentile: 1.02441, 50th percentile: 1.40895, 90th percentile 2.71726
+test_accuracy: 0.617559, 10th percentile: 0.47, 50th percentile: 0.626984, 90th percentile 0.690972
+test_loss: 1.44684, 10th percentile: 1.11566, 50th percentile: 1.36473, 90th percentile 2.56293
+--- Round 61 of 80: Training 2 Clients ---
+--- Round 62 of 80: Training 2 Clients ---
+--- Round 63 of 80: Training 2 Clients ---
+--- Round 64 of 80: Training 2 Clients ---
+--- Round 65 of 80: Training 2 Clients ---
+train_accuracy: 0.596238, 10th percentile: 0.485594, 50th percentile: 0.584794, 90th percentile 0.687581
+train_loss: 1.49118, 10th percentile: 1.06937, 50th percentile: 1.45281, 90th percentile 2.09725
+test_accuracy: 0.555026, 10th percentile: 0.393333, 50th percentile: 0.530331, 90th percentile 0.6875
+test_loss: 1.48442, 10th percentile: 0.985719, 50th percentile: 1.44497, 90th percentile 2.64603
+--- Round 66 of 80: Training 2 Clients ---
+--- Round 67 of 80: Training 2 Clients ---
+--- Round 68 of 80: Training 2 Clients ---
+--- Round 69 of 80: Training 2 Clients ---
+--- Round 70 of 80: Training 2 Clients ---
+train_accuracy: 0.619723, 10th percentile: 0.402857, 50th percentile: 0.591049, 90th percentile 0.676542
+train_loss: 1.42133, 10th percentile: 1.09124, 50th percentile: 1.5787, 90th percentile 2.26084
+test_accuracy: 0.652304, 10th percentile: 0.225, 50th percentile: 0.653846, 90th percentile 0.786667
+test_loss: 1.47866, 10th percentile: 0.812667, 50th percentile: 1.68117, 90th percentile 3.72564
+--- Round 71 of 80: Training 2 Clients ---
+--- Round 72 of 80: Training 2 Clients ---
+--- Round 73 of 80: Training 2 Clients ---
+--- Round 74 of 80: Training 2 Clients ---
+--- Round 75 of 80: Training 2 Clients ---
+train_accuracy: 0.592296, 10th percentile: 0.459364, 50th percentile: 0.598232, 90th percentile 0.655775
+train_loss: 1.43902, 10th percentile: 1.09806, 50th percentile: 1.31828, 90th percentile 2.43396
+test_accuracy: 0.572422, 10th percentile: 0.28022, 50th percentile: 0.561581, 90th percentile 0.69216
+test_loss: 1.61531, 10th percentile: 0.779037, 50th percentile: 1.64059, 90th percentile 3.99469
+--- Round 76 of 80: Training 2 Clients ---
+--- Round 77 of 80: Training 2 Clients ---
+--- Round 78 of 80: Training 2 Clients ---
+--- Round 79 of 80: Training 2 Clients ---
+--- Round 80 of 80: Training 2 Clients ---
+train_accuracy: 0.635836, 10th percentile: 0.537255, 50th percentile: 0.641783, 90th percentile 0.736778
+train_loss: 1.3167, 10th percentile: 0.85032, 50th percentile: 1.1885, 90th percentile 1.88562
+test_accuracy: 0.605006, 10th percentile: 0.434926, 50th percentile: 0.591415, 90th percentile 0.75625
+test_loss: 1.33931, 10th percentile: 0.830492, 50th percentile: 1.39468, 90th percentile 1.73127

@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 import tensorflow.compat.v1 as tf
 import numpy as np
+from sklearn.decomposition import TruncatedSVD
+
 
 class Sketcher(ABC):
     @abstractmethod
@@ -16,35 +18,41 @@ class VoidSketcher(Sketcher):
     def uncompress(self, compressed_updates):
         return compressed_updates
 
+class TruncatedSVD(Sketcher):
+    def compress(self, updates):
+        return updates
+    def uncompress(self, compressed_updates):
+        return compressed_updates
 class SVD(Sketcher):
     def compress(self, updates):
         compressed_updates = []
+#         rank = 400
         for i in range(len(updates)):
-#             print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED: " + str(updates[i].shape))
             update = updates[i]
-            if len(update.shape) > 1:
+            if update.shape == (3136, 2048):
                 u, s, v = np.linalg.svd(updates[i], full_matrices=False)
-#                 print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
+#                 u = u[:, :rank]
+#                 s = s[:rank]
+#                 v = v[:rank, :]
                 c = [u,s,v]
+#                 print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
+
                 compressed_updates += [c]
             else:
                 compressed_updates += [update]
-#             print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
+
         return compressed_updates
     
     
     def uncompress(self, compressed_updates):
-#         print("++++++++++++++++++++++ SVD UNCOMPRESS WAS CALLED: " + str(type(compressed_updates[0])) + " len:" + str(len(compressed_updates[1])))
-        compressed_update_list = compressed_updates[1]
         uncompressed_list = []
-        for i in range(len(compressed_update_list)):
-            compressed = compressed_update_list[i]
-#             print("++++++++++++++++++++++ SVD UNCOMPRESS WAS CALLED: " + str(type(compressed)))
+        for i in range(len(compressed_updates)):
+            compressed = compressed_updates[i]
             if type(compressed) == list:
                 u, s, v = compressed[0], compressed[1], compressed[2]
 #                 print("++++++++++++++++++++++ SVD UNCOMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
-                uncompressed = np.matmul(u * s[..., None, :], v)
+                uncompressed = np.dot(u * s, v)
                 uncompressed_list += [uncompressed]
             else:
                 uncompressed_list += [compressed]
-        return [compressed_updates[0], uncompressed_list]
+        return uncompressed_list
