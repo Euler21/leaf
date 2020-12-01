@@ -107,7 +107,7 @@ def main():
 
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
-            print_stats(i + 1, server, c_num_samples, args, stat_writer_fn, args.use_val_set)
+            print_stats(i + 1, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
     
     # Save server model
     ckpt_path = os.path.join('checkpoints', args.dataset)

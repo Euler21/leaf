@@ -79,7 +79,7 @@ class Server:
                 base[i] += (client_samples * v.astype(np.float64))
         averaged_soln = [v / total_weight for v in base]
 
-        self.model = averaged_soln
+        self.model = [old + diff for old, diff in zip(self.model, averaged_soln)]
         self.updates = []
         for cs in self.client_servers:
             cs.update_model.remote(self.model)
