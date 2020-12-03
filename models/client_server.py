@@ -86,7 +86,7 @@ class ClientServer:
 
         if clients_to_test is not None:
             raise NotImplementedError("Client selection not yet implemented")
-        clients_to_test = self.selected_clients
+        clients_to_test = self.clients
 
         for client in clients_to_test:
             client.model.set_params(self.model)
