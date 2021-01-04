@@ -9,8 +9,8 @@ from tensorflow.contrib import rnn
 
 from model import Model
 
-VOCABULARY_PATH = '../data/reddit/vocab/reddit_vocab.pck'
-
+#VOCABULARY_PATH = '../data/reddit/vocab/reddit_vocab.pck'
+VOCABULARY_PATH = '/global/cfs/cdirs/mp156/rayleaf_dataset/data/reddit_full/vocab/reddit_vocab.pck'
 
 # Code adapted from https://github.com/tensorflow/models/blob/master/tutorials/rnn/ptb/ptb_word_lm.py
 # and https://r2rt.com/recurrent-neural-networks-in-tensorflow-iii-variable-length-sequences.html
