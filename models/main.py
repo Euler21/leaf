@@ -8,6 +8,7 @@ import random
 import ray
 # import tensorflow as tf
 import tensorflow.compat.v1 as tf
+from datetime import datetime
 
 import metrics.writer as metrics_writer
 
@@ -28,6 +29,13 @@ DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 def main():
 
     args = parse_args()
+#     orig_stdout = sys.stdout ### change this for file output
+    dt = str(datetime.now()).split(".")[0]
+    dt = "-".join(dt.split(" "))
+    dt = "".join(dt.split(":"))
+    fname = str(args.dataset) + "_" + str(args.sketcher)  + "_" + str(args.rank) + "rank_" +str(args.num_rounds) + "rds_" + str(args.seed)  + "seed_"+ dt + "test.txt"
+    f = open(fname, 'w')
+#     sys.stdout = f ##### change this for file output
 
     # Set the random seed if provided (affects client sampling, and batching)
     random.seed(1 + args.seed)
@@ -49,7 +57,7 @@ def main():
     clients_per_round = args.clients_per_round if args.clients_per_round != -1 else tup[2]
     num_client_servers = args.num_client_servers
     sketcher = eval(args.sketcher + '()')
-
+    
     # Suppress tf warnings
     tf.logging.set_verbosity(tf.logging.WARN)
 
@@ -87,20 +95,21 @@ def main():
 
     # Initial status
     print('--- Random Initialization ---')
-    stat_writer_fn = get_stat_writer_function(client_ids, client_groups, client_num_samples, args)
-    sys_writer_fn = get_sys_writer_function(args)
-    print_stats(0, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
+    stat_writer_fn = get_stat_writer_function(client_ids, client_groups, client_num_samples, args, file=f)
+    sys_writer_fn = get_sys_writer_function(args, file=f)
+    print_stats(0, server, client_num_samples, args, stat_writer_fn, args.use_val_set, file=f)
 
     # Simulate training
     for i in range(num_rounds):
         print('--- Round %d of %d: Training %d Clients ---' % (i + 1, num_rounds, clients_per_round))
+        f.write('--- Round %d of %d: Training %d Clients ---\n' % (i + 1, num_rounds, clients_per_round))
 
         # Select clients to train this round
         server.select_clients(i, num_clients=clients_per_round)
         c_ids, c_groups, c_num_samples = server.get_clients_info()
 
         # Simulate server model training on selected clients' data
-        sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch)
+        sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch, rank=args.rank)
         sys_writer_fn(i + 1, c_ids, sys_metrics, c_groups, c_num_samples)
 
         # Update server model
@@ -108,7 +117,7 @@ def main():
 
         # Test model
         if (i + 1) % eval_every == 0 or (i + 1) == num_rounds:
-            print_stats(i + 1, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
+            print_stats(i + 1, server, client_num_samples, args, stat_writer_fn, args.use_val_set, file=f)
     
     # Save server model
 #     ckpt_path = os.path.join('checkpoints', args.dataset)
@@ -120,6 +129,9 @@ def main():
     # Close models
     server.close_model()
     # stop Ray driver after job finish
+    
+#     sys.stdout = orig_stdout
+    f.close()
     ray.shutdown()
 
 def online(clients):
@@ -193,38 +205,38 @@ def setup_client_servers(dataset, seed, params, sketcher, model_cls, use_val_set
     return client_servers
 
 
-def get_stat_writer_function(ids, groups, num_samples, args):
+def get_stat_writer_function(ids, groups, num_samples, args, file=None):
 
     def writer_fn(num_round, metrics, partition):
         metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, partition, args.metrics_dir, '{}_{}'.format(args.metrics_name, 'stat'))
+            num_round, ids, metrics, groups, num_samples, partition, args.metrics_dir, '{}_{}'.format(args.metrics_name, 'stat'), file=file)
 
     return writer_fn
 
 
-def get_sys_writer_function(args):
+def get_sys_writer_function(args, file=None):
 
     def writer_fn(num_round, ids, metrics, groups, num_samples):
         metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, 'train', args.metrics_dir, '{}_{}'.format(args.metrics_name, 'sys'))
+            num_round, ids, metrics, groups, num_samples, 'train', args.metrics_dir, '{}_{}'.format(args.metrics_name, 'sys'), file=file)
 
     return writer_fn
 
 
 def print_stats(
-    num_round, server, num_samples, args, writer, use_val_set):
+    num_round, server, num_samples, args, writer, use_val_set, file=None):
     
     train_stat_metrics = server.test_model(clients_to_test=None, set_to_use='train')
-    print_metrics(train_stat_metrics, num_samples, prefix='train_')
+    print_metrics(train_stat_metrics, num_samples, prefix='train_', file=file)
     writer(num_round, train_stat_metrics, 'train')
 
     eval_set = 'test' if not use_val_set else 'val'
     test_stat_metrics = server.test_model(clients_to_test=None, set_to_use=eval_set)
-    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set))
+    print_metrics(test_stat_metrics, num_samples, prefix='{}_'.format(eval_set), file=file)
     writer(num_round, test_stat_metrics, eval_set)
 
 
-def print_metrics(metrics, weights, prefix=''):
+def print_metrics(metrics, weights, prefix='', file=None):
     """Prints weighted averages of the given metrics.
 
     Args:
@@ -239,6 +251,12 @@ def print_metrics(metrics, weights, prefix=''):
     for metric in metric_names:
         ordered_metric = [metrics[c][metric] for c in sorted(metrics)]
         print('%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g' \
+              % (prefix + metric,
+                 np.average(ordered_metric, weights=ordered_weights),
+                 np.percentile(ordered_metric, 10),
+                 np.percentile(ordered_metric, 50),
+                 np.percentile(ordered_metric, 90)))
+        file.write('%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g\n' \
               % (prefix + metric,
                  np.average(ordered_metric, weights=ordered_weights),
                  np.percentile(ordered_metric, 10),

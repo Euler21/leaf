@@ -31,7 +31,7 @@ class Server:
 
         return [p for future in samples_futures for p in ray.get(future)]
 
-    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
+    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None, rank=-1):
         """Trains self.model on given clients.
         
         Trains model on self.selected_clients if clients=None;
@@ -58,7 +58,7 @@ class Server:
         metrics_updates_futures = []
         for cs in self.client_servers:
             metrics_updates_future = cs.train_model.remote(
-                num_epochs, batch_size, minibatch)
+                num_epochs, batch_size, minibatch, rank=rank)
             metrics_updates_futures.append(metrics_updates_future)
 
         for future in metrics_updates_futures:
@@ -72,13 +72,14 @@ class Server:
     def update_model(self):
         total_weight = 0.
         base = [0] * len(self.updates[0][1])
-        for (client_samples, client_model) in map(self.sketcher.uncompress, self.updates):
+        for (client_samples, compressed_update) in self.updates:
+            client_model = self.sketcher.uncompress(compressed_update)
             total_weight += client_samples
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))
         averaged_soln = [v / total_weight for v in base]
 
-        self.model = averaged_soln
+        self.model = [old + diff for old, diff in zip(self.model, averaged_soln)]
         self.updates = []
         for cs in self.client_servers:
             cs.update_model.remote(self.model)

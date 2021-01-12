@@ -6,22 +6,27 @@ from sklearn.decomposition import TruncatedSVD
 
 class Sketcher(ABC):
     @abstractmethod
-    def compress(self, updates):
+    def compress(self, updates, params=None):
         pass
     @abstractmethod
     def uncompress(self, compressed_updates):
         pass
 
 class VoidSketcher(Sketcher):
-    def compress(self, updates):
+    def compress(self, updates, params=None):
         return updates
     def uncompress(self, compressed_updates):
         return compressed_updates
 
 class SVD(Sketcher):
-    def compress(self, updates):
+    def compress(self, updates, params=None):
         compressed_updates = []
-        rank = 400
+        rank = params["rank"]
+        if rank == -1:
+            print("++++++++++++++ rank is -1")
+            rank = 2048
+#         rank = 400
+#         print("rank is: " + str(rank))
         for i in range(len(updates)):
             update = updates[i]
             if update.shape == (3136, 2048):
