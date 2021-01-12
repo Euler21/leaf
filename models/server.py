@@ -31,7 +31,7 @@ class Server:
 
         return [p for future in samples_futures for p in ray.get(future)]
 
-    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None):
+    def train_model(self, num_epochs=1, batch_size=10, minibatch=None, clients=None, rank=-1):
         """Trains self.model on given clients.
         
         Trains model on self.selected_clients if clients=None;
@@ -58,7 +58,7 @@ class Server:
         metrics_updates_futures = []
         for cs in self.client_servers:
             metrics_updates_future = cs.train_model.remote(
-                num_epochs, batch_size, minibatch)
+                num_epochs, batch_size, minibatch, rank=rank)
             metrics_updates_futures.append(metrics_updates_future)
 
         for future in metrics_updates_futures:

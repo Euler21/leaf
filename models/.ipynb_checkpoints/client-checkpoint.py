@@ -13,7 +13,7 @@ class Client:
         self.eval_data = eval_data
         self.sketcher = sketcher
 
-    def train(self, num_epochs=1, batch_size=10, minibatch=None):
+    def train(self, num_epochs=1, batch_size=10, minibatch=None, rank=-1):
         """Trains on self.model using the client's train_data.
 
         Args:
@@ -40,7 +40,9 @@ class Client:
             num_epochs = 1
             comp, update = self.model.train(data, num_epochs, num_data)
         num_train_samples = len(data['y'])
-        return comp, num_train_samples, self.sketcher.compress(update)
+        params = {}
+        params["rank"] = rank
+        return comp, num_train_samples, self.sketcher.compress(update, params)
 
     def test(self, set_to_use='test'):
         """Tests self.model on self.test_data.

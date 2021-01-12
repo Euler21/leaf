@@ -1,0 +1,894 @@
+(rayleaf) arissa@nid00009:/global/u2/a/arissa/RayLeaf/leaf/models> python3 main.py -dataset femnist -model cnn --num-rounds 80 --eval-every 1 --clients-per-round 2 --num-epochs 5 -lr 0.06 --num-client-servers 5 --sketcher SVD
+2020-11-29 20:57:57.188599: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+2020-11-29 20:57:57.188619: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+############################## femnist.cnn ##############################
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.keras.layers.Conv2D` instead.
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.MaxPooling2D instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.
+2020-11-29 20:58:03.600494: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-11-29 20:58:03.606391: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+2020-11-29 20:58:03.606508: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555558e24a70 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-29 20:58:03.606521: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-29 20:58:03.607949: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2020-11-29 20:58:03.611577: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2020-11-29 20:58:03.611595: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10000
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              1
+-min_occurrence             0
+-step                       -1
+-order_by                   float_ops
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  true
+-select                     float_ops
+-output                     stdout:
+
+==================Model Analysis Report======================
+Incomplete shape.
+Incomplete shape.
+
+Doc:
+scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+
+Profile:
+node name | # float_ops
+_TFProfRoot (--/13.20m flops)
+  dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+    dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+    dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+  dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+    dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+    dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+    conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+    conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+    conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+    conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+  sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+
+======================End of Report==========================
+2020-11-29 20:58:04,206 INFO services.py:1090 -- View the Ray dashboard at http://127.0.0.1:8265
+(pid=57909) 2020-11-29 20:58:18.765544: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=57909) 2020-11-29 20:58:18.765563: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=57913) 2020-11-29 20:58:19.148850: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=57913) 2020-11-29 20:58:19.148872: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=57915) 2020-11-29 20:58:19.335328: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=57915) 2020-11-29 20:58:19.335348: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=57918) 2020-11-29 20:58:19.555147: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=57918) 2020-11-29 20:58:19.555169: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=57961) 2020-11-29 20:58:19.794725: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=57961) 2020-11-29 20:58:19.794747: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=57915) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Use `tf.keras.layers.Conv2D` instead.
+(pid=57915) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Please use `layer.__call__` method instead.
+(pid=57915) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Use keras.layers.MaxPooling2D instead.
+(pid=57915) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Use keras.layers.Dense instead.
+(pid=57918) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Use `tf.keras.layers.Conv2D` instead.
+(pid=57918) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Please use `layer.__call__` method instead.
+(pid=57918) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Use keras.layers.MaxPooling2D instead.
+(pid=57918) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Use keras.layers.Dense instead.
+(pid=57915) 2020-11-29 20:58:25.608090: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=57915) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=57915) 2020-11-29 20:58:25.614640: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+(pid=57915) 2020-11-29 20:58:25.614753: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5555595854d0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=57915) 2020-11-29 20:58:25.614765: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=57915) 2020-11-29 20:58:25.616257: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=57915) 2020-11-29 20:58:25.620351: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=57915) 2020-11-29 20:58:25.620370: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+(pid=57915) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=57918) 2020-11-29 20:58:25.696873: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=57918) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=57918) 2020-11-29 20:58:25.702922: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+(pid=57918) 2020-11-29 20:58:25.703037: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555b9cdfd0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=57918) 2020-11-29 20:58:25.703049: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=57918) 2020-11-29 20:58:25.704519: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=57918) 2020-11-29 20:58:25.708239: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=57918) 2020-11-29 20:58:25.708256: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+(pid=57915) Incomplete shape.
+(pid=57915) Incomplete shape.
+(pid=57915) Incomplete shape.
+(pid=57915) Incomplete shape.
+(pid=57915) 
+(pid=57915) =========================Options=============================
+(pid=57915) -max_depth                  10000
+(pid=57915) -min_bytes                  0
+(pid=57915) -min_peak_bytes             0
+(pid=57915) -min_residual_bytes         0
+(pid=57915) -min_output_bytes           0
+(pid=57915) -min_micros                 0
+(pid=57915) -min_accelerator_micros     0
+(pid=57915) -min_cpu_micros             0
+(pid=57915) -min_params                 0
+(pid=57915) -min_float_ops              1
+(pid=57915) -min_occurrence             0
+(pid=57915) -step                       -1
+(pid=57915) -order_by                   float_ops
+(pid=57915) -account_type_regexes       .*
+(pid=57915) -start_name_regexes         .*
+(pid=57915) -trim_name_regexes          
+(pid=57915) -show_name_regexes          .*
+(pid=57915) -hide_name_regexes          
+(pid=57915) -account_displayed_op_only  true
+(pid=57915) -select                     float_ops
+(pid=57915) -output                     stdout:
+(pid=57915) 
+(pid=57915) ==================Model Analysis Report======================
+(pid=57915) 
+(pid=57915) Doc:
+(pid=57915) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=57915) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=57915) 
+(pid=57915) Profile:
+(pid=57915) node name | # float_ops
+(pid=57915) _TFProfRoot (--/13.20m flops)
+(pid=57915)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=57915)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=57915)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57915)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=57915)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=57915)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57915)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=57915)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=57915)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57915)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=57915)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=57915)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57915)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=57915)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=57915)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=57915) 
+(pid=57915) ======================End of Report==========================
+(pid=57918) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=57918) Incomplete shape.
+(pid=57918) Incomplete shape.
+(pid=57918) Incomplete shape.
+(pid=57918) Incomplete shape.
+(pid=57918) 
+(pid=57918) =========================Options=============================
+(pid=57918) -max_depth                  10000
+(pid=57918) -min_bytes                  0
+(pid=57918) -min_peak_bytes             0
+(pid=57918) -min_residual_bytes         0
+(pid=57918) -min_output_bytes           0
+(pid=57918) -min_micros                 0
+(pid=57918) -min_accelerator_micros     0
+(pid=57918) -min_cpu_micros             0
+(pid=57918) -min_params                 0
+(pid=57918) -min_float_ops              1
+(pid=57918) -min_occurrence             0
+(pid=57918) -step                       -1
+(pid=57918) -order_by                   float_ops
+(pid=57918) -account_type_regexes       .*
+(pid=57918) -start_name_regexes         .*
+(pid=57918) -trim_name_regexes          
+(pid=57918) -show_name_regexes          .*
+(pid=57918) -hide_name_regexes          
+(pid=57918) -account_displayed_op_only  true
+(pid=57918) -select                     float_ops
+(pid=57918) -output                     stdout:
+(pid=57918) 
+(pid=57918) ==================Model Analysis Report======================
+(pid=57918) 
+(pid=57918) Doc:
+(pid=57918) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=57918) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=57918) 
+(pid=57918) Profile:
+(pid=57918) node name | # float_ops
+(pid=57918) _TFProfRoot (--/13.20m flops)
+(pid=57918)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=57918)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=57918)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57918)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=57918)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=57918)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57918)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=57918)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=57918)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57918)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=57918)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=57918)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57918)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=57918)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=57918)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=57918) 
+(pid=57918) ======================End of Report==========================
+(pid=57909) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Use `tf.keras.layers.Conv2D` instead.
+(pid=57909) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Please use `layer.__call__` method instead.
+(pid=57909) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Use keras.layers.MaxPooling2D instead.
+(pid=57909) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Use keras.layers.Dense instead.
+(pid=57909) 2020-11-29 20:58:26.154446: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=57909) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=57909) 2020-11-29 20:58:26.160362: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+(pid=57909) 2020-11-29 20:58:26.160462: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555de61fa0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=57909) 2020-11-29 20:58:26.160473: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=57909) 2020-11-29 20:58:26.161700: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=57909) 2020-11-29 20:58:26.165292: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=57909) 2020-11-29 20:58:26.165309: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+(pid=57909) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=57909) Incomplete shape.
+(pid=57909) Incomplete shape.
+(pid=57909) Incomplete shape.
+(pid=57909) Incomplete shape.
+(pid=57909) 
+(pid=57909) =========================Options=============================
+(pid=57909) -max_depth                  10000
+(pid=57909) -min_bytes                  0
+(pid=57909) -min_peak_bytes             0
+(pid=57909) -min_residual_bytes         0
+(pid=57909) -min_output_bytes           0
+(pid=57909) -min_micros                 0
+(pid=57909) -min_accelerator_micros     0
+(pid=57909) -min_cpu_micros             0
+(pid=57909) -min_params                 0
+(pid=57909) -min_float_ops              1
+(pid=57909) -min_occurrence             0
+(pid=57909) -step                       -1
+(pid=57909) -order_by                   float_ops
+(pid=57909) -account_type_regexes       .*
+(pid=57909) -start_name_regexes         .*
+(pid=57909) -trim_name_regexes          
+(pid=57909) -show_name_regexes          .*
+(pid=57909) -hide_name_regexes          
+(pid=57909) -account_displayed_op_only  true
+(pid=57909) -select                     float_ops
+(pid=57909) -output                     stdout:
+(pid=57909) 
+(pid=57909) ==================Model Analysis Report======================
+(pid=57909) 
+(pid=57909) Doc:
+(pid=57909) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=57909) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=57909) 
+(pid=57909) Profile:
+(pid=57909) node name | # float_ops
+(pid=57909) _TFProfRoot (--/13.20m flops)
+(pid=57909)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=57909)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=57909)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57909)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=57909)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=57909)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57909)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=57909)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=57909)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57909)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=57909)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=57909)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57909)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=57909)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=57909)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=57909) 
+(pid=57909) ======================End of Report==========================
+(pid=57913) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Use `tf.keras.layers.Conv2D` instead.
+(pid=57913) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Please use `layer.__call__` method instead.
+(pid=57913) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Use keras.layers.MaxPooling2D instead.
+(pid=57913) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Use keras.layers.Dense instead.
+(pid=57961) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Use `tf.keras.layers.Conv2D` instead.
+(pid=57961) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Please use `layer.__call__` method instead.
+(pid=57961) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Use keras.layers.MaxPooling2D instead.
+(pid=57961) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Use keras.layers.Dense instead.
+(pid=57913) 2020-11-29 20:58:26.523035: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=57913) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=57913) 2020-11-29 20:58:26.529918: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+(pid=57913) 2020-11-29 20:58:26.530068: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555d765f30 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=57913) 2020-11-29 20:58:26.530081: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=57913) 2020-11-29 20:58:26.532803: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=57913) 2020-11-29 20:58:26.536517: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=57913) 2020-11-29 20:58:26.536535: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+(pid=57913) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=57961) 2020-11-29 20:58:26.583860: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=57961) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=57961) 2020-11-29 20:58:26.589815: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2300070000 Hz
+(pid=57961) 2020-11-29 20:58:26.589947: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555bbb7210 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=57961) 2020-11-29 20:58:26.589960: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=57961) 2020-11-29 20:58:26.591411: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=57961) 2020-11-29 20:58:26.595232: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=57961) 2020-11-29 20:58:26.595251: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00009): /proc/driver/nvidia/version does not exist
+(pid=57913) Incomplete shape.
+(pid=57913) Incomplete shape.
+(pid=57913) Incomplete shape.
+(pid=57913) Incomplete shape.
+(pid=57913) 
+(pid=57913) =========================Options=============================
+(pid=57913) -max_depth                  10000
+(pid=57913) -min_bytes                  0
+(pid=57913) -min_peak_bytes             0
+(pid=57913) -min_residual_bytes         0
+(pid=57913) -min_output_bytes           0
+(pid=57913) -min_micros                 0
+(pid=57913) -min_accelerator_micros     0
+(pid=57913) -min_cpu_micros             0
+(pid=57913) -min_params                 0
+(pid=57913) -min_float_ops              1
+(pid=57913) -min_occurrence             0
+(pid=57913) -step                       -1
+(pid=57913) -order_by                   float_ops
+(pid=57913) -account_type_regexes       .*
+(pid=57913) -start_name_regexes         .*
+(pid=57913) -trim_name_regexes          
+(pid=57913) -show_name_regexes          .*
+(pid=57913) -hide_name_regexes          
+(pid=57913) -account_displayed_op_only  true
+(pid=57913) -select                     float_ops
+(pid=57913) -output                     stdout:
+(pid=57913) 
+(pid=57913) ==================Model Analysis Report======================
+(pid=57913) 
+(pid=57913) Doc:
+(pid=57913) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=57913) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=57913) 
+(pid=57913) Profile:
+(pid=57913) node name | # float_ops
+(pid=57913) _TFProfRoot (--/13.20m flops)
+(pid=57913)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=57913)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=57913)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57913)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=57913)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=57913)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57913)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=57913)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=57913)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57913)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=57913)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=57913)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57913)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=57913)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=57913)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=57913) 
+(pid=57913) ======================End of Report==========================
+(pid=57961) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Clients in Total: 194
+--- Random Initialization ---
+--- Round 1 of 80: Training 2 Clients ---
+(pid=57961) Incomplete shape.
+(pid=57961) Incomplete shape.
+(pid=57961) Incomplete shape.
+(pid=57961) Incomplete shape.
+(pid=57961) 
+(pid=57961) =========================Options=============================
+(pid=57961) -max_depth                  10000
+(pid=57961) -min_bytes                  0
+(pid=57961) -min_peak_bytes             0
+(pid=57961) -min_residual_bytes         0
+(pid=57961) -min_output_bytes           0
+(pid=57961) -min_micros                 0
+(pid=57961) -min_accelerator_micros     0
+(pid=57961) -min_cpu_micros             0
+(pid=57961) -min_params                 0
+(pid=57961) -min_float_ops              1
+(pid=57961) -min_occurrence             0
+(pid=57961) -step                       -1
+(pid=57961) -order_by                   float_ops
+(pid=57961) -account_type_regexes       .*
+(pid=57961) -start_name_regexes         .*
+(pid=57961) -trim_name_regexes          
+(pid=57961) -show_name_regexes          .*
+(pid=57961) -hide_name_regexes          
+(pid=57961) -account_displayed_op_only  true
+(pid=57961) -select                     float_ops
+(pid=57961) -output                     stdout:
+(pid=57961) 
+(pid=57961) ==================Model Analysis Report======================
+(pid=57961) 
+(pid=57961) Doc:
+(pid=57961) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=57961) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=57961) 
+(pid=57961) Profile:
+(pid=57961) node name | # float_ops
+(pid=57961) _TFProfRoot (--/13.20m flops)
+(pid=57961)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=57961)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=57961)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57961)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=57961)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=57961)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57961)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=57961)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=57961)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57961)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=57961)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=57961)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=57961)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=57961)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=57961)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=57961) 
+(pid=57961) ======================End of Report==========================
+(pid=57909) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=57909) Instructions for updating:
+(pid=57909) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=57913) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=57913) Instructions for updating:
+(pid=57913) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=57961) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=57961) Instructions for updating:
+(pid=57961) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=57915) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=57915) Instructions for updating:
+(pid=57915) Prefer Variable.assign which has equivalent behavior in 2.X.
+(pid=57918) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=57918) Instructions for updating:
+(pid=57918) Prefer Variable.assign which has equivalent behavior in 2.X.
+train_accuracy: 0.047353, 10th percentile: 0.0283552, 50th percentile: 0.0663012, 90th percentile 0.0806729
+train_loss: 3.8601, 10th percentile: 3.77093, 50th percentile: 3.83284, 90th percentile 3.92238
+test_accuracy: 0.0425377, 10th percentile: 0, 50th percentile: 0.0527778, 90th percentile 0.06875
+test_loss: 3.90833, 10th percentile: 3.73222, 50th percentile: 3.92945, 90th percentile 4.06805
+--- Round 2 of 80: Training 2 Clients ---
+train_accuracy: 0.296705, 10th percentile: 0.222043, 50th percentile: 0.299583, 90th percentile 0.452832
+train_loss: 3.32873, 10th percentile: 2.87195, 50th percentile: 3.18863, 90th percentile 3.6333
+test_accuracy: 0.289188, 10th percentile: 0.202857, 50th percentile: 0.334365, 90th percentile 0.466477
+test_loss: 3.42937, 10th percentile: 3.15236, 50th percentile: 3.46952, 90th percentile 3.59219
+--- Round 3 of 80: Training 2 Clients ---
+train_accuracy: 0.484042, 10th percentile: 0.0857143, 50th percentile: 0.4362, 90th percentile 0.707859
+train_loss: 2.1189, 10th percentile: 1.52391, 50th percentile: 2.24181, 90th percentile 4.3341
+test_accuracy: 0.48859, 10th percentile: 0, 50th percentile: 0.435294, 90th percentile 0.75
+test_loss: 2.21192, 10th percentile: 1.46884, 50th percentile: 2.4457, 90th percentile 3.10289
+--- Round 4 of 80: Training 2 Clients ---
+train_accuracy: 0.630618, 10th percentile: 0.48328, 50th percentile: 0.625236, 90th percentile 0.722101
+train_loss: 1.38135, 10th percentile: 1.08396, 50th percentile: 1.39268, 90th percentile 1.73217
+test_accuracy: 0.563468, 10th percentile: 0.372414, 50th percentile: 0.542484, 90th percentile 0.710294
+test_loss: 1.75421, 10th percentile: 1.1953, 50th percentile: 1.97745, 90th percentile 2.39472
+--- Round 5 of 80: Training 2 Clients ---
+train_accuracy: 0.579618, 10th percentile: 0.441802, 50th percentile: 0.58672, 90th percentile 0.721843
+train_loss: 1.66842, 10th percentile: 1.01551, 50th percentile: 1.53974, 90th percentile 2.18517
+test_accuracy: 0.507762, 10th percentile: 0.308722, 50th percentile: 0.507508, 90th percentile 0.711765
+test_loss: 2.07486, 10th percentile: 1.37759, 50th percentile: 1.85477, 90th percentile 2.62879
+--- Round 6 of 80: Training 2 Clients ---
+train_accuracy: 0.659924, 10th percentile: 0.460345, 50th percentile: 0.691961, 90th percentile 0.789243
+train_loss: 1.18478, 10th percentile: 0.715012, 50th percentile: 1.12299, 90th percentile 1.99805
+test_accuracy: 0.624734, 10th percentile: 0.392308, 50th percentile: 0.614583, 90th percentile 0.886975
+test_loss: 1.32608, 10th percentile: 0.59433, 50th percentile: 1.28618, 90th percentile 2.31214
+--- Round 7 of 80: Training 2 Clients ---
+train_accuracy: 0.662292, 10th percentile: 0.545662, 50th percentile: 0.636354, 90th percentile 0.881542
+train_loss: 1.21003, 10th percentile: 0.569496, 50th percentile: 1.34532, 90th percentile 1.58829
+test_accuracy: 0.625407, 10th percentile: 0.488889, 50th percentile: 0.605556, 90th percentile 0.782353
+test_loss: 1.27991, 10th percentile: 0.761574, 50th percentile: 1.31312, 90th percentile 1.68186
+--- Round 8 of 80: Training 2 Clients ---
+train_accuracy: 0.686655, 10th percentile: 0.437323, 50th percentile: 0.669808, 90th percentile 0.831675
+train_loss: 1.13457, 10th percentile: 0.61347, 50th percentile: 1.2102, 90th percentile 2.402
+test_accuracy: 0.650822, 10th percentile: 0.403922, 50th percentile: 0.602053, 90th percentile 0.794444
+test_loss: 1.23212, 10th percentile: 0.642254, 50th percentile: 1.24786, 90th percentile 1.93623
+--- Round 9 of 80: Training 2 Clients ---
+train_accuracy: 0.77783, 10th percentile: 0.67068, 50th percentile: 0.774856, 90th percentile 0.860779
+train_loss: 0.738963, 10th percentile: 0.486049, 50th percentile: 0.757008, 90th percentile 1.06284
+test_accuracy: 0.716691, 10th percentile: 0.583957, 50th percentile: 0.732079, 90th percentile 0.872308
+test_loss: 1.05767, 10th percentile: 0.454138, 50th percentile: 1.10999, 90th percentile 1.50313
+--- Round 10 of 80: Training 2 Clients ---
+train_accuracy: 0.761563, 10th percentile: 0.648929, 50th percentile: 0.806838, 90th percentile 0.854167
+train_loss: 0.83244, 10th percentile: 0.497203, 50th percentile: 0.641701, 90th percentile 1.17207
+test_accuracy: 0.712961, 10th percentile: 0.540441, 50th percentile: 0.738655, 90th percentile 0.94375
+test_loss: 0.96879, 10th percentile: 0.27335, 50th percentile: 0.80074, 90th percentile 1.63204
+--- Round 11 of 80: Training 2 Clients ---
+train_accuracy: 0.712373, 10th percentile: 0.565759, 50th percentile: 0.703571, 90th percentile 0.818753
+train_loss: 1.09836, 10th percentile: 0.7291, 50th percentile: 0.983602, 90th percentile 1.83974
+test_accuracy: 0.602335, 10th percentile: 0.387273, 50th percentile: 0.629085, 90th percentile 0.697059
+test_loss: 1.5416, 10th percentile: 1.03251, 50th percentile: 1.36129, 90th percentile 2.56872
+--- Round 12 of 80: Training 2 Clients ---
+train_accuracy: 0.802634, 10th percentile: 0.5, 50th percentile: 0.761141, 90th percentile 0.851709
+train_loss: 0.640389, 10th percentile: 0.397022, 50th percentile: 0.787513, 90th percentile 1.04784
+test_accuracy: 0.811879, 10th percentile: 0.69893, 50th percentile: 0.854386, 90th percentile 1
+test_loss: 0.70266, 10th percentile: 0.238614, 50th percentile: 0.527505, 90th percentile 1.07213
+--- Round 13 of 80: Training 2 Clients ---
+train_accuracy: 0.811905, 10th percentile: 0.642353, 50th percentile: 0.80943, 90th percentile 0.886028
+train_loss: 0.636027, 10th percentile: 0.365698, 50th percentile: 0.576428, 90th percentile 1.26033
+test_accuracy: 0.778348, 10th percentile: 0.571123, 50th percentile: 0.795139, 90th percentile 0.897143
+test_loss: 0.757126, 10th percentile: 0.301192, 50th percentile: 0.781507, 90th percentile 1.56955
+--- Round 14 of 80: Training 2 Clients ---
+train_accuracy: 0.727104, 10th percentile: 0.638741, 50th percentile: 0.720855, 90th percentile 0.861672
+train_loss: 0.906584, 10th percentile: 0.455044, 50th percentile: 0.898417, 90th percentile 1.38417
+test_accuracy: 0.679475, 10th percentile: 0.526471, 50th percentile: 0.676471, 90th percentile 0.85
+test_loss: 1.147, 10th percentile: 0.426889, 50th percentile: 1.12337, 90th percentile 1.74053
+--- Round 15 of 80: Training 2 Clients ---
+train_accuracy: 0.731067, 10th percentile: 0.496356, 50th percentile: 0.706876, 90th percentile 0.82671
+train_loss: 0.980016, 10th percentile: 0.520627, 50th percentile: 1.12109, 90th percentile 1.99545
+test_accuracy: 0.68892, 10th percentile: 0.335714, 50th percentile: 0.673611, 90th percentile 0.849619
+test_loss: 1.24139, 10th percentile: 0.560329, 50th percentile: 1.42075, 90th percentile 2.73842
+--- Round 16 of 80: Training 2 Clients ---
+train_accuracy: 0.766002, 10th percentile: 0.670862, 50th percentile: 0.786775, 90th percentile 0.877013
+train_loss: 0.751238, 10th percentile: 0.374006, 50th percentile: 0.694373, 90th percentile 1.03192
+test_accuracy: 0.741186, 10th percentile: 0.636714, 50th percentile: 0.735294, 90th percentile 0.890909
+test_loss: 0.853272, 10th percentile: 0.325713, 50th percentile: 0.661088, 90th percentile 1.64726
+--- Round 17 of 80: Training 2 Clients ---
+train_accuracy: 0.755981, 10th percentile: 0.537589, 50th percentile: 0.721529, 90th percentile 0.882137
+train_loss: 0.797981, 10th percentile: 0.434344, 50th percentile: 0.876938, 90th percentile 1.6656
+test_accuracy: 0.739795, 10th percentile: 0.33125, 50th percentile: 0.755583, 90th percentile 0.878929
+test_loss: 0.913208, 10th percentile: 0.321598, 50th percentile: 0.797059, 90th percentile 1.89571
+--- Round 18 of 80: Training 2 Clients ---
+train_accuracy: 0.806344, 10th percentile: 0.69127, 50th percentile: 0.818668, 90th percentile 0.938553
+train_loss: 0.654394, 10th percentile: 0.176713, 50th percentile: 0.592141, 90th percentile 1.13878
+test_accuracy: 0.750359, 10th percentile: 0.626316, 50th percentile: 0.738462, 90th percentile 1
+test_loss: 0.707091, 10th percentile: 0.0561054, 50th percentile: 0.673581, 90th percentile 1.20722
+--- Round 19 of 80: Training 2 Clients ---
+train_accuracy: 0.772944, 10th percentile: 0.599054, 50th percentile: 0.714759, 90th percentile 0.891573
+train_loss: 0.758621, 10th percentile: 0.395281, 50th percentile: 1.01779, 90th percentile 1.32306
+test_accuracy: 0.712964, 10th percentile: 0.4875, 50th percentile: 0.766968, 90th percentile 0.865
+test_loss: 1.0788, 10th percentile: 0.671469, 50th percentile: 0.95111, 90th percentile 1.82584
+--- Round 20 of 80: Training 2 Clients ---
+train_accuracy: 0.78775, 10th percentile: 0.571178, 50th percentile: 0.794167, 90th percentile 0.892887
+train_loss: 0.747932, 10th percentile: 0.33767, 50th percentile: 0.784004, 90th percentile 1.58387
+test_accuracy: 0.753286, 10th percentile: 0.639898, 50th percentile: 0.725641, 90th percentile 0.941503
+test_loss: 0.76211, 10th percentile: 0.209182, 50th percentile: 0.741544, 90th percentile 1.45338
+--- Round 21 of 80: Training 2 Clients ---
+train_accuracy: 0.698378, 10th percentile: 0.572742, 50th percentile: 0.743988, 90th percentile 0.811419
+train_loss: 1.29768, 10th percentile: 0.5609, 50th percentile: 0.896585, 90th percentile 1.89135
+test_accuracy: 0.596334, 10th percentile: 0.470846, 50th percentile: 0.548048, 90th percentile 0.767183
+test_loss: 1.66152, 10th percentile: 0.651257, 50th percentile: 1.5048, 90th percentile 2.36128
+--- Round 22 of 80: Training 2 Clients ---
+train_accuracy: 0.785815, 10th percentile: 0.688074, 50th percentile: 0.776187, 90th percentile 0.919095
+train_loss: 0.712832, 10th percentile: 0.309549, 50th percentile: 0.734559, 90th percentile 1.07086
+test_accuracy: 0.763958, 10th percentile: 0.55, 50th percentile: 0.777778, 90th percentile 0.839286
+test_loss: 0.948636, 10th percentile: 0.541468, 50th percentile: 0.943927, 90th percentile 1.48613
+--- Round 23 of 80: Training 2 Clients ---
+train_accuracy: 0.790957, 10th percentile: 0.594158, 50th percentile: 0.764751, 90th percentile 0.884579
+train_loss: 0.779305, 10th percentile: 0.384139, 50th percentile: 0.965028, 90th percentile 1.54338
+test_accuracy: 0.776754, 10th percentile: 0.55, 50th percentile: 0.79638, 90th percentile 0.930769
+test_loss: 0.812269, 10th percentile: 0.389708, 50th percentile: 1.04052, 90th percentile 1.48021
+--- Round 24 of 80: Training 2 Clients ---
+train_accuracy: 0.823572, 10th percentile: 0.709971, 50th percentile: 0.805401, 90th percentile 0.924887
+train_loss: 0.55281, 10th percentile: 0.230288, 50th percentile: 0.599383, 90th percentile 0.860287
+test_accuracy: 0.787625, 10th percentile: 0.6225, 50th percentile: 0.724747, 90th percentile 0.894872
+test_loss: 0.663415, 10th percentile: 0.176756, 50th percentile: 0.65888, 90th percentile 1.28033
+--- Round 25 of 80: Training 2 Clients ---
+train_accuracy: 0.786448, 10th percentile: 0.607792, 50th percentile: 0.778002, 90th percentile 0.898623
+train_loss: 0.678992, 10th percentile: 0.316492, 50th percentile: 0.629643, 90th percentile 1.26134
+test_accuracy: 0.712611, 10th percentile: 0.5, 50th percentile: 0.727941, 90th percentile 0.826176
+test_loss: 1.05917, 10th percentile: 0.689471, 50th percentile: 0.952864, 90th percentile 1.73558
+--- Round 26 of 80: Training 2 Clients ---
+train_accuracy: 0.806211, 10th percentile: 0.653608, 50th percentile: 0.838373, 90th percentile 0.89625
+train_loss: 0.647978, 10th percentile: 0.36999, 50th percentile: 0.535277, 90th percentile 1.41032
+test_accuracy: 0.759883, 10th percentile: 0.456364, 50th percentile: 0.763393, 90th percentile 0.916607
+test_loss: 0.838687, 10th percentile: 0.254539, 50th percentile: 0.751496, 90th percentile 1.89327
+--- Round 27 of 80: Training 2 Clients ---
+train_accuracy: 0.819931, 10th percentile: 0.714541, 50th percentile: 0.833365, 90th percentile 0.878942
+train_loss: 0.589852, 10th percentile: 0.453706, 50th percentile: 0.54458, 90th percentile 0.814017
+test_accuracy: 0.789058, 10th percentile: 0.686235, 50th percentile: 0.793403, 90th percentile 0.848661
+test_loss: 0.722939, 10th percentile: 0.461667, 50th percentile: 0.769658, 90th percentile 1.01141
+--- Round 28 of 80: Training 2 Clients ---
+train_accuracy: 0.809656, 10th percentile: 0.327273, 50th percentile: 0.804039, 90th percentile 0.89802
+train_loss: 0.620752, 10th percentile: 0.292314, 50th percentile: 0.656713, 90th percentile 2.4207
+test_accuracy: 0.793673, 10th percentile: 0.6, 50th percentile: 0.804993, 90th percentile 0.88
+test_loss: 0.824759, 10th percentile: 0.594574, 50th percentile: 0.798808, 90th percentile 1.81375
+--- Round 29 of 80: Training 2 Clients ---
+train_accuracy: 0.835838, 10th percentile: 0.76004, 50th percentile: 0.840981, 90th percentile 0.907781
+train_loss: 0.539769, 10th percentile: 0.283554, 50th percentile: 0.514568, 90th percentile 0.845664
+test_accuracy: 0.764459, 10th percentile: 0.654545, 50th percentile: 0.757353, 90th percentile 0.95
+test_loss: 0.769081, 10th percentile: 0.225378, 50th percentile: 0.780464, 90th percentile 1.14784
+--- Round 30 of 80: Training 2 Clients ---
+train_accuracy: 0.831375, 10th percentile: 0.712117, 50th percentile: 0.812718, 90th percentile 0.919902
+train_loss: 0.544076, 10th percentile: 0.228146, 50th percentile: 0.621916, 90th percentile 0.892286
+test_accuracy: 0.777189, 10th percentile: 0.632353, 50th percentile: 0.771242, 90th percentile 0.8375
+test_loss: 0.785849, 10th percentile: 0.467717, 50th percentile: 0.838054, 90th percentile 1.11014
+--- Round 31 of 80: Training 2 Clients ---
+train_accuracy: 0.826721, 10th percentile: 0.731729, 50th percentile: 0.806504, 90th percentile 0.886625
+train_loss: 0.51609, 10th percentile: 0.327375, 50th percentile: 0.550666, 90th percentile 0.793508
+test_accuracy: 0.772287, 10th percentile: 0.6625, 50th percentile: 0.768199, 90th percentile 0.843728
+test_loss: 0.703614, 10th percentile: 0.480502, 50th percentile: 0.641093, 90th percentile 1.21457
+--- Round 32 of 80: Training 2 Clients ---
+train_accuracy: 0.803013, 10th percentile: 0.689042, 50th percentile: 0.794541, 90th percentile 0.884613
+train_loss: 0.626848, 10th percentile: 0.332883, 50th percentile: 0.575625, 90th percentile 1.18504
+test_accuracy: 0.742945, 10th percentile: 0.58375, 50th percentile: 0.736111, 90th percentile 0.834375
+test_loss: 0.867252, 10th percentile: 0.540081, 50th percentile: 0.818464, 90th percentile 1.65902
+--- Round 33 of 80: Training 2 Clients ---
+train_accuracy: 0.818971, 10th percentile: 0.639785, 50th percentile: 0.814814, 90th percentile 0.915121
+train_loss: 0.629736, 10th percentile: 0.266949, 50th percentile: 0.705017, 90th percentile 1.45148
+test_accuracy: 0.771055, 10th percentile: 0.58956, 50th percentile: 0.724747, 90th percentile 0.90664
+test_loss: 0.906886, 10th percentile: 0.311978, 50th percentile: 0.905921, 90th percentile 2.01917
+--- Round 34 of 80: Training 2 Clients ---
+train_accuracy: 0.849601, 10th percentile: 0.704807, 50th percentile: 0.859245, 90th percentile 0.961222
+train_loss: 0.450271, 10th percentile: 0.163792, 50th percentile: 0.393792, 90th percentile 0.895058
+test_accuracy: 0.833513, 10th percentile: 0.647059, 50th percentile: 0.877778, 90th percentile 1
+test_loss: 0.534352, 10th percentile: 0.0285349, 50th percentile: 0.292028, 90th percentile 1.00168
+--- Round 35 of 80: Training 2 Clients ---
+train_accuracy: 0.824435, 10th percentile: 0.668269, 50th percentile: 0.7982, 90th percentile 0.952034
+train_loss: 0.57599, 10th percentile: 0.179756, 50th percentile: 0.589994, 90th percentile 1.36521
+test_accuracy: 0.78235, 10th percentile: 0.555556, 50th percentile: 0.815611, 90th percentile 1
+test_loss: 0.812366, 10th percentile: 0.108132, 50th percentile: 0.715441, 90th percentile 1.38543
+--- Round 36 of 80: Training 2 Clients ---
+train_accuracy: 0.708464, 10th percentile: 0.601165, 50th percentile: 0.696234, 90th percentile 0.830614
+train_loss: 1.21865, 10th percentile: 0.499115, 50th percentile: 0.96752, 90th percentile 1.71288
+test_accuracy: 0.629257, 10th percentile: 0.5, 50th percentile: 0.571895, 90th percentile 0.746875
+test_loss: 1.57951, 10th percentile: 0.96086, 50th percentile: 1.37448, 90th percentile 2.10425
+--- Round 37 of 80: Training 2 Clients ---
+train_accuracy: 0.828617, 10th percentile: 0.6375, 50th percentile: 0.824604, 90th percentile 0.917035
+train_loss: 0.529764, 10th percentile: 0.357042, 50th percentile: 0.531254, 90th percentile 0.890066
+test_accuracy: 0.783524, 10th percentile: 0.370588, 50th percentile: 0.809028, 90th percentile 0.903571
+test_loss: 0.627454, 10th percentile: 0.212273, 50th percentile: 0.536713, 90th percentile 1.59373
+--- Round 38 of 80: Training 2 Clients ---
+train_accuracy: 0.740276, 10th percentile: 0.638817, 50th percentile: 0.727808, 90th percentile 0.83974
+train_loss: 1.06592, 10th percentile: 0.476803, 50th percentile: 0.863614, 90th percentile 1.5872
+test_accuracy: 0.669472, 10th percentile: 0.544481, 50th percentile: 0.570881, 90th percentile 0.943934
+test_loss: 1.45644, 10th percentile: 0.198057, 50th percentile: 1.40044, 90th percentile 2.07812
+--- Round 39 of 80: Training 2 Clients ---
+train_accuracy: 0.819367, 10th percentile: 0.6184, 50th percentile: 0.834462, 90th percentile 0.910289
+train_loss: 0.579092, 10th percentile: 0.300985, 50th percentile: 0.472522, 90th percentile 1.38296
+test_accuracy: 0.79034, 10th percentile: 0.588235, 50th percentile: 0.772917, 90th percentile 0.912626
+test_loss: 0.778098, 10th percentile: 0.386401, 50th percentile: 0.832982, 90th percentile 1.52178
+--- Round 40 of 80: Training 2 Clients ---
+train_accuracy: 0.798864, 10th percentile: 0.60678, 50th percentile: 0.806519, 90th percentile 0.887281
+train_loss: 0.696818, 10th percentile: 0.36435, 50th percentile: 0.602436, 90th percentile 1.79122
+test_accuracy: 0.747052, 10th percentile: 0.564286, 50th percentile: 0.769853, 90th percentile 0.808235
+test_loss: 1.04546, 10th percentile: 0.441994, 50th percentile: 0.896161, 90th percentile 2.42593
+--- Round 41 of 80: Training 2 Clients ---
+train_accuracy: 0.809016, 10th percentile: 0.638, 50th percentile: 0.766938, 90th percentile 0.894778
+train_loss: 0.572955, 10th percentile: 0.317154, 50th percentile: 0.591977, 90th percentile 0.94203
+test_accuracy: 0.782885, 10th percentile: 0.476471, 50th percentile: 0.806502, 90th percentile 0.947059
+test_loss: 0.685315, 10th percentile: 0.148121, 50th percentile: 0.690645, 90th percentile 1.21553
+--- Round 42 of 80: Training 2 Clients ---
+train_accuracy: 0.79317, 10th percentile: 0.627148, 50th percentile: 0.764262, 90th percentile 0.893833
+train_loss: 0.601809, 10th percentile: 0.331202, 50th percentile: 0.71925, 90th percentile 1.11946
+test_accuracy: 0.769947, 10th percentile: 0.646154, 50th percentile: 0.734375, 90th percentile 0.882353
+test_loss: 0.934393, 10th percentile: 0.614625, 50th percentile: 0.894066, 90th percentile 1.65561
+--- Round 43 of 80: Training 2 Clients ---
+train_accuracy: 0.800742, 10th percentile: 0.684882, 50th percentile: 0.779133, 90th percentile 0.903104
+train_loss: 0.673343, 10th percentile: 0.310281, 50th percentile: 0.761614, 90th percentile 1.13448
+test_accuracy: 0.728769, 10th percentile: 0.555556, 50th percentile: 0.708333, 90th percentile 0.89375
+test_loss: 1.05163, 10th percentile: 0.29567, 50th percentile: 1.12843, 90th percentile 1.80499
+--- Round 44 of 80: Training 2 Clients ---
+train_accuracy: 0.85783, 10th percentile: 0.764697, 50th percentile: 0.857246, 90th percentile 0.919174
+train_loss: 0.442397, 10th percentile: 0.207963, 50th percentile: 0.487274, 90th percentile 0.789777
+test_accuracy: 0.823456, 10th percentile: 0.733824, 50th percentile: 0.818015, 90th percentile 0.904286
+test_loss: 0.579224, 10th percentile: 0.230601, 50th percentile: 0.608364, 90th percentile 1.01397
+--- Round 45 of 80: Training 2 Clients ---
+train_accuracy: 0.838698, 10th percentile: 0.671545, 50th percentile: 0.810035, 90th percentile 0.91565
+train_loss: 0.533644, 10th percentile: 0.268368, 50th percentile: 0.601779, 90th percentile 1.10647
+test_accuracy: 0.761178, 10th percentile: 0.544242, 50th percentile: 0.736842, 90th percentile 0.928947
+test_loss: 0.719381, 10th percentile: 0.247269, 50th percentile: 0.749183, 90th percentile 1.2519
+--- Round 46 of 80: Training 2 Clients ---
+train_accuracy: 0.858187, 10th percentile: 0.635736, 50th percentile: 0.878136, 90th percentile 0.938362
+train_loss: 0.448123, 10th percentile: 0.16071, 50th percentile: 0.394739, 90th percentile 1.20876
+test_accuracy: 0.813984, 10th percentile: 0.630921, 50th percentile: 0.823529, 90th percentile 0.902105
+test_loss: 0.673058, 10th percentile: 0.238114, 50th percentile: 0.638887, 90th percentile 1.55608
+--- Round 47 of 80: Training 2 Clients ---
+train_accuracy: 0.840858, 10th percentile: 0.764743, 50th percentile: 0.849243, 90th percentile 0.925358
+train_loss: 0.503105, 10th percentile: 0.256198, 50th percentile: 0.461057, 90th percentile 0.702214
+test_accuracy: 0.801804, 10th percentile: 0.716099, 50th percentile: 0.815341, 90th percentile 0.898016
+test_loss: 0.684551, 10th percentile: 0.381599, 50th percentile: 0.571427, 90th percentile 1.02765
+--- Round 48 of 80: Training 2 Clients ---
+train_accuracy: 0.799012, 10th percentile: 0.685507, 50th percentile: 0.781632, 90th percentile 0.91173
+train_loss: 0.647215, 10th percentile: 0.260608, 50th percentile: 0.752086, 90th percentile 0.906406
+test_accuracy: 0.748836, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.892857
+test_loss: 0.835525, 10th percentile: 0.43807, 50th percentile: 0.829503, 90th percentile 1.53949
+--- Round 49 of 80: Training 2 Clients ---
+train_accuracy: 0.847581, 10th percentile: 0.628846, 50th percentile: 0.864034, 90th percentile 0.890165
+train_loss: 0.47041, 10th percentile: 0.317964, 50th percentile: 0.43929, 90th percentile 0.966514
+test_accuracy: 0.769165, 10th percentile: 0.55, 50th percentile: 0.782353, 90th percentile 0.923626
+test_loss: 0.792194, 10th percentile: 0.229954, 50th percentile: 0.849496, 90th percentile 1.29682
+--- Round 50 of 80: Training 2 Clients ---
+train_accuracy: 0.84215, 10th percentile: 0.600011, 50th percentile: 0.827097, 90th percentile 0.922467
+train_loss: 0.541558, 10th percentile: 0.229918, 50th percentile: 0.548687, 90th percentile 1.47277
+test_accuracy: 0.782622, 10th percentile: 0.522857, 50th percentile: 0.690196, 90th percentile 0.904911
+test_loss: 0.838025, 10th percentile: 0.299175, 50th percentile: 0.881859, 90th percentile 1.83304
+--- Round 51 of 80: Training 2 Clients ---
+train_accuracy: 0.827038, 10th percentile: 0.707901, 50th percentile: 0.795236, 90th percentile 0.914577
+train_loss: 0.550482, 10th percentile: 0.264199, 50th percentile: 0.597715, 90th percentile 0.932855
+test_accuracy: 0.776854, 10th percentile: 0.65, 50th percentile: 0.788889, 90th percentile 0.872106
+test_loss: 0.840853, 10th percentile: 0.387822, 50th percentile: 0.825351, 90th percentile 1.27335
+--- Round 52 of 80: Training 2 Clients ---
+train_accuracy: 0.830885, 10th percentile: 0.644601, 50th percentile: 0.797887, 90th percentile 0.927286
+train_loss: 0.530274, 10th percentile: 0.21207, 50th percentile: 0.565074, 90th percentile 1.18609
+test_accuracy: 0.796953, 10th percentile: 0.60625, 50th percentile: 0.766968, 90th percentile 0.909158
+test_loss: 0.797381, 10th percentile: 0.327354, 50th percentile: 0.920657, 90th percentile 1.57735
+--- Round 53 of 80: Training 2 Clients ---
+train_accuracy: 0.842267, 10th percentile: 0.742256, 50th percentile: 0.832413, 90th percentile 0.884337
+train_loss: 0.471525, 10th percentile: 0.299336, 50th percentile: 0.61086, 90th percentile 0.795524
+test_accuracy: 0.768526, 10th percentile: 0.645455, 50th percentile: 0.793651, 90th percentile 0.8675
+test_loss: 0.756425, 10th percentile: 0.465922, 50th percentile: 0.761099, 90th percentile 1.07287
+--- Round 54 of 80: Training 2 Clients ---
+train_accuracy: 0.797169, 10th percentile: 0.637133, 50th percentile: 0.817293, 90th percentile 0.925805
+train_loss: 0.866626, 10th percentile: 0.285705, 50th percentile: 0.526373, 90th percentile 1.55002
+test_accuracy: 0.697337, 10th percentile: 0.453535, 50th percentile: 0.700292, 90th percentile 0.84718
+test_loss: 1.1812, 10th percentile: 0.367455, 50th percentile: 0.783136, 90th percentile 2.00156
+--- Round 55 of 80: Training 2 Clients ---
+train_accuracy: 0.829149, 10th percentile: 0.611321, 50th percentile: 0.796475, 90th percentile 0.916827
+train_loss: 0.560514, 10th percentile: 0.2821, 50th percentile: 0.523813, 90th percentile 1.13666
+test_accuracy: 0.768523, 10th percentile: 0.45, 50th percentile: 0.767361, 90th percentile 0.932589
+test_loss: 0.851973, 10th percentile: 0.204941, 50th percentile: 0.873476, 90th percentile 1.69918
+--- Round 56 of 80: Training 2 Clients ---
+train_accuracy: 0.855546, 10th percentile: 0.762763, 50th percentile: 0.846569, 90th percentile 0.910956
+train_loss: 0.454359, 10th percentile: 0.317476, 50th percentile: 0.416357, 90th percentile 0.789383
+test_accuracy: 0.767128, 10th percentile: 0.632727, 50th percentile: 0.769841, 90th percentile 0.835621
+test_loss: 0.885649, 10th percentile: 0.390143, 50th percentile: 0.864228, 90th percentile 1.41025
+--- Round 57 of 80: Training 2 Clients ---
+train_accuracy: 0.848459, 10th percentile: 0.694342, 50th percentile: 0.856585, 90th percentile 0.908129
+train_loss: 0.461279, 10th percentile: 0.220664, 50th percentile: 0.425923, 90th percentile 1.02507
+test_accuracy: 0.784081, 10th percentile: 0.647059, 50th percentile: 0.804993, 90th percentile 0.870909
+test_loss: 0.587453, 10th percentile: 0.37546, 50th percentile: 0.515439, 90th percentile 0.860351
+--- Round 58 of 80: Training 2 Clients ---
+train_accuracy: 0.81068, 10th percentile: 0.700427, 50th percentile: 0.827492, 90th percentile 0.941935
+train_loss: 0.601399, 10th percentile: 0.191861, 50th percentile: 0.555558, 90th percentile 1.20684
+test_accuracy: 0.759216, 10th percentile: 0.614957, 50th percentile: 0.786765, 90th percentile 1
+test_loss: 0.890428, 10th percentile: 0.151753, 50th percentile: 0.646711, 90th percentile 1.36304
+--- Round 59 of 80: Training 2 Clients ---
+train_accuracy: 0.858176, 10th percentile: 0.638049, 50th percentile: 0.868248, 90th percentile 0.94276
+train_loss: 0.437754, 10th percentile: 0.174426, 50th percentile: 0.41229, 90th percentile 1.43678
+test_accuracy: 0.767546, 10th percentile: 0.571053, 50th percentile: 0.785579, 90th percentile 0.891667
+test_loss: 0.685742, 10th percentile: 0.383989, 50th percentile: 0.757637, 90th percentile 1.31997
+--- Round 60 of 80: Training 2 Clients ---
+train_accuracy: 0.861689, 10th percentile: 0.709707, 50th percentile: 0.849693, 90th percentile 0.918193
+train_loss: 0.425203, 10th percentile: 0.210197, 50th percentile: 0.4348, 90th percentile 1.31574
+test_accuracy: 0.821444, 10th percentile: 0.69875, 50th percentile: 0.816964, 90th percentile 0.868939
+test_loss: 0.54275, 10th percentile: 0.446989, 50th percentile: 0.528405, 90th percentile 0.802238
+--- Round 61 of 80: Training 2 Clients ---
+train_accuracy: 0.898909, 10th percentile: 0.403896, 50th percentile: 0.914546, 90th percentile 0.966105
+train_loss: 0.32329, 10th percentile: 0.074196, 50th percentile: 0.310913, 90th percentile 2.17258
+test_accuracy: 0.83842, 10th percentile: 0.713158, 50th percentile: 0.833333, 90th percentile 0.925
+test_loss: 0.486002, 10th percentile: 0.137591, 50th percentile: 0.470548, 90th percentile 0.736269
+--- Round 62 of 80: Training 2 Clients ---
+train_accuracy: 0.870658, 10th percentile: 0.726215, 50th percentile: 0.867419, 90th percentile 0.957323
+train_loss: 0.381785, 10th percentile: 0.14277, 50th percentile: 0.393252, 90th percentile 0.695145
+test_accuracy: 0.820192, 10th percentile: 0.684211, 50th percentile: 0.8125, 90th percentile 0.897321
+test_loss: 0.549634, 10th percentile: 0.354386, 50th percentile: 0.605228, 90th percentile 0.878724
+--- Round 63 of 80: Training 2 Clients ---
+train_accuracy: 0.849788, 10th percentile: 0.781284, 50th percentile: 0.83726, 90th percentile 0.92383
+train_loss: 0.478567, 10th percentile: 0.248654, 50th percentile: 0.490235, 90th percentile 0.716964
+test_accuracy: 0.784742, 10th percentile: 0.703333, 50th percentile: 0.755952, 90th percentile 0.947059
+test_loss: 0.766655, 10th percentile: 0.245469, 50th percentile: 0.764706, 90th percentile 1.27951
+--- Round 64 of 80: Training 2 Clients ---
+train_accuracy: 0.873463, 10th percentile: 0.776713, 50th percentile: 0.890947, 90th percentile 0.927819
+train_loss: 0.363049, 10th percentile: 0.210697, 50th percentile: 0.323485, 90th percentile 0.551237
+test_accuracy: 0.794425, 10th percentile: 0.71875, 50th percentile: 0.794737, 90th percentile 0.885027
+test_loss: 0.699759, 10th percentile: 0.359898, 50th percentile: 0.562693, 90th percentile 0.920891
+--- Round 65 of 80: Training 2 Clients ---
+train_accuracy: 0.844489, 10th percentile: 0.651807, 50th percentile: 0.852996, 90th percentile 0.927138
+train_loss: 0.485289, 10th percentile: 0.197493, 50th percentile: 0.491094, 90th percentile 1.15653
+test_accuracy: 0.791278, 10th percentile: 0.637908, 50th percentile: 0.788889, 90th percentile 0.894286
+test_loss: 0.711774, 10th percentile: 0.205568, 50th percentile: 0.715587, 90th percentile 1.61839
+--- Round 66 of 80: Training 2 Clients ---
+train_accuracy: 0.819329, 10th percentile: 0.676087, 50th percentile: 0.816167, 90th percentile 0.898691
+train_loss: 0.592018, 10th percentile: 0.247159, 50th percentile: 0.628923, 90th percentile 1.37886
+test_accuracy: 0.81294, 10th percentile: 0.610096, 50th percentile: 0.811765, 90th percentile 0.906653
+test_loss: 0.765668, 10th percentile: 0.378833, 50th percentile: 0.694333, 90th percentile 1.48285
+--- Round 67 of 80: Training 2 Clients ---
+train_accuracy: 0.775741, 10th percentile: 0.573589, 50th percentile: 0.786157, 90th percentile 0.912944
+train_loss: 0.939682, 10th percentile: 0.224195, 50th percentile: 0.677875, 90th percentile 1.75168
+test_accuracy: 0.727543, 10th percentile: 0.540909, 50th percentile: 0.636029, 90th percentile 0.909911
+test_loss: 1.28277, 10th percentile: 0.203977, 50th percentile: 1.17203, 90th percentile 2.09342
+--- Round 68 of 80: Training 2 Clients ---
+train_accuracy: 0.834029, 10th percentile: 0.641659, 50th percentile: 0.881514, 90th percentile 0.95
+train_loss: 0.523995, 10th percentile: 0.169639, 50th percentile: 0.356104, 90th percentile 1.1385
+test_accuracy: 0.749851, 10th percentile: 0.676901, 50th percentile: 0.744853, 90th percentile 0.9
+test_loss: 0.857429, 10th percentile: 0.422728, 50th percentile: 0.851337, 90th percentile 1.31046
+--- Round 69 of 80: Training 2 Clients ---
+train_accuracy: 0.861176, 10th percentile: 0.759214, 50th percentile: 0.793955, 90th percentile 0.957914
+train_loss: 0.441191, 10th percentile: 0.150781, 50th percentile: 0.54857, 90th percentile 0.828313
+test_accuracy: 0.746541, 10th percentile: 0.654361, 50th percentile: 0.771242, 90th percentile 0.825387
+test_loss: 0.857488, 10th percentile: 0.362281, 50th percentile: 0.785277, 90th percentile 1.32774
+--- Round 70 of 80: Training 2 Clients ---
+train_accuracy: 0.877871, 10th percentile: 0.706607, 50th percentile: 0.864321, 90th percentile 0.958974
+train_loss: 0.37336, 10th percentile: 0.191278, 50th percentile: 0.401018, 90th percentile 0.835913
+test_accuracy: 0.8309, 10th percentile: 0.476471, 50th percentile: 0.84359, 90th percentile 0.95
+test_loss: 0.491785, 10th percentile: 0.0878144, 50th percentile: 0.505282, 90th percentile 1.28992
+--- Round 71 of 80: Training 2 Clients ---
+train_accuracy: 0.818044, 10th percentile: 0.646977, 50th percentile: 0.825179, 90th percentile 0.929111
+train_loss: 0.59415, 10th percentile: 0.230249, 50th percentile: 0.557443, 90th percentile 1.05101
+test_accuracy: 0.775638, 10th percentile: 0.623611, 50th percentile: 0.780405, 90th percentile 0.871667
+test_loss: 0.814693, 10th percentile: 0.403311, 50th percentile: 0.727656, 90th percentile 1.54631
+--- Round 72 of 80: Training 2 Clients ---
+train_accuracy: 0.842748, 10th percentile: 0.639623, 50th percentile: 0.823131, 90th percentile 0.924519
+train_loss: 0.524951, 10th percentile: 0.244457, 50th percentile: 0.533633, 90th percentile 1.10772
+test_accuracy: 0.770541, 10th percentile: 0.5, 50th percentile: 0.775641, 90th percentile 0.943934
+test_loss: 0.809356, 10th percentile: 0.198601, 50th percentile: 0.910286, 90th percentile 1.69885
+--- Round 73 of 80: Training 2 Clients ---
+train_accuracy: 0.872966, 10th percentile: 0.790058, 50th percentile: 0.873738, 90th percentile 0.944765
+train_loss: 0.389313, 10th percentile: 0.18627, 50th percentile: 0.358499, 90th percentile 0.658899
+test_accuracy: 0.817285, 10th percentile: 0.738158, 50th percentile: 0.79057, 90th percentile 1
+test_loss: 0.515208, 10th percentile: 0.0905583, 50th percentile: 0.533973, 90th percentile 0.835287
+--- Round 74 of 80: Training 2 Clients ---
+train_accuracy: 0.83937, 10th percentile: 0.64278, 50th percentile: 0.884233, 90th percentile 0.934085
+train_loss: 0.469916, 10th percentile: 0.165356, 50th percentile: 0.332391, 90th percentile 1.13686
+test_accuracy: 0.787964, 10th percentile: 0.658824, 50th percentile: 0.828571, 90th percentile 0.91
+test_loss: 0.775653, 10th percentile: 0.314803, 50th percentile: 0.827867, 90th percentile 1.36368
+--- Round 75 of 80: Training 2 Clients ---
+train_accuracy: 0.86148, 10th percentile: 0.613598, 50th percentile: 0.831219, 90th percentile 0.952933
+train_loss: 0.468152, 10th percentile: 0.134354, 50th percentile: 0.478034, 90th percentile 1.28946
+test_accuracy: 0.803282, 10th percentile: 0.496154, 50th percentile: 0.811765, 90th percentile 0.908482
+test_loss: 0.751959, 10th percentile: 0.262517, 50th percentile: 0.710986, 90th percentile 1.71921
+--- Round 76 of 80: Training 2 Clients ---
+train_accuracy: 0.858124, 10th percentile: 0.738514, 50th percentile: 0.89311, 90th percentile 0.936482
+train_loss: 0.427932, 10th percentile: 0.189098, 50th percentile: 0.319079, 90th percentile 0.760435
+test_accuracy: 0.796436, 10th percentile: 0.677574, 50th percentile: 0.766517, 90th percentile 1
+test_loss: 0.69491, 10th percentile: 0.0535526, 50th percentile: 0.74208, 90th percentile 1.18947
+--- Round 77 of 80: Training 2 Clients ---
+train_accuracy: 0.81928, 10th percentile: 0.743141, 50th percentile: 0.801114, 90th percentile 0.907955
+train_loss: 0.519094, 10th percentile: 0.334933, 50th percentile: 0.507346, 90th percentile 0.797415
+test_accuracy: 0.766681, 10th percentile: 0.55, 50th percentile: 0.7625, 90th percentile 0.928571
+test_loss: 0.707668, 10th percentile: 0.311698, 50th percentile: 0.670111, 90th percentile 1.15562
+--- Round 78 of 80: Training 2 Clients ---
+train_accuracy: 0.809209, 10th percentile: 0.529661, 50th percentile: 0.835034, 90th percentile 0.927271
+train_loss: 0.647214, 10th percentile: 0.23372, 50th percentile: 0.461376, 90th percentile 1.70481
+test_accuracy: 0.7719, 10th percentile: 0.564286, 50th percentile: 0.761111, 90th percentile 0.941176
+test_loss: 0.933063, 10th percentile: 0.293058, 50th percentile: 0.943588, 90th percentile 2.25516
+--- Round 79 of 80: Training 2 Clients ---
+train_accuracy: 0.85349, 10th percentile: 0.704636, 50th percentile: 0.895948, 90th percentile 0.962611
+train_loss: 0.42334, 10th percentile: 0.100811, 50th percentile: 0.325851, 90th percentile 0.821854
+test_accuracy: 0.864049, 10th percentile: 0.823529, 50th percentile: 0.866039, 90th percentile 1
+test_loss: 0.476083, 10th percentile: 0.0202944, 50th percentile: 0.448325, 90th percentile 0.658994
+--- Round 80 of 80: Training 2 Clients ---
+train_accuracy: 0.853352, 10th percentile: 0.662745, 50th percentile: 0.862607, 90th percentile 0.952166
+train_loss: 0.41802, 10th percentile: 0.176285, 50th percentile: 0.357702, 90th percentile 0.941997
+test_accuracy: 0.802238, 10th percentile: 0.635294, 50th percentile: 0.798142, 90th percentile 0.916607
+test_loss: 0.669729, 10th percentile: 0.148883, 50th percentile: 0.606268, 90th percentile 1.50818

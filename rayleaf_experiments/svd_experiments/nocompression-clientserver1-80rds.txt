@@ -1,0 +1,564 @@
+(rayleaf) arissa@nid00027:/global/u2/a/arissa/RayLeaf/leaf/models> python3 main.py -dataset femnist -model cnn --num-rounds 80 --eval-every 1 --clients-per-round 10 --num-epochs 5 -lr 0.06 --num-client-servers 1
+2020-11-29 22:19:26.506045: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+2020-11-29 22:19:26.506069: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+############################## femnist.cnn ##############################
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.keras.layers.Conv2D` instead.
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.MaxPooling2D instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.
+2020-11-29 22:19:56.522589: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-11-29 22:19:56.529122: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299840000 Hz
+2020-11-29 22:19:56.529290: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555558f0d660 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-29 22:19:56.529315: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-29 22:19:56.553314: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2020-11-29 22:19:56.582675: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2020-11-29 22:19:56.582707: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00027): /proc/driver/nvidia/version does not exist
+WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10000
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              1
+-min_occurrence             0
+-step                       -1
+-order_by                   float_ops
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  true
+-select                     float_ops
+-output                     stdout:
+
+==================Model Analysis Report======================
+Incomplete shape.
+Incomplete shape.
+
+Doc:
+scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+
+Profile:
+node name | # float_ops
+_TFProfRoot (--/13.20m flops)
+  dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+    dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+    dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+  dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+    dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+    dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+    conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+    conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+    conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+    conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+  sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+
+======================End of Report==========================
+2020-11-29 22:19:57,480 INFO services.py:1090 -- View the Ray dashboard at http://127.0.0.1:8265
+(pid=26415) 2020-11-29 22:20:11.712112: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'libcudart.so.10.1'; dlerror: libcudart.so.10.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/cray/job/2.2.4-7.0.1.1_3.41__g36b56f4.ari/lib64:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64
+(pid=26415) 2020-11-29 22:20:11.712129: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+(pid=26415) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:21: conv2d (from tensorflow.python.keras.legacy_tf_layers.convolutional) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Use `tf.keras.layers.Conv2D` instead.
+(pid=26415) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/keras/legacy_tf_layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer_v1) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Please use `layer.__call__` method instead.
+(pid=26415) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.keras.legacy_tf_layers.pooling) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Use keras.layers.MaxPooling2D instead.
+(pid=26415) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.keras.legacy_tf_layers.core) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Use keras.layers.Dense instead.
+(pid=26415) 2020-11-29 22:20:24.752845: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+(pid=26415) To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+(pid=26415) 2020-11-29 22:20:24.759142: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2299840000 Hz
+(pid=26415) 2020-11-29 22:20:24.759251: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5555687b8ee0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+(pid=26415) 2020-11-29 22:20:24.759263: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(pid=26415) 2020-11-29 22:20:24.760592: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+(pid=26415) 2020-11-29 22:20:24.764649: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+(pid=26415) 2020-11-29 22:20:24.764665: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (nid00027): /proc/driver/nvidia/version does not exist
+(pid=26415) WARNING:tensorflow:From /global/homes/a/arissa/.local/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+(pid=26415) Incomplete shape.
+(pid=26415) Incomplete shape.
+(pid=26415) Incomplete shape.
+(pid=26415) Incomplete shape.
+(pid=26415) 
+(pid=26415) =========================Options=============================
+(pid=26415) -max_depth                  10000
+(pid=26415) -min_bytes                  0
+(pid=26415) -min_peak_bytes             0
+(pid=26415) -min_residual_bytes         0
+(pid=26415) -min_output_bytes           0
+(pid=26415) -min_micros                 0
+(pid=26415) -min_accelerator_micros     0
+(pid=26415) -min_cpu_micros             0
+(pid=26415) -min_params                 0
+(pid=26415) -min_float_ops              1
+(pid=26415) -min_occurrence             0
+(pid=26415) -step                       -1
+(pid=26415) -order_by                   float_ops
+(pid=26415) -account_type_regexes       .*
+(pid=26415) -start_name_regexes         .*
+(pid=26415) -trim_name_regexes          
+(pid=26415) -show_name_regexes          .*
+(pid=26415) -hide_name_regexes          
+(pid=26415) -account_displayed_op_only  true
+(pid=26415) -select                     float_ops
+(pid=26415) -output                     stdout:
+(pid=26415) 
+(pid=26415) ==================Model Analysis Report======================
+(pid=26415) 
+(pid=26415) Doc:
+(pid=26415) scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+(pid=26415) flops: Number of float operations. Note: Please read the implementation for the math behind it.
+(pid=26415) 
+(pid=26415) Profile:
+(pid=26415) node name | # float_ops
+(pid=26415) _TFProfRoot (--/13.20m flops)
+(pid=26415)   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+(pid=26415)     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+(pid=26415)     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=26415)   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+(pid=26415)     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+(pid=26415)     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=26415)   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+(pid=26415)     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+(pid=26415)     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=26415)   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+(pid=26415)     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+(pid=26415)     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+(pid=26415)   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+(pid=26415)   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+(pid=26415)   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+(pid=26415) 
+(pid=26415) ======================End of Report==========================
+Clients in Total: 194
+--- Random Initialization ---
+--- Round 1 of 80: Training 10 Clients ---
+(pid=26415) WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+(pid=26415) Instructions for updating:
+(pid=26415) Prefer Variable.assign which has equivalent behavior in 2.X.
+train_accuracy: 0.0654091, 10th percentile: 0.0396932, 50th percentile: 0.0740741, 90th percentile 0.0936713
+train_loss: 3.74171, 10th percentile: 3.65909, 50th percentile: 3.7118, 90th percentile 3.84588
+test_accuracy: 0.0372367, 10th percentile: 0, 50th percentile: 0.0138889, 90th percentile 0.126786
+test_loss: 3.79194, 10th percentile: 3.72261, 50th percentile: 3.81158, 90th percentile 3.91332
+--- Round 2 of 80: Training 10 Clients ---
+train_accuracy: 0.395418, 10th percentile: 0.30607, 50th percentile: 0.365028, 90th percentile 0.563555
+train_loss: 2.95087, 10th percentile: 2.64691, 50th percentile: 2.94824, 90th percentile 3.42146
+test_accuracy: 0.405485, 10th percentile: 0.15, 50th percentile: 0.374178, 90th percentile 0.702083
+test_loss: 3.06542, 10th percentile: 2.50376, 50th percentile: 3.13664, 90th percentile 4.07269
+--- Round 3 of 80: Training 10 Clients ---
+train_accuracy: 0.506936, 10th percentile: 0.371953, 50th percentile: 0.570259, 90th percentile 0.665951
+train_loss: 1.90217, 10th percentile: 1.56707, 50th percentile: 1.74668, 90th percentile 2.41699
+test_accuracy: 0.486511, 10th percentile: 0.409773, 50th percentile: 0.533937, 90th percentile 0.586508
+test_loss: 2.12363, 10th percentile: 1.72515, 50th percentile: 2.176, 90th percentile 2.39284
+--- Round 4 of 80: Training 10 Clients ---
+train_accuracy: 0.612223, 10th percentile: 0.489103, 50th percentile: 0.628443, 90th percentile 0.732432
+train_loss: 1.43682, 10th percentile: 1.09621, 50th percentile: 1.35176, 90th percentile 1.92942
+test_accuracy: 0.558669, 10th percentile: 0.272727, 50th percentile: 0.566964, 90th percentile 0.8
+test_loss: 1.6735, 10th percentile: 1.01054, 50th percentile: 1.62162, 90th percentile 2.59147
+--- Round 5 of 80: Training 10 Clients ---
+train_accuracy: 0.667261, 10th percentile: 0.409821, 50th percentile: 0.695715, 90th percentile 0.778378
+train_loss: 1.1577, 10th percentile: 0.852988, 50th percentile: 1.10456, 90th percentile 1.93899
+test_accuracy: 0.622831, 10th percentile: 0.396, 50th percentile: 0.644841, 90th percentile 0.720635
+test_loss: 1.46177, 10th percentile: 1.16548, 50th percentile: 1.40499, 90th percentile 2.22188
+--- Round 6 of 80: Training 10 Clients ---
+train_accuracy: 0.737066, 10th percentile: 0.56746, 50th percentile: 0.72113, 90th percentile 0.827721
+train_loss: 0.92094, 10th percentile: 0.590542, 50th percentile: 1.01559, 90th percentile 1.61534
+test_accuracy: 0.679634, 10th percentile: 0.35, 50th percentile: 0.634259, 90th percentile 0.825833
+test_loss: 1.18193, 10th percentile: 0.940111, 50th percentile: 1.17723, 90th percentile 1.91166
+--- Round 7 of 80: Training 10 Clients ---
+train_accuracy: 0.654313, 10th percentile: 0.512158, 50th percentile: 0.669064, 90th percentile 0.772435
+train_loss: 1.25735, 10th percentile: 0.825506, 50th percentile: 1.11039, 90th percentile 2.05157
+test_accuracy: 0.592891, 10th percentile: 0.445554, 50th percentile: 0.59375, 90th percentile 0.698077
+test_loss: 1.48593, 10th percentile: 1.05347, 50th percentile: 1.38115, 90th percentile 2.16543
+--- Round 8 of 80: Training 10 Clients ---
+train_accuracy: 0.662635, 10th percentile: 0.500662, 50th percentile: 0.653934, 90th percentile 0.751111
+train_loss: 1.17974, 10th percentile: 0.989943, 50th percentile: 1.20373, 90th percentile 1.67669
+test_accuracy: 0.635586, 10th percentile: 0.257143, 50th percentile: 0.625, 90th percentile 0.808235
+test_loss: 1.43704, 10th percentile: 0.944107, 50th percentile: 1.54136, 90th percentile 2.67623
+--- Round 9 of 80: Training 10 Clients ---
+train_accuracy: 0.745539, 10th percentile: 0.542857, 50th percentile: 0.749223, 90th percentile 0.803761
+train_loss: 0.915007, 10th percentile: 0.601124, 50th percentile: 0.950629, 90th percentile 1.84806
+test_accuracy: 0.618899, 10th percentile: 0.49375, 50th percentile: 0.654762, 90th percentile 0.792308
+test_loss: 1.32621, 10th percentile: 0.856387, 50th percentile: 1.21594, 90th percentile 1.95408
+--- Round 10 of 80: Training 10 Clients ---
+train_accuracy: 0.757043, 10th percentile: 0.520844, 50th percentile: 0.762603, 90th percentile 0.854468
+train_loss: 0.872393, 10th percentile: 0.497653, 50th percentile: 0.837092, 90th percentile 1.7867
+test_accuracy: 0.745142, 10th percentile: 0.570588, 50th percentile: 0.759673, 90th percentile 0.856528
+test_loss: 0.88412, 10th percentile: 0.469562, 50th percentile: 0.795307, 90th percentile 1.91911
+--- Round 11 of 80: Training 10 Clients ---
+train_accuracy: 0.715479, 10th percentile: 0.616155, 50th percentile: 0.735551, 90th percentile 0.820647
+train_loss: 1.03551, 10th percentile: 0.640975, 50th percentile: 0.900076, 90th percentile 1.63859
+test_accuracy: 0.689682, 10th percentile: 0.6, 50th percentile: 0.7, 90th percentile 0.733333
+test_loss: 1.01146, 10th percentile: 0.560774, 50th percentile: 0.995112, 90th percentile 1.6428
+--- Round 12 of 80: Training 10 Clients ---
+train_accuracy: 0.784452, 10th percentile: 0.605108, 50th percentile: 0.80059, 90th percentile 0.929358
+train_loss: 0.733429, 10th percentile: 0.341048, 50th percentile: 0.658465, 90th percentile 1.44992
+test_accuracy: 0.730223, 10th percentile: 0.660234, 50th percentile: 0.728423, 90th percentile 0.935714
+test_loss: 0.992355, 10th percentile: 0.406683, 50th percentile: 0.915375, 90th percentile 1.57417
+--- Round 13 of 80: Training 10 Clients ---
+train_accuracy: 0.816034, 10th percentile: 0.735412, 50th percentile: 0.821154, 90th percentile 0.893976
+train_loss: 0.597566, 10th percentile: 0.359015, 50th percentile: 0.540586, 90th percentile 0.862791
+test_accuracy: 0.802224, 10th percentile: 0.713158, 50th percentile: 0.808244, 90th percentile 0.911039
+test_loss: 0.790079, 10th percentile: 0.400455, 50th percentile: 0.764261, 90th percentile 1.35059
+--- Round 14 of 80: Training 10 Clients ---
+train_accuracy: 0.799079, 10th percentile: 0.5125, 50th percentile: 0.810882, 90th percentile 0.857581
+train_loss: 0.635328, 10th percentile: 0.434639, 50th percentile: 0.547459, 90th percentile 1.69442
+test_accuracy: 0.744139, 10th percentile: 0.3375, 50th percentile: 0.769737, 90th percentile 0.88
+test_loss: 0.998653, 10th percentile: 0.369941, 50th percentile: 0.814949, 90th percentile 2.09893
+--- Round 15 of 80: Training 10 Clients ---
+train_accuracy: 0.811338, 10th percentile: 0.598548, 50th percentile: 0.829722, 90th percentile 0.938594
+train_loss: 0.623534, 10th percentile: 0.164389, 50th percentile: 0.545636, 90th percentile 1.43023
+test_accuracy: 0.774638, 10th percentile: 0.552941, 50th percentile: 0.771242, 90th percentile 0.907692
+test_loss: 0.798864, 10th percentile: 0.219593, 50th percentile: 0.948457, 90th percentile 1.59406
+--- Round 16 of 80: Training 10 Clients ---
+test_accuracy: 0.669841, 10th percentile: 0.537692, 50th percentile: 0.675439, 90th percentile 0.882353
+test_loss: 1.09533, 10th percentile: 0.391294, 50th percentile: 1.02413, 90th percentile 1.47957
+--- Round 17 of 80: Training 10 Clients ---
+train_accuracy: 0.835073, 10th percentile: 0.665079, 50th percentile: 0.834476, 90th percentile 0.93733
+train_loss: 0.547469, 10th percentile: 0.237022, 50th percentile: 0.495636, 90th percentile 1.24142
+test_accuracy: 0.760064, 10th percentile: 0.609167, 50th percentile: 0.794118, 90th percentile 1
+test_loss: 0.787154, 10th percentile: 0.09582, 50th percentile: 0.639199, 90th percentile 1.46293
+--- Round 18 of 80: Training 10 Clients ---
+train_accuracy: 0.74412, 10th percentile: 0.243182, 50th percentile: 0.694458, 90th percentile 0.880529
+train_loss: 0.854544, 10th percentile: 0.437014, 50th percentile: 0.945157, 90th percentile 1.96846
+test_accuracy: 0.68143, 10th percentile: 0.409091, 50th percentile: 0.581731, 90th percentile 1
+test_loss: 1.1307, 10th percentile: 0.384377, 50th percentile: 1.29192, 90th percentile 2.72577
+--- Round 19 of 80: Training 10 Clients ---
+train_accuracy: 0.794184, 10th percentile: 0.626292, 50th percentile: 0.780273, 90th percentile 0.923077
+train_loss: 0.692927, 10th percentile: 0.309049, 50th percentile: 0.693139, 90th percentile 1.36668
+test_accuracy: 0.749794, 10th percentile: 0.523684, 50th percentile: 0.732353, 90th percentile 0.945455
+test_loss: 0.866488, 10th percentile: 0.292544, 50th percentile: 0.792267, 90th percentile 1.82901
+--- Round 20 of 80: Training 10 Clients ---
+train_accuracy: 0.808911, 10th percentile: 0.605882, 50th percentile: 0.77963, 90th percentile 0.862135
+train_loss: 0.62773, 10th percentile: 0.523845, 50th percentile: 0.672288, 90th percentile 1.69478
+test_accuracy: 0.752897, 10th percentile: 0.529412, 50th percentile: 0.750774, 90th percentile 1
+test_loss: 0.754983, 10th percentile: 0.49918, 50th percentile: 0.75141, 90th percentile 1.42021
+--- Round 21 of 80: Training 10 Clients ---
+train_accuracy: 0.817613, 10th percentile: 0.638679, 50th percentile: 0.793756, 90th percentile 0.910272
+train_loss: 0.557583, 10th percentile: 0.269039, 50th percentile: 0.62252, 90th percentile 1.12714
+test_accuracy: 0.792485, 10th percentile: 0.65, 50th percentile: 0.790625, 90th percentile 1
+test_loss: 0.780803, 10th percentile: 0.0778501, 50th percentile: 0.814093, 90th percentile 1.2801
+--- Round 22 of 80: Training 10 Clients ---
+train_accuracy: 0.796442, 10th percentile: 0.632467, 50th percentile: 0.795304, 90th percentile 0.861494
+train_loss: 0.690892, 10th percentile: 0.392867, 50th percentile: 0.678413, 90th percentile 1.43739
+test_accuracy: 0.767124, 10th percentile: 0.679739, 50th percentile: 0.768067, 90th percentile 0.847254
+test_loss: 0.852134, 10th percentile: 0.455064, 50th percentile: 0.817541, 90th percentile 1.41561
+--- Round 23 of 80: Training 10 Clients ---
+train_accuracy: 0.80595, 10th percentile: 0.610317, 50th percentile: 0.816627, 90th percentile 0.92701
+train_loss: 0.636686, 10th percentile: 0.205938, 50th percentile: 0.593471, 90th percentile 1.18442
+test_accuracy: 0.755218, 10th percentile: 0.545455, 50th percentile: 0.779392, 90th percentile 1
+test_loss: 0.937953, 10th percentile: 0.131869, 50th percentile: 0.821084, 90th percentile 1.65873
+--- Round 24 of 80: Training 10 Clients ---
+train_accuracy: 0.804995, 10th percentile: 0.668011, 50th percentile: 0.781871, 90th percentile 0.87661
+train_loss: 0.608326, 10th percentile: 0.368546, 50th percentile: 0.679429, 90th percentile 1.02837
+test_accuracy: 0.792362, 10th percentile: 0.547426, 50th percentile: 0.828431, 90th percentile 0.916406
+test_loss: 0.68548, 10th percentile: 0.350781, 50th percentile: 0.609792, 90th percentile 1.55047
+--- Round 25 of 80: Training 10 Clients ---
+train_accuracy: 0.818082, 10th percentile: 0.69925, 50th percentile: 0.83732, 90th percentile 0.971277
+train_loss: 0.563778, 10th percentile: 0.156617, 50th percentile: 0.471427, 90th percentile 0.873658
+test_accuracy: 0.726825, 10th percentile: 0.554751, 50th percentile: 0.82619, 90th percentile 0.935714
+test_loss: 0.855382, 10th percentile: 0.140617, 50th percentile: 0.631801, 90th percentile 1.26888
+--- Round 26 of 80: Training 10 Clients ---
+train_accuracy: 0.800643, 10th percentile: 0.631571, 50th percentile: 0.799329, 90th percentile 0.862919
+train_loss: 0.604439, 10th percentile: 0.423608, 50th percentile: 0.580354, 90th percentile 1.04934
+test_accuracy: 0.743153, 10th percentile: 0.468984, 50th percentile: 0.736111, 90th percentile 0.862054
+test_loss: 0.886104, 10th percentile: 0.489645, 50th percentile: 0.827042, 90th percentile 1.62032
+--- Round 27 of 80: Training 10 Clients ---
+train_accuracy: 0.810056, 10th percentile: 0.690049, 50th percentile: 0.824516, 90th percentile 0.902704
+train_loss: 0.583717, 10th percentile: 0.357896, 50th percentile: 0.511833, 90th percentile 0.954588
+test_accuracy: 0.774694, 10th percentile: 0.694118, 50th percentile: 0.763889, 90th percentile 0.857386
+test_loss: 0.75705, 10th percentile: 0.451893, 50th percentile: 0.801838, 90th percentile 1.14375
+--- Round 28 of 80: Training 10 Clients ---
+train_accuracy: 0.84544, 10th percentile: 0.661417, 50th percentile: 0.839026, 90th percentile 0.934278
+train_loss: 0.478841, 10th percentile: 0.19007, 50th percentile: 0.493967, 90th percentile 1.02812
+test_accuracy: 0.771184, 10th percentile: 0.516842, 50th percentile: 0.784615, 90th percentile 0.924709
+test_loss: 0.766314, 10th percentile: 0.245796, 50th percentile: 0.959705, 90th percentile 1.52803
+--- Round 29 of 80: Training 10 Clients ---
+train_accuracy: 0.802891, 10th percentile: 0.688547, 50th percentile: 0.825615, 90th percentile 0.886001
+train_loss: 0.650561, 10th percentile: 0.340888, 50th percentile: 0.5563, 90th percentile 1.08278
+test_accuracy: 0.737616, 10th percentile: 0.59, 50th percentile: 0.694444, 90th percentile 0.875379
+test_loss: 0.884241, 10th percentile: 0.419995, 50th percentile: 0.863473, 90th percentile 1.43371
+--- Round 30 of 80: Training 10 Clients ---
+train_accuracy: 0.792144, 10th percentile: 0.708667, 50th percentile: 0.813657, 90th percentile 0.877597
+train_loss: 0.661677, 10th percentile: 0.408747, 50th percentile: 0.593801, 90th percentile 0.874492
+test_accuracy: 0.755653, 10th percentile: 0.584967, 50th percentile: 0.788889, 90th percentile 0.838235
+test_loss: 0.785869, 10th percentile: 0.469106, 50th percentile: 0.800888, 90th percentile 1.22088
+--- Round 31 of 80: Training 10 Clients ---
+train_accuracy: 0.753851, 10th percentile: 0.612363, 50th percentile: 0.778257, 90th percentile 0.847428
+train_loss: 0.813173, 10th percentile: 0.460673, 50th percentile: 0.699132, 90th percentile 1.35625
+test_accuracy: 0.696549, 10th percentile: 0.585822, 50th percentile: 0.677083, 90th percentile 0.844561
+test_loss: 1.09501, 10th percentile: 0.503491, 50th percentile: 1.28222, 90th percentile 1.69412
+--- Round 32 of 80: Training 10 Clients ---
+train_accuracy: 0.860691, 10th percentile: 0.612, 50th percentile: 0.848765, 90th percentile 0.927228
+train_loss: 0.452361, 10th percentile: 0.227, 50th percentile: 0.497393, 90th percentile 1.18594
+test_accuracy: 0.817228, 10th percentile: 0.423529, 50th percentile: 0.819347, 90th percentile 1
+test_loss: 0.601724, 10th percentile: 0.105686, 50th percentile: 0.483517, 90th percentile 2.02668
+--- Round 33 of 80: Training 10 Clients ---
+train_accuracy: 0.840346, 10th percentile: 0.669151, 50th percentile: 0.876744, 90th percentile 0.927664
+train_loss: 0.5331, 10th percentile: 0.275242, 50th percentile: 0.390176, 90th percentile 1.25559
+test_accuracy: 0.768378, 10th percentile: 0.55974, 50th percentile: 0.779762, 90th percentile 0.838889
+test_loss: 0.885439, 10th percentile: 0.426445, 50th percentile: 0.884561, 90th percentile 2.09226
+--- Round 34 of 80: Training 10 Clients ---
+train_accuracy: 0.815567, 10th percentile: 0.707095, 50th percentile: 0.809886, 90th percentile 0.90235
+train_loss: 0.565946, 10th percentile: 0.25043, 50th percentile: 0.566859, 90th percentile 0.941959
+test_accuracy: 0.720394, 10th percentile: 0.660234, 50th percentile: 0.705882, 90th percentile 0.838462
+test_loss: 0.915355, 10th percentile: 0.456255, 50th percentile: 0.933008, 90th percentile 1.3046
+--- Round 35 of 80: Training 10 Clients ---
+train_accuracy: 0.821031, 10th percentile: 0.733742, 50th percentile: 0.788261, 90th percentile 0.894032
+train_loss: 0.569762, 10th percentile: 0.323568, 50th percentile: 0.607071, 90th percentile 0.859088
+test_accuracy: 0.767914, 10th percentile: 0.671691, 50th percentile: 0.765726, 90th percentile 0.889286
+test_loss: 0.729125, 10th percentile: 0.369499, 50th percentile: 0.677633, 90th percentile 1.06532
+--- Round 36 of 80: Training 10 Clients ---
+train_accuracy: 0.825426, 10th percentile: 0.723913, 50th percentile: 0.82393, 90th percentile 0.901336
+train_loss: 0.58531, 10th percentile: 0.369606, 50th percentile: 0.510771, 90th percentile 1.08682
+test_accuracy: 0.791136, 10th percentile: 0.662456, 50th percentile: 0.7625, 90th percentile 0.912903
+test_loss: 0.785042, 10th percentile: 0.297491, 50th percentile: 0.865154, 90th percentile 1.40784
+--- Round 37 of 80: Training 10 Clients ---
+train_accuracy: 0.823581, 10th percentile: 0.610853, 50th percentile: 0.798148, 90th percentile 0.933201
+train_loss: 0.562564, 10th percentile: 0.211238, 50th percentile: 0.566685, 90th percentile 1.26374
+test_accuracy: 0.779602, 10th percentile: 0.521925, 50th percentile: 0.717105, 90th percentile 0.945541
+test_loss: 0.847332, 10th percentile: 0.208413, 50th percentile: 0.969857, 90th percentile 1.59265
+--- Round 38 of 80: Training 10 Clients ---
+train_accuracy: 0.786204, 10th percentile: 0.551777, 50th percentile: 0.813206, 90th percentile 0.903241
+train_loss: 0.727928, 10th percentile: 0.296471, 50th percentile: 0.557512, 90th percentile 1.66786
+test_accuracy: 0.74171, 10th percentile: 0.564286, 50th percentile: 0.769853, 90th percentile 0.880357
+test_loss: 1.0296, 10th percentile: 0.532841, 50th percentile: 0.815096, 90th percentile 2.00908
+--- Round 39 of 80: Training 10 Clients ---
+train_accuracy: 0.853836, 10th percentile: 0.675, 50th percentile: 0.851362, 90th percentile 0.936594
+train_loss: 0.498967, 10th percentile: 0.182134, 50th percentile: 0.488628, 90th percentile 1.14313
+test_accuracy: 0.761854, 10th percentile: 0.45, 50th percentile: 0.757353, 90th percentile 0.9
+test_loss: 0.865285, 10th percentile: 0.341595, 50th percentile: 0.918747, 90th percentile 1.83608
+--- Round 40 of 80: Training 10 Clients ---
+train_accuracy: 0.824328, 10th percentile: 0.705581, 50th percentile: 0.84749, 90th percentile 0.906972
+train_loss: 0.566048, 10th percentile: 0.324099, 50th percentile: 0.489511, 90th percentile 0.999134
+test_accuracy: 0.795635, 10th percentile: 0.663158, 50th percentile: 0.797619, 90th percentile 0.95
+test_loss: 0.790849, 10th percentile: 0.276053, 50th percentile: 0.772032, 90th percentile 1.34173
+--- Round 41 of 80: Training 10 Clients ---
+train_accuracy: 0.826859, 10th percentile: 0.621324, 50th percentile: 0.87749, 90th percentile 0.934663
+train_loss: 0.542001, 10th percentile: 0.204978, 50th percentile: 0.356062, 90th percentile 1.20266
+test_accuracy: 0.782616, 10th percentile: 0.606787, 50th percentile: 0.821053, 90th percentile 0.91
+test_loss: 0.814498, 10th percentile: 0.210309, 50th percentile: 0.772388, 90th percentile 1.60727
+--- Round 42 of 80: Training 10 Clients ---
+train_accuracy: 0.820282, 10th percentile: 0.76767, 50th percentile: 0.82282, 90th percentile 0.852398
+train_loss: 0.606969, 10th percentile: 0.465077, 50th percentile: 0.561458, 90th percentile 0.950318
+test_accuracy: 0.761407, 10th percentile: 0.644853, 50th percentile: 0.771242, 90th percentile 0.868235
+test_loss: 0.783397, 10th percentile: 0.482104, 50th percentile: 0.766836, 90th percentile 1.07944
+--- Round 43 of 80: Training 10 Clients ---
+train_accuracy: 0.804049, 10th percentile: 0.651051, 50th percentile: 0.820998, 90th percentile 0.903117
+train_loss: 0.627164, 10th percentile: 0.270423, 50th percentile: 0.47199, 90th percentile 1.32713
+test_accuracy: 0.746942, 10th percentile: 0.579412, 50th percentile: 0.744832, 90th percentile 0.883871
+test_loss: 0.828608, 10th percentile: 0.363029, 50th percentile: 0.771715, 90th percentile 1.75037
+--- Round 44 of 80: Training 10 Clients ---
+train_accuracy: 0.802405, 10th percentile: 0.658093, 50th percentile: 0.804596, 90th percentile 0.908742
+train_loss: 0.594663, 10th percentile: 0.30064, 50th percentile: 0.527307, 90th percentile 1.06973
+test_accuracy: 0.797625, 10th percentile: 0.453535, 50th percentile: 0.828431, 90th percentile 0.947436
+test_loss: 0.630079, 10th percentile: 0.166099, 50th percentile: 0.612101, 90th percentile 1.54681
+--- Round 45 of 80: Training 10 Clients ---
+train_accuracy: 0.803977, 10th percentile: 0.687591, 50th percentile: 0.787345, 90th percentile 0.902836
+train_loss: 0.964414, 10th percentile: 0.345879, 50th percentile: 0.602975, 90th percentile 1.28689
+test_accuracy: 0.786881, 10th percentile: 0.662162, 50th percentile: 0.822021, 90th percentile 0.912903
+test_loss: 0.976661, 10th percentile: 0.276776, 50th percentile: 0.613175, 90th percentile 1.09218
+--- Round 46 of 80: Training 10 Clients ---
+train_accuracy: 0.865928, 10th percentile: 0.719693, 50th percentile: 0.853992, 90th percentile 0.930937
+train_loss: 0.437717, 10th percentile: 0.219194, 50th percentile: 0.425769, 90th percentile 1.1518
+test_accuracy: 0.852793, 10th percentile: 0.780903, 50th percentile: 0.833333, 90th percentile 0.943308
+test_loss: 0.503539, 10th percentile: 0.172034, 50th percentile: 0.494657, 90th percentile 0.7312
+--- Round 47 of 80: Training 10 Clients ---
+train_accuracy: 0.80924, 10th percentile: 0.702039, 50th percentile: 0.852603, 90th percentile 0.961436
+train_loss: 0.672697, 10th percentile: 0.0950029, 50th percentile: 0.496341, 90th percentile 0.999693
+test_accuracy: 0.7714, 10th percentile: 0.561806, 50th percentile: 0.811765, 90th percentile 1
+test_loss: 0.781358, 10th percentile: 0.0816454, 50th percentile: 0.542581, 90th percentile 1.18055
+--- Round 48 of 80: Training 10 Clients ---
+train_accuracy: 0.840608, 10th percentile: 0.708194, 50th percentile: 0.816816, 90th percentile 0.915657
+train_loss: 0.492548, 10th percentile: 0.240205, 50th percentile: 0.591325, 90th percentile 1.09094
+test_accuracy: 0.819568, 10th percentile: 0.61456, 50th percentile: 0.854403, 90th percentile 0.955
+test_loss: 0.632658, 10th percentile: 0.28988, 50th percentile: 0.543992, 90th percentile 1.38351
+--- Round 49 of 80: Training 10 Clients ---
+train_accuracy: 0.848609, 10th percentile: 0.739539, 50th percentile: 0.850556, 90th percentile 0.933954
+train_loss: 0.494533, 10th percentile: 0.244841, 50th percentile: 0.475318, 90th percentile 1.06401
+test_accuracy: 0.812275, 10th percentile: 0.551705, 50th percentile: 0.875, 90th percentile 0.9
+test_loss: 0.762031, 10th percentile: 0.206287, 50th percentile: 0.45866, 90th percentile 1.99547
+--- Round 50 of 80: Training 10 Clients ---
+train_accuracy: 0.80675, 10th percentile: 0.579235, 50th percentile: 0.844148, 90th percentile 0.915276
+train_loss: 0.636182, 10th percentile: 0.269662, 50th percentile: 0.443586, 90th percentile 1.406
+test_accuracy: 0.760087, 10th percentile: 0.492857, 50th percentile: 0.807292, 90th percentile 0.875735
+test_loss: 0.863524, 10th percentile: 0.388041, 50th percentile: 0.733632, 90th percentile 1.66416
+--- Round 51 of 80: Training 10 Clients ---
+train_accuracy: 0.805767, 10th percentile: 0.645187, 50th percentile: 0.777297, 90th percentile 0.906345
+train_loss: 0.622942, 10th percentile: 0.275295, 50th percentile: 0.696781, 90th percentile 1.25591
+test_accuracy: 0.775235, 10th percentile: 0.53, 50th percentile: 0.755848, 90th percentile 0.881944
+test_loss: 0.798301, 10th percentile: 0.270743, 50th percentile: 0.83, 90th percentile 1.74611
+--- Round 52 of 80: Training 10 Clients ---
+train_accuracy: 0.825077, 10th percentile: 0.707383, 50th percentile: 0.815086, 90th percentile 0.92554
+train_loss: 0.540418, 10th percentile: 0.271145, 50th percentile: 0.577193, 90th percentile 0.950228
+test_accuracy: 0.75434, 10th percentile: 0.605556, 50th percentile: 0.754743, 90th percentile 0.924887
+test_loss: 0.855818, 10th percentile: 0.265598, 50th percentile: 0.814485, 90th percentile 1.4661
+--- Round 53 of 80: Training 10 Clients ---
+train_accuracy: 0.894622, 10th percentile: 0.774545, 50th percentile: 0.922963, 90th percentile 0.952762
+train_loss: 0.304339, 10th percentile: 0.141787, 50th percentile: 0.227897, 90th percentile 0.577173
+test_accuracy: 0.842625, 10th percentile: 0.674306, 50th percentile: 0.850926, 90th percentile 0.931582
+test_loss: 0.437555, 10th percentile: 0.191023, 50th percentile: 0.522418, 90th percentile 0.744106
+--- Round 54 of 80: Training 10 Clients ---
+train_accuracy: 0.847627, 10th percentile: 0.707064, 50th percentile: 0.809678, 90th percentile 0.937673
+train_loss: 0.488846, 10th percentile: 0.224432, 50th percentile: 0.586673, 90th percentile 1.17239
+test_accuracy: 0.794615, 10th percentile: 0.6, 50th percentile: 0.806502, 90th percentile 0.840244
+test_loss: 0.689084, 10th percentile: 0.384393, 50th percentile: 0.631897, 90th percentile 1.66164
+--- Round 55 of 80: Training 10 Clients ---
+train_accuracy: 0.803225, 10th percentile: 0.630122, 50th percentile: 0.814237, 90th percentile 0.939578
+train_loss: 0.681009, 10th percentile: 0.23442, 50th percentile: 0.491589, 90th percentile 1.19282
+test_accuracy: 0.722661, 10th percentile: 0.624569, 50th percentile: 0.732639, 90th percentile 0.89693
+test_loss: 0.955864, 10th percentile: 0.210441, 50th percentile: 0.541613, 90th percentile 1.80896
+--- Round 56 of 80: Training 10 Clients ---
+train_accuracy: 0.845053, 10th percentile: 0.748182, 50th percentile: 0.831768, 90th percentile 0.951249
+train_loss: 0.476136, 10th percentile: 0.180938, 50th percentile: 0.55761, 90th percentile 0.812181
+test_accuracy: 0.785283, 10th percentile: 0.64852, 50th percentile: 0.805556, 90th percentile 1
+test_loss: 0.731258, 10th percentile: 0.17771, 50th percentile: 0.607487, 90th percentile 1.15401
+--- Round 57 of 80: Training 10 Clients ---
+train_accuracy: 0.875287, 10th percentile: 0.725456, 50th percentile: 0.894184, 90th percentile 0.922822
+train_loss: 0.38457, 10th percentile: 0.186756, 50th percentile: 0.319643, 90th percentile 0.921929
+test_accuracy: 0.782527, 10th percentile: 0.69085, 50th percentile: 0.784615, 90th percentile 0.877273
+test_loss: 0.794039, 10th percentile: 0.312671, 50th percentile: 0.893936, 90th percentile 1.19493
+--- Round 58 of 80: Training 10 Clients ---
+train_accuracy: 0.857171, 10th percentile: 0.748228, 50th percentile: 0.855144, 90th percentile 0.956452
+train_loss: 0.436063, 10th percentile: 0.185673, 50th percentile: 0.441588, 90th percentile 0.887684
+test_accuracy: 0.787558, 10th percentile: 0.598333, 50th percentile: 0.842532, 90th percentile 1
+test_loss: 0.716298, 10th percentile: 0.122108, 50th percentile: 0.505233, 90th percentile 1.39706
+--- Round 59 of 80: Training 10 Clients ---
+train_accuracy: 0.887721, 10th percentile: 0.841075, 50th percentile: 0.9, 90th percentile 0.95414
+train_loss: 0.348794, 10th percentile: 0.164721, 50th percentile: 0.298858, 90th percentile 0.513413
+test_accuracy: 0.856548, 10th percentile: 0.716667, 50th percentile: 0.884034, 90th percentile 0.95
+test_loss: 0.478017, 10th percentile: 0.137883, 50th percentile: 0.495945, 90th percentile 0.794354
+--- Round 60 of 80: Training 10 Clients ---
+train_accuracy: 0.853811, 10th percentile: 0.692437, 50th percentile: 0.86202, 90th percentile 0.927976
+train_loss: 0.497221, 10th percentile: 0.248481, 50th percentile: 0.497819, 90th percentile 1.01508
+test_accuracy: 0.787217, 10th percentile: 0.652941, 50th percentile: 0.832817, 90th percentile 0.947059
+test_loss: 0.688931, 10th percentile: 0.266635, 50th percentile: 0.64407, 90th percentile 1.16366
+--- Round 61 of 80: Training 10 Clients ---
+train_accuracy: 0.878032, 10th percentile: 0.758581, 50th percentile: 0.884638, 90th percentile 0.939001
+train_loss: 0.363807, 10th percentile: 0.160817, 50th percentile: 0.32861, 90th percentile 0.828811
+test_accuracy: 0.833213, 10th percentile: 0.706824, 50th percentile: 0.834821, 90th percentile 0.900476
+test_loss: 0.584764, 10th percentile: 0.247827, 50th percentile: 0.408068, 90th percentile 1.32217
+--- Round 62 of 80: Training 10 Clients ---
+train_accuracy: 0.862961, 10th percentile: 0.566526, 50th percentile: 0.87442, 90th percentile 0.937568
+train_loss: 0.436124, 10th percentile: 0.185342, 50th percentile: 0.3379, 90th percentile 1.74686
+test_accuracy: 0.817043, 10th percentile: 0.632353, 50th percentile: 0.818015, 90th percentile 0.907021
+test_loss: 0.667177, 10th percentile: 0.184771, 50th percentile: 0.571289, 90th percentile 1.75813
+--- Round 63 of 80: Training 10 Clients ---
+train_accuracy: 0.858181, 10th percentile: 0.752358, 50th percentile: 0.855059, 90th percentile 0.93963
+train_loss: 0.467048, 10th percentile: 0.252372, 50th percentile: 0.443782, 90th percentile 0.728722
+test_accuracy: 0.771585, 10th percentile: 0.660714, 50th percentile: 0.771795, 90th percentile 0.866429
+test_loss: 0.814595, 10th percentile: 0.33831, 50th percentile: 0.793452, 90th percentile 1.32412
+--- Round 64 of 80: Training 10 Clients ---
+train_accuracy: 0.834411, 10th percentile: 0.747741, 50th percentile: 0.786863, 90th percentile 0.906299
+train_loss: 0.539828, 10th percentile: 0.235039, 50th percentile: 0.732531, 90th percentile 0.858688
+test_accuracy: 0.745277, 10th percentile: 0.620833, 50th percentile: 0.707265, 90th percentile 0.802206
+test_loss: 1.02, 10th percentile: 0.612059, 50th percentile: 1.18418, 90th percentile 1.66745
+--- Round 65 of 80: Training 10 Clients ---
+train_accuracy: 0.824123, 10th percentile: 0.631181, 50th percentile: 0.821653, 90th percentile 0.942818
+train_loss: 0.506657, 10th percentile: 0.13866, 50th percentile: 0.495498, 90th percentile 1.09563
+test_accuracy: 0.783553, 10th percentile: 0.584967, 50th percentile: 0.777778, 90th percentile 0.910865
+test_loss: 0.760513, 10th percentile: 0.392091, 50th percentile: 0.593922, 90th percentile 1.37467
+--- Round 66 of 80: Training 10 Clients ---
+train_accuracy: 0.851301, 10th percentile: 0.746698, 50th percentile: 0.85625, 90th percentile 0.92401
+train_loss: 0.420825, 10th percentile: 0.245255, 50th percentile: 0.377587, 90th percentile 0.995021
+test_accuracy: 0.779097, 10th percentile: 0.7125, 50th percentile: 0.819892, 90th percentile 1
+test_loss: 0.651304, 10th percentile: 0.0470224, 50th percentile: 0.519774, 90th percentile 0.911876
+--- Round 67 of 80: Training 10 Clients ---
+train_accuracy: 0.870777, 10th percentile: 0.763745, 50th percentile: 0.871994, 90th percentile 0.963642
+train_loss: 0.38449, 10th percentile: 0.0954176, 50th percentile: 0.388224, 90th percentile 0.715742
+test_accuracy: 0.801087, 10th percentile: 0.613846, 50th percentile: 0.754386, 90th percentile 0.94375
+test_loss: 0.68472, 10th percentile: 0.117062, 50th percentile: 0.742505, 90th percentile 1.29923
+--- Round 68 of 80: Training 10 Clients ---
+train_accuracy: 0.841593, 10th percentile: 0.734005, 50th percentile: 0.80648, 90th percentile 0.881316
+train_loss: 0.441372, 10th percentile: 0.306351, 50th percentile: 0.531035, 90th percentile 0.738605
+test_accuracy: 0.82184, 10th percentile: 0.676645, 50th percentile: 0.839744, 90th percentile 0.953846
+test_loss: 0.610915, 10th percentile: 0.239878, 50th percentile: 0.636926, 90th percentile 1.10674
+--- Round 69 of 80: Training 10 Clients ---
+train_accuracy: 0.841403, 10th percentile: 0.778826, 50th percentile: 0.85009, 90th percentile 0.896228
+train_loss: 0.499397, 10th percentile: 0.364902, 50th percentile: 0.423911, 90th percentile 0.787733
+test_accuracy: 0.787851, 10th percentile: 0.607895, 50th percentile: 0.763889, 90th percentile 0.937868
+test_loss: 0.668848, 10th percentile: 0.274466, 50th percentile: 0.776868, 90th percentile 1.24474
+--- Round 70 of 80: Training 10 Clients ---
+train_accuracy: 0.841191, 10th percentile: 0.704545, 50th percentile: 0.845308, 90th percentile 0.902841
+train_loss: 0.493956, 10th percentile: 0.327981, 50th percentile: 0.533259, 90th percentile 0.800309
+test_accuracy: 0.81286, 10th percentile: 0.623611, 50th percentile: 0.887879, 90th percentile 1
+test_loss: 0.781383, 10th percentile: 0.137851, 50th percentile: 0.510495, 90th percentile 1.45305
+--- Round 71 of 80: Training 10 Clients ---
+train_accuracy: 0.870434, 10th percentile: 0.81318, 50th percentile: 0.855411, 90th percentile 0.916385
+train_loss: 0.369523, 10th percentile: 0.236624, 50th percentile: 0.37372, 90th percentile 0.588244
+test_accuracy: 0.838129, 10th percentile: 0.772222, 50th percentile: 0.821429, 90th percentile 0.885546
+test_loss: 0.51784, 10th percentile: 0.353896, 50th percentile: 0.470667, 90th percentile 0.996937
+--- Round 72 of 80: Training 10 Clients ---
+train_accuracy: 0.888691, 10th percentile: 0.725, 50th percentile: 0.857515, 90th percentile 0.931268
+train_loss: 0.321475, 10th percentile: 0.180512, 50th percentile: 0.392095, 90th percentile 0.987418
+test_accuracy: 0.836259, 10th percentile: 0.720588, 50th percentile: 0.831767, 90th percentile 1
+test_loss: 0.623738, 10th percentile: 0.16616, 50th percentile: 0.581766, 90th percentile 0.848025
+--- Round 73 of 80: Training 10 Clients ---
+train_accuracy: 0.856786, 10th percentile: 0.785165, 50th percentile: 0.847529, 90th percentile 0.930166
+train_loss: 0.425863, 10th percentile: 0.241774, 50th percentile: 0.437455, 90th percentile 0.588861
+test_accuracy: 0.768427, 10th percentile: 0.605252, 50th percentile: 0.791667, 90th percentile 0.90375
+test_loss: 0.780275, 10th percentile: 0.281411, 50th percentile: 0.903019, 90th percentile 1.1411
+--- Round 74 of 80: Training 10 Clients ---
+train_accuracy: 0.856161, 10th percentile: 0.488095, 50th percentile: 0.822805, 90th percentile 0.923805
+train_loss: 0.486639, 10th percentile: 0.182004, 50th percentile: 0.580884, 90th percentile 2.15314
+test_accuracy: 0.780633, 10th percentile: 0.665517, 50th percentile: 0.79671, 90th percentile 1
+test_loss: 0.735303, 10th percentile: 0.0495791, 50th percentile: 0.5283, 90th percentile 1.0279
+--- Round 75 of 80: Training 10 Clients ---
+train_accuracy: 0.878249, 10th percentile: 0.747917, 50th percentile: 0.913278, 90th percentile 0.966871
+train_loss: 0.391836, 10th percentile: 0.129245, 50th percentile: 0.260303, 90th percentile 0.829216
+test_accuracy: 0.723772, 10th percentile: 0.55974, 50th percentile: 0.727941, 90th percentile 0.91
+test_loss: 1.02013, 10th percentile: 0.562921, 50th percentile: 1.11707, 90th percentile 1.47502
+--- Round 76 of 80: Training 10 Clients ---
+train_accuracy: 0.847422, 10th percentile: 0.667143, 50th percentile: 0.827268, 90th percentile 0.909164
+train_loss: 0.441183, 10th percentile: 0.282263, 50th percentile: 0.478974, 90th percentile 0.923915
+test_accuracy: 0.790801, 10th percentile: 0.69085, 50th percentile: 0.839744, 90th percentile 1
+test_loss: 0.664582, 10th percentile: 0.0569148, 50th percentile: 0.472553, 90th percentile 0.985043
+--- Round 77 of 80: Training 10 Clients ---
+train_accuracy: 0.886907, 10th percentile: 0.753944, 50th percentile: 0.904087, 90th percentile 0.932826
+train_loss: 0.329527, 10th percentile: 0.168649, 50th percentile: 0.283063, 90th percentile 0.774066
+test_accuracy: 0.848758, 10th percentile: 0.777193, 50th percentile: 0.841667, 90th percentile 0.902105
+test_loss: 0.554142, 10th percentile: 0.259338, 50th percentile: 0.497841, 90th percentile 1.24591
+--- Round 78 of 80: Training 10 Clients ---
+train_accuracy: 0.871571, 10th percentile: 0.804577, 50th percentile: 0.876314, 90th percentile 0.937974
+train_loss: 0.360289, 10th percentile: 0.235424, 50th percentile: 0.385037, 90th percentile 0.48297
+test_accuracy: 0.79625, 10th percentile: 0.646111, 50th percentile: 0.847249, 90th percentile 0.906653
+test_loss: 0.555135, 10th percentile: 0.363601, 50th percentile: 0.427262, 90th percentile 0.795229
+--- Round 79 of 80: Training 10 Clients ---
+train_accuracy: 0.836771, 10th percentile: 0.688877, 50th percentile: 0.8595, 90th percentile 0.90849
+train_loss: 0.534129, 10th percentile: 0.288259, 50th percentile: 0.465045, 90th percentile 0.926263
+test_accuracy: 0.738715, 10th percentile: 0.6, 50th percentile: 0.777778, 90th percentile 0.819485
+test_loss: 0.793473, 10th percentile: 0.356175, 50th percentile: 0.694286, 90th percentile 1.37521
+--- Round 80 of 80: Training 10 Clients ---
+train_accuracy: 0.882071, 10th percentile: 0.644416, 50th percentile: 0.854792, 90th percentile 0.934963
+train_loss: 0.376309, 10th percentile: 0.177681, 50th percentile: 0.433364, 90th percentile 2.02021
+test_accuracy: 0.796895, 10th percentile: 0.673077, 50th percentile: 0.8, 90th percentile 0.85
+test_loss: 0.767681, 10th percentile: 0.386551, 50th percentile: 0.736351, 90th percentile 1.77981

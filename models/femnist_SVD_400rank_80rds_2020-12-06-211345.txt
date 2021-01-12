@@ -1,0 +1,483 @@
+############################## femnist.cnn ##############################
+[2m[36m(pid=6189)[0m 
+[2m[36m(pid=6189)[0m =========================Options=============================
+[2m[36m(pid=6189)[0m -max_depth                  10000
+[2m[36m(pid=6189)[0m -min_bytes                  0
+[2m[36m(pid=6189)[0m -min_peak_bytes             0
+[2m[36m(pid=6189)[0m -min_residual_bytes         0
+[2m[36m(pid=6189)[0m -min_output_bytes           0
+[2m[36m(pid=6189)[0m -min_micros                 0
+[2m[36m(pid=6189)[0m -min_accelerator_micros     0
+[2m[36m(pid=6189)[0m -min_cpu_micros             0
+[2m[36m(pid=6189)[0m -min_params                 0
+[2m[36m(pid=6189)[0m -min_float_ops              1
+[2m[36m(pid=6189)[0m -min_occurrence             0
+[2m[36m(pid=6189)[0m -step                       -1
+[2m[36m(pid=6189)[0m -order_by                   float_ops
+[2m[36m(pid=6189)[0m -account_type_regexes       .*
+[2m[36m(pid=6189)[0m -start_name_regexes         .*
+[2m[36m(pid=6189)[0m -trim_name_regexes          
+[2m[36m(pid=6189)[0m -show_name_regexes          .*
+[2m[36m(pid=6189)[0m -hide_name_regexes          
+[2m[36m(pid=6189)[0m -account_displayed_op_only  true
+[2m[36m(pid=6189)[0m -select                     float_ops
+[2m[36m(pid=6189)[0m -output                     stdout:
+[2m[36m(pid=6189)[0m 
+[2m[36m(pid=6189)[0m ==================Model Analysis Report======================
+[2m[36m(pid=6189)[0m 
+[2m[36m(pid=6189)[0m Doc:
+[2m[36m(pid=6189)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=6189)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=6189)[0m 
+[2m[36m(pid=6189)[0m Profile:
+[2m[36m(pid=6189)[0m node name | # float_ops
+[2m[36m(pid=6189)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=6189)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=6189)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=6189)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6189)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=6189)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=6189)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6189)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=6189)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=6189)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6189)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=6189)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=6189)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6189)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=6189)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=6189)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=6189)[0m 
+[2m[36m(pid=6189)[0m ======================End of Report==========================
+[2m[36m(pid=6190)[0m 
+[2m[36m(pid=6190)[0m =========================Options=============================
+[2m[36m(pid=6190)[0m -max_depth                  10000
+[2m[36m(pid=6190)[0m -min_bytes                  0
+[2m[36m(pid=6190)[0m -min_peak_bytes             0
+[2m[36m(pid=6190)[0m -min_residual_bytes         0
+[2m[36m(pid=6190)[0m -min_output_bytes           0
+[2m[36m(pid=6190)[0m -min_micros                 0
+[2m[36m(pid=6190)[0m -min_accelerator_micros     0
+[2m[36m(pid=6190)[0m -min_cpu_micros             0
+[2m[36m(pid=6190)[0m -min_params                 0
+[2m[36m(pid=6190)[0m -min_float_ops              1
+[2m[36m(pid=6190)[0m -min_occurrence             0
+[2m[36m(pid=6190)[0m -step                       -1
+[2m[36m(pid=6190)[0m -order_by                   float_ops
+[2m[36m(pid=6190)[0m -account_type_regexes       .*
+[2m[36m(pid=6190)[0m -start_name_regexes         .*
+[2m[36m(pid=6190)[0m -trim_name_regexes          
+[2m[36m(pid=6190)[0m -show_name_regexes          .*
+[2m[36m(pid=6190)[0m -hide_name_regexes          
+[2m[36m(pid=6190)[0m -account_displayed_op_only  true
+[2m[36m(pid=6190)[0m -select                     float_ops
+[2m[36m(pid=6190)[0m -output                     stdout:
+[2m[36m(pid=6190)[0m 
+[2m[36m(pid=6190)[0m ==================Model Analysis Report======================
+[2m[36m(pid=6190)[0m 
+[2m[36m(pid=6190)[0m Doc:
+[2m[36m(pid=6190)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=6190)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=6190)[0m 
+[2m[36m(pid=6190)[0m Profile:
+[2m[36m(pid=6190)[0m node name | # float_ops
+[2m[36m(pid=6190)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=6190)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=6190)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=6190)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6190)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=6190)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=6190)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6190)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=6190)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=6190)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6190)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=6190)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=6190)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6190)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=6190)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=6190)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=6190)[0m 
+[2m[36m(pid=6190)[0m ======================End of Report==========================
+[2m[36m(pid=6184)[0m 
+[2m[36m(pid=6184)[0m =========================Options=============================
+[2m[36m(pid=6184)[0m -max_depth                  10000
+[2m[36m(pid=6184)[0m -min_bytes                  0
+[2m[36m(pid=6184)[0m -min_peak_bytes             0
+[2m[36m(pid=6184)[0m -min_residual_bytes         0
+[2m[36m(pid=6184)[0m -min_output_bytes           0
+[2m[36m(pid=6184)[0m -min_micros                 0
+[2m[36m(pid=6184)[0m -min_accelerator_micros     0
+[2m[36m(pid=6184)[0m -min_cpu_micros             0
+[2m[36m(pid=6184)[0m -min_params                 0
+[2m[36m(pid=6184)[0m -min_float_ops              1
+[2m[36m(pid=6184)[0m -min_occurrence             0
+[2m[36m(pid=6184)[0m -step                       -1
+[2m[36m(pid=6184)[0m -order_by                   float_ops
+[2m[36m(pid=6184)[0m -account_type_regexes       .*
+[2m[36m(pid=6184)[0m -start_name_regexes         .*
+[2m[36m(pid=6184)[0m -trim_name_regexes          
+[2m[36m(pid=6184)[0m -show_name_regexes          .*
+[2m[36m(pid=6184)[0m -hide_name_regexes          
+[2m[36m(pid=6184)[0m -account_displayed_op_only  true
+[2m[36m(pid=6184)[0m -select                     float_ops
+[2m[36m(pid=6184)[0m -output                     stdout:
+[2m[36m(pid=6184)[0m 
+[2m[36m(pid=6184)[0m ==================Model Analysis Report======================
+[2m[36m(pid=6184)[0m 
+[2m[36m(pid=6184)[0m Doc:
+[2m[36m(pid=6184)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=6184)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=6184)[0m 
+[2m[36m(pid=6184)[0m Profile:
+[2m[36m(pid=6184)[0m node name | # float_ops
+[2m[36m(pid=6184)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=6184)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=6184)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=6184)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6184)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=6184)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=6184)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6184)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=6184)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=6184)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6184)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=6184)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=6184)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6184)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=6184)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=6184)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=6184)[0m 
+[2m[36m(pid=6184)[0m ======================End of Report==========================
+[2m[36m(pid=6185)[0m 
+[2m[36m(pid=6185)[0m =========================Options=============================
+[2m[36m(pid=6185)[0m -max_depth                  10000
+[2m[36m(pid=6185)[0m -min_bytes                  0
+[2m[36m(pid=6185)[0m -min_peak_bytes             0
+[2m[36m(pid=6185)[0m -min_residual_bytes         0
+[2m[36m(pid=6185)[0m -min_output_bytes           0
+[2m[36m(pid=6185)[0m -min_micros                 0
+[2m[36m(pid=6185)[0m -min_accelerator_micros     0
+[2m[36m(pid=6185)[0m -min_cpu_micros             0
+[2m[36m(pid=6185)[0m -min_params                 0
+[2m[36m(pid=6185)[0m -min_float_ops              1
+[2m[36m(pid=6185)[0m -min_occurrence             0
+[2m[36m(pid=6185)[0m -step                       -1
+[2m[36m(pid=6185)[0m -order_by                   float_ops
+[2m[36m(pid=6185)[0m -account_type_regexes       .*
+[2m[36m(pid=6185)[0m -start_name_regexes         .*
+[2m[36m(pid=6185)[0m -trim_name_regexes          
+[2m[36m(pid=6185)[0m -show_name_regexes          .*
+[2m[36m(pid=6185)[0m -hide_name_regexes          
+[2m[36m(pid=6185)[0m -account_displayed_op_only  true
+[2m[36m(pid=6185)[0m -select                     float_ops
+[2m[36m(pid=6185)[0m -output                     stdout:
+[2m[36m(pid=6185)[0m 
+[2m[36m(pid=6185)[0m ==================Model Analysis Report======================
+[2m[36m(pid=6185)[0m 
+[2m[36m(pid=6185)[0m Doc:
+[2m[36m(pid=6185)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=6185)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=6185)[0m 
+[2m[36m(pid=6185)[0m Profile:
+[2m[36m(pid=6185)[0m node name | # float_ops
+[2m[36m(pid=6185)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=6185)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=6185)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=6185)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6185)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=6185)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=6185)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6185)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=6185)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=6185)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6185)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=6185)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=6185)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6185)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=6185)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=6185)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=6185)[0m 
+[2m[36m(pid=6185)[0m ======================End of Report==========================
+[2m[36m(pid=6198)[0m 
+[2m[36m(pid=6198)[0m =========================Options=============================
+[2m[36m(pid=6198)[0m -max_depth                  10000
+[2m[36m(pid=6198)[0m -min_bytes                  0
+[2m[36m(pid=6198)[0m -min_peak_bytes             0
+[2m[36m(pid=6198)[0m -min_residual_bytes         0
+[2m[36m(pid=6198)[0m -min_output_bytes           0
+[2m[36m(pid=6198)[0m -min_micros                 0
+[2m[36m(pid=6198)[0m -min_accelerator_micros     0
+[2m[36m(pid=6198)[0m -min_cpu_micros             0
+[2m[36m(pid=6198)[0m -min_params                 0
+[2m[36m(pid=6198)[0m -min_float_ops              1
+[2m[36m(pid=6198)[0m -min_occurrence             0
+[2m[36m(pid=6198)[0m -step                       -1
+[2m[36m(pid=6198)[0m -order_by                   float_ops
+[2m[36m(pid=6198)[0m -account_type_regexes       .*
+[2m[36m(pid=6198)[0m -start_name_regexes         .*
+[2m[36m(pid=6198)[0m -trim_name_regexes          
+[2m[36m(pid=6198)[0m -show_name_regexes          .*
+[2m[36m(pid=6198)[0m -hide_name_regexes          
+[2m[36m(pid=6198)[0m -account_displayed_op_only  true
+[2m[36m(pid=6198)[0m -select                     float_ops
+[2m[36m(pid=6198)[0m -output                     stdout:
+[2m[36m(pid=6198)[0m 
+[2m[36m(pid=6198)[0m ==================Model Analysis Report======================
+[2m[36m(pid=6198)[0m 
+[2m[36m(pid=6198)[0m Doc:
+[2m[36m(pid=6198)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=6198)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=6198)[0m 
+[2m[36m(pid=6198)[0m Profile:
+[2m[36m(pid=6198)[0m node name | # float_ops
+[2m[36m(pid=6198)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=6198)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=6198)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=6198)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6198)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=6198)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=6198)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6198)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=6198)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=6198)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6198)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=6198)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=6198)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=6198)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=6198)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=6198)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=6198)[0m 
+[2m[36m(pid=6198)[0m ======================End of Report==========================
+Clients in Total: 194
+--- Random Initialization ---
+train_accuracy: 0.00363116, 10th percentile: 0, 50th percentile: 0.00352117, 90th percentile 0.00712766
+train_loss: 4.12044, 10th percentile: 4.11509, 50th percentile: 4.11973, 90th percentile 4.12671
+test_accuracy: 0.00392145, 10th percentile: 0, 50th percentile: 0, 90th percentile 0
+test_loss: 4.11996, 10th percentile: 4.09628, 50th percentile: 4.12079, 90th percentile 4.14429
+--- Round 1 of 80: Training 2 Clients ---
+train_accuracy: 0.0541996, 10th percentile: 0.0280311, 50th percentile: 0.0672109, 90th percentile 0.0903297
+train_loss: 3.84061, 10th percentile: 3.74282, 50th percentile: 3.7984, 90th percentile 3.91425
+test_accuracy: 0.0532278, 10th percentile: 0, 50th percentile: 0.0555556, 90th percentile 0.122794
+test_loss: 3.84835, 10th percentile: 3.68865, 50th percentile: 3.8443, 90th percentile 3.97366
+--- Round 2 of 80: Training 2 Clients ---
+train_accuracy: 0.239755, 10th percentile: 0.109474, 50th percentile: 0.252821, 90th percentile 0.439351
+train_loss: 3.47908, 10th percentile: 3.04407, 50th percentile: 3.26915, 90th percentile 3.81865
+test_accuracy: 0.233835, 10th percentile: 0.0422857, 50th percentile: 0.222222, 90th percentile 0.5
+test_loss: 3.50386, 10th percentile: 2.86725, 50th percentile: 3.44989, 90th percentile 4.03919
+--- Round 3 of 80: Training 2 Clients ---
+train_accuracy: 0.406412, 10th percentile: 0.242045, 50th percentile: 0.427728, 90th percentile 0.61199
+train_loss: 2.37194, 10th percentile: 1.79522, 50th percentile: 2.34154, 90th percentile 2.87052
+test_accuracy: 0.403674, 10th percentile: 0.180186, 50th percentile: 0.410428, 90th percentile 0.666667
+test_loss: 2.41095, 10th percentile: 1.55422, 50th percentile: 2.41789, 90th percentile 3.05113
+--- Round 4 of 80: Training 2 Clients ---
+train_accuracy: 0.552079, 10th percentile: 0.344382, 50th percentile: 0.545875, 90th percentile 0.699816
+train_loss: 1.73255, 10th percentile: 1.21988, 50th percentile: 1.68953, 90th percentile 2.59106
+test_accuracy: 0.549921, 10th percentile: 0.294118, 50th percentile: 0.559028, 90th percentile 0.764706
+test_loss: 1.77132, 10th percentile: 1.05362, 50th percentile: 1.72157, 90th percentile 2.73143
+--- Round 5 of 80: Training 2 Clients ---
+train_accuracy: 0.573744, 10th percentile: 0.401552, 50th percentile: 0.573366, 90th percentile 0.734876
+train_loss: 1.61815, 10th percentile: 1.02736, 50th percentile: 1.57008, 90th percentile 2.47606
+test_accuracy: 0.563482, 10th percentile: 0.333333, 50th percentile: 0.559028, 90th percentile 0.764706
+test_loss: 1.66954, 10th percentile: 0.974047, 50th percentile: 1.62509, 90th percentile 2.6512
+--- Round 6 of 80: Training 2 Clients ---
+train_accuracy: 0.621084, 10th percentile: 0.46408, 50th percentile: 0.62016, 90th percentile 0.770276
+train_loss: 1.40539, 10th percentile: 0.88368, 50th percentile: 1.34904, 90th percentile 2.12416
+test_accuracy: 0.606142, 10th percentile: 0.379167, 50th percentile: 0.611111, 90th percentile 0.823529
+test_loss: 1.46737, 10th percentile: 0.733926, 50th percentile: 1.41559, 90th percentile 2.30678
+--- Round 7 of 80: Training 2 Clients ---
+train_accuracy: 0.638313, 10th percentile: 0.472447, 50th percentile: 0.636891, 90th percentile 0.795548
+train_loss: 1.34363, 10th percentile: 0.794433, 50th percentile: 1.32983, 90th percentile 2.09438
+test_accuracy: 0.62477, 10th percentile: 0.403529, 50th percentile: 0.642857, 90th percentile 0.830833
+test_loss: 1.39502, 10th percentile: 0.6147, 50th percentile: 1.29218, 90th percentile 2.22218
+--- Round 8 of 80: Training 2 Clients ---
+train_accuracy: 0.653391, 10th percentile: 0.467646, 50th percentile: 0.652747, 90th percentile 0.805352
+train_loss: 1.3044, 10th percentile: 0.705156, 50th percentile: 1.23365, 90th percentile 2.18858
+test_accuracy: 0.6368, 10th percentile: 0.411765, 50th percentile: 0.642581, 90th percentile 0.822899
+test_loss: 1.36899, 10th percentile: 0.6056, 50th percentile: 1.29756, 90th percentile 2.37001
+--- Round 9 of 80: Training 2 Clients ---
+train_accuracy: 0.663381, 10th percentile: 0.456985, 50th percentile: 0.668383, 90th percentile 0.819746
+train_loss: 1.26251, 10th percentile: 0.671006, 50th percentile: 1.18597, 90th percentile 2.2309
+test_accuracy: 0.649564, 10th percentile: 0.414551, 50th percentile: 0.655711, 90th percentile 0.824559
+test_loss: 1.32828, 10th percentile: 0.590384, 50th percentile: 1.28441, 90th percentile 2.4162
+--- Round 10 of 80: Training 2 Clients ---
+train_accuracy: 0.66444, 10th percentile: 0.489954, 50th percentile: 0.671826, 90th percentile 0.823614
+train_loss: 1.27797, 10th percentile: 0.584401, 50th percentile: 1.1751, 90th percentile 2.18149
+test_accuracy: 0.648375, 10th percentile: 0.423308, 50th percentile: 0.666667, 90th percentile 0.87479
+test_loss: 1.34002, 10th percentile: 0.492381, 50th percentile: 1.23365, 90th percentile 2.33817
+--- Round 11 of 80: Training 2 Clients ---
+train_accuracy: 0.686722, 10th percentile: 0.508992, 50th percentile: 0.695195, 90th percentile 0.829059
+train_loss: 1.16283, 10th percentile: 0.571859, 50th percentile: 1.08147, 90th percentile 1.98315
+test_accuracy: 0.667323, 10th percentile: 0.451364, 50th percentile: 0.6875, 90th percentile 0.843257
+test_loss: 1.24436, 10th percentile: 0.497874, 50th percentile: 1.13014, 90th percentile 2.15403
+--- Round 12 of 80: Training 2 Clients ---
+train_accuracy: 0.673046, 10th percentile: 0.477716, 50th percentile: 0.657072, 90th percentile 0.82577
+train_loss: 1.21893, 10th percentile: 0.5899, 50th percentile: 1.18915, 90th percentile 2.16224
+test_accuracy: 0.662136, 10th percentile: 0.43125, 50th percentile: 0.666667, 90th percentile 0.861688
+test_loss: 1.28358, 10th percentile: 0.50279, 50th percentile: 1.22905, 90th percentile 2.32265
+--- Round 13 of 80: Training 2 Clients ---
+train_accuracy: 0.679352, 10th percentile: 0.488124, 50th percentile: 0.67735, 90th percentile 0.843637
+train_loss: 1.24649, 10th percentile: 0.529648, 50th percentile: 1.14962, 90th percentile 2.31249
+test_accuracy: 0.66977, 10th percentile: 0.439583, 50th percentile: 0.666667, 90th percentile 0.884706
+test_loss: 1.31291, 10th percentile: 0.383618, 50th percentile: 1.20078, 90th percentile 2.46872
+--- Round 14 of 80: Training 2 Clients ---
+train_accuracy: 0.705489, 10th percentile: 0.542803, 50th percentile: 0.714145, 90th percentile 0.849971
+train_loss: 1.07535, 10th percentile: 0.520247, 50th percentile: 1.00299, 90th percentile 1.8628
+test_accuracy: 0.691292, 10th percentile: 0.470588, 50th percentile: 0.701351, 90th percentile 0.875678
+test_loss: 1.13893, 10th percentile: 0.460523, 50th percentile: 1.02642, 90th percentile 1.82314
+--- Round 15 of 80: Training 2 Clients ---
+train_accuracy: 0.714306, 10th percentile: 0.53696, 50th percentile: 0.724843, 90th percentile 0.851031
+train_loss: 1.03338, 10th percentile: 0.522955, 50th percentile: 0.950861, 90th percentile 1.8253
+test_accuracy: 0.695829, 10th percentile: 0.444444, 50th percentile: 0.707825, 90th percentile 0.884706
+test_loss: 1.11413, 10th percentile: 0.425835, 50th percentile: 1.01397, 90th percentile 1.95306
+--- Round 16 of 80: Training 2 Clients ---
+train_accuracy: 0.718859, 10th percentile: 0.541879, 50th percentile: 0.736111, 90th percentile 0.849802
+train_loss: 1.04465, 10th percentile: 0.49801, 50th percentile: 0.929923, 90th percentile 1.74509
+test_accuracy: 0.695803, 10th percentile: 0.450397, 50th percentile: 0.716518, 90th percentile 0.882353
+test_loss: 1.12628, 10th percentile: 0.447545, 50th percentile: 0.998481, 90th percentile 1.92292
+--- Round 17 of 80: Training 2 Clients ---
+train_accuracy: 0.720874, 10th percentile: 0.524346, 50th percentile: 0.727047, 90th percentile 0.870552
+train_loss: 1.02751, 10th percentile: 0.434053, 50th percentile: 0.955035, 90th percentile 1.87672
+test_accuracy: 0.705777, 10th percentile: 0.456643, 50th percentile: 0.71131, 90th percentile 0.910732
+test_loss: 1.11401, 10th percentile: 0.354394, 50th percentile: 1.00083, 90th percentile 2.08704
+--- Round 18 of 80: Training 2 Clients ---
+train_accuracy: 0.725186, 10th percentile: 0.532231, 50th percentile: 0.737702, 90th percentile 0.864601
+train_loss: 1.03577, 10th percentile: 0.460335, 50th percentile: 0.940537, 90th percentile 1.83509
+test_accuracy: 0.710433, 10th percentile: 0.465577, 50th percentile: 0.707825, 90th percentile 0.896062
+test_loss: 1.10362, 10th percentile: 0.338649, 50th percentile: 0.974491, 90th percentile 1.97195
+--- Round 19 of 80: Training 2 Clients ---
+train_accuracy: 0.724637, 10th percentile: 0.53696, 50th percentile: 0.717965, 90th percentile 0.879694
+train_loss: 1.01021, 10th percentile: 0.414028, 50th percentile: 0.984631, 90th percentile 1.97573
+test_accuracy: 0.712989, 10th percentile: 0.463077, 50th percentile: 0.718349, 90th percentile 0.925
+test_loss: 1.0847, 10th percentile: 0.34402, 50th percentile: 0.986905, 90th percentile 2.14979
+--- Round 20 of 80: Training 2 Clients ---
+train_accuracy: 0.739961, 10th percentile: 0.564573, 50th percentile: 0.747107, 90th percentile 0.879818
+train_loss: 0.967009, 10th percentile: 0.427731, 50th percentile: 0.920248, 90th percentile 1.78504
+test_accuracy: 0.723272, 10th percentile: 0.526324, 50th percentile: 0.716117, 90th percentile 0.919023
+test_loss: 1.04593, 10th percentile: 0.338844, 50th percentile: 0.919881, 90th percentile 2.01203
+--- Round 21 of 80: Training 2 Clients ---
+train_accuracy: 0.738492, 10th percentile: 0.561525, 50th percentile: 0.723113, 90th percentile 0.879811
+train_loss: 0.919344, 10th percentile: 0.415926, 50th percentile: 0.87797, 90th percentile 1.67972
+test_accuracy: 0.721056, 10th percentile: 0.487931, 50th percentile: 0.722222, 90th percentile 0.920968
+test_loss: 0.995914, 10th percentile: 0.330524, 50th percentile: 0.930402, 90th percentile 1.83952
+--- Round 22 of 80: Training 2 Clients ---
+train_accuracy: 0.742494, 10th percentile: 0.566513, 50th percentile: 0.741119, 90th percentile 0.873474
+train_loss: 0.93778, 10th percentile: 0.417658, 50th percentile: 0.892062, 90th percentile 1.72378
+test_accuracy: 0.724404, 10th percentile: 0.481579, 50th percentile: 0.738613, 90th percentile 0.896062
+test_loss: 1.02433, 10th percentile: 0.326637, 50th percentile: 0.915793, 90th percentile 2.00207
+--- Round 23 of 80: Training 2 Clients ---
+train_accuracy: 0.74117, 10th percentile: 0.545153, 50th percentile: 0.747422, 90th percentile 0.876017
+train_loss: 0.91323, 10th percentile: 0.391662, 50th percentile: 0.844909, 90th percentile 1.7663
+test_accuracy: 0.716639, 10th percentile: 0.490541, 50th percentile: 0.720085, 90th percentile 0.892982
+test_loss: 1.00667, 10th percentile: 0.321309, 50th percentile: 0.923134, 90th percentile 1.87142
+--- Round 24 of 80: Training 2 Clients ---
+train_accuracy: 0.743045, 10th percentile: 0.567037, 50th percentile: 0.739466, 90th percentile 0.881585
+train_loss: 0.911655, 10th percentile: 0.390578, 50th percentile: 0.816678, 90th percentile 1.70774
+test_accuracy: 0.723959, 10th percentile: 0.5, 50th percentile: 0.736842, 90th percentile 0.908421
+test_loss: 1.0043, 10th percentile: 0.309403, 50th percentile: 0.933313, 90th percentile 2.02961
+--- Round 25 of 80: Training 2 Clients ---
+train_accuracy: 0.754711, 10th percentile: 0.572848, 50th percentile: 0.743505, 90th percentile 0.888169
+train_loss: 0.871536, 10th percentile: 0.35914, 50th percentile: 0.792948, 90th percentile 1.62194
+test_accuracy: 0.735898, 10th percentile: 0.508824, 50th percentile: 0.75, 90th percentile 0.928571
+test_loss: 0.969594, 10th percentile: 0.291101, 50th percentile: 0.880297, 90th percentile 1.94523
+--- Round 26 of 80: Training 2 Clients ---
+train_accuracy: 0.754769, 10th percentile: 0.591194, 50th percentile: 0.762422, 90th percentile 0.886039
+train_loss: 0.893401, 10th percentile: 0.380722, 50th percentile: 0.790733, 90th percentile 1.56134
+test_accuracy: 0.740917, 10th percentile: 0.551667, 50th percentile: 0.760731, 90th percentile 0.924286
+test_loss: 0.99572, 10th percentile: 0.301691, 50th percentile: 0.855001, 90th percentile 1.81593
+--- Round 27 of 80: Training 2 Clients ---
+train_accuracy: 0.75712, 10th percentile: 0.570675, 50th percentile: 0.755426, 90th percentile 0.884355
+train_loss: 0.872845, 10th percentile: 0.344589, 50th percentile: 0.804517, 90th percentile 1.6859
+test_accuracy: 0.735338, 10th percentile: 0.529412, 50th percentile: 0.753378, 90th percentile 0.928571
+test_loss: 0.976248, 10th percentile: 0.27971, 50th percentile: 0.838181, 90th percentile 2.02018
+--- Round 28 of 80: Training 2 Clients ---
+train_accuracy: 0.761731, 10th percentile: 0.562914, 50th percentile: 0.768252, 90th percentile 0.885637
+train_loss: 0.843618, 10th percentile: 0.352407, 50th percentile: 0.795367, 90th percentile 1.67215
+test_accuracy: 0.741361, 10th percentile: 0.507895, 50th percentile: 0.763305, 90th percentile 0.908239
+test_loss: 0.945921, 10th percentile: 0.272196, 50th percentile: 0.837248, 90th percentile 1.93535
+--- Round 29 of 80: Training 2 Clients ---
+train_accuracy: 0.762313, 10th percentile: 0.599761, 50th percentile: 0.778188, 90th percentile 0.886281
+train_loss: 0.853266, 10th percentile: 0.378843, 50th percentile: 0.74297, 90th percentile 1.52223
+test_accuracy: 0.74102, 10th percentile: 0.555556, 50th percentile: 0.757353, 90th percentile 0.925
+test_loss: 0.950297, 10th percentile: 0.274001, 50th percentile: 0.830384, 90th percentile 1.74213
+--- Round 30 of 80: Training 2 Clients ---
+train_accuracy: 0.766938, 10th percentile: 0.577546, 50th percentile: 0.772573, 90th percentile 0.897415
+train_loss: 0.823366, 10th percentile: 0.325853, 50th percentile: 0.758126, 90th percentile 1.67535
+test_accuracy: 0.746384, 10th percentile: 0.5, 50th percentile: 0.763305, 90th percentile 0.915952
+test_loss: 0.929727, 10th percentile: 0.239345, 50th percentile: 0.817409, 90th percentile 1.89817
+--- Round 31 of 80: Training 2 Clients ---
+train_accuracy: 0.763412, 10th percentile: 0.575765, 50th percentile: 0.778784, 90th percentile 0.884887
+train_loss: 0.838223, 10th percentile: 0.331557, 50th percentile: 0.718516, 90th percentile 1.69548
+test_accuracy: 0.740728, 10th percentile: 0.507895, 50th percentile: 0.760263, 90th percentile 0.925
+test_loss: 0.948926, 10th percentile: 0.288155, 50th percentile: 0.802341, 90th percentile 1.9327
+--- Round 32 of 80: Training 2 Clients ---
+train_accuracy: 0.764279, 10th percentile: 0.554289, 50th percentile: 0.762989, 90th percentile 0.902344
+train_loss: 0.819614, 10th percentile: 0.3113, 50th percentile: 0.763658, 90th percentile 1.74435
+test_accuracy: 0.742903, 10th percentile: 0.532127, 50th percentile: 0.73985, 90th percentile 0.926923
+test_loss: 0.91698, 10th percentile: 0.260505, 50th percentile: 0.80294, 90th percentile 1.89622
+--- Round 33 of 80: Training 2 Clients ---
+train_accuracy: 0.772436, 10th percentile: 0.571523, 50th percentile: 0.786431, 90th percentile 0.889548
+train_loss: 0.783839, 10th percentile: 0.338995, 50th percentile: 0.70271, 90th percentile 1.52637
+test_accuracy: 0.756467, 10th percentile: 0.531303, 50th percentile: 0.771712, 90th percentile 0.928571
+test_loss: 0.885151, 10th percentile: 0.259483, 50th percentile: 0.77715, 90th percentile 1.77374
+--- Round 34 of 80: Training 2 Clients ---
+train_accuracy: 0.769278, 10th percentile: 0.581007, 50th percentile: 0.776513, 90th percentile 0.897804
+train_loss: 0.805352, 10th percentile: 0.347746, 50th percentile: 0.724522, 90th percentile 1.56948
+test_accuracy: 0.750904, 10th percentile: 0.534872, 50th percentile: 0.764706, 90th percentile 0.9375
+test_loss: 0.896175, 10th percentile: 0.246368, 50th percentile: 0.805737, 90th percentile 1.80279
+--- Round 35 of 80: Training 2 Clients ---
+train_accuracy: 0.776726, 10th percentile: 0.5871, 50th percentile: 0.776768, 90th percentile 0.895962
+train_loss: 0.793098, 10th percentile: 0.322792, 50th percentile: 0.73463, 90th percentile 1.61846
+test_accuracy: 0.757188, 10th percentile: 0.550517, 50th percentile: 0.77043, 90th percentile 0.938826
+test_loss: 0.891556, 10th percentile: 0.260521, 50th percentile: 0.792992, 90th percentile 1.82915
+--- Round 36 of 80: Training 2 Clients ---
+train_accuracy: 0.767456, 10th percentile: 0.572, 50th percentile: 0.755575, 90th percentile 0.897237
+train_loss: 0.777587, 10th percentile: 0.327704, 50th percentile: 0.749552, 90th percentile 1.50355
+test_accuracy: 0.754606, 10th percentile: 0.547335, 50th percentile: 0.757166, 90th percentile 0.941176
+test_loss: 0.86608, 10th percentile: 0.248697, 50th percentile: 0.794177, 90th percentile 1.7253
+--- Round 37 of 80: Training 2 Clients ---
+train_accuracy: 0.775314, 10th percentile: 0.589321, 50th percentile: 0.77735, 90th percentile 0.9
+train_loss: 0.759671, 10th percentile: 0.316795, 50th percentile: 0.705623, 90th percentile 1.4901
+test_accuracy: 0.752003, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.934821
+test_loss: 0.864341, 10th percentile: 0.239461, 50th percentile: 0.794417, 90th percentile 1.80562
+--- Round 38 of 80: Training 2 Clients ---
+train_accuracy: 0.765339, 10th percentile: 0.57004, 50th percentile: 0.75, 90th percentile 0.902131
+train_loss: 0.788591, 10th percentile: 0.325406, 50th percentile: 0.790402, 90th percentile 1.54048
+test_accuracy: 0.750925, 10th percentile: 0.538636, 50th percentile: 0.764706, 90th percentile 0.9375
+test_loss: 0.88211, 10th percentile: 0.236857, 50th percentile: 0.803574, 90th percentile 1.87802
+--- Round 39 of 80: Training 2 Clients ---
+train_accuracy: 0.783242, 10th percentile: 0.59244, 50th percentile: 0.768397, 90th percentile 0.905997
+train_loss: 0.737344, 10th percentile: 0.305268, 50th percentile: 0.731566, 90th percentile 1.46586
+test_accuracy: 0.760049, 10th percentile: 0.530588, 50th percentile: 0.764706, 90th percentile 0.9375
+test_loss: 0.841607, 10th percentile: 0.252841, 50th percentile: 0.720659, 90th percentile 1.64777
+--- Round 40 of 80: Training 2 Clients ---
+train_accuracy: 0.780255, 10th percentile: 0.586754, 50th percentile: 0.766329, 90th percentile 0.902258
+train_loss: 0.759073, 10th percentile: 0.309564, 50th percentile: 0.737725, 90th percentile 1.55576
+test_accuracy: 0.755196, 10th percentile: 0.528421, 50th percentile: 0.764706, 90th percentile 0.928571
+test_loss: 0.872136, 10th percentile: 0.252941, 50th percentile: 0.783597, 90th percentile 1.74165
+--- Round 41 of 80: Training 2 Clients ---
+train_accuracy: 0.776794, 10th percentile: 0.573731, 50th percentile: 0.759453, 90th percentile 0.908232
+train_loss: 0.741586, 10th percentile: 0.288707, 50th percentile: 0.702052, 90th percentile 1.62025
+test_accuracy: 0.754119, 10th percentile: 0.529412, 50th percentile: 0.763305, 90th percentile 0.940074
+test_loss: 0.848086, 10th percentile: 0.251666, 50th percentile: 0.779628, 90th percentile 1.69749
+--- Round 42 of 80: Training 2 Clients ---
+train_accuracy: 0.780885, 10th percentile: 0.575991, 50th percentile: 0.777778, 90th percentile 0.908165
+train_loss: 0.75091, 10th percentile: 0.292707, 50th percentile: 0.710871, 90th percentile 1.67704
+test_accuracy: 0.75723, 10th percentile: 0.552874, 50th percentile: 0.75931, 90th percentile 0.9375
+test_loss: 0.863204, 10th percentile: 0.237682, 50th percentile: 0.759312, 90th percentile 1.79836
+--- Round 43 of 80: Training 2 Clients ---
+train_accuracy: 0.784954, 10th percentile: 0.612843, 50th percentile: 0.78397, 90th percentile 0.90205
+train_loss: 0.723165, 10th percentile: 0.314428, 50th percentile: 0.662777, 90th percentile 1.43355
+test_accuracy: 0.762556, 10th percentile: 0.565179, 50th percentile: 0.774194, 90th percentile 0.921154
+test_loss: 0.846456, 10th percentile: 0.257057, 50th percentile: 0.73318, 90th percentile 1.61121
+--- Round 44 of 80: Training 2 Clients ---
+train_accuracy: 0.788115, 10th percentile: 0.599048, 50th percentile: 0.784465, 90th percentile 0.908855
+train_loss: 0.745701, 10th percentile: 0.298817, 50th percentile: 0.701935, 90th percentile 1.554
+test_accuracy: 0.768053, 10th percentile: 0.555556, 50th percentile: 0.779514, 90th percentile 0.938826
+test_loss: 0.875389, 10th percentile: 0.224916, 50th percentile: 0.752091, 90th percentile 1.82473
+--- Round 45 of 80: Training 2 Clients ---
+train_accuracy: 0.792651, 10th percentile: 0.619071, 50th percentile: 0.802165, 90th percentile 0.905021
+train_loss: 0.727596, 10th percentile: 0.309916, 50th percentile: 0.656347, 90th percentile 1.37443
+test_accuracy: 0.767667, 10th percentile: 0.565179, 50th percentile: 0.777778, 90th percentile 0.928571
+test_loss: 0.862989, 10th percentile: 0.244436, 50th percentile: 0.749461, 90th percentile 1.60582
+--- Round 46 of 80: Training 2 Clients ---
