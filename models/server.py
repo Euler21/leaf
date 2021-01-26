@@ -140,8 +140,16 @@ class Server:
         """Saves the server model on checkpoints/dataset/model.ckpt."""
         # Save server model
         self.server_model.set_params(self.model)
-        model_sess =  self.server_model.sess
+        model_sess = self.server_model.sess
         return self.server_model.saver.save(model_sess, path)
+
+    def restore_model(self, path):
+        """Restore the server model from checkpoint"""
+        model_sess = self.server_model.sess
+        self.server_model.saver.restore(model_sess, path)
+        self.model = self.server_model.get_params()
+        for cs in self.client_servers:
+            cs.update_model.remote(self.model)
 
     def close_model(self):
         for cs in self.client_servers:
