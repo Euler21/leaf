@@ -63,7 +63,10 @@ def parse_args():
                     help='Set sketching algorithm to use',
                     type=str,
                     default='VoidSketcher')
- 
+    parser.add_argument('--restore',
+                    help='Restore model from previous checkpoint',
+                    action='store_true')
+
     # Minibatch doesn't support num_epochs, so make them mutually exclusive
     epoch_capability_group = parser.add_mutually_exclusive_group()
     epoch_capability_group.add_argument('--minibatch',

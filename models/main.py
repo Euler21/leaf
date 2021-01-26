@@ -80,6 +80,17 @@ def main():
     # Create server
     server = Server(server_model, client_servers, sketcher)
 
+    # checkpoint path
+    ckpt_path = os.path.join('checkpoints', args.dataset)
+    if not os.path.exists(ckpt_path):
+        os.makedirs(ckpt_path)
+    ckpt_path = os.path.join(ckpt_path, '{}.ckpt'.format(args.model))
+
+    # Restore model from checkpoint
+    if args.restore:
+        server.restore_model(ckpt_path)
+        print('Model restored from {}'.format(ckpt_path))
+
     # clients = setup_clients(args.dataset, client_model, args.use_val_set)
     client_ids, client_groups, client_num_samples = server.get_clients_info(all_clients=True)
     print('Clients in Total: %d' % len(client_ids))
@@ -110,10 +121,7 @@ def main():
             print_stats(i + 1, server, client_num_samples, args, stat_writer_fn, args.use_val_set)
     
     # Save server model
-    ckpt_path = os.path.join('checkpoints', args.dataset)
-    if not os.path.exists(ckpt_path):
-        os.makedirs(ckpt_path)
-    save_path = server.save_model(os.path.join(ckpt_path, '{}.ckpt'.format(args.model)))
+    save_path = server.save_model(ckpt_path)
     print('Model saved in path: %s' % save_path)
 
     # Close models
