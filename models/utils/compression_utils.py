@@ -18,15 +18,17 @@ class VoidSketcher(Sketcher):
     def uncompress(self, compressed_updates):
         return compressed_updates
 
+class HalkoSVD(Sketcher):
+    def compress(self, updates, params=None):
+        pass
+    def uncompress(self, compressed_updates):
+        pass
 class SVD(Sketcher):
     def compress(self, updates, params=None):
         compressed_updates = []
         rank = params["rank"]
         if rank == -1:
-            print("++++++++++++++ rank is -1")
             rank = 2048
-#         rank = 400
-#         print("rank is: " + str(rank))
         for i in range(len(updates)):
             update = updates[i]
             if update.shape == (3136, 2048):
@@ -35,8 +37,6 @@ class SVD(Sketcher):
                 s = s[:rank]
                 v = v[:rank, :]
                 c = [u,s,v]
-#                 print("++++++++++++++++++++++ SVD COMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
-
                 compressed_updates += [c]
             else:
                 compressed_updates += [update]
@@ -50,7 +50,6 @@ class SVD(Sketcher):
             compressed = compressed_updates[i]
             if type(compressed) == list:
                 u, s, v = compressed[0], compressed[1], compressed[2]
-#                 print("++++++++++++++++++++++ SVD UNCOMPRESS WAS CALLED. u:" + str(u.shape) + " s:" + str(s.shape) + " v:" + str(v.shape))
                 uncompressed = np.dot(u * s, v)
                 uncompressed_list += [uncompressed]
             else:
