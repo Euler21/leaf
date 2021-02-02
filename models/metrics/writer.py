@@ -92,4 +92,3 @@ def get_metrics_names(metrics):
     metrics_dict = next(iter(metrics.values()))
     return list(metrics_dict.keys())
 
-

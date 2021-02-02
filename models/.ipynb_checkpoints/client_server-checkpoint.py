@@ -14,6 +14,7 @@ class ClientServer:
         self.model = self.client_model.get_params()
         self.selected_clients = []
         self.updates = []
+        self.compress_flops = 0
 
     def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -59,15 +60,18 @@ class ClientServer:
                    LOCAL_COMPUTATIONS_KEY: 0} for c in clients}
         for c in clients:
             c.model.set_params(self.model)
-            comp, num_samples, update = c.train(num_epochs, batch_size, minibatch, rank=rank)
-
+            comp, num_samples, compressed = c.train(num_epochs, batch_size, minibatch, rank=rank)
+            update = compressed[0]
+            flops = compressed[1]
             sys_metrics[c.id][BYTES_READ_KEY] += c.model.size
             sys_metrics[c.id][BYTES_WRITTEN_KEY] += c.model.size
             sys_metrics[c.id][LOCAL_COMPUTATIONS_KEY] = comp
+            self.compress_flops += flops
 
             self.updates.append((num_samples, update))
+#         print("FLOPS so far:" + str(self.compress_flops))
 
-        return sys_metrics, self.updates
+        return sys_metrics, self.updates, flops
 
     def update_model(self, new_model):
         self.model = new_model

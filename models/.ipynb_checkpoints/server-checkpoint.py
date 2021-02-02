@@ -12,6 +12,7 @@ class Server:
         self.selected_clients = []
         self.updates = []
         self.sketcher = sketcher
+        self.compress_flops = 0
 
     def select_clients(self, my_round, num_clients=20):
         """Selects num_clients clients randomly from possible_clients.
@@ -63,9 +64,11 @@ class Server:
 
         for future in metrics_updates_futures:
             # if we don't want this to block sequentially, can switch to ray.wait
-            metrics, updates = ray.get(future)
+            metrics, updates, flops = ray.get(future)
             sys_metrics.update(metrics)
             self.updates += updates
+            self.compress_flops += flops
+        print("FLOPS so far in train_model:" + str(self.compress_flops))
 
         return sys_metrics
 
@@ -73,8 +76,9 @@ class Server:
         total_weight = 0.
         base = [0] * len(self.updates[0][1])
         for (client_samples, compressed_update) in self.updates:
-            client_model = self.sketcher.uncompress(compressed_update)
+            client_model, flops = self.sketcher.uncompress(compressed_update)
             total_weight += client_samples
+            self.compress_flops += flops
             for i, v in enumerate(client_model):
                 base[i] += (client_samples * v.astype(np.float64))
         averaged_soln = [v / total_weight for v in base]
@@ -83,6 +87,8 @@ class Server:
         self.updates = []
         for cs in self.client_servers:
             cs.update_model.remote(self.model)
+            
+        print("FLOPS so far in update_model:" + str(self.compress_flops))
 
     def test_model(self, clients_to_test=None, set_to_use='test'):
         """Tests self.model on given clients.
