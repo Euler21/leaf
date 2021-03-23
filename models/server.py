@@ -68,7 +68,7 @@ class Server:
             sys_metrics.update(metrics)
             self.updates += updates
             self.compress_flops += flops
-        print("FLOPS so far in train_model:" + str(self.compress_flops))
+#         print("FLOPS so far in train_model:" + str(self.compress_flops))
 
         return sys_metrics
 
@@ -88,7 +88,7 @@ class Server:
         for cs in self.client_servers:
             cs.update_model.remote(self.model)
             
-        print("FLOPS so far in update_model:" + str(self.compress_flops))
+#         print("FLOPS so far in update_model:" + str(self.compress_flops))
 
     def test_model(self, clients_to_test=None, set_to_use='test'):
         """Tests self.model on given clients.

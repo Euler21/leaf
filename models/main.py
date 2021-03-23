@@ -29,14 +29,17 @@ DATA_PATH=['/global', 'cfs', 'cdirs', 'mp156', 'rayleaf_dataset']
 def main():
 
     args = parse_args()
-#     orig_stdout = sys.stdout ### change this for file output
+    ###############
+    orig_stdout = sys.stdout ### change this for file output
+    ##################
     dt = str(datetime.now()).split(".")[0]
     dt = "-".join(dt.split(" "))
     dt = "".join(dt.split(":"))
-    fname = str(args.dataset) + "_" + str(args.sketcher)  + "_" + str(args.rank) + "rank_" +str(args.num_rounds) + "rds_" + str(args.seed)  + "seed_"+ dt + "test.txt"
+    fname = "./0_power_iter/" + str(args.dataset) + "_" + str(args.sketcher)  + "_" + str(args.rank) + "rank_" +str(args.num_rounds) + "rds_" + str(args.seed)  + "seed_"+ dt + ".txt"
     f = open(fname, 'w')
-#     sys.stdout = f ##### change this for file output
-
+    ############
+    sys.stdout = f ##### change this for file output
+    ##############
     # Set the random seed if provided (affects client sampling, and batching)
     random.seed(1 + args.seed)
     np.random.seed(12 + args.seed)
@@ -107,7 +110,7 @@ def main():
         # Select clients to train this round
         server.select_clients(i, num_clients=clients_per_round)
         c_ids, c_groups, c_num_samples = server.get_clients_info()
-
+        print("BATCH SIZE = " + str(args.batch_size))
         # Simulate server model training on selected clients' data
         sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch, rank=args.rank)
         sys_writer_fn(i + 1, c_ids, sys_metrics, c_groups, c_num_samples)
@@ -129,8 +132,9 @@ def main():
     # Close models
     server.close_model()
     # stop Ray driver after job finish
-    
-#     sys.stdout = orig_stdout
+    ###################
+    sys.stdout = orig_stdout
+    ##################
     f.close()
     ray.shutdown()
 

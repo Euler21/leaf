@@ -3,7 +3,7 @@
 #SBATCH -q regular 
 #SBATCH -N 1
 #SBATCH -t 2:00:00
-#SBATCH --array=1-400:10
+#SBATCH --array=0-100:5
 
 module load tensorflow
 source activate rayleaf

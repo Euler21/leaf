@@ -40,7 +40,7 @@ def parse_args():
                     help='name for metrics file;',
                     type=str,
                     default='metrics',
-                    required=False)
+                    required=False) 
     parser.add_argument('--metrics-dir', 
                     help='dir for metrics file;',
                     type=str,

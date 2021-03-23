@@ -42,7 +42,13 @@ class Client:
         num_train_samples = len(data['y'])
         params = {}
         params["rank"] = rank
-        return comp, num_train_samples, self.sketcher.compress(update, params)
+#         print("*******************************************************COMP from train in client.py. client:  " + str(self.id) + " comp: " + str(type(comp)))
+        compress_result = self.sketcher.compress(update, params)
+#         print("***************************** compressed_result: " + str(len(compress_result)))
+        compressed_updates, flops = compress_result[0], compress_result[1]
+#         print("****************************** compressed_updates: "  + str(len(compressed_updates)))
+#         print("****************************** flops: "  + str(flops))
+        return comp + flops, num_train_samples, compress_result
 
     def test(self, set_to_use='test'):
         """Tests self.model on self.test_data.

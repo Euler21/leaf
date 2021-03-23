@@ -38,7 +38,7 @@ class Model(ABC):
 
             metadata = tf.RunMetadata()
             opts = tf.profiler.ProfileOptionBuilder.float_operation()
-            self.flops = tf.profiler.profile(self.graph, run_meta=metadata, cmd='scope', options=opts).total_float_ops
+            self.flops = 0#tf.profiler.profile(self.graph, run_meta=metadata, cmd='scope', options=opts).total_float_ops
 
         np.random.seed(self.seed)
 
@@ -89,10 +89,11 @@ class Model(ABC):
             update: List of np.ndarray weights, with each weight array
                 corresponding to a variable in the resulting graph
         """
+        old_params = self.get_params()
         for _ in range(num_epochs):
             self.run_epoch(data, batch_size)
 
-        update = self.get_params()
+        update = [new - old for old, new in zip(old_params, self.get_params())]
         comp = num_epochs * (len(data['y'])//batch_size) * batch_size * self.flops
         return comp, update
 

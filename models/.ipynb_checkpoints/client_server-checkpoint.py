@@ -69,7 +69,7 @@ class ClientServer:
             self.compress_flops += flops
 
             self.updates.append((num_samples, update))
-#         print("FLOPS so far:" + str(self.compress_flops))
+            print("Client id: " + str(c.id) + " flops: " + str(comp))
 
         return sys_metrics, self.updates, flops
 
@@ -87,6 +87,7 @@ class ClientServer:
             set_to_use: dataset to test on. Should be in ['train', 'test'].
         """
         metrics = {}
+#         print(str(len(self.clients)) + " CLIENTS IN client_server.test_model(): "  + str([c.id for c in self.clients]))
 
         if clients_to_test is not None:
             raise NotImplementedError("Client selection not yet implemented")

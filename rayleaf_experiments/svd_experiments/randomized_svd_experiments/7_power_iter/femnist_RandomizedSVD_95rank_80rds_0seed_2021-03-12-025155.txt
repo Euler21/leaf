@@ -1,0 +1,1693 @@
+Please specify a valid dataset and a valid model.
+############################## femnist.cnn ##############################
+194 train clients: ['f0035_19', 'f0044_12', 'f0048_00', 'f0062_25', 'f0140_09', 'f0141_43', 'f0153_35', 'f0167_33', 'f0170_40', 'f0181_31', 'f0185_23', 'f0190_12', 'f0207_46', 'f0235_17', 'f0237_46', 'f0256_08', 'f0264_18', 'f0273_27', 'f0294_18', 'f0311_48', 'f0331_41', 'f0364_10', 'f0407_39', 'f0410_43', 'f0416_07', 'f0437_05', 'f0469_20', 'f0473_21', 'f0502_09', 'f0511_03', 'f0585_26', 'f0590_06', 'f0625_26', 'f0627_14', 'f0655_10', 'f0676_08', 'f0684_13', 'f0713_17', 'f0714_32', 'f0716_15', 'f0728_14', 'f0750_18', 'f0752_25', 'f0766_01', 'f0775_24', 'f0779_27', 'f0787_21', 'f0825_23', 'f0857_21', 'f0882_28', 'f0899_05', 'f0910_22', 'f0943_40', 'f0961_08', 'f0965_28', 'f0973_47', 'f0979_22', 'f1016_36', 'f1044_04', 'f1053_00', 'f1055_16', 'f1099_37', 'f1112_30', 'f1118_23', 'f1132_19', 'f1173_40', 'f1217_02', 'f1246_39', 'f1314_29', 'f1324_40', 'f1337_29', 'f1343_32', 'f1354_22', 'f1386_19', 'f1453_47', 'f1458_19', 'f1465_32', 'f1472_37', 'f1500_25', 'f1546_05', 'f1591_47', 'f1596_10', 'f1613_27', 'f1650_05', 'f1668_08', 'f1699_42', 'f1707_05', 'f1775_42', 'f1777_29', 'f1794_07', 'f1798_42', 'f1807_08', 'f1808_13', 'f1824_18', 'f1827_17', 'f1833_03', 'f1849_46', 'f1871_04', 'f1901_07', 'f1906_16', 'f1914_02', 'f1938_21', 'f1969_24', 'f1970_32', 'f1972_15', 'f1975_00', 'f1994_21', 'f2014_07', 'f2048_19', 'f2065_28', 'f2078_03', 'f2103_60', 'f2122_65', 'f2131_73', 'f2144_67', 'f2151_92', 'f2193_99', 'f2197_62', 'f2201_80', 'f2232_76', 'f2257_69', 'f2261_76', 'f2279_94', 'f2284_51', 'f2291_65', 'f2329_94', 'f2355_85', 'f2382_52', 'f2394_84', 'f2395_78', 'f2416_80', 'f2422_85', 'f2429_95', 'f2518_67', 'f2528_69', 'f2555_88', 'f2560_93', 'f2564_59', 'f2596_86', 'f3119_39', 'f3142_38', 'f3152_47', 'f3164_09', 'f3178_23', 'f3181_10', 'f3183_15', 'f3185_38', 'f3194_31', 'f3202_01', 'f3208_06', 'f3210_22', 'f3223_18', 'f3244_38', 'f3259_15', 'f3311_03', 'f3326_06', 'f3338_15', 'f3366_32', 'f3436_22', 'f3446_10', 'f3500_08', 'f3550_07', 'f3558_12', 'f3561_09', 'f3568_48', 'f3576_04', 'f3596_19', 'f3627_46', 'f3634_16', 'f3640_13', 'f3652_48', 'f3654_03', 'f3669_35', 'f3684_46', 'f3700_25', 'f3701_44', 'f3705_48', 'f3731_07', 'f3778_23', 'f3781_28', 'f3782_00', 'f3783_47', 'f3789_16', 'f3812_06', 'f3816_24', 'f3856_34', 'f3889_26', 'f3907_43', 'f3923_00', 'f3969_02', 'f4013_32', 'f4046_46', 'f4053_14', 'f4077_42']
+Clients in Total: 194
+--- Random Initialization ---
+train_accuracy: 0.0112524, 10th percentile: 0, 50th percentile: 0.00653595, 90th percentile 0.0258454
+train_accuracy: 0.0112524, 10th percentile: 0, 50th percentile: 0.00653595, 90th percentile 0.0258454
+train_loss: 4.12623, 10th percentile: 4.11601, 50th percentile: 4.12783, 90th percentile 4.13381
+train_loss: 4.12623, 10th percentile: 4.11601, 50th percentile: 4.12783, 90th percentile 4.13381
+test_accuracy: 0.0121363, 10th percentile: 0, 50th percentile: 0, 90th percentile 0.05
+test_accuracy: 0.0121363, 10th percentile: 0, 50th percentile: 0, 90th percentile 0.05
+test_loss: 4.12714, 10th percentile: 4.10003, 50th percentile: 4.12803, 90th percentile 4.15842
+test_loss: 4.12714, 10th percentile: 4.10003, 50th percentile: 4.12803, 90th percentile 4.15842
+--- Round 1 of 80: Training 2 Clients ---
+--- Round 1 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3778_23 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+train_accuracy: 0.0579561, 10th percentile: 0.031411, 50th percentile: 0.0691824, 90th percentile 0.0948017
+train_accuracy: 0.0579561, 10th percentile: 0.031411, 50th percentile: 0.0691824, 90th percentile 0.0948017
+train_loss: 3.80381, 10th percentile: 3.6824, 50th percentile: 3.74238, 90th percentile 3.9027
+train_loss: 3.80381, 10th percentile: 3.6824, 50th percentile: 3.74238, 90th percentile 3.9027
+test_accuracy: 0.0456202, 10th percentile: 0, 50th percentile: 0.0327957, 90th percentile 0.125
+test_accuracy: 0.0456202, 10th percentile: 0, 50th percentile: 0.0327957, 90th percentile 0.125
+test_loss: 3.81373, 10th percentile: 3.61738, 50th percentile: 3.80433, 90th percentile 3.97269
+test_loss: 3.81373, 10th percentile: 3.61738, 50th percentile: 3.80433, 90th percentile 3.97269
+--- Round 2 of 80: Training 2 Clients ---
+--- Round 2 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1591_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2232_76 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0048_00 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3436_22 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2048_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3194_31 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0585_26 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0750_18 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1324_40 flops: 13707587488
+train_accuracy: 0.226043, 10th percentile: 0.103484, 50th percentile: 0.236204, 90th percentile 0.41664
+train_accuracy: 0.226043, 10th percentile: 0.103484, 50th percentile: 0.236204, 90th percentile 0.41664
+train_loss: 3.40425, 10th percentile: 2.97167, 50th percentile: 3.22683, 90th percentile 3.73928
+train_loss: 3.40425, 10th percentile: 2.97167, 50th percentile: 3.22683, 90th percentile 3.73928
+test_accuracy: 0.216136, 10th percentile: 0.0353333, 50th percentile: 0.211324, 90th percentile 0.465128
+test_accuracy: 0.216136, 10th percentile: 0.0353333, 50th percentile: 0.211324, 90th percentile 0.465128
+test_loss: 3.43246, 10th percentile: 2.82685, 50th percentile: 3.38378, 90th percentile 3.95634
+test_loss: 3.43246, 10th percentile: 2.82685, 50th percentile: 3.38378, 90th percentile 3.95634
+--- Round 3 of 80: Training 2 Clients ---
+--- Round 3 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2355_85 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3338_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1775_42 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0857_21 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0181_31 flops: 13707587488
+train_accuracy: 0.410333, 10th percentile: 0.26523, 50th percentile: 0.410159, 90th percentile 0.584759
+train_accuracy: 0.410333, 10th percentile: 0.26523, 50th percentile: 0.410159, 90th percentile 0.584759
+train_loss: 2.34688, 10th percentile: 1.86005, 50th percentile: 2.29187, 90th percentile 2.85798
+train_loss: 2.34688, 10th percentile: 1.86005, 50th percentile: 2.29187, 90th percentile 2.85798
+test_accuracy: 0.409569, 10th percentile: 0.207985, 50th percentile: 0.409586, 90th percentile 0.68125
+test_accuracy: 0.409569, 10th percentile: 0.207985, 50th percentile: 0.409586, 90th percentile 0.68125
+test_loss: 2.39, 10th percentile: 1.53999, 50th percentile: 2.43223, 90th percentile 3.03902
+test_loss: 2.39, 10th percentile: 1.53999, 50th percentile: 2.43223, 90th percentile 3.03902
+--- Round 4 of 80: Training 2 Clients ---
+--- Round 4 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3210_22 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2103_60 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0627_14 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1354_22 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2416_80 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1807_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0235_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0943_40 flops: 13707587488
+train_accuracy: 0.539734, 10th percentile: 0.319245, 50th percentile: 0.538778, 90th percentile 0.710035
+train_accuracy: 0.539734, 10th percentile: 0.319245, 50th percentile: 0.538778, 90th percentile 0.710035
+train_loss: 1.7825, 10th percentile: 1.2333, 50th percentile: 1.70678, 90th percentile 2.67277
+train_loss: 1.7825, 10th percentile: 1.2333, 50th percentile: 1.70678, 90th percentile 2.67277
+test_accuracy: 0.532548, 10th percentile: 0.278444, 50th percentile: 0.520734, 90th percentile 0.767873
+test_accuracy: 0.532548, 10th percentile: 0.278444, 50th percentile: 0.520734, 90th percentile 0.767873
+test_loss: 1.82749, 10th percentile: 1.05196, 50th percentile: 1.80999, 90th percentile 2.80778
+test_loss: 1.82749, 10th percentile: 1.05196, 50th percentile: 1.80999, 90th percentile 2.80778
+--- Round 5 of 80: Training 2 Clients ---
+--- Round 5 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+train_accuracy: 0.578061, 10th percentile: 0.378622, 50th percentile: 0.573721, 90th percentile 0.744876
+train_accuracy: 0.578061, 10th percentile: 0.378622, 50th percentile: 0.573721, 90th percentile 0.744876
+train_loss: 1.61073, 10th percentile: 0.968809, 50th percentile: 1.5523, 90th percentile 2.58705
+train_loss: 1.61073, 10th percentile: 0.968809, 50th percentile: 1.5523, 90th percentile 2.58705
+test_accuracy: 0.569722, 10th percentile: 0.321053, 50th percentile: 0.571429, 90th percentile 0.764706
+test_accuracy: 0.569722, 10th percentile: 0.321053, 50th percentile: 0.571429, 90th percentile 0.764706
+test_loss: 1.66696, 10th percentile: 0.952143, 50th percentile: 1.5862, 90th percentile 2.76956
+test_loss: 1.66696, 10th percentile: 0.952143, 50th percentile: 1.5862, 90th percentile 2.76956
+--- Round 6 of 80: Training 2 Clients ---
+--- Round 6 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3311_03 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2151_92 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3178_23 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3446_10 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1465_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1972_15 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0713_17 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3782_00 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1173_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0469_20 flops: 13707587488
+train_accuracy: 0.618884, 10th percentile: 0.443176, 50th percentile: 0.63075, 90th percentile 0.768165
+train_accuracy: 0.618884, 10th percentile: 0.443176, 50th percentile: 0.63075, 90th percentile 0.768165
+train_loss: 1.40943, 10th percentile: 0.867608, 50th percentile: 1.34665, 90th percentile 2.2108
+train_loss: 1.40943, 10th percentile: 0.867608, 50th percentile: 1.34665, 90th percentile 2.2108
+test_accuracy: 0.607067, 10th percentile: 0.401875, 50th percentile: 0.588235, 90th percentile 0.820221
+test_accuracy: 0.607067, 10th percentile: 0.401875, 50th percentile: 0.588235, 90th percentile 0.820221
+test_loss: 1.47784, 10th percentile: 0.736009, 50th percentile: 1.47369, 90th percentile 2.35827
+test_loss: 1.47784, 10th percentile: 0.736009, 50th percentile: 1.47369, 90th percentile 2.35827
+--- Round 7 of 80: Training 2 Clients ---
+--- Round 7 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1016_36 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0294_18 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2555_88 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1849_46 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+train_accuracy: 0.634651, 10th percentile: 0.459469, 50th percentile: 0.62831, 90th percentile 0.78169
+train_accuracy: 0.634651, 10th percentile: 0.459469, 50th percentile: 0.62831, 90th percentile 0.78169
+train_loss: 1.34447, 10th percentile: 0.780735, 50th percentile: 1.32713, 90th percentile 2.13066
+train_loss: 1.34447, 10th percentile: 0.780735, 50th percentile: 1.32713, 90th percentile 2.13066
+test_accuracy: 0.6202, 10th percentile: 0.411765, 50th percentile: 0.625, 90th percentile 0.823529
+test_accuracy: 0.6202, 10th percentile: 0.411765, 50th percentile: 0.625, 90th percentile 0.823529
+test_loss: 1.40484, 10th percentile: 0.647837, 50th percentile: 1.35816, 90th percentile 2.23224
+test_loss: 1.40484, 10th percentile: 0.647837, 50th percentile: 1.35816, 90th percentile 2.23224
+--- Round 8 of 80: Training 2 Clients ---
+--- Round 8 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2596_86 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1906_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1055_16 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3366_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2201_80 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0364_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1546_05 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0728_14 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0044_12 flops: 13707587488
+train_accuracy: 0.652426, 10th percentile: 0.44318, 50th percentile: 0.660837, 90th percentile 0.800411
+train_accuracy: 0.652426, 10th percentile: 0.44318, 50th percentile: 0.660837, 90th percentile 0.800411
+train_loss: 1.29394, 10th percentile: 0.6925, 50th percentile: 1.2104, 90th percentile 2.23867
+train_loss: 1.29394, 10th percentile: 0.6925, 50th percentile: 1.2104, 90th percentile 2.23867
+test_accuracy: 0.639003, 10th percentile: 0.392222, 50th percentile: 0.647059, 90th percentile 0.824559
+test_accuracy: 0.639003, 10th percentile: 0.392222, 50th percentile: 0.647059, 90th percentile 0.824559
+test_loss: 1.35857, 10th percentile: 0.66681, 50th percentile: 1.27747, 90th percentile 2.48259
+test_loss: 1.35857, 10th percentile: 0.66681, 50th percentile: 1.27747, 90th percentile 2.48259
+--- Round 9 of 80: Training 2 Clients ---
+--- Round 9 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1938_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3142_38 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3907_43 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0410_43 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1112_30 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4013_32 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+train_accuracy: 0.668244, 10th percentile: 0.458491, 50th percentile: 0.672246, 90th percentile 0.819963
+train_accuracy: 0.668244, 10th percentile: 0.458491, 50th percentile: 0.672246, 90th percentile 0.819963
+train_loss: 1.2591, 10th percentile: 0.655531, 50th percentile: 1.16337, 90th percentile 2.28004
+train_loss: 1.2591, 10th percentile: 0.655531, 50th percentile: 1.16337, 90th percentile 2.28004
+test_accuracy: 0.65433, 10th percentile: 0.411317, 50th percentile: 0.65625, 90th percentile 0.823529
+test_accuracy: 0.65433, 10th percentile: 0.411317, 50th percentile: 0.65625, 90th percentile 0.823529
+test_loss: 1.33025, 10th percentile: 0.593645, 50th percentile: 1.23942, 90th percentile 2.47126
+test_loss: 1.33025, 10th percentile: 0.593645, 50th percentile: 1.23942, 90th percentile 2.47126
+--- Round 10 of 80: Training 2 Clients ---
+--- Round 10 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3701_44 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+train_accuracy: 0.663056, 10th percentile: 0.461014, 50th percentile: 0.665548, 90th percentile 0.827917
+train_accuracy: 0.663056, 10th percentile: 0.461014, 50th percentile: 0.665548, 90th percentile 0.827917
+train_loss: 1.28738, 10th percentile: 0.600235, 50th percentile: 1.16176, 90th percentile 2.4158
+train_loss: 1.28738, 10th percentile: 0.600235, 50th percentile: 1.16176, 90th percentile 2.4158
+test_accuracy: 0.645939, 10th percentile: 0.374561, 50th percentile: 0.666667, 90th percentile 0.833333
+test_accuracy: 0.645939, 10th percentile: 0.374561, 50th percentile: 0.666667, 90th percentile 0.833333
+test_loss: 1.35176, 10th percentile: 0.558521, 50th percentile: 1.26598, 90th percentile 2.55619
+test_loss: 1.35176, 10th percentile: 0.558521, 50th percentile: 1.26598, 90th percentile 2.55619
+--- Round 11 of 80: Training 2 Clients ---
+--- Round 11 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3210_22 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3782_00 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2103_60 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0627_14 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1354_22 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3923_00 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+train_accuracy: 0.685759, 10th percentile: 0.5, 50th percentile: 0.687502, 90th percentile 0.834868
+train_accuracy: 0.685759, 10th percentile: 0.5, 50th percentile: 0.687502, 90th percentile 0.834868
+train_loss: 1.15826, 10th percentile: 0.591342, 50th percentile: 1.07021, 90th percentile 1.91399
+train_loss: 1.15826, 10th percentile: 0.591342, 50th percentile: 1.07021, 90th percentile 1.91399
+test_accuracy: 0.668977, 10th percentile: 0.441333, 50th percentile: 0.684962, 90th percentile 0.833333
+test_accuracy: 0.668977, 10th percentile: 0.441333, 50th percentile: 0.684962, 90th percentile 0.833333
+test_loss: 1.23707, 10th percentile: 0.506587, 50th percentile: 1.12715, 90th percentile 2.0457
+test_loss: 1.23707, 10th percentile: 0.506587, 50th percentile: 1.12715, 90th percentile 2.0457
+--- Round 12 of 80: Training 2 Clients ---
+--- Round 12 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2065_28 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0590_06 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3202_01 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1938_21 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4013_32 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1337_29 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3142_38 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0410_43 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3789_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1112_30 flops: 13707587488
+train_accuracy: 0.683343, 10th percentile: 0.49125, 50th percentile: 0.672126, 90th percentile 0.836179
+train_accuracy: 0.683343, 10th percentile: 0.49125, 50th percentile: 0.672126, 90th percentile 0.836179
+train_loss: 1.18252, 10th percentile: 0.563712, 50th percentile: 1.10557, 90th percentile 2.14277
+train_loss: 1.18252, 10th percentile: 0.563712, 50th percentile: 1.10557, 90th percentile 2.14277
+test_accuracy: 0.666832, 10th percentile: 0.42807, 50th percentile: 0.666667, 90th percentile 0.842105
+test_accuracy: 0.666832, 10th percentile: 0.42807, 50th percentile: 0.666667, 90th percentile 0.842105
+test_loss: 1.24965, 10th percentile: 0.491225, 50th percentile: 1.12632, 90th percentile 2.37842
+test_loss: 1.24965, 10th percentile: 0.491225, 50th percentile: 1.12632, 90th percentile 2.37842
+--- Round 13 of 80: Training 2 Clients ---
+--- Round 13 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3701_44 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1938_21 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3781_28 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3142_38 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0410_43 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1112_30 flops: 13707587488
+train_accuracy: 0.680077, 10th percentile: 0.485365, 50th percentile: 0.679945, 90th percentile 0.844562
+train_accuracy: 0.680077, 10th percentile: 0.485365, 50th percentile: 0.679945, 90th percentile 0.844562
+train_loss: 1.24106, 10th percentile: 0.543871, 50th percentile: 1.14485, 90th percentile 2.30145
+train_loss: 1.24106, 10th percentile: 0.543871, 50th percentile: 1.14485, 90th percentile 2.30145
+test_accuracy: 0.661281, 10th percentile: 0.392222, 50th percentile: 0.666667, 90th percentile 0.850842
+test_accuracy: 0.661281, 10th percentile: 0.392222, 50th percentile: 0.666667, 90th percentile 0.850842
+test_loss: 1.31186, 10th percentile: 0.45279, 50th percentile: 1.20533, 90th percentile 2.47283
+test_loss: 1.31186, 10th percentile: 0.45279, 50th percentile: 1.20533, 90th percentile 2.47283
+--- Round 14 of 80: Training 2 Clients ---
+--- Round 14 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f4046_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+train_accuracy: 0.706094, 10th percentile: 0.527894, 50th percentile: 0.705908, 90th percentile 0.854797
+train_accuracy: 0.706094, 10th percentile: 0.527894, 50th percentile: 0.705908, 90th percentile 0.854797
+train_loss: 1.07885, 10th percentile: 0.494575, 50th percentile: 0.984284, 90th percentile 1.91953
+train_loss: 1.07885, 10th percentile: 0.494575, 50th percentile: 0.984284, 90th percentile 1.91953
+test_accuracy: 0.693625, 10th percentile: 0.470588, 50th percentile: 0.707108, 90th percentile 0.875
+test_accuracy: 0.693625, 10th percentile: 0.470588, 50th percentile: 0.707108, 90th percentile 0.875
+test_loss: 1.14374, 10th percentile: 0.442108, 50th percentile: 1.05009, 90th percentile 1.95486
+test_loss: 1.14374, 10th percentile: 0.442108, 50th percentile: 1.05009, 90th percentile 1.95486
+--- Round 15 of 80: Training 2 Clients ---
+--- Round 15 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1591_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2232_76 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0048_00 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3558_12 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1808_13 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2422_85 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0750_18 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0237_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0961_08 flops: 13707587488
+train_accuracy: 0.715789, 10th percentile: 0.532114, 50th percentile: 0.722968, 90th percentile 0.85178
+train_accuracy: 0.715789, 10th percentile: 0.532114, 50th percentile: 0.722968, 90th percentile 0.85178
+train_loss: 1.03616, 10th percentile: 0.485523, 50th percentile: 0.951325, 90th percentile 1.83318
+train_loss: 1.03616, 10th percentile: 0.485523, 50th percentile: 0.951325, 90th percentile 1.83318
+test_accuracy: 0.698419, 10th percentile: 0.470588, 50th percentile: 0.71131, 90th percentile 0.881062
+test_accuracy: 0.698419, 10th percentile: 0.470588, 50th percentile: 0.71131, 90th percentile 0.881062
+test_loss: 1.11117, 10th percentile: 0.410746, 50th percentile: 1.02311, 90th percentile 1.99893
+test_loss: 1.11117, 10th percentile: 0.410746, 50th percentile: 1.02311, 90th percentile 1.99893
+--- Round 16 of 80: Training 2 Clients ---
+--- Round 16 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2048_19 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3652_48 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3194_31 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0585_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1324_40 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2014_07 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3185_38 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3889_26 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0511_03 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1314_29 flops: 13707587488
+train_accuracy: 0.718968, 10th percentile: 0.540661, 50th percentile: 0.728267, 90th percentile 0.858606
+train_accuracy: 0.718968, 10th percentile: 0.540661, 50th percentile: 0.728267, 90th percentile 0.858606
+train_loss: 1.0412, 10th percentile: 0.483125, 50th percentile: 0.945292, 90th percentile 1.85126
+train_loss: 1.0412, 10th percentile: 0.483125, 50th percentile: 0.945292, 90th percentile 1.85126
+test_accuracy: 0.702658, 10th percentile: 0.481579, 50th percentile: 0.718349, 90th percentile 0.882353
+test_accuracy: 0.702658, 10th percentile: 0.481579, 50th percentile: 0.718349, 90th percentile 0.882353
+test_loss: 1.11729, 10th percentile: 0.42672, 50th percentile: 0.99164, 90th percentile 1.87956
+test_loss: 1.11729, 10th percentile: 0.42672, 50th percentile: 0.99164, 90th percentile 1.87956
+--- Round 17 of 80: Training 2 Clients ---
+--- Round 17 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1975_00 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3181_10 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3778_23 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1217_02 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0473_21 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+train_accuracy: 0.719437, 10th percentile: 0.523368, 50th percentile: 0.723764, 90th percentile 0.875732
+train_accuracy: 0.719437, 10th percentile: 0.523368, 50th percentile: 0.723764, 90th percentile 0.875732
+train_loss: 1.03656, 10th percentile: 0.428986, 50th percentile: 0.967102, 90th percentile 1.92519
+train_loss: 1.03656, 10th percentile: 0.428986, 50th percentile: 0.967102, 90th percentile 1.92519
+test_accuracy: 0.704535, 10th percentile: 0.470588, 50th percentile: 0.722222, 90th percentile 0.884706
+test_accuracy: 0.704535, 10th percentile: 0.470588, 50th percentile: 0.722222, 90th percentile 0.884706
+test_loss: 1.11842, 10th percentile: 0.38523, 50th percentile: 0.995855, 90th percentile 2.15436
+test_loss: 1.11842, 10th percentile: 0.38523, 50th percentile: 0.995855, 90th percentile 2.15436
+--- Round 18 of 80: Training 2 Clients ---
+--- Round 18 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3627_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2048_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1324_40 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3194_31 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0585_26 flops: 13707587488
+train_accuracy: 0.717142, 10th percentile: 0.53162, 50th percentile: 0.729097, 90th percentile 0.862391
+train_accuracy: 0.717142, 10th percentile: 0.53162, 50th percentile: 0.729097, 90th percentile 0.862391
+train_loss: 1.06021, 10th percentile: 0.484963, 50th percentile: 0.942046, 90th percentile 1.89945
+train_loss: 1.06021, 10th percentile: 0.484963, 50th percentile: 0.942046, 90th percentile 1.89945
+test_accuracy: 0.703207, 10th percentile: 0.463077, 50th percentile: 0.70778, 90th percentile 0.887937
+test_accuracy: 0.703207, 10th percentile: 0.463077, 50th percentile: 0.70778, 90th percentile 0.887937
+test_loss: 1.12201, 10th percentile: 0.386465, 50th percentile: 0.985262, 90th percentile 2.19525
+test_loss: 1.12201, 10th percentile: 0.386465, 50th percentile: 0.985262, 90th percentile 2.19525
+--- Round 19 of 80: Training 2 Clients ---
+--- Round 19 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3923_00 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4077_42 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1975_00 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3181_10 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1217_02 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0473_21 flops: 13707587488
+train_accuracy: 0.725509, 10th percentile: 0.525086, 50th percentile: 0.72563, 90th percentile 0.874038
+train_accuracy: 0.725509, 10th percentile: 0.525086, 50th percentile: 0.72563, 90th percentile 0.874038
+train_loss: 1.00459, 10th percentile: 0.401919, 50th percentile: 0.969596, 90th percentile 1.99472
+train_loss: 1.00459, 10th percentile: 0.401919, 50th percentile: 0.969596, 90th percentile 1.99472
+test_accuracy: 0.71393, 10th percentile: 0.470588, 50th percentile: 0.728736, 90th percentile 0.908239
+test_accuracy: 0.71393, 10th percentile: 0.470588, 50th percentile: 0.728736, 90th percentile 0.908239
+test_loss: 1.07829, 10th percentile: 0.372451, 50th percentile: 0.955282, 90th percentile 2.15393
+test_loss: 1.07829, 10th percentile: 0.372451, 50th percentile: 0.955282, 90th percentile 2.15393
+--- Round 20 of 80: Training 2 Clients ---
+--- Round 20 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2596_86 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1906_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1055_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0364_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3789_16 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+train_accuracy: 0.739871, 10th percentile: 0.54013, 50th percentile: 0.743708, 90th percentile 0.880239
+train_accuracy: 0.739871, 10th percentile: 0.54013, 50th percentile: 0.743708, 90th percentile 0.880239
+train_loss: 0.966277, 10th percentile: 0.415489, 50th percentile: 0.909424, 90th percentile 1.86984
+train_loss: 0.966277, 10th percentile: 0.415489, 50th percentile: 0.909424, 90th percentile 1.86984
+test_accuracy: 0.725758, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.896626
+test_accuracy: 0.725758, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.896626
+test_loss: 1.03849, 10th percentile: 0.333491, 50th percentile: 0.928634, 90th percentile 2.03156
+test_loss: 1.03849, 10th percentile: 0.333491, 50th percentile: 0.928634, 90th percentile 2.03156
+--- Round 21 of 80: Training 2 Clients ---
+--- Round 21 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2103_60 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3210_22 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3783_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0627_14 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1354_22 flops: 13707587488
+train_accuracy: 0.740605, 10th percentile: 0.557763, 50th percentile: 0.746149, 90th percentile 0.871795
+train_accuracy: 0.740605, 10th percentile: 0.557763, 50th percentile: 0.746149, 90th percentile 0.871795
+train_loss: 0.910056, 10th percentile: 0.411936, 50th percentile: 0.837199, 90th percentile 1.67567
+train_loss: 0.910056, 10th percentile: 0.411936, 50th percentile: 0.837199, 90th percentile 1.67567
+test_accuracy: 0.728309, 10th percentile: 0.5, 50th percentile: 0.736068, 90th percentile 0.892857
+test_accuracy: 0.728309, 10th percentile: 0.5, 50th percentile: 0.736068, 90th percentile 0.892857
+test_loss: 0.984246, 10th percentile: 0.353688, 50th percentile: 0.900592, 90th percentile 1.80677
+test_loss: 0.984246, 10th percentile: 0.353688, 50th percentile: 0.900592, 90th percentile 1.80677
+--- Round 22 of 80: Training 2 Clients ---
+--- Round 22 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2201_80 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1546_05 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3366_32 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0728_14 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0044_12 flops: 13707587488
+train_accuracy: 0.743028, 10th percentile: 0.556489, 50th percentile: 0.751684, 90th percentile 0.876547
+train_accuracy: 0.743028, 10th percentile: 0.556489, 50th percentile: 0.751684, 90th percentile 0.876547
+train_loss: 0.93051, 10th percentile: 0.416965, 50th percentile: 0.874891, 90th percentile 1.73975
+train_loss: 0.93051, 10th percentile: 0.416965, 50th percentile: 0.874891, 90th percentile 1.73975
+test_accuracy: 0.728416, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.882353
+test_accuracy: 0.728416, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.882353
+test_loss: 1.0026, 10th percentile: 0.316404, 50th percentile: 0.89129, 90th percentile 1.90385
+test_loss: 1.0026, 10th percentile: 0.316404, 50th percentile: 0.89129, 90th percentile 1.90385
+--- Round 23 of 80: Training 2 Clients ---
+--- Round 23 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f4077_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3326_06 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4053_14 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2193_99 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0714_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3311_03 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2151_92 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1472_37 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0713_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1465_32 flops: 13707587488
+train_accuracy: 0.745811, 10th percentile: 0.549698, 50th percentile: 0.754694, 90th percentile 0.879155
+train_accuracy: 0.745811, 10th percentile: 0.549698, 50th percentile: 0.754694, 90th percentile 0.879155
+train_loss: 0.889092, 10th percentile: 0.373952, 50th percentile: 0.816786, 90th percentile 1.66637
+train_loss: 0.889092, 10th percentile: 0.373952, 50th percentile: 0.816786, 90th percentile 1.66637
+test_accuracy: 0.73286, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.897857
+test_accuracy: 0.73286, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.897857
+test_loss: 0.971534, 10th percentile: 0.353633, 50th percentile: 0.871919, 90th percentile 1.85218
+test_loss: 0.971534, 10th percentile: 0.353633, 50th percentile: 0.871919, 90th percentile 1.85218
+--- Round 24 of 80: Training 2 Clients ---
+--- Round 24 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1016_36 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0294_18 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3700_25 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2555_88 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1849_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1938_21 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3142_38 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0410_43 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1112_30 flops: 13707587488
+train_accuracy: 0.740154, 10th percentile: 0.555556, 50th percentile: 0.740249, 90th percentile 0.876173
+train_accuracy: 0.740154, 10th percentile: 0.555556, 50th percentile: 0.740249, 90th percentile 0.876173
+train_loss: 0.909411, 10th percentile: 0.418296, 50th percentile: 0.816706, 90th percentile 1.69001
+train_loss: 0.909411, 10th percentile: 0.418296, 50th percentile: 0.816706, 90th percentile 1.69001
+test_accuracy: 0.720634, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.888889
+test_accuracy: 0.720634, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.888889
+test_loss: 0.998113, 10th percentile: 0.338244, 50th percentile: 0.90671, 90th percentile 1.89285
+test_loss: 0.998113, 10th percentile: 0.338244, 50th percentile: 0.90671, 90th percentile 1.89285
+--- Round 25 of 80: Training 2 Clients ---
+--- Round 25 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3669_35 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+train_accuracy: 0.752036, 10th percentile: 0.547638, 50th percentile: 0.751564, 90th percentile 0.895406
+train_accuracy: 0.752036, 10th percentile: 0.547638, 50th percentile: 0.751564, 90th percentile 0.895406
+train_loss: 0.88498, 10th percentile: 0.36085, 50th percentile: 0.810807, 90th percentile 1.65412
+train_loss: 0.88498, 10th percentile: 0.36085, 50th percentile: 0.810807, 90th percentile 1.65412
+test_accuracy: 0.734425, 10th percentile: 0.5, 50th percentile: 0.737469, 90th percentile 0.919737
+test_accuracy: 0.734425, 10th percentile: 0.5, 50th percentile: 0.737469, 90th percentile 0.919737
+test_loss: 0.980414, 10th percentile: 0.305351, 50th percentile: 0.905214, 90th percentile 2.01267
+test_loss: 0.980414, 10th percentile: 0.305351, 50th percentile: 0.905214, 90th percentile 2.01267
+--- Round 26 of 80: Training 2 Clients ---
+--- Round 26 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3701_44 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+train_accuracy: 0.755165, 10th percentile: 0.587273, 50th percentile: 0.761975, 90th percentile 0.893596
+train_accuracy: 0.755165, 10th percentile: 0.587273, 50th percentile: 0.761975, 90th percentile 0.893596
+train_loss: 0.889218, 10th percentile: 0.378489, 50th percentile: 0.811655, 90th percentile 1.55565
+train_loss: 0.889218, 10th percentile: 0.378489, 50th percentile: 0.811655, 90th percentile 1.55565
+test_accuracy: 0.742109, 10th percentile: 0.539085, 50th percentile: 0.764706, 90th percentile 0.898421
+test_accuracy: 0.742109, 10th percentile: 0.539085, 50th percentile: 0.764706, 90th percentile 0.898421
+test_loss: 0.986531, 10th percentile: 0.31911, 50th percentile: 0.874311, 90th percentile 1.75023
+test_loss: 0.986531, 10th percentile: 0.31911, 50th percentile: 0.874311, 90th percentile 1.75023
+--- Round 27 of 80: Training 2 Clients ---
+--- Round 27 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2394_84 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1794_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3627_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0899_05 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0190_12 flops: 13707587488
+train_accuracy: 0.755799, 10th percentile: 0.567658, 50th percentile: 0.763228, 90th percentile 0.893884
+train_accuracy: 0.755799, 10th percentile: 0.567658, 50th percentile: 0.763228, 90th percentile 0.893884
+train_loss: 0.880325, 10th percentile: 0.34002, 50th percentile: 0.79557, 90th percentile 1.68692
+train_loss: 0.880325, 10th percentile: 0.34002, 50th percentile: 0.79557, 90th percentile 1.68692
+test_accuracy: 0.733606, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.901707
+test_accuracy: 0.733606, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.901707
+test_loss: 0.979249, 10th percentile: 0.30178, 50th percentile: 0.876128, 90th percentile 2.02764
+test_loss: 0.979249, 10th percentile: 0.30178, 50th percentile: 0.876128, 90th percentile 2.02764
+--- Round 28 of 80: Training 2 Clients ---
+--- Round 28 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1668_08 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2284_51 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2355_85 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4013_32 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0779_27 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1775_42 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0153_35 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0857_21 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0181_31 flops: 13707587488
+train_accuracy: 0.761423, 10th percentile: 0.571429, 50th percentile: 0.769231, 90th percentile 0.888889
+train_accuracy: 0.761423, 10th percentile: 0.571429, 50th percentile: 0.769231, 90th percentile 0.888889
+train_loss: 0.852009, 10th percentile: 0.359296, 50th percentile: 0.798613, 90th percentile 1.7069
+train_loss: 0.852009, 10th percentile: 0.359296, 50th percentile: 0.798613, 90th percentile 1.7069
+test_accuracy: 0.741524, 10th percentile: 0.520892, 50th percentile: 0.75, 90th percentile 0.888889
+test_accuracy: 0.741524, 10th percentile: 0.520892, 50th percentile: 0.75, 90th percentile 0.888889
+test_loss: 0.939869, 10th percentile: 0.316152, 50th percentile: 0.835627, 90th percentile 2.10771
+test_loss: 0.939869, 10th percentile: 0.316152, 50th percentile: 0.835627, 90th percentile 2.10771
+--- Round 29 of 80: Training 2 Clients ---
+--- Round 29 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+train_accuracy: 0.761046, 10th percentile: 0.600754, 50th percentile: 0.777942, 90th percentile 0.882284
+train_accuracy: 0.761046, 10th percentile: 0.600754, 50th percentile: 0.777942, 90th percentile 0.882284
+train_loss: 0.85609, 10th percentile: 0.371622, 50th percentile: 0.721509, 90th percentile 1.50108
+train_loss: 0.85609, 10th percentile: 0.371622, 50th percentile: 0.721509, 90th percentile 1.50108
+test_accuracy: 0.739281, 10th percentile: 0.546818, 50th percentile: 0.763305, 90th percentile 0.888889
+test_accuracy: 0.739281, 10th percentile: 0.546818, 50th percentile: 0.763305, 90th percentile 0.888889
+test_loss: 0.950579, 10th percentile: 0.332483, 50th percentile: 0.8269, 90th percentile 1.79408
+test_loss: 0.950579, 10th percentile: 0.332483, 50th percentile: 0.8269, 90th percentile 1.79408
+--- Round 30 of 80: Training 2 Clients ---
+--- Round 30 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2201_80 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3907_43 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1546_05 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2416_80 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0044_12 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0728_14 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1807_08 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0235_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0943_40 flops: 13707587488
+train_accuracy: 0.766573, 10th percentile: 0.573225, 50th percentile: 0.770833, 90th percentile 0.895602
+train_accuracy: 0.766573, 10th percentile: 0.573225, 50th percentile: 0.770833, 90th percentile 0.895602
+train_loss: 0.828146, 10th percentile: 0.320066, 50th percentile: 0.764444, 90th percentile 1.69829
+train_loss: 0.828146, 10th percentile: 0.320066, 50th percentile: 0.764444, 90th percentile 1.69829
+test_accuracy: 0.747487, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.912727
+test_accuracy: 0.747487, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.912727
+test_loss: 0.920118, 10th percentile: 0.276117, 50th percentile: 0.840918, 90th percentile 2.03504
+test_loss: 0.920118, 10th percentile: 0.276117, 50th percentile: 0.840918, 90th percentile 2.03504
+--- Round 31 of 80: Training 2 Clients ---
+--- Round 31 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3568_48 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3185_38 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1314_29 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2014_07 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0511_03 flops: 13707587488
+train_accuracy: 0.76811, 10th percentile: 0.573546, 50th percentile: 0.790276, 90th percentile 0.889548
+train_accuracy: 0.76811, 10th percentile: 0.573546, 50th percentile: 0.790276, 90th percentile 0.889548
+train_loss: 0.821585, 10th percentile: 0.344673, 50th percentile: 0.712705, 90th percentile 1.66732
+train_loss: 0.821585, 10th percentile: 0.344673, 50th percentile: 0.712705, 90th percentile 1.66732
+test_accuracy: 0.744169, 10th percentile: 0.514147, 50th percentile: 0.769231, 90th percentile 0.9
+test_accuracy: 0.744169, 10th percentile: 0.514147, 50th percentile: 0.769231, 90th percentile 0.9
+test_loss: 0.922133, 10th percentile: 0.288126, 50th percentile: 0.800714, 90th percentile 1.98847
+test_loss: 0.922133, 10th percentile: 0.288126, 50th percentile: 0.800714, 90th percentile 1.98847
+--- Round 32 of 80: Training 2 Clients ---
+--- Round 32 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2197_62 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1500_25 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0716_15 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3208_06 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2078_03 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3550_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0035_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1343_32 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0625_26 flops: 13707587488
+train_accuracy: 0.764252, 10th percentile: 0.551435, 50th percentile: 0.764706, 90th percentile 0.899666
+train_accuracy: 0.764252, 10th percentile: 0.551435, 50th percentile: 0.764706, 90th percentile 0.899666
+train_loss: 0.808826, 10th percentile: 0.303912, 50th percentile: 0.737336, 90th percentile 1.66536
+train_loss: 0.808826, 10th percentile: 0.303912, 50th percentile: 0.737336, 90th percentile 1.66536
+test_accuracy: 0.749054, 10th percentile: 0.514147, 50th percentile: 0.769231, 90th percentile 0.926316
+test_accuracy: 0.749054, 10th percentile: 0.514147, 50th percentile: 0.769231, 90th percentile 0.926316
+test_loss: 0.897268, 10th percentile: 0.27277, 50th percentile: 0.795098, 90th percentile 1.85727
+test_loss: 0.897268, 10th percentile: 0.27277, 50th percentile: 0.795098, 90th percentile 1.85727
+--- Round 33 of 80: Training 2 Clients ---
+--- Round 33 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2422_85 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1808_13 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3652_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0961_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0237_46 flops: 13707587488
+train_accuracy: 0.774319, 10th percentile: 0.576962, 50th percentile: 0.789436, 90th percentile 0.897956
+train_accuracy: 0.774319, 10th percentile: 0.576962, 50th percentile: 0.789436, 90th percentile 0.897956
+train_loss: 0.775772, 10th percentile: 0.323187, 50th percentile: 0.67985, 90th percentile 1.51201
+train_loss: 0.775772, 10th percentile: 0.323187, 50th percentile: 0.67985, 90th percentile 1.51201
+test_accuracy: 0.756898, 10th percentile: 0.540559, 50th percentile: 0.765686, 90th percentile 0.913542
+test_accuracy: 0.756898, 10th percentile: 0.540559, 50th percentile: 0.765686, 90th percentile 0.913542
+test_loss: 0.867459, 10th percentile: 0.279123, 50th percentile: 0.779046, 90th percentile 1.71358
+test_loss: 0.867459, 10th percentile: 0.279123, 50th percentile: 0.779046, 90th percentile 1.71358
+--- Round 34 of 80: Training 2 Clients ---
+--- Round 34 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1938_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3142_38 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3778_23 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0410_43 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1112_30 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+train_accuracy: 0.773785, 10th percentile: 0.573408, 50th percentile: 0.783495, 90th percentile 0.907682
+train_accuracy: 0.773785, 10th percentile: 0.573408, 50th percentile: 0.783495, 90th percentile 0.907682
+train_loss: 0.797945, 10th percentile: 0.335237, 50th percentile: 0.722329, 90th percentile 1.54248
+train_loss: 0.797945, 10th percentile: 0.335237, 50th percentile: 0.722329, 90th percentile 1.54248
+test_accuracy: 0.759053, 10th percentile: 0.557639, 50th percentile: 0.769231, 90th percentile 0.928049
+test_accuracy: 0.759053, 10th percentile: 0.557639, 50th percentile: 0.769231, 90th percentile 0.928049
+test_loss: 0.886532, 10th percentile: 0.279187, 50th percentile: 0.801431, 90th percentile 1.78209
+test_loss: 0.886532, 10th percentile: 0.279187, 50th percentile: 0.801431, 90th percentile 1.78209
+--- Round 35 of 80: Training 2 Clients ---
+--- Round 35 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f4077_42 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3326_06 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2193_99 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0714_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1472_37 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+train_accuracy: 0.779093, 10th percentile: 0.584071, 50th percentile: 0.787488, 90th percentile 0.897561
+train_accuracy: 0.779093, 10th percentile: 0.584071, 50th percentile: 0.787488, 90th percentile 0.897561
+train_loss: 0.786194, 10th percentile: 0.30204, 50th percentile: 0.708904, 90th percentile 1.57018
+train_loss: 0.786194, 10th percentile: 0.30204, 50th percentile: 0.708904, 90th percentile 1.57018
+test_accuracy: 0.760756, 10th percentile: 0.552874, 50th percentile: 0.771712, 90th percentile 0.928571
+test_accuracy: 0.760756, 10th percentile: 0.552874, 50th percentile: 0.771712, 90th percentile 0.928571
+test_loss: 0.885204, 10th percentile: 0.258928, 50th percentile: 0.789318, 90th percentile 1.83807
+test_loss: 0.885204, 10th percentile: 0.258928, 50th percentile: 0.789318, 90th percentile 1.83807
+--- Round 36 of 80: Training 2 Clients ---
+--- Round 36 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3923_00 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+train_accuracy: 0.769035, 10th percentile: 0.58503, 50th percentile: 0.760771, 90th percentile 0.900435
+train_accuracy: 0.769035, 10th percentile: 0.58503, 50th percentile: 0.760771, 90th percentile 0.900435
+train_loss: 0.767702, 10th percentile: 0.325561, 50th percentile: 0.739048, 90th percentile 1.4738
+train_loss: 0.767702, 10th percentile: 0.325561, 50th percentile: 0.739048, 90th percentile 1.4738
+test_accuracy: 0.753862, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.934821
+test_accuracy: 0.753862, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.934821
+test_loss: 0.85963, 10th percentile: 0.282818, 50th percentile: 0.798762, 90th percentile 1.62324
+test_loss: 0.85963, 10th percentile: 0.282818, 50th percentile: 0.798762, 90th percentile 1.62324
+--- Round 37 of 80: Training 2 Clients ---
+--- Round 37 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1132_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3164_09 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4046_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1970_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0437_05 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+train_accuracy: 0.77399, 10th percentile: 0.588586, 50th percentile: 0.774343, 90th percentile 0.907427
+train_accuracy: 0.77399, 10th percentile: 0.588586, 50th percentile: 0.774343, 90th percentile 0.907427
+train_loss: 0.755773, 10th percentile: 0.315274, 50th percentile: 0.71061, 90th percentile 1.4617
+train_loss: 0.755773, 10th percentile: 0.315274, 50th percentile: 0.71061, 90th percentile 1.4617
+test_accuracy: 0.751263, 10th percentile: 0.529412, 50th percentile: 0.764706, 90th percentile 0.926923
+test_accuracy: 0.751263, 10th percentile: 0.529412, 50th percentile: 0.764706, 90th percentile 0.926923
+test_loss: 0.858003, 10th percentile: 0.268345, 50th percentile: 0.788978, 90th percentile 1.72168
+test_loss: 0.858003, 10th percentile: 0.268345, 50th percentile: 0.788978, 90th percentile 1.72168
+--- Round 38 of 80: Training 2 Clients ---
+--- Round 38 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3789_16 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+train_accuracy: 0.767169, 10th percentile: 0.583115, 50th percentile: 0.763392, 90th percentile 0.900977
+train_accuracy: 0.767169, 10th percentile: 0.583115, 50th percentile: 0.763392, 90th percentile 0.900977
+train_loss: 0.772558, 10th percentile: 0.318753, 50th percentile: 0.777836, 90th percentile 1.47398
+train_loss: 0.772558, 10th percentile: 0.318753, 50th percentile: 0.777836, 90th percentile 1.47398
+test_accuracy: 0.751437, 10th percentile: 0.519964, 50th percentile: 0.753378, 90th percentile 0.928571
+test_accuracy: 0.751437, 10th percentile: 0.519964, 50th percentile: 0.753378, 90th percentile 0.928571
+test_loss: 0.868842, 10th percentile: 0.293272, 50th percentile: 0.802689, 90th percentile 1.71096
+test_loss: 0.868842, 10th percentile: 0.293272, 50th percentile: 0.802689, 90th percentile 1.71096
+--- Round 39 of 80: Training 2 Clients ---
+--- Round 39 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2596_86 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3731_07 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1906_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1055_16 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2197_62 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0364_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1500_25 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3338_15 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0716_15 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0035_19 flops: 13707587488
+train_accuracy: 0.782966, 10th percentile: 0.589764, 50th percentile: 0.783664, 90th percentile 0.905954
+train_accuracy: 0.782966, 10th percentile: 0.589764, 50th percentile: 0.783664, 90th percentile 0.905954
+train_loss: 0.725402, 10th percentile: 0.310054, 50th percentile: 0.696504, 90th percentile 1.4043
+train_loss: 0.725402, 10th percentile: 0.310054, 50th percentile: 0.696504, 90th percentile 1.4043
+test_accuracy: 0.761285, 10th percentile: 0.538636, 50th percentile: 0.775986, 90th percentile 0.915952
+test_accuracy: 0.761285, 10th percentile: 0.538636, 50th percentile: 0.775986, 90th percentile 0.915952
+test_loss: 0.828621, 10th percentile: 0.250617, 50th percentile: 0.75738, 90th percentile 1.67921
+test_loss: 0.828621, 10th percentile: 0.250617, 50th percentile: 0.75738, 90th percentile 1.67921
+--- Round 40 of 80: Training 2 Clients ---
+--- Round 40 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1596_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2257_69 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3446_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1591_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2232_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3436_22 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0752_25 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0062_25 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0048_00 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0750_18 flops: 13707587488
+train_accuracy: 0.780146, 10th percentile: 0.58076, 50th percentile: 0.776246, 90th percentile 0.909298
+train_accuracy: 0.780146, 10th percentile: 0.58076, 50th percentile: 0.776246, 90th percentile 0.909298
+train_loss: 0.746272, 10th percentile: 0.317017, 50th percentile: 0.717923, 90th percentile 1.49399
+train_loss: 0.746272, 10th percentile: 0.317017, 50th percentile: 0.717923, 90th percentile 1.49399
+test_accuracy: 0.757548, 10th percentile: 0.520892, 50th percentile: 0.774603, 90th percentile 0.934821
+test_accuracy: 0.757548, 10th percentile: 0.520892, 50th percentile: 0.774603, 90th percentile 0.934821
+test_loss: 0.855003, 10th percentile: 0.252082, 50th percentile: 0.79055, 90th percentile 1.73356
+test_loss: 0.855003, 10th percentile: 0.252082, 50th percentile: 0.79055, 90th percentile 1.73356
+--- Round 41 of 80: Training 2 Clients ---
+--- Round 41 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1132_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3164_09 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1970_32 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3783_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3119_39 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1099_37 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1914_02 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0437_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3778_23 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0407_39 flops: 13707587488
+train_accuracy: 0.776089, 10th percentile: 0.564089, 50th percentile: 0.763055, 90th percentile 0.909709
+train_accuracy: 0.776089, 10th percentile: 0.564089, 50th percentile: 0.763055, 90th percentile 0.909709
+train_loss: 0.743745, 10th percentile: 0.273459, 50th percentile: 0.705573, 90th percentile 1.56574
+train_loss: 0.743745, 10th percentile: 0.273459, 50th percentile: 0.705573, 90th percentile 1.56574
+test_accuracy: 0.753971, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.934821
+test_accuracy: 0.753971, 10th percentile: 0.5, 50th percentile: 0.764706, 90th percentile 0.934821
+test_loss: 0.851722, 10th percentile: 0.247515, 50th percentile: 0.780255, 90th percentile 1.7557
+test_loss: 0.851722, 10th percentile: 0.247515, 50th percentile: 0.780255, 90th percentile 1.7557
+--- Round 42 of 80: Training 2 Clients ---
+--- Round 42 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1994_21 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3183_15 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1246_39 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1914_02 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3705_48 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3119_39 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0502_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1099_37 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0407_39 flops: 13707587488
+train_accuracy: 0.783527, 10th percentile: 0.584944, 50th percentile: 0.776343, 90th percentile 0.911799
+train_accuracy: 0.783527, 10th percentile: 0.584944, 50th percentile: 0.776343, 90th percentile 0.911799
+train_loss: 0.741043, 10th percentile: 0.284272, 50th percentile: 0.693401, 90th percentile 1.60968
+train_loss: 0.741043, 10th percentile: 0.284272, 50th percentile: 0.693401, 90th percentile 1.60968
+test_accuracy: 0.760341, 10th percentile: 0.54244, 50th percentile: 0.772811, 90th percentile 0.934821
+test_accuracy: 0.760341, 10th percentile: 0.54244, 50th percentile: 0.772811, 90th percentile 0.934821
+test_loss: 0.856166, 10th percentile: 0.237367, 50th percentile: 0.755204, 90th percentile 1.74038
+test_loss: 0.856166, 10th percentile: 0.237367, 50th percentile: 0.755204, 90th percentile 1.74038
+--- Round 43 of 80: Training 2 Clients ---
+--- Round 43 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3210_22 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2103_60 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0627_14 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1354_22 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4053_14 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+train_accuracy: 0.786249, 10th percentile: 0.608689, 50th percentile: 0.789175, 90th percentile 0.911005
+train_accuracy: 0.786249, 10th percentile: 0.608689, 50th percentile: 0.789175, 90th percentile 0.911005
+train_loss: 0.722394, 10th percentile: 0.296811, 50th percentile: 0.673691, 90th percentile 1.38859
+train_loss: 0.722394, 10th percentile: 0.296811, 50th percentile: 0.673691, 90th percentile 1.38859
+test_accuracy: 0.76034, 10th percentile: 0.540559, 50th percentile: 0.777778, 90th percentile 0.915952
+test_accuracy: 0.76034, 10th percentile: 0.540559, 50th percentile: 0.777778, 90th percentile 0.915952
+test_loss: 0.845819, 10th percentile: 0.292277, 50th percentile: 0.770791, 90th percentile 1.61652
+test_loss: 0.845819, 10th percentile: 0.292277, 50th percentile: 0.770791, 90th percentile 1.61652
+--- Round 44 of 80: Training 2 Clients ---
+--- Round 44 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3701_44 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2416_80 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1807_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0235_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0943_40 flops: 13707587488
+train_accuracy: 0.789238, 10th percentile: 0.586957, 50th percentile: 0.79191, 90th percentile 0.90649
+train_accuracy: 0.789238, 10th percentile: 0.586957, 50th percentile: 0.79191, 90th percentile 0.90649
+train_loss: 0.737595, 10th percentile: 0.285279, 50th percentile: 0.702736, 90th percentile 1.51879
+train_loss: 0.737595, 10th percentile: 0.285279, 50th percentile: 0.702736, 90th percentile 1.51879
+test_accuracy: 0.767905, 10th percentile: 0.534225, 50th percentile: 0.775986, 90th percentile 0.928571
+test_accuracy: 0.767905, 10th percentile: 0.534225, 50th percentile: 0.775986, 90th percentile 0.928571
+test_loss: 0.860846, 10th percentile: 0.248239, 50th percentile: 0.748188, 90th percentile 1.70162
+test_loss: 0.860846, 10th percentile: 0.248239, 50th percentile: 0.748188, 90th percentile 1.70162
+--- Round 45 of 80: Training 2 Clients ---
+--- Round 45 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2279_94 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1650_05 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0141_43 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0775_24 flops: 13707587488
+train_accuracy: 0.795489, 10th percentile: 0.629759, 50th percentile: 0.800662, 90th percentile 0.907143
+train_accuracy: 0.795489, 10th percentile: 0.629759, 50th percentile: 0.800662, 90th percentile 0.907143
+train_loss: 0.714205, 10th percentile: 0.293309, 50th percentile: 0.65351, 90th percentile 1.32433
+train_loss: 0.714205, 10th percentile: 0.293309, 50th percentile: 0.65351, 90th percentile 1.32433
+test_accuracy: 0.766777, 10th percentile: 0.571429, 50th percentile: 0.777778, 90th percentile 0.921154
+test_accuracy: 0.766777, 10th percentile: 0.571429, 50th percentile: 0.777778, 90th percentile 0.921154
+test_loss: 0.846159, 10th percentile: 0.266508, 50th percentile: 0.756889, 90th percentile 1.67662
+test_loss: 0.846159, 10th percentile: 0.266508, 50th percentile: 0.756889, 90th percentile 1.67662
+--- Round 46 of 80: Training 2 Clients ---
+--- Round 46 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1650_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3550_07 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2279_94 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0141_43 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1807_08 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2416_80 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0775_24 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0235_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0943_40 flops: 13707587488
+train_accuracy: 0.79263, 10th percentile: 0.605665, 50th percentile: 0.797546, 90th percentile 0.912917
+train_accuracy: 0.79263, 10th percentile: 0.605665, 50th percentile: 0.797546, 90th percentile 0.912917
+train_loss: 0.735873, 10th percentile: 0.29389, 50th percentile: 0.664895, 90th percentile 1.5116
+train_loss: 0.735873, 10th percentile: 0.29389, 50th percentile: 0.664895, 90th percentile 1.5116
+test_accuracy: 0.767487, 10th percentile: 0.540559, 50th percentile: 0.777778, 90th percentile 0.938826
+test_accuracy: 0.767487, 10th percentile: 0.540559, 50th percentile: 0.777778, 90th percentile 0.938826
+test_loss: 0.868346, 10th percentile: 0.233983, 50th percentile: 0.761363, 90th percentile 1.76078
+test_loss: 0.868346, 10th percentile: 0.233983, 50th percentile: 0.761363, 90th percentile 1.76078
+--- Round 47 of 80: Training 2 Clients ---
+--- Round 47 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2596_86 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1906_16 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1055_16 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0364_10 flops: 13707587488
+train_accuracy: 0.786732, 10th percentile: 0.618871, 50th percentile: 0.792878, 90th percentile 0.907456
+train_accuracy: 0.786732, 10th percentile: 0.618871, 50th percentile: 0.792878, 90th percentile 0.907456
+train_loss: 0.742256, 10th percentile: 0.32456, 50th percentile: 0.672534, 90th percentile 1.39529
+train_loss: 0.742256, 10th percentile: 0.32456, 50th percentile: 0.672534, 90th percentile 1.39529
+test_accuracy: 0.765183, 10th percentile: 0.571429, 50th percentile: 0.777778, 90th percentile 0.9375
+test_accuracy: 0.765183, 10th percentile: 0.571429, 50th percentile: 0.777778, 90th percentile 0.9375
+test_loss: 0.866327, 10th percentile: 0.265373, 50th percentile: 0.777418, 90th percentile 1.66862
+test_loss: 0.866327, 10th percentile: 0.265373, 50th percentile: 0.777418, 90th percentile 1.66862
+--- Round 48 of 80: Training 2 Clients ---
+--- Round 48 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3311_03 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2151_92 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4053_14 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1465_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1777_29 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2382_52 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3596_19 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0713_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0882_28 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0185_23 flops: 13707587488
+train_accuracy: 0.795095, 10th percentile: 0.585155, 50th percentile: 0.79113, 90th percentile 0.914207
+train_accuracy: 0.795095, 10th percentile: 0.585155, 50th percentile: 0.79113, 90th percentile 0.914207
+train_loss: 0.696257, 10th percentile: 0.270539, 50th percentile: 0.663446, 90th percentile 1.51576
+train_loss: 0.696257, 10th percentile: 0.270539, 50th percentile: 0.663446, 90th percentile 1.51576
+test_accuracy: 0.766216, 10th percentile: 0.555556, 50th percentile: 0.772115, 90th percentile 0.928571
+test_accuracy: 0.766216, 10th percentile: 0.555556, 50th percentile: 0.772115, 90th percentile 0.928571
+test_loss: 0.814375, 10th percentile: 0.230054, 50th percentile: 0.733386, 90th percentile 1.58217
+test_loss: 0.814375, 10th percentile: 0.230054, 50th percentile: 0.733386, 90th percentile 1.58217
+--- Round 49 of 80: Training 2 Clients ---
+--- Round 49 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1596_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2257_69 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3178_23 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3446_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1972_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3731_07 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0752_25 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0062_25 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1173_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0469_20 flops: 13707587488
+train_accuracy: 0.792812, 10th percentile: 0.590515, 50th percentile: 0.792771, 90th percentile 0.908948
+train_accuracy: 0.792812, 10th percentile: 0.590515, 50th percentile: 0.792771, 90th percentile 0.908948
+train_loss: 0.688763, 10th percentile: 0.283798, 50th percentile: 0.676503, 90th percentile 1.41203
+train_loss: 0.688763, 10th percentile: 0.283798, 50th percentile: 0.676503, 90th percentile 1.41203
+test_accuracy: 0.762996, 10th percentile: 0.540559, 50th percentile: 0.767949, 90th percentile 0.912727
+test_accuracy: 0.762996, 10th percentile: 0.540559, 50th percentile: 0.767949, 90th percentile 0.912727
+test_loss: 0.811184, 10th percentile: 0.240053, 50th percentile: 0.745343, 90th percentile 1.69147
+test_loss: 0.811184, 10th percentile: 0.240053, 50th percentile: 0.745343, 90th percentile 1.69147
+--- Round 50 of 80: Training 2 Clients ---
+--- Round 50 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2197_62 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1500_25 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3338_15 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2422_85 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1808_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0716_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3907_43 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0035_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0961_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0237_46 flops: 13707587488
+train_accuracy: 0.795678, 10th percentile: 0.592097, 50th percentile: 0.786388, 90th percentile 0.916581
+train_accuracy: 0.795678, 10th percentile: 0.592097, 50th percentile: 0.786388, 90th percentile 0.916581
+train_loss: 0.679501, 10th percentile: 0.249976, 50th percentile: 0.661066, 90th percentile 1.45777
+train_loss: 0.679501, 10th percentile: 0.249976, 50th percentile: 0.661066, 90th percentile 1.45777
+test_accuracy: 0.766775, 10th percentile: 0.54244, 50th percentile: 0.774603, 90th percentile 0.928571
+test_accuracy: 0.766775, 10th percentile: 0.54244, 50th percentile: 0.774603, 90th percentile 0.928571
+test_loss: 0.801526, 10th percentile: 0.227209, 50th percentile: 0.729191, 90th percentile 1.59898
+test_loss: 0.801526, 10th percentile: 0.227209, 50th percentile: 0.729191, 90th percentile 1.59898
+--- Round 51 of 80: Training 2 Clients ---
+--- Round 51 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2201_80 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3366_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1546_05 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3185_38 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0044_12 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0728_14 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2014_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0511_03 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1314_29 flops: 13707587488
+train_accuracy: 0.801902, 10th percentile: 0.597219, 50th percentile: 0.801961, 90th percentile 0.909219
+train_accuracy: 0.801902, 10th percentile: 0.597219, 50th percentile: 0.801961, 90th percentile 0.909219
+train_loss: 0.67249, 10th percentile: 0.267855, 50th percentile: 0.643041, 90th percentile 1.44024
+train_loss: 0.67249, 10th percentile: 0.267855, 50th percentile: 0.643041, 90th percentile 1.44024
+test_accuracy: 0.77154, 10th percentile: 0.532127, 50th percentile: 0.777778, 90th percentile 0.92247
+test_accuracy: 0.77154, 10th percentile: 0.532127, 50th percentile: 0.777778, 90th percentile 0.92247
+test_loss: 0.801672, 10th percentile: 0.247609, 50th percentile: 0.730412, 90th percentile 1.70217
+test_loss: 0.801672, 10th percentile: 0.247609, 50th percentile: 0.730412, 90th percentile 1.70217
+--- Round 52 of 80: Training 2 Clients ---
+--- Round 52 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3326_06 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2193_99 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0714_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1975_00 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3181_10 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1472_37 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0473_21 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1217_02 flops: 13707587488
+train_accuracy: 0.804921, 10th percentile: 0.614706, 50th percentile: 0.808326, 90th percentile 0.919912
+train_accuracy: 0.804921, 10th percentile: 0.614706, 50th percentile: 0.808326, 90th percentile 0.919912
+train_loss: 0.670684, 10th percentile: 0.267113, 50th percentile: 0.633789, 90th percentile 1.35897
+train_loss: 0.670684, 10th percentile: 0.267113, 50th percentile: 0.633789, 90th percentile 1.35897
+test_accuracy: 0.779882, 10th percentile: 0.5625, 50th percentile: 0.786041, 90th percentile 0.9375
+test_accuracy: 0.779882, 10th percentile: 0.5625, 50th percentile: 0.786041, 90th percentile 0.9375
+test_loss: 0.808732, 10th percentile: 0.235422, 50th percentile: 0.739065, 90th percentile 1.59633
+test_loss: 0.808732, 10th percentile: 0.235422, 50th percentile: 0.739065, 90th percentile 1.59633
+--- Round 53 of 80: Training 2 Clients ---
+--- Round 53 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3731_07 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3568_48 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+train_accuracy: 0.80717, 10th percentile: 0.655056, 50th percentile: 0.819126, 90th percentile 0.902778
+train_accuracy: 0.80717, 10th percentile: 0.655056, 50th percentile: 0.819126, 90th percentile 0.902778
+train_loss: 0.660367, 10th percentile: 0.290246, 50th percentile: 0.586484, 90th percentile 1.26887
+train_loss: 0.660367, 10th percentile: 0.290246, 50th percentile: 0.586484, 90th percentile 1.26887
+test_accuracy: 0.774872, 10th percentile: 0.602143, 50th percentile: 0.785362, 90th percentile 0.921154
+test_accuracy: 0.774872, 10th percentile: 0.602143, 50th percentile: 0.785362, 90th percentile 0.921154
+test_loss: 0.807435, 10th percentile: 0.250817, 50th percentile: 0.739844, 90th percentile 1.51729
+test_loss: 0.807435, 10th percentile: 0.250817, 50th percentile: 0.739844, 90th percentile 1.51729
+--- Round 54 of 80: Training 2 Clients ---
+--- Round 54 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3500_08 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+train_accuracy: 0.798884, 10th percentile: 0.611778, 50th percentile: 0.793519, 90th percentile 0.916161
+train_accuracy: 0.798884, 10th percentile: 0.611778, 50th percentile: 0.793519, 90th percentile 0.916161
+train_loss: 0.662101, 10th percentile: 0.272667, 50th percentile: 0.645736, 90th percentile 1.36235
+train_loss: 0.662101, 10th percentile: 0.272667, 50th percentile: 0.645736, 90th percentile 1.36235
+test_accuracy: 0.770684, 10th percentile: 0.530588, 50th percentile: 0.78125, 90th percentile 0.9375
+test_accuracy: 0.770684, 10th percentile: 0.530588, 50th percentile: 0.78125, 90th percentile 0.9375
+test_loss: 0.797766, 10th percentile: 0.22884, 50th percentile: 0.736152, 90th percentile 1.59922
+test_loss: 0.797766, 10th percentile: 0.22884, 50th percentile: 0.736152, 90th percentile 1.59922
+--- Round 55 of 80: Training 2 Clients ---
+--- Round 55 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3652_48 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3178_23 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1972_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3731_07 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1173_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0469_20 flops: 13707587488
+train_accuracy: 0.795484, 10th percentile: 0.606065, 50th percentile: 0.790779, 90th percentile 0.915188
+train_accuracy: 0.795484, 10th percentile: 0.606065, 50th percentile: 0.790779, 90th percentile 0.915188
+train_loss: 0.663044, 10th percentile: 0.25921, 50th percentile: 0.63243, 90th percentile 1.35278
+train_loss: 0.663044, 10th percentile: 0.25921, 50th percentile: 0.63243, 90th percentile 1.35278
+test_accuracy: 0.76992, 10th percentile: 0.555556, 50th percentile: 0.776389, 90th percentile 0.928571
+test_accuracy: 0.76992, 10th percentile: 0.555556, 50th percentile: 0.776389, 90th percentile 0.928571
+test_loss: 0.799489, 10th percentile: 0.254246, 50th percentile: 0.738539, 90th percentile 1.55611
+test_loss: 0.799489, 10th percentile: 0.254246, 50th percentile: 0.738539, 90th percentile 1.55611
+--- Round 56 of 80: Training 2 Clients ---
+--- Round 56 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2257_69 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1596_10 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3446_10 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0752_25 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0062_25 flops: 13707587488
+train_accuracy: 0.801178, 10th percentile: 0.626242, 50th percentile: 0.806351, 90th percentile 0.909219
+train_accuracy: 0.801178, 10th percentile: 0.626242, 50th percentile: 0.806351, 90th percentile 0.909219
+train_loss: 0.664712, 10th percentile: 0.272609, 50th percentile: 0.618383, 90th percentile 1.2747
+train_loss: 0.664712, 10th percentile: 0.272609, 50th percentile: 0.618383, 90th percentile 1.2747
+test_accuracy: 0.773075, 10th percentile: 0.576471, 50th percentile: 0.791289, 90th percentile 0.928571
+test_accuracy: 0.773075, 10th percentile: 0.576471, 50th percentile: 0.791289, 90th percentile 0.928571
+test_loss: 0.812832, 10th percentile: 0.250235, 50th percentile: 0.732019, 90th percentile 1.54421
+test_loss: 0.812832, 10th percentile: 0.250235, 50th percentile: 0.732019, 90th percentile 1.54421
+--- Round 57 of 80: Training 2 Clients ---
+--- Round 57 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2048_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3194_31 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3889_26 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0585_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1324_40 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3568_48 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+train_accuracy: 0.805935, 10th percentile: 0.643906, 50th percentile: 0.814425, 90th percentile 0.916026
+train_accuracy: 0.805935, 10th percentile: 0.643906, 50th percentile: 0.814425, 90th percentile 0.916026
+train_loss: 0.677554, 10th percentile: 0.298295, 50th percentile: 0.62618, 90th percentile 1.21617
+train_loss: 0.677554, 10th percentile: 0.298295, 50th percentile: 0.62618, 90th percentile 1.21617
+test_accuracy: 0.778434, 10th percentile: 0.611111, 50th percentile: 0.792385, 90th percentile 0.9375
+test_accuracy: 0.778434, 10th percentile: 0.611111, 50th percentile: 0.792385, 90th percentile 0.9375
+test_loss: 0.82715, 10th percentile: 0.269054, 50th percentile: 0.724124, 90th percentile 1.59598
+test_loss: 0.82715, 10th percentile: 0.269054, 50th percentile: 0.724124, 90th percentile 1.59598
+--- Round 58 of 80: Training 2 Clients ---
+--- Round 58 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3705_48 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1777_29 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2065_28 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2382_52 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0882_28 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3202_01 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0185_23 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1337_29 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0590_06 flops: 13707587488
+train_accuracy: 0.799953, 10th percentile: 0.583805, 50th percentile: 0.800794, 90th percentile 0.91832
+train_accuracy: 0.799953, 10th percentile: 0.583805, 50th percentile: 0.800794, 90th percentile 0.91832
+train_loss: 0.686186, 10th percentile: 0.269045, 50th percentile: 0.642327, 90th percentile 1.55294
+train_loss: 0.686186, 10th percentile: 0.269045, 50th percentile: 0.642327, 90th percentile 1.55294
+test_accuracy: 0.773329, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.9375
+test_accuracy: 0.773329, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.9375
+test_loss: 0.825512, 10th percentile: 0.202372, 50th percentile: 0.705873, 90th percentile 1.72771
+test_loss: 0.825512, 10th percentile: 0.202372, 50th percentile: 0.705873, 90th percentile 1.72771
+--- Round 59 of 80: Training 2 Clients ---
+--- Round 59 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2355_85 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1775_42 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0857_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3627_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3640_13 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0181_31 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+train_accuracy: 0.805111, 10th percentile: 0.615123, 50th percentile: 0.803369, 90th percentile 0.926077
+train_accuracy: 0.805111, 10th percentile: 0.615123, 50th percentile: 0.803369, 90th percentile 0.926077
+train_loss: 0.663319, 10th percentile: 0.233411, 50th percentile: 0.617037, 90th percentile 1.48585
+train_loss: 0.663319, 10th percentile: 0.233411, 50th percentile: 0.617037, 90th percentile 1.48585
+test_accuracy: 0.780519, 10th percentile: 0.567434, 50th percentile: 0.789474, 90th percentile 0.9375
+test_accuracy: 0.780519, 10th percentile: 0.567434, 50th percentile: 0.789474, 90th percentile 0.9375
+test_loss: 0.803629, 10th percentile: 0.210726, 50th percentile: 0.724618, 90th percentile 1.685
+test_loss: 0.803629, 10th percentile: 0.210726, 50th percentile: 0.724618, 90th percentile 1.685
+--- Round 60 of 80: Training 2 Clients ---
+--- Round 60 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1969_24 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0416_07 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3152_47 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1118_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+train_accuracy: 0.808012, 10th percentile: 0.624892, 50th percentile: 0.812727, 90th percentile 0.919776
+train_accuracy: 0.808012, 10th percentile: 0.624892, 50th percentile: 0.812727, 90th percentile 0.919776
+train_loss: 0.66122, 10th percentile: 0.244863, 50th percentile: 0.619198, 90th percentile 1.37781
+train_loss: 0.66122, 10th percentile: 0.244863, 50th percentile: 0.619198, 90th percentile 1.37781
+test_accuracy: 0.780228, 10th percentile: 0.565179, 50th percentile: 0.792385, 90th percentile 0.928571
+test_accuracy: 0.780228, 10th percentile: 0.565179, 50th percentile: 0.792385, 90th percentile 0.928571
+test_loss: 0.816074, 10th percentile: 0.200725, 50th percentile: 0.71431, 90th percentile 1.59716
+test_loss: 0.816074, 10th percentile: 0.200725, 50th percentile: 0.71431, 90th percentile 1.59716
+--- Round 61 of 80: Training 2 Clients ---
+--- Round 61 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2355_85 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3576_04 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1775_42 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0857_21 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0181_31 flops: 13707587488
+train_accuracy: 0.802459, 10th percentile: 0.608099, 50th percentile: 0.799691, 90th percentile 0.919
+train_accuracy: 0.802459, 10th percentile: 0.608099, 50th percentile: 0.799691, 90th percentile 0.919
+train_loss: 0.69602, 10th percentile: 0.243162, 50th percentile: 0.668398, 90th percentile 1.53961
+train_loss: 0.69602, 10th percentile: 0.243162, 50th percentile: 0.668398, 90th percentile 1.53961
+test_accuracy: 0.774588, 10th percentile: 0.5625, 50th percentile: 0.779133, 90th percentile 0.936895
+test_accuracy: 0.774588, 10th percentile: 0.5625, 50th percentile: 0.779133, 90th percentile 0.936895
+test_loss: 0.848763, 10th percentile: 0.226422, 50th percentile: 0.754033, 90th percentile 1.70714
+test_loss: 0.848763, 10th percentile: 0.226422, 50th percentile: 0.754033, 90th percentile 1.70714
+--- Round 62 of 80: Training 2 Clients ---
+--- Round 62 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1699_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2291_65 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3561_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0787_21 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2394_84 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1794_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0167_33 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3627_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0899_05 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0190_12 flops: 13707587488
+train_accuracy: 0.802745, 10th percentile: 0.605584, 50th percentile: 0.797466, 90th percentile 0.916667
+train_accuracy: 0.802745, 10th percentile: 0.605584, 50th percentile: 0.797466, 90th percentile 0.916667
+train_loss: 0.698955, 10th percentile: 0.247157, 50th percentile: 0.653369, 90th percentile 1.50262
+train_loss: 0.698955, 10th percentile: 0.247157, 50th percentile: 0.653369, 90th percentile 1.50262
+test_accuracy: 0.772337, 10th percentile: 0.537255, 50th percentile: 0.777778, 90th percentile 0.928571
+test_accuracy: 0.772337, 10th percentile: 0.537255, 50th percentile: 0.777778, 90th percentile 0.928571
+test_loss: 0.849073, 10th percentile: 0.190967, 50th percentile: 0.749897, 90th percentile 1.77235
+test_loss: 0.849073, 10th percentile: 0.190967, 50th percentile: 0.749897, 90th percentile 1.77235
+--- Round 63 of 80: Training 2 Clients ---
+--- Round 63 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1386_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3223_18 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3789_16 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2122_65 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0655_10 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3208_06 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1343_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2078_03 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0625_26 flops: 13707587488
+train_accuracy: 0.806912, 10th percentile: 0.610926, 50th percentile: 0.81008, 90th percentile 0.915076
+train_accuracy: 0.806912, 10th percentile: 0.610926, 50th percentile: 0.81008, 90th percentile 0.915076
+train_loss: 0.65004, 10th percentile: 0.263412, 50th percentile: 0.60955, 90th percentile 1.3623
+train_loss: 0.65004, 10th percentile: 0.263412, 50th percentile: 0.60955, 90th percentile 1.3623
+test_accuracy: 0.783441, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.940074
+test_accuracy: 0.783441, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.940074
+test_loss: 0.800029, 10th percentile: 0.208024, 50th percentile: 0.719348, 90th percentile 1.64513
+test_loss: 0.800029, 10th percentile: 0.208024, 50th percentile: 0.719348, 90th percentile 1.64513
+--- Round 64 of 80: Training 2 Clients ---
+--- Round 64 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2048_19 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3194_31 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0585_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1324_40 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1596_10 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2257_69 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3446_10 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0062_25 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0752_25 flops: 13707587488
+train_accuracy: 0.807791, 10th percentile: 0.625735, 50th percentile: 0.812505, 90th percentile 0.914832
+train_accuracy: 0.807791, 10th percentile: 0.625735, 50th percentile: 0.812505, 90th percentile 0.914832
+train_loss: 0.656463, 10th percentile: 0.267961, 50th percentile: 0.623668, 90th percentile 1.34118
+train_loss: 0.656463, 10th percentile: 0.267961, 50th percentile: 0.623668, 90th percentile 1.34118
+test_accuracy: 0.782723, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_accuracy: 0.782723, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_loss: 0.806431, 10th percentile: 0.22511, 50th percentile: 0.744907, 90th percentile 1.57991
+test_loss: 0.806431, 10th percentile: 0.22511, 50th percentile: 0.744907, 90th percentile 1.57991
+--- Round 65 of 80: Training 2 Clients ---
+--- Round 65 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3700_25 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2201_80 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1546_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3366_32 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0044_12 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0728_14 flops: 13707587488
+train_accuracy: 0.803854, 10th percentile: 0.589678, 50th percentile: 0.798859, 90th percentile 0.923077
+train_accuracy: 0.803854, 10th percentile: 0.589678, 50th percentile: 0.798859, 90th percentile 0.923077
+train_loss: 0.698747, 10th percentile: 0.24553, 50th percentile: 0.652578, 90th percentile 1.52287
+train_loss: 0.698747, 10th percentile: 0.24553, 50th percentile: 0.652578, 90th percentile 1.52287
+test_accuracy: 0.778751, 10th percentile: 0.555556, 50th percentile: 0.780869, 90th percentile 0.940074
+test_accuracy: 0.778751, 10th percentile: 0.555556, 50th percentile: 0.780869, 90th percentile 0.940074
+test_loss: 0.837874, 10th percentile: 0.220367, 50th percentile: 0.720828, 90th percentile 1.8508
+test_loss: 0.837874, 10th percentile: 0.220367, 50th percentile: 0.720828, 90th percentile 1.8508
+--- Round 66 of 80: Training 2 Clients ---
+--- Round 66 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3311_03 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4053_14 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2151_92 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1465_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2564_59 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3705_48 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1901_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0713_17 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1053_00 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0331_41 flops: 13707587488
+train_accuracy: 0.806718, 10th percentile: 0.61, 50th percentile: 0.808586, 90th percentile 0.924535
+train_accuracy: 0.806718, 10th percentile: 0.61, 50th percentile: 0.808586, 90th percentile 0.924535
+train_loss: 0.647483, 10th percentile: 0.246379, 50th percentile: 0.599435, 90th percentile 1.43373
+train_loss: 0.647483, 10th percentile: 0.246379, 50th percentile: 0.599435, 90th percentile 1.43373
+test_accuracy: 0.774597, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.941176
+test_accuracy: 0.774597, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.941176
+test_loss: 0.783566, 10th percentile: 0.214797, 50th percentile: 0.714427, 90th percentile 1.63422
+test_loss: 0.783566, 10th percentile: 0.214797, 50th percentile: 0.714427, 90th percentile 1.63422
+--- Round 67 of 80: Training 2 Clients ---
+--- Round 67 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1613_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2261_76 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3550_07 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0140_09 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3856_34 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0766_01 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+train_accuracy: 0.812898, 10th percentile: 0.616232, 50th percentile: 0.813483, 90th percentile 0.923976
+train_accuracy: 0.812898, 10th percentile: 0.616232, 50th percentile: 0.813483, 90th percentile 0.923976
+train_loss: 0.629805, 10th percentile: 0.232388, 50th percentile: 0.615367, 90th percentile 1.35995
+train_loss: 0.629805, 10th percentile: 0.232388, 50th percentile: 0.615367, 90th percentile 1.35995
+test_accuracy: 0.788256, 10th percentile: 0.581734, 50th percentile: 0.8, 90th percentile 0.941176
+test_accuracy: 0.788256, 10th percentile: 0.581734, 50th percentile: 0.8, 90th percentile 0.941176
+test_loss: 0.779207, 10th percentile: 0.198451, 50th percentile: 0.677001, 90th percentile 1.66597
+test_loss: 0.779207, 10th percentile: 0.198451, 50th percentile: 0.677001, 90th percentile 1.66597
+--- Round 68 of 80: Training 2 Clients ---
+--- Round 68 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3669_35 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1798_42 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2395_78 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0910_22 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3634_16 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0207_46 flops: 13707587488
+train_accuracy: 0.809012, 10th percentile: 0.634901, 50th percentile: 0.801999, 90th percentile 0.928164
+train_accuracy: 0.809012, 10th percentile: 0.634901, 50th percentile: 0.801999, 90th percentile 0.928164
+train_loss: 0.633652, 10th percentile: 0.223874, 50th percentile: 0.616921, 90th percentile 1.29736
+train_loss: 0.633652, 10th percentile: 0.223874, 50th percentile: 0.616921, 90th percentile 1.29736
+test_accuracy: 0.784616, 10th percentile: 0.555556, 50th percentile: 0.8, 90th percentile 0.940074
+test_accuracy: 0.784616, 10th percentile: 0.555556, 50th percentile: 0.8, 90th percentile 0.940074
+test_loss: 0.782348, 10th percentile: 0.244185, 50th percentile: 0.671644, 90th percentile 1.64904
+test_loss: 0.782348, 10th percentile: 0.244185, 50th percentile: 0.671644, 90th percentile 1.64904
+--- Round 69 of 80: Training 2 Clients ---
+--- Round 69 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f3210_22 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2103_60 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3783_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0627_14 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1354_22 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2518_67 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1827_17 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3923_00 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0973_47 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0264_18 flops: 13707587488
+train_accuracy: 0.816087, 10th percentile: 0.649921, 50th percentile: 0.816498, 90th percentile 0.931447
+train_accuracy: 0.816087, 10th percentile: 0.649921, 50th percentile: 0.816498, 90th percentile 0.931447
+train_loss: 0.621736, 10th percentile: 0.21402, 50th percentile: 0.568671, 90th percentile 1.28885
+train_loss: 0.621736, 10th percentile: 0.21402, 50th percentile: 0.568671, 90th percentile 1.28885
+test_accuracy: 0.785711, 10th percentile: 0.588235, 50th percentile: 0.803226, 90th percentile 0.9375
+test_accuracy: 0.785711, 10th percentile: 0.588235, 50th percentile: 0.803226, 90th percentile 0.9375
+test_loss: 0.783787, 10th percentile: 0.222635, 50th percentile: 0.694301, 90th percentile 1.50732
+test_loss: 0.783787, 10th percentile: 0.222635, 50th percentile: 0.694301, 90th percentile 1.50732
+--- Round 70 of 80: Training 2 Clients ---
+--- Round 70 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6272)[0m Client id: f1132_19 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3164_09 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0825_23 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2329_94 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f4046_46 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1970_32 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0437_05 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1707_05 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3969_02 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0170_40 flops: 13707587488
+train_accuracy: 0.810984, 10th percentile: 0.62914, 50th percentile: 0.805204, 90th percentile 0.92755
+train_accuracy: 0.810984, 10th percentile: 0.62914, 50th percentile: 0.805204, 90th percentile 0.92755
+train_loss: 0.622775, 10th percentile: 0.225079, 50th percentile: 0.599543, 90th percentile 1.30452
+train_loss: 0.622775, 10th percentile: 0.225079, 50th percentile: 0.599543, 90th percentile 1.30452
+test_accuracy: 0.776866, 10th percentile: 0.555556, 50th percentile: 0.787594, 90th percentile 0.9375
+test_accuracy: 0.776866, 10th percentile: 0.555556, 50th percentile: 0.787594, 90th percentile 0.9375
+test_loss: 0.785923, 10th percentile: 0.190592, 50th percentile: 0.683864, 90th percentile 1.59168
+test_loss: 0.785923, 10th percentile: 0.190592, 50th percentile: 0.683864, 90th percentile 1.59168
+--- Round 71 of 80: Training 2 Clients ---
+--- Round 71 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2078_03 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3208_06 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3550_07 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1343_32 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1668_08 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2284_51 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3889_26 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0625_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0779_27 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0153_35 flops: 13707587488
+train_accuracy: 0.817457, 10th percentile: 0.632045, 50th percentile: 0.820311, 90th percentile 0.920668
+train_accuracy: 0.817457, 10th percentile: 0.632045, 50th percentile: 0.820311, 90th percentile 0.920668
+train_loss: 0.599276, 10th percentile: 0.221212, 50th percentile: 0.54199, 90th percentile 1.34516
+train_loss: 0.599276, 10th percentile: 0.221212, 50th percentile: 0.54199, 90th percentile 1.34516
+test_accuracy: 0.790315, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_accuracy: 0.790315, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_loss: 0.750507, 10th percentile: 0.176955, 50th percentile: 0.66726, 90th percentile 1.52988
+test_loss: 0.750507, 10th percentile: 0.176955, 50th percentile: 0.66726, 90th percentile 1.52988
+--- Round 72 of 80: Training 2 Clients ---
+--- Round 72 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f4046_46 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3259_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2144_67 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3178_23 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0684_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1458_19 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1972_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3789_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1173_40 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0469_20 flops: 13707587488
+train_accuracy: 0.81651, 10th percentile: 0.661134, 50th percentile: 0.816058, 90th percentile 0.915819
+train_accuracy: 0.81651, 10th percentile: 0.661134, 50th percentile: 0.816058, 90th percentile 0.915819
+train_loss: 0.582619, 10th percentile: 0.254643, 50th percentile: 0.541384, 90th percentile 1.0946
+train_loss: 0.582619, 10th percentile: 0.254643, 50th percentile: 0.541384, 90th percentile 1.0946
+test_accuracy: 0.786942, 10th percentile: 0.603333, 50th percentile: 0.8, 90th percentile 0.9375
+test_accuracy: 0.786942, 10th percentile: 0.603333, 50th percentile: 0.8, 90th percentile 0.9375
+test_loss: 0.740895, 10th percentile: 0.228951, 50th percentile: 0.663577, 90th percentile 1.47122
+test_loss: 0.740895, 10th percentile: 0.228951, 50th percentile: 0.663577, 90th percentile 1.47122
+--- Round 73 of 80: Training 2 Clients ---
+--- Round 73 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2394_84 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1794_07 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3627_46 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0190_12 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0899_05 flops: 13707587488
+train_accuracy: 0.815411, 10th percentile: 0.649078, 50th percentile: 0.816993, 90th percentile 0.925438
+train_accuracy: 0.815411, 10th percentile: 0.649078, 50th percentile: 0.816993, 90th percentile 0.925438
+train_loss: 0.59625, 10th percentile: 0.236317, 50th percentile: 0.54567, 90th percentile 1.18794
+train_loss: 0.59625, 10th percentile: 0.236317, 50th percentile: 0.54567, 90th percentile 1.18794
+test_accuracy: 0.785963, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_accuracy: 0.785963, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.9375
+test_loss: 0.756253, 10th percentile: 0.222553, 50th percentile: 0.657901, 90th percentile 1.52621
+test_loss: 0.756253, 10th percentile: 0.222553, 50th percentile: 0.657901, 90th percentile 1.52621
+--- Round 74 of 80: Training 2 Clients ---
+--- Round 74 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2197_62 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1500_25 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3338_15 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1798_42 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2395_78 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0716_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3634_16 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0910_22 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0035_19 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0207_46 flops: 13707587488
+train_accuracy: 0.816187, 10th percentile: 0.622222, 50th percentile: 0.815156, 90th percentile 0.933954
+train_accuracy: 0.816187, 10th percentile: 0.622222, 50th percentile: 0.815156, 90th percentile 0.933954
+train_loss: 0.587899, 10th percentile: 0.215762, 50th percentile: 0.550834, 90th percentile 1.19816
+train_loss: 0.587899, 10th percentile: 0.215762, 50th percentile: 0.550834, 90th percentile 1.19816
+test_accuracy: 0.783535, 10th percentile: 0.567434, 50th percentile: 0.8, 90th percentile 0.9375
+test_accuracy: 0.783535, 10th percentile: 0.567434, 50th percentile: 0.8, 90th percentile 0.9375
+test_loss: 0.747797, 10th percentile: 0.218398, 50th percentile: 0.663697, 90th percentile 1.47908
+test_loss: 0.747797, 10th percentile: 0.218398, 50th percentile: 0.663697, 90th percentile 1.47908
+--- Round 75 of 80: Training 2 Clients ---
+--- Round 75 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6271)[0m Client id: f2197_62 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1500_25 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3338_15 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2422_85 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1808_13 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0716_15 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3652_48 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0035_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0961_08 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0237_46 flops: 13707587488
+train_accuracy: 0.815822, 10th percentile: 0.627787, 50th percentile: 0.804659, 90th percentile 0.930891
+train_accuracy: 0.815822, 10th percentile: 0.627787, 50th percentile: 0.804659, 90th percentile 0.930891
+train_loss: 0.5968, 10th percentile: 0.206659, 50th percentile: 0.565902, 90th percentile 1.33435
+train_loss: 0.5968, 10th percentile: 0.206659, 50th percentile: 0.565902, 90th percentile 1.33435
+test_accuracy: 0.780597, 10th percentile: 0.581125, 50th percentile: 0.797436, 90th percentile 0.940642
+test_accuracy: 0.780597, 10th percentile: 0.581125, 50th percentile: 0.797436, 90th percentile 0.940642
+test_loss: 0.755462, 10th percentile: 0.194579, 50th percentile: 0.666347, 90th percentile 1.47862
+test_loss: 0.755462, 10th percentile: 0.194579, 50th percentile: 0.666347, 90th percentile 1.47862
+--- Round 76 of 80: Training 2 Clients ---
+--- Round 76 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2596_86 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1906_16 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3812_06 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1055_16 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3208_06 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0364_10 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2078_03 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1343_32 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0625_26 flops: 13707587488
+train_accuracy: 0.816125, 10th percentile: 0.614525, 50th percentile: 0.805036, 90th percentile 0.936128
+train_accuracy: 0.816125, 10th percentile: 0.614525, 50th percentile: 0.805036, 90th percentile 0.936128
+train_loss: 0.611029, 10th percentile: 0.203034, 50th percentile: 0.611841, 90th percentile 1.33474
+train_loss: 0.611029, 10th percentile: 0.203034, 50th percentile: 0.611841, 90th percentile 1.33474
+test_accuracy: 0.785865, 10th percentile: 0.557639, 50th percentile: 0.8, 90th percentile 0.941176
+test_accuracy: 0.785865, 10th percentile: 0.557639, 50th percentile: 0.8, 90th percentile 0.941176
+test_loss: 0.771141, 10th percentile: 0.194145, 50th percentile: 0.702628, 90th percentile 1.60268
+test_loss: 0.771141, 10th percentile: 0.194145, 50th percentile: 0.702628, 90th percentile 1.60268
+--- Round 77 of 80: Training 2 Clients ---
+--- Round 77 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1914_02 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3119_39 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3783_47 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1099_37 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1777_29 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0407_39 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2382_52 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3596_19 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0882_28 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0185_23 flops: 13707587488
+train_accuracy: 0.813733, 10th percentile: 0.602889, 50th percentile: 0.803408, 90th percentile 0.930361
+train_accuracy: 0.813733, 10th percentile: 0.602889, 50th percentile: 0.803408, 90th percentile 0.930361
+train_loss: 0.619935, 10th percentile: 0.203676, 50th percentile: 0.562819, 90th percentile 1.51466
+train_loss: 0.619935, 10th percentile: 0.203676, 50th percentile: 0.562819, 90th percentile 1.51466
+test_accuracy: 0.779174, 10th percentile: 0.557639, 50th percentile: 0.791289, 90th percentile 0.934821
+test_accuracy: 0.779174, 10th percentile: 0.557639, 50th percentile: 0.791289, 90th percentile 0.934821
+test_loss: 0.777918, 10th percentile: 0.20668, 50th percentile: 0.682274, 90th percentile 1.68125
+test_loss: 0.777918, 10th percentile: 0.20668, 50th percentile: 0.682274, 90th percentile 1.68125
+--- Round 78 of 80: Training 2 Clients ---
+--- Round 78 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f1591_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2232_76 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0048_00 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3436_22 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1849_46 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0294_18 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2555_88 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3700_25 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0750_18 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1016_36 flops: 13707587488
+train_accuracy: 0.817529, 10th percentile: 0.648509, 50th percentile: 0.816021, 90th percentile 0.919785
+train_accuracy: 0.817529, 10th percentile: 0.648509, 50th percentile: 0.816021, 90th percentile 0.919785
+train_loss: 0.592828, 10th percentile: 0.243536, 50th percentile: 0.549254, 90th percentile 1.19206
+train_loss: 0.592828, 10th percentile: 0.243536, 50th percentile: 0.549254, 90th percentile 1.19206
+test_accuracy: 0.786624, 10th percentile: 0.611111, 50th percentile: 0.803226, 90th percentile 0.940074
+test_accuracy: 0.786624, 10th percentile: 0.611111, 50th percentile: 0.803226, 90th percentile 0.940074
+test_loss: 0.764938, 10th percentile: 0.18905, 50th percentile: 0.672569, 90th percentile 1.48394
+test_loss: 0.764938, 10th percentile: 0.18905, 50th percentile: 0.672569, 90th percentile 1.48394
+--- Round 79 of 80: Training 2 Clients ---
+--- Round 79 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6273)[0m Client id: f3816_24 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3244_38 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f2131_73 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3684_46 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1453_47 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2528_69 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0676_08 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1833_03 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0273_27 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f0979_22 flops: 13707587488
+train_accuracy: 0.816628, 10th percentile: 0.661149, 50th percentile: 0.816412, 90th percentile 0.923598
+train_accuracy: 0.816628, 10th percentile: 0.661149, 50th percentile: 0.816412, 90th percentile 0.923598
+train_loss: 0.604299, 10th percentile: 0.253022, 50th percentile: 0.548674, 90th percentile 1.1673
+train_loss: 0.604299, 10th percentile: 0.253022, 50th percentile: 0.548674, 90th percentile 1.1673
+test_accuracy: 0.785789, 10th percentile: 0.584195, 50th percentile: 0.80754, 90th percentile 0.941176
+test_accuracy: 0.785789, 10th percentile: 0.584195, 50th percentile: 0.80754, 90th percentile 0.941176
+test_loss: 0.770675, 10th percentile: 0.20911, 50th percentile: 0.665518, 90th percentile 1.44311
+test_loss: 0.770675, 10th percentile: 0.20911, 50th percentile: 0.665518, 90th percentile 1.44311
+--- Round 80 of 80: Training 2 Clients ---
+--- Round 80 of 80: Training 2 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=6275)[0m Client id: f2078_03 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f3208_06 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3889_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1343_32 flops: 13707587488
+[2m[36m(pid=6271)[0m Client id: f2560_93 flops: 13707587488
+[2m[36m(pid=6275)[0m Client id: f1871_04 flops: 13707587488
+[2m[36m(pid=6273)[0m Client id: f3731_07 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0625_26 flops: 13707587488
+[2m[36m(pid=6272)[0m Client id: f1044_04 flops: 13707587488
+[2m[36m(pid=6268)[0m Client id: f0311_48 flops: 13707587488
+train_accuracy: 0.816125, 10th percentile: 0.621296, 50th percentile: 0.817413, 90th percentile 0.937167
+train_accuracy: 0.816125, 10th percentile: 0.621296, 50th percentile: 0.817413, 90th percentile 0.937167
+train_loss: 0.631583, 10th percentile: 0.213815, 50th percentile: 0.58147, 90th percentile 1.35656
+train_loss: 0.631583, 10th percentile: 0.213815, 50th percentile: 0.58147, 90th percentile 1.35656
+test_accuracy: 0.790467, 10th percentile: 0.555556, 50th percentile: 0.8125, 90th percentile 0.9375
+test_accuracy: 0.790467, 10th percentile: 0.555556, 50th percentile: 0.8125, 90th percentile 0.9375
+test_loss: 0.794902, 10th percentile: 0.176712, 50th percentile: 0.671617, 90th percentile 1.68936
+test_loss: 0.794902, 10th percentile: 0.176712, 50th percentile: 0.671617, 90th percentile 1.68936
