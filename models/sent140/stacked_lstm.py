@@ -1,9 +1,11 @@
 import numpy as np
 import os
 import sys
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
-from tensorflow.contrib import rnn
+# from tensorflow.contrib import rnn
+from tensorflow.compat.v1.nn import rnn_cell
 
 from model import Model
 from utils.language_utils import line_to_indices, get_word_emb_arr, val_to_vec

@@ -3,14 +3,17 @@ import numpy as np
 import os
 import pickle
 import sys
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
-from tensorflow.contrib import rnn
+# from tensorflow.contrib import rnn
+from tensorflow.compat.v1.nn import rnn_cell
+import tensorflow_addons as tfa
 
 from model import Model
 
-VOCABULARY_PATH = '../data/reddit/vocab/reddit_vocab.pck'
-
+# VOCABULARY_PATH = '../data/reddit/vocab/reddit_vocab.pck'
+VOCABULARY_PATH = '/global/cfs/cdirs/mp156/rayleaf_dataset/data/reddit/vocab/reddit_vocab.pck'
 
 # Code adapted from https://github.com/tensorflow/models/blob/master/tutorials/rnn/ptb/ptb_word_lm.py
 # and https://r2rt.com/recurrent-neural-networks-in-tensorflow-iii-variable-length-sequences.html
@@ -76,7 +79,7 @@ class ClientModel(Model):
             logits = tf.reshape(logits, [-1, self.seq_len, self.vocab_size])
 
             # Use the contrib sequence loss and average over the batches
-            loss = tf.contrib.seq2seq.sequence_loss(
+            loss = tfa.seq2seq.sequence_loss(
                 logits,
                 labels,
                 weights=self.sequence_mask_ph,
@@ -100,7 +103,9 @@ class ClientModel(Model):
 
     def _build_rnn_graph(self, inputs):
         def make_cell():
-            cell = tf.contrib.rnn.LSTMBlockCell(self.n_hidden, forget_bias=0.0)
+#             cell = tf.contrib.rnn.LSTMBlockCell(self.n_hidden, forget_bias=0.0)
+            cell = rnn_cell.LSTMCell(self.n_hidden, forget_bias=0.0)
+
             if self.keep_prob < 1:
                 cell = tf.nn.rnn_cell.DropoutWrapper(cell, output_keep_prob=self.keep_prob)
             return cell

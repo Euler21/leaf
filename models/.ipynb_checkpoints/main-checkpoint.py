@@ -35,8 +35,9 @@ def main():
     dt = str(datetime.now()).split(".")[0]
     dt = "-".join(dt.split(" "))
     dt = "".join(dt.split(":"))
-    fname = "./0_power_iter/" + str(args.dataset) + "_" + str(args.sketcher)  + "_" + str(args.rank) + "rank_" +str(args.num_rounds) + "rds_" + str(args.seed)  + "seed_"+ dt + ".txt"
+    fname = "./reddit_output/" + str(args.dataset) + "_" + str(args.sketcher)  + "_" + str(args.rank) + "rank_" +str(args.num_rounds) + "rds_" + str(args.seed)  + "seed_"+ dt + ".txt"
     f = open(fname, 'w')
+    print("=======================================================================opened file: " + str(fname) + "=========================================================")
     ############
     sys.stdout = f ##### change this for file output
     ##############
@@ -46,6 +47,7 @@ def main():
     tf.set_random_seed(123 + args.seed)
 
     model_path = '%s/%s.py' % (args.dataset, args.model)
+    print("model path: " + str(model_path))
     if not os.path.exists(model_path):
         print('Please specify a valid dataset and a valid model.')
     model_path = '%s.%s' % (args.dataset, args.model)
@@ -104,6 +106,7 @@ def main():
 
     # Simulate training
     for i in range(num_rounds):
+        print("current time: " + str(datetime.now()))
         print('--- Round %d of %d: Training %d Clients ---' % (i + 1, num_rounds, clients_per_round))
         f.write('--- Round %d of %d: Training %d Clients ---\n' % (i + 1, num_rounds, clients_per_round))
 
@@ -111,6 +114,7 @@ def main():
         server.select_clients(i, num_clients=clients_per_round)
         c_ids, c_groups, c_num_samples = server.get_clients_info()
         print("BATCH SIZE = " + str(args.batch_size))
+#         print("c_num_samples : " + str(c_num_samples))
         # Simulate server model training on selected clients' data
         sys_metrics = server.train_model(num_epochs=args.num_epochs, batch_size=args.batch_size, minibatch=args.minibatch, rank=args.rank)
         sys_writer_fn(i + 1, c_ids, sys_metrics, c_groups, c_num_samples)

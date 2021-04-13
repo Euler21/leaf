@@ -15,23 +15,29 @@ class Sketcher(ABC):
 
 class VoidSketcher(Sketcher):
     def compress(self, updates, params=None):
-        return updates
+        return (updates, 0)
     def uncompress(self, compressed_updates):
-        return compressed_updates
+        return (compressed_updates, 0)
 
 class RandomizedSVD(Sketcher):
     def compress(self, updates, params=None):
         compressed_updates = []
         rank = params["rank"]
+        # search [0-50]
+        m = 256
+        n = 10000
         if rank == -1:
-            rank = 2048
+            rank=n
         flops = 0
-        m = 3136
-        n = 2048
+#         m = 3136
+#         n = 2048
+
         num_iterations= 0 # change this to change number of iterations
         for i in range(len(updates)):
             update = updates[i]
-            if update.shape == (3136, 2048):
+#             print(update.shape)
+            if update.shape == (m, n):
+#                 print("compressing")
                 u, s, v = randomized_svd(updates[i], n_components=rank, n_iter=num_iterations, random_state=None)
                 u = u[:, :rank]
                 s = s[:rank]
@@ -47,8 +53,10 @@ class RandomizedSVD(Sketcher):
     def uncompress(self, compressed_updates):
         uncompressed_list = []
         flops = 0
-        m = 3136
-        n = 2048
+#         m = 3136
+#         n = 2048
+        m = 256
+        n = 10000
         for i in range(len(compressed_updates)):
             compressed = compressed_updates[i]
             if type(compressed) == list:
@@ -68,14 +76,18 @@ class SVD(Sketcher):
     def compress(self, updates, params=None):
         compressed_updates = []
         rank = params["rank"]
+        m = 256
+        n = 10000
+#         m = 3136
+#         n = 2048
         if rank == -1:
-            rank = 2048
+            rank = n
         flops = 0
-        m = 3136
-        n = 2048
+# 
         for i in range(len(updates)):
             update = updates[i]
-            if update.shape == (3136, 2048):
+            if update.shape == (m, n):
+                print("compress")
                 u, s, v = np.linalg.svd(updates[i], full_matrices=False)
 #                 sum_squared = sum([si**2 for si in s])
 #                 percent_variance = [(si**2.0) / sum_squared  for si in s]
@@ -98,8 +110,10 @@ class SVD(Sketcher):
     def uncompress(self, compressed_updates):
         uncompressed_list = []
         flops = 0
-        m = 3136
-        n = 2048
+#         m = 3136
+#         n = 2048
+        m = 256
+        n = 10000        
         for i in range(len(compressed_updates)):
             compressed = compressed_updates[i]
             if type(compressed) == list:

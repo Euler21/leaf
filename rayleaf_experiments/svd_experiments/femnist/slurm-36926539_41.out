@@ -1,0 +1,1340 @@
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.keras.layers.Conv2D` instead.
+WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.MaxPooling2D instead.
+WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.
+WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-12-07 01:53:51.879497: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-12-07 01:53:51.899926: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+2020-12-07 01:53:51.900281: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555558a3a760 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-12-07 01:53:51.900549: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Parsing Inputs...
+
+=========================Options=============================
+-max_depth                  10000
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              1
+-min_occurrence             0
+-step                       -1
+-order_by                   float_ops
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  true
+-select                     float_ops
+-output                     stdout:
+
+==================Model Analysis Report======================
+
+Doc:
+scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+
+Profile:
+node name | # float_ops
+_TFProfRoot (--/13.20m flops)
+  dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+    dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+    dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+  dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+    dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+    dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+    conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+    conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+  conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+    conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+    conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+  gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+  sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+
+======================End of Report==========================
+2020-12-07 01:53:52,958	INFO services.py:1092 -- View the Ray dashboard at [1m[32mhttp://127.0.0.1:8265[39m[22m
+OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+OMP: Info #157: KMP_AFFINITY: Uniform topology
+OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+OMP: Info #251: KMP_AFFINITY: pid 49296 tid 49296 thread 0 bound to OS proc set 0
+OMP: Info #251: KMP_AFFINITY: pid 49296 tid 50828 thread 1 bound to OS proc set 1
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Use `tf.keras.layers.Conv2D` instead.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Please use `layer.__call__` method instead.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Use keras.layers.MaxPooling2D instead.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Use keras.layers.Dense instead.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Use tf.where in 2.0, which has the same broadcast rule as np.where
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Use `tf.keras.layers.Conv2D` instead.
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Please use `layer.__call__` method instead.
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Use keras.layers.MaxPooling2D instead.
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Use keras.layers.Dense instead.
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Use tf.where in 2.0, which has the same broadcast rule as np.where
+[2m[36m(pid=49455)[0m 2020-12-07 01:54:10.872627: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+[2m[36m(pid=49455)[0m To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+[2m[36m(pid=49455)[0m 2020-12-07 01:54:10.882806: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+[2m[36m(pid=49455)[0m 2020-12-07 01:54:10.882924: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555b55f0a0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+[2m[36m(pid=49455)[0m 2020-12-07 01:54:10.882938: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Use `tf.keras.layers.Conv2D` instead.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Please use `layer.__call__` method instead.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Use keras.layers.MaxPooling2D instead.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Use keras.layers.Dense instead.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Use tf.where in 2.0, which has the same broadcast rule as np.where
+[2m[36m(pid=49440)[0m 2020-12-07 01:54:10.961904: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+[2m[36m(pid=49440)[0m To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+[2m[36m(pid=49455)[0m Incomplete shape.
+[2m[36m(pid=49455)[0m Incomplete shape.
+[2m[36m(pid=49455)[0m Incomplete shape.
+[2m[36m(pid=49455)[0m Incomplete shape.
+[2m[36m(pid=49440)[0m 2020-12-07 01:54:10.972429: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+[2m[36m(pid=49440)[0m 2020-12-07 01:54:10.972518: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555b35c8a0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+[2m[36m(pid=49440)[0m 2020-12-07 01:54:10.972532: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+[2m[36m(pid=49440)[0m Incomplete shape.
+[2m[36m(pid=49440)[0m Incomplete shape.
+[2m[36m(pid=49440)[0m Incomplete shape.
+[2m[36m(pid=49440)[0m Incomplete shape.
+[2m[36m(pid=49456)[0m 2020-12-07 01:54:11.087667: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+[2m[36m(pid=49456)[0m To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+[2m[36m(pid=49456)[0m 2020-12-07 01:54:11.097387: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+[2m[36m(pid=49456)[0m 2020-12-07 01:54:11.097534: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555d937ea0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+[2m[36m(pid=49456)[0m 2020-12-07 01:54:11.097549: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Use `tf.keras.layers.Conv2D` instead.
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Please use `layer.__call__` method instead.
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Use keras.layers.MaxPooling2D instead.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+[2m[36m(pid=49456)[0m Incomplete shape.
+[2m[36m(pid=49456)[0m Incomplete shape.
+[2m[36m(pid=49456)[0m Incomplete shape.
+[2m[36m(pid=49456)[0m Incomplete shape.
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Use keras.layers.Dense instead.
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Use tf.where in 2.0, which has the same broadcast rule as np.where
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:26: conv2d (from tensorflow.python.layers.convolutional) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Use `tf.keras.layers.Conv2D` instead.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/layers/convolutional.py:424: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Please use `layer.__call__` method instead.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:27: max_pooling2d (from tensorflow.python.layers.pooling) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Use keras.layers.MaxPooling2D instead.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/femnist/cnn.py:36: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Use keras.layers.Dense instead.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/ops/losses/losses_impl.py:121: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Use tf.where in 2.0, which has the same broadcast rule as np.where
+[2m[36m(pid=49443)[0m 2020-12-07 01:54:11.372851: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+[2m[36m(pid=49443)[0m To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+[2m[36m(pid=49443)[0m 2020-12-07 01:54:11.382513: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+[2m[36m(pid=49443)[0m 2020-12-07 01:54:11.382619: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555d213090 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+[2m[36m(pid=49443)[0m 2020-12-07 01:54:11.382633: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[2m[36m(pid=49429)[0m 2020-12-07 01:54:11.411223: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+[2m[36m(pid=49429)[0m To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+[2m[36m(pid=49429)[0m 2020-12-07 01:54:11.424738: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2300100000 Hz
+[2m[36m(pid=49429)[0m 2020-12-07 01:54:11.424853: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55555b5f0c90 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+[2m[36m(pid=49429)[0m 2020-12-07 01:54:11.424867: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+[2m[36m(pid=49443)[0m Incomplete shape.
+[2m[36m(pid=49443)[0m Incomplete shape.
+[2m[36m(pid=49443)[0m Incomplete shape.
+[2m[36m(pid=49443)[0m Incomplete shape.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /usr/common/software/tensorflow/intel-tensorflow/1.15.0-py37/lib/python3.7/site-packages/tensorflow_core/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+[2m[36m(pid=49429)[0m Incomplete shape.
+[2m[36m(pid=49429)[0m Incomplete shape.
+[2m[36m(pid=49429)[0m Incomplete shape.
+[2m[36m(pid=49429)[0m Incomplete shape.
+[2m[36m(pid=49455)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+[2m[36m(pid=49455)[0m Instructions for updating:
+[2m[36m(pid=49455)[0m Prefer Variable.assign which has equivalent behavior in 2.X.
+[2m[36m(pid=49440)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+[2m[36m(pid=49440)[0m Instructions for updating:
+[2m[36m(pid=49440)[0m Prefer Variable.assign which has equivalent behavior in 2.X.
+[2m[36m(pid=49456)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+[2m[36m(pid=49456)[0m Instructions for updating:
+[2m[36m(pid=49456)[0m Prefer Variable.assign which has equivalent behavior in 2.X.
+[2m[36m(pid=49443)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+[2m[36m(pid=49443)[0m Instructions for updating:
+[2m[36m(pid=49443)[0m Prefer Variable.assign which has equivalent behavior in 2.X.
+[2m[36m(pid=49429)[0m WARNING:tensorflow:From /global/u2/a/arissa/RayLeaf/leaf/models/model.py:49: Variable.load (from tensorflow.python.ops.variables) is deprecated and will be removed in a future version.
+[2m[36m(pid=49429)[0m Instructions for updating:
+[2m[36m(pid=49429)[0m Prefer Variable.assign which has equivalent behavior in 2.X.
+[2m[36m(pid=49455)[0m OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+[2m[36m(pid=49455)[0m OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+[2m[36m(pid=49455)[0m OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+[2m[36m(pid=49455)[0m OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+[2m[36m(pid=49455)[0m OMP: Info #157: KMP_AFFINITY: Uniform topology
+[2m[36m(pid=49455)[0m OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+[2m[36m(pid=49455)[0m OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+[2m[36m(pid=49455)[0m OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+[2m[36m(pid=49455)[0m OMP: Info #251: KMP_AFFINITY: pid 49455 tid 50744 thread 0 bound to OS proc set 0
+[2m[36m(pid=49455)[0m OMP: Info #251: KMP_AFFINITY: pid 49455 tid 50744 thread 1 bound to OS proc set 1
+[2m[36m(pid=49455)[0m OMP: Info #251: KMP_AFFINITY: pid 49455 tid 50785 thread 2 bound to OS proc set 2
+[2m[36m(pid=49440)[0m OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+[2m[36m(pid=49440)[0m OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+[2m[36m(pid=49440)[0m OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+[2m[36m(pid=49440)[0m OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+[2m[36m(pid=49440)[0m OMP: Info #157: KMP_AFFINITY: Uniform topology
+[2m[36m(pid=49440)[0m OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+[2m[36m(pid=49440)[0m OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+[2m[36m(pid=49440)[0m OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+[2m[36m(pid=49440)[0m OMP: Info #251: KMP_AFFINITY: pid 49440 tid 50752 thread 0 bound to OS proc set 0
+[2m[36m(pid=49440)[0m OMP: Info #251: KMP_AFFINITY: pid 49440 tid 50752 thread 1 bound to OS proc set 1
+[2m[36m(pid=49440)[0m OMP: Info #251: KMP_AFFINITY: pid 49440 tid 50783 thread 2 bound to OS proc set 2
+[2m[36m(pid=49456)[0m OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+[2m[36m(pid=49456)[0m OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+[2m[36m(pid=49456)[0m OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+[2m[36m(pid=49456)[0m OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+[2m[36m(pid=49456)[0m OMP: Info #157: KMP_AFFINITY: Uniform topology
+[2m[36m(pid=49456)[0m OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+[2m[36m(pid=49456)[0m OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+[2m[36m(pid=49456)[0m OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+[2m[36m(pid=49456)[0m OMP: Info #251: KMP_AFFINITY: pid 49456 tid 50760 thread 0 bound to OS proc set 0
+[2m[36m(pid=49456)[0m OMP: Info #251: KMP_AFFINITY: pid 49456 tid 50760 thread 1 bound to OS proc set 1
+[2m[36m(pid=49456)[0m OMP: Info #251: KMP_AFFINITY: pid 49456 tid 50782 thread 2 bound to OS proc set 2
+[2m[36m(pid=49443)[0m OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+[2m[36m(pid=49443)[0m OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+[2m[36m(pid=49443)[0m OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+[2m[36m(pid=49443)[0m OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+[2m[36m(pid=49443)[0m OMP: Info #157: KMP_AFFINITY: Uniform topology
+[2m[36m(pid=49443)[0m OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+[2m[36m(pid=49443)[0m OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+[2m[36m(pid=49443)[0m OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+[2m[36m(pid=49443)[0m OMP: Info #251: KMP_AFFINITY: pid 49443 tid 50771 thread 0 bound to OS proc set 0
+[2m[36m(pid=49443)[0m OMP: Info #251: KMP_AFFINITY: pid 49443 tid 50771 thread 1 bound to OS proc set 1
+[2m[36m(pid=49443)[0m OMP: Info #251: KMP_AFFINITY: pid 49443 tid 50781 thread 2 bound to OS proc set 2
+[2m[36m(pid=49429)[0m OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-63
+[2m[36m(pid=49429)[0m OMP: Info #213: KMP_AFFINITY: decoding x2APIC ids.
+[2m[36m(pid=49429)[0m OMP: Info #276: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+[2m[36m(pid=49429)[0m OMP: Info #156: KMP_AFFINITY: 64 available OS procs
+[2m[36m(pid=49429)[0m OMP: Info #157: KMP_AFFINITY: Uniform topology
+[2m[36m(pid=49429)[0m OMP: Info #191: KMP_AFFINITY: 2 sockets x 16 cores/socket x 2 threads/core (32 total cores)
+[2m[36m(pid=49429)[0m OMP: Info #215: KMP_AFFINITY: OS proc to physical thread map:
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to socket 0 core 0 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to socket 0 core 1 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to socket 0 core 2 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to socket 0 core 3 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to socket 0 core 4 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to socket 0 core 5 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to socket 0 core 5 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to socket 0 core 6 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to socket 0 core 6 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to socket 0 core 7 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to socket 0 core 7 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to socket 0 core 8 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to socket 0 core 8 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to socket 0 core 9 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to socket 0 core 9 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to socket 0 core 10 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to socket 0 core 10 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to socket 0 core 11 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to socket 0 core 11 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to socket 0 core 12 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to socket 0 core 12 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to socket 0 core 13 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to socket 0 core 13 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to socket 0 core 14 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to socket 0 core 14 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to socket 0 core 15 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to socket 0 core 15 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to socket 1 core 0 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to socket 1 core 0 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to socket 1 core 1 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to socket 1 core 1 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to socket 1 core 2 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to socket 1 core 2 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to socket 1 core 3 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to socket 1 core 3 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to socket 1 core 4 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to socket 1 core 4 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to socket 1 core 5 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to socket 1 core 5 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to socket 1 core 6 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to socket 1 core 6 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to socket 1 core 7 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to socket 1 core 7 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to socket 1 core 8 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to socket 1 core 8 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to socket 1 core 9 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to socket 1 core 9 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to socket 1 core 10 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to socket 1 core 10 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to socket 1 core 11 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to socket 1 core 11 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to socket 1 core 12 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to socket 1 core 12 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to socket 1 core 13 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to socket 1 core 13 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to socket 1 core 14 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to socket 1 core 14 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to socket 1 core 15 thread 0 
+[2m[36m(pid=49429)[0m OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to socket 1 core 15 thread 1 
+[2m[36m(pid=49429)[0m OMP: Info #251: KMP_AFFINITY: pid 49429 tid 50779 thread 0 bound to OS proc set 0
+[2m[36m(pid=49429)[0m OMP: Info #251: KMP_AFFINITY: pid 49429 tid 50779 thread 1 bound to OS proc set 1
+[2m[36m(pid=49429)[0m OMP: Info #251: KMP_AFFINITY: pid 49429 tid 50784 thread 2 bound to OS proc set 2
+[2m[36m(pid=49440)[0m OMP: Info #251: KMP_AFFINITY: pid 49440 tid 50799 thread 3 bound to OS proc set 3
+[2m[36m(pid=49429)[0m OMP: Info #251: KMP_AFFINITY: pid 49429 tid 50801 thread 3 bound to OS proc set 3
+[2m[36m(pid=49455)[0m OMP: Info #251: KMP_AFFINITY: pid 49455 tid 50802 thread 3 bound to OS proc set 3
+[2m[36m(pid=49456)[0m OMP: Info #251: KMP_AFFINITY: pid 49456 tid 50806 thread 3 bound to OS proc set 3
+[2m[36m(pid=49443)[0m OMP: Info #251: KMP_AFFINITY: pid 49443 tid 50807 thread 3 bound to OS proc set 3
+Please specify a valid dataset and a valid model.
+############################## femnist.cnn ##############################
+[2m[36m(pid=49455)[0m Parsing Inputs...
+[2m[36m(pid=49455)[0m 
+[2m[36m(pid=49455)[0m =========================Options=============================
+[2m[36m(pid=49455)[0m -max_depth                  10000
+[2m[36m(pid=49455)[0m -min_bytes                  0
+[2m[36m(pid=49455)[0m -min_peak_bytes             0
+[2m[36m(pid=49455)[0m -min_residual_bytes         0
+[2m[36m(pid=49455)[0m -min_output_bytes           0
+[2m[36m(pid=49455)[0m -min_micros                 0
+[2m[36m(pid=49455)[0m -min_accelerator_micros     0
+[2m[36m(pid=49455)[0m -min_cpu_micros             0
+[2m[36m(pid=49455)[0m -min_params                 0
+[2m[36m(pid=49455)[0m -min_float_ops              1
+[2m[36m(pid=49455)[0m -min_occurrence             0
+[2m[36m(pid=49455)[0m -step                       -1
+[2m[36m(pid=49455)[0m -order_by                   float_ops
+[2m[36m(pid=49455)[0m -account_type_regexes       .*
+[2m[36m(pid=49455)[0m -start_name_regexes         .*
+[2m[36m(pid=49455)[0m -trim_name_regexes          
+[2m[36m(pid=49455)[0m -show_name_regexes          .*
+[2m[36m(pid=49455)[0m -hide_name_regexes          
+[2m[36m(pid=49455)[0m -account_displayed_op_only  true
+[2m[36m(pid=49455)[0m -select                     float_ops
+[2m[36m(pid=49455)[0m -output                     stdout:
+[2m[36m(pid=49455)[0m 
+[2m[36m(pid=49455)[0m ==================Model Analysis Report======================
+[2m[36m(pid=49455)[0m 
+[2m[36m(pid=49455)[0m Doc:
+[2m[36m(pid=49455)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=49455)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=49455)[0m 
+[2m[36m(pid=49455)[0m Profile:
+[2m[36m(pid=49455)[0m node name | # float_ops
+[2m[36m(pid=49455)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=49455)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=49455)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=49455)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49455)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=49455)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=49455)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49455)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=49455)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=49455)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49455)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=49455)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=49455)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49455)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=49455)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=49455)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=49455)[0m 
+[2m[36m(pid=49455)[0m ======================End of Report==========================
+[2m[36m(pid=49440)[0m Parsing Inputs...
+[2m[36m(pid=49440)[0m 
+[2m[36m(pid=49440)[0m =========================Options=============================
+[2m[36m(pid=49440)[0m -max_depth                  10000
+[2m[36m(pid=49440)[0m -min_bytes                  0
+[2m[36m(pid=49440)[0m -min_peak_bytes             0
+[2m[36m(pid=49440)[0m -min_residual_bytes         0
+[2m[36m(pid=49440)[0m -min_output_bytes           0
+[2m[36m(pid=49440)[0m -min_micros                 0
+[2m[36m(pid=49440)[0m -min_accelerator_micros     0
+[2m[36m(pid=49440)[0m -min_cpu_micros             0
+[2m[36m(pid=49440)[0m -min_params                 0
+[2m[36m(pid=49440)[0m -min_float_ops              1
+[2m[36m(pid=49440)[0m -min_occurrence             0
+[2m[36m(pid=49440)[0m -step                       -1
+[2m[36m(pid=49440)[0m -order_by                   float_ops
+[2m[36m(pid=49440)[0m -account_type_regexes       .*
+[2m[36m(pid=49440)[0m -start_name_regexes         .*
+[2m[36m(pid=49440)[0m -trim_name_regexes          
+[2m[36m(pid=49440)[0m -show_name_regexes          .*
+[2m[36m(pid=49440)[0m -hide_name_regexes          
+[2m[36m(pid=49440)[0m -account_displayed_op_only  true
+[2m[36m(pid=49440)[0m -select                     float_ops
+[2m[36m(pid=49440)[0m -output                     stdout:
+[2m[36m(pid=49440)[0m 
+[2m[36m(pid=49440)[0m ==================Model Analysis Report======================
+[2m[36m(pid=49440)[0m 
+[2m[36m(pid=49440)[0m Doc:
+[2m[36m(pid=49440)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=49440)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=49440)[0m 
+[2m[36m(pid=49440)[0m Profile:
+[2m[36m(pid=49440)[0m node name | # float_ops
+[2m[36m(pid=49440)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=49440)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=49440)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=49440)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49440)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=49440)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=49440)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49440)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=49440)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=49440)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49440)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=49440)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=49440)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49440)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=49440)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=49440)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=49440)[0m 
+[2m[36m(pid=49440)[0m ======================End of Report==========================
+[2m[36m(pid=49456)[0m Parsing Inputs...
+[2m[36m(pid=49456)[0m 
+[2m[36m(pid=49456)[0m =========================Options=============================
+[2m[36m(pid=49456)[0m -max_depth                  10000
+[2m[36m(pid=49456)[0m -min_bytes                  0
+[2m[36m(pid=49456)[0m -min_peak_bytes             0
+[2m[36m(pid=49456)[0m -min_residual_bytes         0
+[2m[36m(pid=49456)[0m -min_output_bytes           0
+[2m[36m(pid=49456)[0m -min_micros                 0
+[2m[36m(pid=49456)[0m -min_accelerator_micros     0
+[2m[36m(pid=49456)[0m -min_cpu_micros             0
+[2m[36m(pid=49456)[0m -min_params                 0
+[2m[36m(pid=49456)[0m -min_float_ops              1
+[2m[36m(pid=49456)[0m -min_occurrence             0
+[2m[36m(pid=49456)[0m -step                       -1
+[2m[36m(pid=49456)[0m -order_by                   float_ops
+[2m[36m(pid=49456)[0m -account_type_regexes       .*
+[2m[36m(pid=49456)[0m -start_name_regexes         .*
+[2m[36m(pid=49456)[0m -trim_name_regexes          
+[2m[36m(pid=49456)[0m -show_name_regexes          .*
+[2m[36m(pid=49456)[0m -hide_name_regexes          
+[2m[36m(pid=49456)[0m -account_displayed_op_only  true
+[2m[36m(pid=49456)[0m -select                     float_ops
+[2m[36m(pid=49456)[0m -output                     stdout:
+[2m[36m(pid=49456)[0m 
+[2m[36m(pid=49456)[0m ==================Model Analysis Report======================
+[2m[36m(pid=49456)[0m 
+[2m[36m(pid=49456)[0m Doc:
+[2m[36m(pid=49456)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=49456)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=49456)[0m 
+[2m[36m(pid=49456)[0m Profile:
+[2m[36m(pid=49456)[0m node name | # float_ops
+[2m[36m(pid=49456)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=49456)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=49456)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=49456)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49456)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=49456)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=49456)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49456)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=49456)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=49456)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49456)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=49456)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=49456)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49456)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=49456)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=49456)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=49456)[0m 
+[2m[36m(pid=49456)[0m ======================End of Report==========================
+[2m[36m(pid=49443)[0m Parsing Inputs...
+[2m[36m(pid=49443)[0m 
+[2m[36m(pid=49443)[0m =========================Options=============================
+[2m[36m(pid=49443)[0m -max_depth                  10000
+[2m[36m(pid=49443)[0m -min_bytes                  0
+[2m[36m(pid=49443)[0m -min_peak_bytes             0
+[2m[36m(pid=49443)[0m -min_residual_bytes         0
+[2m[36m(pid=49443)[0m -min_output_bytes           0
+[2m[36m(pid=49443)[0m -min_micros                 0
+[2m[36m(pid=49443)[0m -min_accelerator_micros     0
+[2m[36m(pid=49443)[0m -min_cpu_micros             0
+[2m[36m(pid=49443)[0m -min_params                 0
+[2m[36m(pid=49443)[0m -min_float_ops              1
+[2m[36m(pid=49443)[0m -min_occurrence             0
+[2m[36m(pid=49443)[0m -step                       -1
+[2m[36m(pid=49443)[0m -order_by                   float_ops
+[2m[36m(pid=49443)[0m -account_type_regexes       .*
+[2m[36m(pid=49443)[0m -start_name_regexes         .*
+[2m[36m(pid=49443)[0m -trim_name_regexes          
+[2m[36m(pid=49443)[0m -show_name_regexes          .*
+[2m[36m(pid=49443)[0m -hide_name_regexes          
+[2m[36m(pid=49443)[0m -account_displayed_op_only  true
+[2m[36m(pid=49443)[0m -select                     float_ops
+[2m[36m(pid=49443)[0m -output                     stdout:
+[2m[36m(pid=49443)[0m 
+[2m[36m(pid=49443)[0m ==================Model Analysis Report======================
+[2m[36m(pid=49443)[0m 
+[2m[36m(pid=49443)[0m Doc:
+[2m[36m(pid=49443)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=49443)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=49443)[0m 
+[2m[36m(pid=49443)[0m Profile:
+[2m[36m(pid=49443)[0m node name | # float_ops
+[2m[36m(pid=49443)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=49443)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=49443)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=49443)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49443)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=49443)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=49443)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49443)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=49443)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=49443)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49443)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=49443)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=49443)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49443)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=49443)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=49443)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=49443)[0m 
+[2m[36m(pid=49443)[0m ======================End of Report==========================
+Clients in Total: 194
+--- Random Initialization ---
+[2m[36m(pid=49429)[0m Parsing Inputs...
+[2m[36m(pid=49429)[0m 
+[2m[36m(pid=49429)[0m =========================Options=============================
+[2m[36m(pid=49429)[0m -max_depth                  10000
+[2m[36m(pid=49429)[0m -min_bytes                  0
+[2m[36m(pid=49429)[0m -min_peak_bytes             0
+[2m[36m(pid=49429)[0m -min_residual_bytes         0
+[2m[36m(pid=49429)[0m -min_output_bytes           0
+[2m[36m(pid=49429)[0m -min_micros                 0
+[2m[36m(pid=49429)[0m -min_accelerator_micros     0
+[2m[36m(pid=49429)[0m -min_cpu_micros             0
+[2m[36m(pid=49429)[0m -min_params                 0
+[2m[36m(pid=49429)[0m -min_float_ops              1
+[2m[36m(pid=49429)[0m -min_occurrence             0
+[2m[36m(pid=49429)[0m -step                       -1
+[2m[36m(pid=49429)[0m -order_by                   float_ops
+[2m[36m(pid=49429)[0m -account_type_regexes       .*
+[2m[36m(pid=49429)[0m -start_name_regexes         .*
+[2m[36m(pid=49429)[0m -trim_name_regexes          
+[2m[36m(pid=49429)[0m -show_name_regexes          .*
+[2m[36m(pid=49429)[0m -hide_name_regexes          
+[2m[36m(pid=49429)[0m -account_displayed_op_only  true
+[2m[36m(pid=49429)[0m -select                     float_ops
+[2m[36m(pid=49429)[0m -output                     stdout:
+[2m[36m(pid=49429)[0m 
+[2m[36m(pid=49429)[0m ==================Model Analysis Report======================
+[2m[36m(pid=49429)[0m 
+[2m[36m(pid=49429)[0m Doc:
+[2m[36m(pid=49429)[0m scope: The nodes in the model graph are organized by their names, which is hierarchical like filesystem.
+[2m[36m(pid=49429)[0m flops: Number of float operations. Note: Please read the implementation for the math behind it.
+[2m[36m(pid=49429)[0m 
+[2m[36m(pid=49429)[0m Profile:
+[2m[36m(pid=49429)[0m node name | # float_ops
+[2m[36m(pid=49429)[0m _TFProfRoot (--/13.20m flops)
+[2m[36m(pid=49429)[0m   dense/kernel/Initializer/random_uniform (6.42m/12.85m flops)
+[2m[36m(pid=49429)[0m     dense/kernel/Initializer/random_uniform/mul (6.42m/6.42m flops)
+[2m[36m(pid=49429)[0m     dense/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49429)[0m   dense_1/kernel/Initializer/random_uniform (126.98k/253.95k flops)
+[2m[36m(pid=49429)[0m     dense_1/kernel/Initializer/random_uniform/mul (126.98k/126.98k flops)
+[2m[36m(pid=49429)[0m     dense_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49429)[0m   conv2d_1/kernel/Initializer/random_uniform (51.20k/102.40k flops)
+[2m[36m(pid=49429)[0m     conv2d_1/kernel/Initializer/random_uniform/mul (51.20k/51.20k flops)
+[2m[36m(pid=49429)[0m     conv2d_1/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49429)[0m   conv2d/kernel/Initializer/random_uniform (800/1.60k flops)
+[2m[36m(pid=49429)[0m     conv2d/kernel/Initializer/random_uniform/mul (800/800 flops)
+[2m[36m(pid=49429)[0m     conv2d/kernel/Initializer/random_uniform/sub (1/1 flops)
+[2m[36m(pid=49429)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg (1/1 flops)
+[2m[36m(pid=49429)[0m   gradients/sparse_softmax_cross_entropy_loss/value_grad/mul (1/1 flops)
+[2m[36m(pid=49429)[0m   sparse_softmax_cross_entropy_loss/num_present/Equal (1/1 flops)
+[2m[36m(pid=49429)[0m 
+[2m[36m(pid=49429)[0m ======================End of Report==========================
+train_accuracy: 0.00990074, 10th percentile: 0, 50th percentile: 0.00664459, 90th percentile 0.0201243
+train_loss: 4.15798, 10th percentile: 4.14537, 50th percentile: 4.1608, 90th percentile 4.1695
+test_accuracy: 0.011306, 10th percentile: 0, 50th percentile: 0, 90th percentile 0.0475564
+test_loss: 4.15627, 10th percentile: 4.12558, 50th percentile: 4.15846, 90th percentile 4.18879
+--- Round 1 of 80: Training 2 Clients ---
+train_accuracy: 0.079164, 10th percentile: 0.0377649, 50th percentile: 0.0855263, 90th percentile 0.149673
+train_loss: 3.82576, 10th percentile: 3.72437, 50th percentile: 3.78078, 90th percentile 3.90732
+test_accuracy: 0.0741887, 10th percentile: 0, 50th percentile: 0.0625, 90th percentile 0.176471
+test_loss: 3.83096, 10th percentile: 3.6623, 50th percentile: 3.82168, 90th percentile 3.97841
+--- Round 2 of 80: Training 2 Clients ---
+train_accuracy: 0.229901, 10th percentile: 0.102462, 50th percentile: 0.252907, 90th percentile 0.414805
+train_loss: 3.48345, 10th percentile: 3.09508, 50th percentile: 3.29465, 90th percentile 3.79732
+test_accuracy: 0.227397, 10th percentile: 0.0495495, 50th percentile: 0.222222, 90th percentile 0.470588
+test_loss: 3.50709, 10th percentile: 2.94923, 50th percentile: 3.45128, 90th percentile 3.97631
+--- Round 3 of 80: Training 2 Clients ---
+train_accuracy: 0.427908, 10th percentile: 0.269095, 50th percentile: 0.441628, 90th percentile 0.61712
+train_loss: 2.39139, 10th percentile: 1.87325, 50th percentile: 2.35512, 90th percentile 2.851
+test_accuracy: 0.428571, 10th percentile: 0.222222, 50th percentile: 0.443152, 90th percentile 0.705882
+test_loss: 2.41616, 10th percentile: 1.73292, 50th percentile: 2.42185, 90th percentile 3.037
+--- Round 4 of 80: Training 2 Clients ---
+train_accuracy: 0.541702, 10th percentile: 0.363898, 50th percentile: 0.547308, 90th percentile 0.715724
+train_loss: 1.76027, 10th percentile: 1.1925, 50th percentile: 1.68987, 90th percentile 2.5986
+test_accuracy: 0.535775, 10th percentile: 0.294118, 50th percentile: 0.541958, 90th percentile 0.760294
+test_loss: 1.80596, 10th percentile: 1.06934, 50th percentile: 1.7765, 90th percentile 2.73931
+--- Round 5 of 80: Training 2 Clients ---
+train_accuracy: 0.579338, 10th percentile: 0.398773, 50th percentile: 0.588989, 90th percentile 0.737109
+train_loss: 1.58395, 10th percentile: 0.990115, 50th percentile: 1.53134, 90th percentile 2.4382
+test_accuracy: 0.570352, 10th percentile: 0.333333, 50th percentile: 0.585784, 90th percentile 0.759211
+test_loss: 1.62254, 10th percentile: 0.956098, 50th percentile: 1.54918, 90th percentile 2.64375
+--- Round 6 of 80: Training 2 Clients ---
+train_accuracy: 0.617058, 10th percentile: 0.467596, 50th percentile: 0.62251, 90th percentile 0.768951
+train_loss: 1.41032, 10th percentile: 0.892676, 50th percentile: 1.34901, 90th percentile 2.10491
+test_accuracy: 0.603231, 10th percentile: 0.384615, 50th percentile: 0.597619, 90th percentile 0.820221
+test_loss: 1.46303, 10th percentile: 0.73132, 50th percentile: 1.47, 90th percentile 2.24636
+--- Round 7 of 80: Training 2 Clients ---
+train_accuracy: 0.640725, 10th percentile: 0.466948, 50th percentile: 0.631202, 90th percentile 0.786276
+train_loss: 1.32548, 10th percentile: 0.762266, 50th percentile: 1.29612, 90th percentile 2.11072
+test_accuracy: 0.620283, 10th percentile: 0.385897, 50th percentile: 0.625, 90th percentile 0.81875
+test_loss: 1.36935, 10th percentile: 0.679491, 50th percentile: 1.29776, 90th percentile 2.21124
+--- Round 8 of 80: Training 2 Clients ---
+train_accuracy: 0.650108, 10th percentile: 0.439991, 50th percentile: 0.642234, 90th percentile 0.803322
+train_loss: 1.31444, 10th percentile: 0.678063, 50th percentile: 1.26728, 90th percentile 2.24428
+test_accuracy: 0.642291, 10th percentile: 0.370395, 50th percentile: 0.642857, 90th percentile 0.825
+test_loss: 1.36383, 10th percentile: 0.635599, 50th percentile: 1.2907, 90th percentile 2.43065
+--- Round 9 of 80: Training 2 Clients ---
+train_accuracy: 0.661967, 10th percentile: 0.451242, 50th percentile: 0.661089, 90th percentile 0.812856
+train_loss: 1.25654, 10th percentile: 0.67393, 50th percentile: 1.16953, 90th percentile 2.26231
+test_accuracy: 0.652698, 10th percentile: 0.392222, 50th percentile: 0.656534, 90th percentile 0.824559
+test_loss: 1.30992, 10th percentile: 0.619688, 50th percentile: 1.22904, 90th percentile 2.38984
+--- Round 10 of 80: Training 2 Clients ---
+train_accuracy: 0.6628, 10th percentile: 0.46613, 50th percentile: 0.67027, 90th percentile 0.827933
+train_loss: 1.24534, 10th percentile: 0.606638, 50th percentile: 1.1599, 90th percentile 2.2231
+test_accuracy: 0.653645, 10th percentile: 0.410709, 50th percentile: 0.666667, 90th percentile 0.833333
+test_loss: 1.2861, 10th percentile: 0.518474, 50th percentile: 1.159, 90th percentile 2.27163
+--- Round 11 of 80: Training 2 Clients ---
+train_accuracy: 0.687001, 10th percentile: 0.502113, 50th percentile: 0.701613, 90th percentile 0.828263
+train_loss: 1.15884, 10th percentile: 0.581512, 50th percentile: 1.07404, 90th percentile 2.00193
+test_accuracy: 0.671536, 10th percentile: 0.446111, 50th percentile: 0.676073, 90th percentile 0.833333
+test_loss: 1.22382, 10th percentile: 0.486275, 50th percentile: 1.13095, 90th percentile 2.10471
+--- Round 12 of 80: Training 2 Clients ---
+train_accuracy: 0.6745, 10th percentile: 0.480156, 50th percentile: 0.660822, 90th percentile 0.835115
+train_loss: 1.2288, 10th percentile: 0.524022, 50th percentile: 1.1661, 90th percentile 2.24979
+test_accuracy: 0.662942, 10th percentile: 0.413495, 50th percentile: 0.666667, 90th percentile 0.871547
+test_loss: 1.28431, 10th percentile: 0.518749, 50th percentile: 1.17879, 90th percentile 2.42242
+--- Round 13 of 80: Training 2 Clients ---
+train_accuracy: 0.681883, 10th percentile: 0.486754, 50th percentile: 0.68224, 90th percentile 0.851265
+train_loss: 1.22218, 10th percentile: 0.523321, 50th percentile: 1.13866, 90th percentile 2.19985
+test_accuracy: 0.675884, 10th percentile: 0.412373, 50th percentile: 0.666667, 90th percentile 0.877652
+test_loss: 1.2853, 10th percentile: 0.395204, 50th percentile: 1.15788, 90th percentile 2.51365
+--- Round 14 of 80: Training 2 Clients ---
+train_accuracy: 0.706995, 10th percentile: 0.523799, 50th percentile: 0.716318, 90th percentile 0.861111
+train_loss: 1.06832, 10th percentile: 0.47725, 50th percentile: 0.981593, 90th percentile 1.81794
+test_accuracy: 0.698812, 10th percentile: 0.459358, 50th percentile: 0.705882, 90th percentile 0.869677
+test_loss: 1.11999, 10th percentile: 0.424046, 50th percentile: 1.03434, 90th percentile 1.97001
+--- Round 15 of 80: Training 2 Clients ---
+train_accuracy: 0.713649, 10th percentile: 0.536232, 50th percentile: 0.72327, 90th percentile 0.853561
+train_loss: 1.03065, 10th percentile: 0.490489, 50th percentile: 0.948656, 90th percentile 1.7758
+test_accuracy: 0.701659, 10th percentile: 0.471912, 50th percentile: 0.705882, 90th percentile 0.881283
+test_loss: 1.0931, 10th percentile: 0.434278, 50th percentile: 0.984856, 90th percentile 1.85119
+--- Round 16 of 80: Training 2 Clients ---
+train_accuracy: 0.722499, 10th percentile: 0.544124, 50th percentile: 0.73901, 90th percentile 0.859432
+train_loss: 1.00665, 10th percentile: 0.449832, 50th percentile: 0.888491, 90th percentile 1.83761
+test_accuracy: 0.706977, 10th percentile: 0.470588, 50th percentile: 0.705882, 90th percentile 0.880147
+test_loss: 1.07409, 10th percentile: 0.426844, 50th percentile: 0.962373, 90th percentile 1.86926
+--- Round 17 of 80: Training 2 Clients ---
+train_accuracy: 0.721912, 10th percentile: 0.517361, 50th percentile: 0.723585, 90th percentile 0.875494
+train_loss: 1.02603, 10th percentile: 0.407782, 50th percentile: 0.960526, 90th percentile 1.93045
+test_accuracy: 0.71137, 10th percentile: 0.464253, 50th percentile: 0.722222, 90th percentile 0.902258
+test_loss: 1.09625, 10th percentile: 0.336494, 50th percentile: 1.01266, 90th percentile 2.15812
+--- Round 18 of 80: Training 2 Clients ---
+train_accuracy: 0.71623, 10th percentile: 0.526079, 50th percentile: 0.73268, 90th percentile 0.855405
+train_loss: 1.03132, 10th percentile: 0.476661, 50th percentile: 0.929892, 90th percentile 1.79133
+test_accuracy: 0.69669, 10th percentile: 0.5, 50th percentile: 0.705882, 90th percentile 0.871547
+test_loss: 1.09912, 10th percentile: 0.42226, 50th percentile: 0.952078, 90th percentile 1.94256
+--- Round 19 of 80: Training 2 Clients ---
+train_accuracy: 0.728679, 10th percentile: 0.540187, 50th percentile: 0.737597, 90th percentile 0.873929
+train_loss: 0.97451, 10th percentile: 0.391483, 50th percentile: 0.917401, 90th percentile 1.86512
+test_accuracy: 0.712837, 10th percentile: 0.467843, 50th percentile: 0.705882, 90th percentile 0.894173
+test_loss: 1.04907, 10th percentile: 0.347539, 50th percentile: 0.991392, 90th percentile 2.04036
+--- Round 20 of 80: Training 2 Clients ---
+train_accuracy: 0.73929, 10th percentile: 0.551361, 50th percentile: 0.748447, 90th percentile 0.87428
+train_loss: 0.946966, 10th percentile: 0.418228, 50th percentile: 0.869936, 90th percentile 1.79094
+test_accuracy: 0.723792, 10th percentile: 0.527245, 50th percentile: 0.736842, 90th percentile 0.889706
+test_loss: 1.0162, 10th percentile: 0.365406, 50th percentile: 0.895435, 90th percentile 1.87285
+--- Round 21 of 80: Training 2 Clients ---
+train_accuracy: 0.735567, 10th percentile: 0.556974, 50th percentile: 0.731543, 90th percentile 0.877069
+train_loss: 0.909828, 10th percentile: 0.406068, 50th percentile: 0.873889, 90th percentile 1.58555
+test_accuracy: 0.71871, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.887937
+test_loss: 0.979457, 10th percentile: 0.354456, 50th percentile: 0.931414, 90th percentile 1.80207
+--- Round 22 of 80: Training 2 Clients ---
+train_accuracy: 0.741477, 10th percentile: 0.552245, 50th percentile: 0.749459, 90th percentile 0.879606
+train_loss: 0.923983, 10th percentile: 0.396279, 50th percentile: 0.862569, 90th percentile 1.74104
+test_accuracy: 0.725182, 10th percentile: 0.5, 50th percentile: 0.734314, 90th percentile 0.898374
+test_loss: 1.00316, 10th percentile: 0.341391, 50th percentile: 0.890809, 90th percentile 1.9719
+--- Round 23 of 80: Training 2 Clients ---
+train_accuracy: 0.738457, 10th percentile: 0.527252, 50th percentile: 0.732864, 90th percentile 0.886421
+train_loss: 0.909134, 10th percentile: 0.387657, 50th percentile: 0.838896, 90th percentile 1.7335
+test_accuracy: 0.720525, 10th percentile: 0.5, 50th percentile: 0.722222, 90th percentile 0.900938
+test_loss: 0.985702, 10th percentile: 0.329059, 50th percentile: 0.934732, 90th percentile 1.85797
+--- Round 24 of 80: Training 2 Clients ---
+train_accuracy: 0.746063, 10th percentile: 0.566231, 50th percentile: 0.748268, 90th percentile 0.884409
+train_loss: 0.894623, 10th percentile: 0.393204, 50th percentile: 0.795191, 90th percentile 1.62335
+test_accuracy: 0.73148, 10th percentile: 0.506, 50th percentile: 0.733333, 90th percentile 0.894737
+test_loss: 0.972156, 10th percentile: 0.324059, 50th percentile: 0.914182, 90th percentile 1.87578
+--- Round 25 of 80: Training 2 Clients ---
+train_accuracy: 0.758744, 10th percentile: 0.571429, 50th percentile: 0.763158, 90th percentile 0.889892
+train_loss: 0.85392, 10th percentile: 0.36408, 50th percentile: 0.79175, 90th percentile 1.61273
+test_accuracy: 0.744341, 10th percentile: 0.5, 50th percentile: 0.75, 90th percentile 0.914394
+test_loss: 0.937993, 10th percentile: 0.306528, 50th percentile: 0.842188, 90th percentile 1.92946
+--- Round 26 of 80: Training 2 Clients ---
+train_accuracy: 0.753642, 10th percentile: 0.578389, 50th percentile: 0.75729, 90th percentile 0.887569
+train_loss: 0.88822, 10th percentile: 0.369584, 50th percentile: 0.809545, 90th percentile 1.60142
+test_accuracy: 0.735547, 10th percentile: 0.508824, 50th percentile: 0.75, 90th percentile 0.896626
+test_loss: 0.973075, 10th percentile: 0.348457, 50th percentile: 0.827884, 90th percentile 1.87247
+--- Round 27 of 80: Training 2 Clients ---
+train_accuracy: 0.754196, 10th percentile: 0.57004, 50th percentile: 0.756333, 90th percentile 0.888889
+train_loss: 0.871642, 10th percentile: 0.333048, 50th percentile: 0.800001, 90th percentile 1.65338
+test_accuracy: 0.736797, 10th percentile: 0.508824, 50th percentile: 0.75, 90th percentile 0.921154
+test_loss: 0.961565, 10th percentile: 0.335933, 50th percentile: 0.842108, 90th percentile 1.95442
+--- Round 28 of 80: Training 2 Clients ---
+train_accuracy: 0.760722, 10th percentile: 0.572947, 50th percentile: 0.769801, 90th percentile 0.887593
+train_loss: 0.845791, 10th percentile: 0.344573, 50th percentile: 0.774654, 90th percentile 1.69574
+test_accuracy: 0.74366, 10th percentile: 0.529412, 50th percentile: 0.757353, 90th percentile 0.90299
+test_loss: 0.933117, 10th percentile: 0.328868, 50th percentile: 0.839258, 90th percentile 1.94479
+--- Round 29 of 80: Training 2 Clients ---
+train_accuracy: 0.75877, 10th percentile: 0.603415, 50th percentile: 0.771725, 90th percentile 0.886137
+train_loss: 0.860756, 10th percentile: 0.376808, 50th percentile: 0.729382, 90th percentile 1.47798
+test_accuracy: 0.741515, 10th percentile: 0.571429, 50th percentile: 0.764706, 90th percentile 0.888889
+test_loss: 0.948867, 10th percentile: 0.374847, 50th percentile: 0.824067, 90th percentile 1.75839
+--- Round 30 of 80: Training 2 Clients ---
+train_accuracy: 0.769988, 10th percentile: 0.574192, 50th percentile: 0.788647, 90th percentile 0.894842
+train_loss: 0.809686, 10th percentile: 0.324945, 50th percentile: 0.717994, 90th percentile 1.64332
+test_accuracy: 0.751891, 10th percentile: 0.508824, 50th percentile: 0.77033, 90th percentile 0.919737
+test_loss: 0.902334, 10th percentile: 0.299936, 50th percentile: 0.809638, 90th percentile 1.9291
+--- Round 31 of 80: Training 2 Clients ---
+train_accuracy: 0.765412, 10th percentile: 0.581884, 50th percentile: 0.779181, 90th percentile 0.884964
+train_loss: 0.812302, 10th percentile: 0.361758, 50th percentile: 0.71456, 90th percentile 1.53373
+test_accuracy: 0.747204, 10th percentile: 0.553509, 50th percentile: 0.764706, 90th percentile 0.902258
+test_loss: 0.89979, 10th percentile: 0.336447, 50th percentile: 0.814912, 90th percentile 1.74531
+--- Round 32 of 80: Training 2 Clients ---
+train_accuracy: 0.761798, 10th percentile: 0.555764, 50th percentile: 0.756996, 90th percentile 0.893664
+train_loss: 0.813846, 10th percentile: 0.317201, 50th percentile: 0.755657, 90th percentile 1.6166
+test_accuracy: 0.750016, 10th percentile: 0.529412, 50th percentile: 0.753788, 90th percentile 0.934821
+test_loss: 0.896135, 10th percentile: 0.313907, 50th percentile: 0.825245, 90th percentile 1.85653
+--- Round 33 of 80: Training 2 Clients ---
+train_accuracy: 0.771395, 10th percentile: 0.58914, 50th percentile: 0.779571, 90th percentile 0.887581
+train_loss: 0.780078, 10th percentile: 0.340726, 50th percentile: 0.687626, 90th percentile 1.46835
+test_accuracy: 0.753631, 10th percentile: 0.538462, 50th percentile: 0.764706, 90th percentile 0.914394
+test_loss: 0.867776, 10th percentile: 0.294891, 50th percentile: 0.748578, 90th percentile 1.74144
+--- Round 34 of 80: Training 2 Clients ---
+train_accuracy: 0.770694, 10th percentile: 0.57004, 50th percentile: 0.773042, 90th percentile 0.896955
+train_loss: 0.811634, 10th percentile: 0.321636, 50th percentile: 0.747624, 90th percentile 1.61649
+test_accuracy: 0.755302, 10th percentile: 0.540559, 50th percentile: 0.777778, 90th percentile 0.934821
+test_loss: 0.894116, 10th percentile: 0.287884, 50th percentile: 0.783571, 90th percentile 1.82035
+--- Round 35 of 80: Training 2 Clients ---
+train_accuracy: 0.776158, 10th percentile: 0.585178, 50th percentile: 0.769231, 90th percentile 0.905156
+train_loss: 0.801015, 10th percentile: 0.320428, 50th percentile: 0.735111, 90th percentile 1.61102
+test_accuracy: 0.75679, 10th percentile: 0.540559, 50th percentile: 0.764706, 90th percentile 0.934821
+test_loss: 0.888635, 10th percentile: 0.296234, 50th percentile: 0.772523, 90th percentile 1.88923
+--- Round 36 of 80: Training 2 Clients ---
+train_accuracy: 0.766869, 10th percentile: 0.586409, 50th percentile: 0.755544, 90th percentile 0.89627
+train_loss: 0.776419, 10th percentile: 0.332862, 50th percentile: 0.745335, 90th percentile 1.49788
+test_accuracy: 0.757451, 10th percentile: 0.534048, 50th percentile: 0.764706, 90th percentile 0.9375
+test_loss: 0.85716, 10th percentile: 0.290236, 50th percentile: 0.798261, 90th percentile 1.791
+--- Round 37 of 80: Training 2 Clients ---
+train_accuracy: 0.773038, 10th percentile: 0.58709, 50th percentile: 0.766682, 90th percentile 0.90016
+train_loss: 0.762722, 10th percentile: 0.321968, 50th percentile: 0.735729, 90th percentile 1.43281
+test_accuracy: 0.752518, 10th percentile: 0.529412, 50th percentile: 0.761663, 90th percentile 0.939469
+test_loss: 0.853846, 10th percentile: 0.292963, 50th percentile: 0.778509, 90th percentile 1.74676
+--- Round 38 of 80: Training 2 Clients ---
+train_accuracy: 0.764674, 10th percentile: 0.579807, 50th percentile: 0.752452, 90th percentile 0.89629
+train_loss: 0.783032, 10th percentile: 0.339105, 50th percentile: 0.773513, 90th percentile 1.50114
+test_accuracy: 0.752771, 10th percentile: 0.519964, 50th percentile: 0.75, 90th percentile 0.934821
+test_loss: 0.867294, 10th percentile: 0.271513, 50th percentile: 0.843913, 90th percentile 1.81266
+--- Round 39 of 80: Training 2 Clients ---
+train_accuracy: 0.781843, 10th percentile: 0.602886, 50th percentile: 0.77317, 90th percentile 0.906817
+train_loss: 0.732246, 10th percentile: 0.318796, 50th percentile: 0.703558, 90th percentile 1.41827
+test_accuracy: 0.762817, 10th percentile: 0.536538, 50th percentile: 0.764706, 90th percentile 0.934821
+test_loss: 0.822182, 10th percentile: 0.278801, 50th percentile: 0.757586, 90th percentile 1.63
+--- Round 40 of 80: Training 2 Clients ---
+train_accuracy: 0.782316, 10th percentile: 0.581135, 50th percentile: 0.77431, 90th percentile 0.899231
+train_loss: 0.742227, 10th percentile: 0.311077, 50th percentile: 0.715451, 90th percentile 1.45979
+test_accuracy: 0.761318, 10th percentile: 0.530588, 50th percentile: 0.769231, 90th percentile 0.915952
+test_loss: 0.842217, 10th percentile: 0.273415, 50th percentile: 0.789499, 90th percentile 1.68787
+--- Round 41 of 80: Training 2 Clients ---
+train_accuracy: 0.77857, 10th percentile: 0.568986, 50th percentile: 0.765557, 90th percentile 0.91408
+train_loss: 0.738833, 10th percentile: 0.297225, 50th percentile: 0.712703, 90th percentile 1.56954
+test_accuracy: 0.758886, 10th percentile: 0.530588, 50th percentile: 0.763305, 90th percentile 0.939469
+test_loss: 0.835744, 10th percentile: 0.254609, 50th percentile: 0.782638, 90th percentile 1.7153
+--- Round 42 of 80: Training 2 Clients ---
+train_accuracy: 0.779102, 10th percentile: 0.559548, 50th percentile: 0.766253, 90th percentile 0.912757
+train_loss: 0.75905, 10th percentile: 0.272614, 50th percentile: 0.719243, 90th percentile 1.66713
+test_accuracy: 0.761713, 10th percentile: 0.540559, 50th percentile: 0.764706, 90th percentile 0.941176
+test_loss: 0.862034, 10th percentile: 0.258105, 50th percentile: 0.780387, 90th percentile 1.8499
+--- Round 43 of 80: Training 2 Clients ---
+train_accuracy: 0.785282, 10th percentile: 0.586376, 50th percentile: 0.78329, 90th percentile 0.906049
+train_loss: 0.722221, 10th percentile: 0.290821, 50th percentile: 0.687058, 90th percentile 1.40811
+test_accuracy: 0.761201, 10th percentile: 0.548485, 50th percentile: 0.771712, 90th percentile 0.908239
+test_loss: 0.832081, 10th percentile: 0.298592, 50th percentile: 0.737657, 90th percentile 1.66339
+--- Round 44 of 80: Training 2 Clients ---
+train_accuracy: 0.790123, 10th percentile: 0.591761, 50th percentile: 0.787302, 90th percentile 0.909351
+train_loss: 0.723062, 10th percentile: 0.276398, 50th percentile: 0.676318, 90th percentile 1.46088
+test_accuracy: 0.769869, 10th percentile: 0.536105, 50th percentile: 0.777778, 90th percentile 0.928049
+test_loss: 0.835794, 10th percentile: 0.264098, 50th percentile: 0.731726, 90th percentile 1.75695
+--- Round 45 of 80: Training 2 Clients ---
+train_accuracy: 0.791923, 10th percentile: 0.632361, 50th percentile: 0.798506, 90th percentile 0.902833
+train_loss: 0.723886, 10th percentile: 0.301902, 50th percentile: 0.644868, 90th percentile 1.39011
+test_accuracy: 0.770243, 10th percentile: 0.568726, 50th percentile: 0.785362, 90th percentile 0.93341
+test_loss: 0.845642, 10th percentile: 0.26524, 50th percentile: 0.763872, 90th percentile 1.70145
+--- Round 46 of 80: Training 2 Clients ---
+train_accuracy: 0.794442, 10th percentile: 0.620139, 50th percentile: 0.8, 90th percentile 0.907775
+train_loss: 0.73325, 10th percentile: 0.295051, 50th percentile: 0.650237, 90th percentile 1.41521
+test_accuracy: 0.772411, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.93341
+test_loss: 0.856162, 10th percentile: 0.265742, 50th percentile: 0.761218, 90th percentile 1.71117
+--- Round 47 of 80: Training 2 Clients ---
+train_accuracy: 0.79356, 10th percentile: 0.606676, 50th percentile: 0.793204, 90th percentile 0.914583
+train_loss: 0.718118, 10th percentile: 0.300451, 50th percentile: 0.675749, 90th percentile 1.39852
+test_accuracy: 0.772162, 10th percentile: 0.586712, 50th percentile: 0.777778, 90th percentile 0.9375
+test_loss: 0.837751, 10th percentile: 0.25095, 50th percentile: 0.775306, 90th percentile 1.7189
+--- Round 48 of 80: Training 2 Clients ---
+train_accuracy: 0.794422, 10th percentile: 0.598587, 50th percentile: 0.79363, 90th percentile 0.914042
+train_loss: 0.697049, 10th percentile: 0.262998, 50th percentile: 0.663228, 90th percentile 1.49077
+test_accuracy: 0.771268, 10th percentile: 0.557639, 50th percentile: 0.777778, 90th percentile 0.9375
+test_loss: 0.806631, 10th percentile: 0.223455, 50th percentile: 0.757844, 90th percentile 1.60402
+--- Round 49 of 80: Training 2 Clients ---
+train_accuracy: 0.792443, 10th percentile: 0.574375, 50th percentile: 0.779814, 90th percentile 0.916026
+train_loss: 0.695479, 10th percentile: 0.274476, 50th percentile: 0.682674, 90th percentile 1.4781
+test_accuracy: 0.770241, 10th percentile: 0.555556, 50th percentile: 0.776389, 90th percentile 0.921154
+test_loss: 0.808456, 10th percentile: 0.233222, 50th percentile: 0.751796, 90th percentile 1.66245
+--- Round 50 of 80: Training 2 Clients ---
+train_accuracy: 0.794842, 10th percentile: 0.597774, 50th percentile: 0.782752, 90th percentile 0.918839
+train_loss: 0.677584, 10th percentile: 0.259669, 50th percentile: 0.670477, 90th percentile 1.43649
+test_accuracy: 0.773468, 10th percentile: 0.54244, 50th percentile: 0.779133, 90th percentile 0.936895
+test_loss: 0.789213, 10th percentile: 0.230793, 50th percentile: 0.735938, 90th percentile 1.62814
+--- Round 51 of 80: Training 2 Clients ---
+train_accuracy: 0.80149, 10th percentile: 0.606518, 50th percentile: 0.799371, 90th percentile 0.912546
+train_loss: 0.674345, 10th percentile: 0.274413, 50th percentile: 0.623474, 90th percentile 1.45033
+test_accuracy: 0.779728, 10th percentile: 0.595098, 50th percentile: 0.789474, 90th percentile 0.940074
+test_loss: 0.792369, 10th percentile: 0.24233, 50th percentile: 0.715783, 90th percentile 1.63491
+--- Round 52 of 80: Training 2 Clients ---
+train_accuracy: 0.801915, 10th percentile: 0.620201, 50th percentile: 0.802082, 90th percentile 0.908839
+train_loss: 0.677889, 10th percentile: 0.270991, 50th percentile: 0.618838, 90th percentile 1.34656
+test_accuracy: 0.779947, 10th percentile: 0.588235, 50th percentile: 0.79057, 90th percentile 0.941176
+test_loss: 0.804332, 10th percentile: 0.216426, 50th percentile: 0.736124, 90th percentile 1.5606
+--- Round 53 of 80: Training 2 Clients ---
+train_accuracy: 0.796786, 10th percentile: 0.625173, 50th percentile: 0.807545, 90th percentile 0.902131
+train_loss: 0.693975, 10th percentile: 0.289945, 50th percentile: 0.614548, 90th percentile 1.35416
+test_accuracy: 0.768974, 10th percentile: 0.584804, 50th percentile: 0.777778, 90th percentile 0.936895
+test_loss: 0.826724, 10th percentile: 0.243175, 50th percentile: 0.761321, 90th percentile 1.62149
+--- Round 54 of 80: Training 2 Clients ---
+train_accuracy: 0.796787, 10th percentile: 0.615386, 50th percentile: 0.791806, 90th percentile 0.912635
+train_loss: 0.681061, 10th percentile: 0.289139, 50th percentile: 0.656162, 90th percentile 1.29797
+test_accuracy: 0.776981, 10th percentile: 0.581125, 50th percentile: 0.777778, 90th percentile 0.940642
+test_loss: 0.809553, 10th percentile: 0.243769, 50th percentile: 0.736711, 90th percentile 1.69945
+--- Round 55 of 80: Training 2 Clients ---
+train_accuracy: 0.797796, 10th percentile: 0.618263, 50th percentile: 0.790391, 90th percentile 0.919485
+train_loss: 0.666591, 10th percentile: 0.261615, 50th percentile: 0.649196, 90th percentile 1.39043
+test_accuracy: 0.770874, 10th percentile: 0.571429, 50th percentile: 0.768336, 90th percentile 0.941176
+test_loss: 0.792425, 10th percentile: 0.248238, 50th percentile: 0.7626, 90th percentile 1.58187
+--- Round 56 of 80: Training 2 Clients ---
+train_accuracy: 0.802314, 10th percentile: 0.624723, 50th percentile: 0.801467, 90th percentile 0.909351
+train_loss: 0.664635, 10th percentile: 0.281017, 50th percentile: 0.617493, 90th percentile 1.32448
+test_accuracy: 0.776257, 10th percentile: 0.584804, 50th percentile: 0.78125, 90th percentile 0.926923
+test_loss: 0.801832, 10th percentile: 0.251977, 50th percentile: 0.736365, 90th percentile 1.53599
+--- Round 57 of 80: Training 2 Clients ---
+train_accuracy: 0.803477, 10th percentile: 0.653832, 50th percentile: 0.804858, 90th percentile 0.90625
+train_loss: 0.679717, 10th percentile: 0.297775, 50th percentile: 0.634694, 90th percentile 1.26068
+test_accuracy: 0.777984, 10th percentile: 0.608333, 50th percentile: 0.8, 90th percentile 0.941176
+test_loss: 0.822861, 10th percentile: 0.265463, 50th percentile: 0.728662, 90th percentile 1.5897
+--- Round 58 of 80: Training 2 Clients ---
+train_accuracy: 0.796836, 10th percentile: 0.587785, 50th percentile: 0.797811, 90th percentile 0.914935
+train_loss: 0.681364, 10th percentile: 0.278628, 50th percentile: 0.643238, 90th percentile 1.46825
+test_accuracy: 0.770932, 10th percentile: 0.565179, 50th percentile: 0.777778, 90th percentile 0.951667
+test_loss: 0.808942, 10th percentile: 0.229573, 50th percentile: 0.746132, 90th percentile 1.63154
+--- Round 59 of 80: Training 2 Clients ---
+train_accuracy: 0.80199, 10th percentile: 0.612885, 50th percentile: 0.788553, 90th percentile 0.926757
+train_loss: 0.677987, 10th percentile: 0.261299, 50th percentile: 0.640845, 90th percentile 1.47881
+test_accuracy: 0.779056, 10th percentile: 0.555556, 50th percentile: 0.789474, 90th percentile 0.940074
+test_loss: 0.800907, 10th percentile: 0.227055, 50th percentile: 0.726543, 90th percentile 1.63507
+--- Round 60 of 80: Training 2 Clients ---
+train_accuracy: 0.802906, 10th percentile: 0.622141, 50th percentile: 0.808391, 90th percentile 0.913595
+train_loss: 0.672614, 10th percentile: 0.246478, 50th percentile: 0.623337, 90th percentile 1.36566
+test_accuracy: 0.781406, 10th percentile: 0.584195, 50th percentile: 0.789474, 90th percentile 0.9375
+test_loss: 0.820108, 10th percentile: 0.212426, 50th percentile: 0.742208, 90th percentile 1.59725
+--- Round 61 of 80: Training 2 Clients ---
+train_accuracy: 0.800162, 10th percentile: 0.606728, 50th percentile: 0.794008, 90th percentile 0.917387
+train_loss: 0.703499, 10th percentile: 0.240351, 50th percentile: 0.673011, 90th percentile 1.54162
+test_accuracy: 0.773412, 10th percentile: 0.556889, 50th percentile: 0.777778, 90th percentile 0.936895
+test_loss: 0.848029, 10th percentile: 0.221959, 50th percentile: 0.768167, 90th percentile 1.78871
+--- Round 62 of 80: Training 2 Clients ---
+train_accuracy: 0.799963, 10th percentile: 0.599416, 50th percentile: 0.792929, 90th percentile 0.92096
+train_loss: 0.707392, 10th percentile: 0.241424, 50th percentile: 0.661938, 90th percentile 1.51837
+test_accuracy: 0.777712, 10th percentile: 0.588235, 50th percentile: 0.777778, 90th percentile 0.943968
+test_loss: 0.84525, 10th percentile: 0.23414, 50th percentile: 0.750758, 90th percentile 1.83009
+--- Round 63 of 80: Training 2 Clients ---
+train_accuracy: 0.804268, 10th percentile: 0.611388, 50th percentile: 0.802503, 90th percentile 0.922425
+train_loss: 0.666514, 10th percentile: 0.251805, 50th percentile: 0.625904, 90th percentile 1.38117
+test_accuracy: 0.777775, 10th percentile: 0.569612, 50th percentile: 0.779514, 90th percentile 0.934821
+test_loss: 0.807655, 10th percentile: 0.220503, 50th percentile: 0.742603, 90th percentile 1.72339
+--- Round 64 of 80: Training 2 Clients ---
+train_accuracy: 0.804673, 10th percentile: 0.633053, 50th percentile: 0.800066, 90th percentile 0.905674
+train_loss: 0.6639, 10th percentile: 0.281523, 50th percentile: 0.63038, 90th percentile 1.33153
+test_accuracy: 0.782159, 10th percentile: 0.608333, 50th percentile: 0.79057, 90th percentile 0.9375
+test_loss: 0.810738, 10th percentile: 0.224763, 50th percentile: 0.735232, 90th percentile 1.61462
+--- Round 65 of 80: Training 2 Clients ---
+train_accuracy: 0.804259, 10th percentile: 0.607156, 50th percentile: 0.79899, 90th percentile 0.920493
+train_loss: 0.700858, 10th percentile: 0.249227, 50th percentile: 0.659816, 90th percentile 1.49567
+test_accuracy: 0.778818, 10th percentile: 0.575862, 50th percentile: 0.785831, 90th percentile 0.936895
+test_loss: 0.840165, 10th percentile: 0.227518, 50th percentile: 0.733497, 90th percentile 1.91607
+--- Round 66 of 80: Training 2 Clients ---
+train_accuracy: 0.804165, 10th percentile: 0.599136, 50th percentile: 0.812202, 90th percentile 0.919862
+train_loss: 0.654757, 10th percentile: 0.251217, 50th percentile: 0.600003, 90th percentile 1.44239
+test_accuracy: 0.77433, 10th percentile: 0.586815, 50th percentile: 0.789474, 90th percentile 0.93341
+test_loss: 0.786954, 10th percentile: 0.201666, 50th percentile: 0.737883, 90th percentile 1.58522
+--- Round 67 of 80: Training 2 Clients ---
+train_accuracy: 0.810966, 10th percentile: 0.625864, 50th percentile: 0.807863, 90th percentile 0.920345
+train_loss: 0.631507, 10th percentile: 0.240179, 50th percentile: 0.624807, 90th percentile 1.29537
+test_accuracy: 0.78372, 10th percentile: 0.596216, 50th percentile: 0.779133, 90th percentile 0.940074
+test_loss: 0.770691, 10th percentile: 0.220029, 50th percentile: 0.683604, 90th percentile 1.60491
+--- Round 68 of 80: Training 2 Clients ---
+train_accuracy: 0.810343, 10th percentile: 0.629358, 50th percentile: 0.791539, 90th percentile 0.924909
+train_loss: 0.639937, 10th percentile: 0.223894, 50th percentile: 0.616042, 90th percentile 1.35167
+test_accuracy: 0.787949, 10th percentile: 0.571429, 50th percentile: 0.796552, 90th percentile 0.941176
+test_loss: 0.777592, 10th percentile: 0.21547, 50th percentile: 0.700706, 90th percentile 1.62794
+--- Round 69 of 80: Training 2 Clients ---
+train_accuracy: 0.813786, 10th percentile: 0.645327, 50th percentile: 0.815078, 90th percentile 0.93095
+train_loss: 0.631324, 10th percentile: 0.218794, 50th percentile: 0.581567, 90th percentile 1.35363
+test_accuracy: 0.788728, 10th percentile: 0.591765, 50th percentile: 0.789474, 90th percentile 0.934821
+test_loss: 0.779517, 10th percentile: 0.217249, 50th percentile: 0.701309, 90th percentile 1.54487
+--- Round 70 of 80: Training 2 Clients ---
+train_accuracy: 0.812431, 10th percentile: 0.637369, 50th percentile: 0.804526, 90th percentile 0.926444
+train_loss: 0.622884, 10th percentile: 0.218348, 50th percentile: 0.591656, 90th percentile 1.33067
+test_accuracy: 0.784274, 10th percentile: 0.571429, 50th percentile: 0.8, 90th percentile 0.934821
+test_loss: 0.76796, 10th percentile: 0.199202, 50th percentile: 0.680073, 90th percentile 1.55777
+--- Round 71 of 80: Training 2 Clients ---
+train_accuracy: 0.815752, 10th percentile: 0.62875, 50th percentile: 0.81319, 90th percentile 0.919533
+train_loss: 0.614777, 10th percentile: 0.224599, 50th percentile: 0.554695, 90th percentile 1.40842
+test_accuracy: 0.79223, 10th percentile: 0.588235, 50th percentile: 0.8, 90th percentile 0.941176
+test_loss: 0.764923, 10th percentile: 0.195513, 50th percentile: 0.694875, 90th percentile 1.65355
+--- Round 72 of 80: Training 2 Clients ---
+train_accuracy: 0.81776, 10th percentile: 0.670538, 50th percentile: 0.816386, 90th percentile 0.920943
+train_loss: 0.590841, 10th percentile: 0.253274, 50th percentile: 0.544356, 90th percentile 1.18788
+test_accuracy: 0.789417, 10th percentile: 0.584804, 50th percentile: 0.797059, 90th percentile 0.941176
+test_loss: 0.745259, 10th percentile: 0.241172, 50th percentile: 0.674204, 90th percentile 1.4481
+--- Round 73 of 80: Training 2 Clients ---
+train_accuracy: 0.814539, 10th percentile: 0.649252, 50th percentile: 0.812953, 90th percentile 0.925704
+train_loss: 0.604841, 10th percentile: 0.234247, 50th percentile: 0.557339, 90th percentile 1.24373
+test_accuracy: 0.784397, 10th percentile: 0.584804, 50th percentile: 0.790086, 90th percentile 0.941176
+test_loss: 0.751207, 10th percentile: 0.23092, 50th percentile: 0.662983, 90th percentile 1.54701
+--- Round 74 of 80: Training 2 Clients ---
+train_accuracy: 0.807441, 10th percentile: 0.621318, 50th percentile: 0.782777, 90th percentile 0.93203
+train_loss: 0.629938, 10th percentile: 0.210603, 50th percentile: 0.603285, 90th percentile 1.33294
+test_accuracy: 0.782354, 10th percentile: 0.555556, 50th percentile: 0.79057, 90th percentile 0.9375
+test_loss: 0.772701, 10th percentile: 0.223031, 50th percentile: 0.696631, 90th percentile 1.55047
+--- Round 75 of 80: Training 2 Clients ---
+train_accuracy: 0.808644, 10th percentile: 0.601656, 50th percentile: 0.790411, 90th percentile 0.923694
+train_loss: 0.642198, 10th percentile: 0.216919, 50th percentile: 0.606375, 90th percentile 1.42352
+test_accuracy: 0.77995, 10th percentile: 0.555556, 50th percentile: 0.788676, 90th percentile 0.936895
+test_loss: 0.792105, 10th percentile: 0.214539, 50th percentile: 0.719714, 90th percentile 1.62772
+--- Round 76 of 80: Training 2 Clients ---
+train_accuracy: 0.814495, 10th percentile: 0.617161, 50th percentile: 0.807692, 90th percentile 0.928714
+train_loss: 0.620918, 10th percentile: 0.215828, 50th percentile: 0.610126, 90th percentile 1.33769
+test_accuracy: 0.791617, 10th percentile: 0.588235, 50th percentile: 0.79057, 90th percentile 0.941176
+test_loss: 0.77189, 10th percentile: 0.213987, 50th percentile: 0.695181, 90th percentile 1.61824
+--- Round 77 of 80: Training 2 Clients ---
+train_accuracy: 0.813786, 10th percentile: 0.611111, 50th percentile: 0.802508, 90th percentile 0.935
+train_loss: 0.625269, 10th percentile: 0.212587, 50th percentile: 0.585325, 90th percentile 1.4573
+test_accuracy: 0.786321, 10th percentile: 0.565179, 50th percentile: 0.789474, 90th percentile 0.942353
+test_loss: 0.777678, 10th percentile: 0.191019, 50th percentile: 0.701335, 90th percentile 1.67419
+--- Round 78 of 80: Training 2 Clients ---
+train_accuracy: 0.815677, 10th percentile: 0.653617, 50th percentile: 0.810791, 90th percentile 0.916067
+train_loss: 0.598316, 10th percentile: 0.258384, 50th percentile: 0.570668, 90th percentile 1.16738
+test_accuracy: 0.786672, 10th percentile: 0.584195, 50th percentile: 0.790086, 90th percentile 0.941176
+test_loss: 0.759586, 10th percentile: 0.208106, 50th percentile: 0.701807, 90th percentile 1.42273
+--- Round 79 of 80: Training 2 Clients ---
+train_accuracy: 0.811594, 10th percentile: 0.658214, 50th percentile: 0.808874, 90th percentile 0.92044
+train_loss: 0.609029, 10th percentile: 0.261204, 50th percentile: 0.565991, 90th percentile 1.16787
+test_accuracy: 0.783671, 10th percentile: 0.586815, 50th percentile: 0.790086, 90th percentile 0.940074
+test_loss: 0.767663, 10th percentile: 0.215565, 50th percentile: 0.665196, 90th percentile 1.4656
+--- Round 80 of 80: Training 2 Clients ---
+train_accuracy: 0.815146, 10th percentile: 0.6315, 50th percentile: 0.813276, 90th percentile 0.931303
+train_loss: 0.635781, 10th percentile: 0.225099, 50th percentile: 0.597291, 90th percentile 1.32375
+test_accuracy: 0.787728, 10th percentile: 0.5625, 50th percentile: 0.789474, 90th percentile 0.941176
+test_loss: 0.797947, 10th percentile: 0.218059, 50th percentile: 0.674763, 90th percentile 1.70112

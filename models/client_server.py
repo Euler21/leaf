@@ -69,7 +69,7 @@ class ClientServer:
             self.compress_flops += flops
 
             self.updates.append((num_samples, update))
-            print("Client id: " + str(c.id) + " flops: " + str(comp))
+#             print("Client id: " + str(c.id) + " flops: " + str(comp))
 
         return sys_metrics, self.updates, flops
 

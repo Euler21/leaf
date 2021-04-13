@@ -1,0 +1,2214 @@
+model path: reddit/stacked_lstm.py
+Please specify a valid dataset and a valid model.
+############################## reddit.stacked_lstm ##############################
+813 train clients: ['10069', '10085', '10255', '10262', '104', '10443', '10449', '10570', '10622', '10902', '11161', '11169', '1118', '11287', '11537', '11541', '11745', '11760', '11796', '11832', '12020', '12028', '1204', '12067', '12277', '1228', '12434', '12506', '12604', '12617', '12883', '12899', '13057', '13181', '13384', '13390', '13441', '13476', '13931', '13974', '14120', '1426', '14290', '1434', '14384', '1441', '14590', '14670', '1497', '15038', '15128', '15130', '15183', '15261', '15279', '15337', '15435', '15436', '15470', '15592', '15726', '15816', '15921', '15965', '16091', '16105', '16122', '16214', '16376', '16409', '16483', '16498', '16531', '16535', '16607', '16613', '1667', '16777', '16814', '16850', '16921', '16986', '16994', '17154', '17164', '17369', '17406', '17467', '17612', '17740', '1776', '17901', '17917', '18178', '18320', '18349', '18530', '18724', '18930', '19001', '19136', '19470', '19526', '19569', '19799', '1985', '19873', '19878', '19969', '1999', '20107', '20140', '20191', '2020', '20209', '20217', '20221', '20250', '2031', '20371', '2043', '20430', '20457', '20790', '20805', '20826', '20864', '2089', '20891', '21029', '21100', '2137', '21474', '21514', '2158', '21723', '21768', '21941', '21958', '2238', '2254', '22553', '2256', '22622', '22660', '22802', '22833', '22891', '22976', '23111', '23151', '23170', '23359', '23512', '23560', '23608', '23681', '23730', '23794', '24018', '24030', '2414', '24142', '24161', '24279', '2435', '24402', '24438', '24469', '24532', '24762', '24784', '24793', '24812', '2488', '24959', '24980', '25000', '25041', '25300', '25341', '25449', '25631', '25632', '25745', '25785', '26028', '26566', '2657', '26672', '26739', '2674', '26749', '26821', '26859', '27021', '27086', '27095', '27178', '27236', '27269', '27325', '27422', '27544', '27726', '27819', '27865', '28000', '28063', '28080', '28343', '2836', '28371', '28373', '28574', '28687', '28717', '2872', '28800', '29099', '29214', '29223', '29255', '29410', '29438', '2957', '29708', '29882', '30002', '30032', '30214', '30329', '30396', '30398', '3044', '30446', '30581', '30607', '30699', '3073', '30817', '3107', '31120', '31154', '31376', '31396', '31561', '31594', '31628', '31783', '31805', '31834', '31892', '31955', '32103', '32135', '32171', '32325', '32376', '32392', '32417', '32599', '3271', '32715', '32731', '3275', '32873', '32963', '32970', '32978', '33076', '33357', '33371', '33399', '33538', '33555', '33701', '33705', '33710', '33876', '33905', '34265', '34377', '34474', '34475', '34503', '34557', '34866', '34886', '35273', '3528', '35297', '35569', '35703', '35726', '35858', '3588', '35890', '35892', '3599', '36037', '36068', '36091', '36324', '36341', '36375', '36385', '3654', '3658', '36704', '37081', '37188', '37383', '37401', '37447', '37495', '37668', '3771', '38046', '38111', '3832', '3834', '38512', '38540', '38628', '38639', '38706', '38709', '38999', '39007', '39136', '39152', '39188', '39295', '39486', '39517', '39550', '39561', '3971', '3980', '39813', '39827', '39863', '40012', '4007', '40076', '40089', '40098', '40184', '40262', '40371', '40584', '40611', '40677', '40865', '40886', '4097', '41042', '41138', '41164', '41314', '41480', '41562', '41573', '41574', '41629', '41692', '41720', '4175', '41844', '41978', '41993', '42040', '42080', '4225', '42457', '42799', '42811', '42854', '43009', '43231', '43294', '43345', '43460', '43493', '43541', '43554', '43571', '43611', '43656', '43658', '43725', '43767', '43829', '43859', '43949', '44025', '44250', '44348', '44476', '44705', '44747', '44812', '4482', '44829', '44876', '44941', '45063', '45081', '45149', '45186', '45199', '45215', '45271', '4530', '45417', '45506', '45605', '45644', '45738', '45770', '45857', '45876', '46035', '46056', '46266', '46303', '46453', '46501', '4677', '46871', '46950', '47007', '47141', '47144', '4722', '47233', '47452', '47569', '47590', '47607', '47622', '47632', '47633', '4777', '47808', '47918', '47936', '48072', '48240', '48254', '48432', '48435', '4850', '48903', '4895', '492', '49209', '49292', '4945', '49668', '49810', '49882', '49949', '49998', '50', '50000', '50376', '50385', '50425', '50461', '50464', '50485', '50519', '5052', '50799', '51238', '51279', '51287', '5132', '51347', '51353', '51419', '51525', '51568', '51585', '51950', '52029', '52084', '52093', '5217', '52215', '52336', '52752', '52907', '53008', '53089', '53112', '53169', '53184', '5325', '53427', '53503', '53611', '53927', '53987', '54215', '5435', '54368', '54374', '54568', '54570', '54591', '55098', '55099', '55230', '55267', '5533', '55345', '55541', '55659', '55702', '55816', '55885', '55974', '55976', '56013', '56101', '56109', '56170', '56372', '56390', '56603', '56837', '57000', '5702', '57451', '57511', '57532', '57549', '57673', '57776', '57779', '57812', '57926', '5796', '58045', '58211', '58213', '58356', '58533', '58544', '58682', '58698', '58737', '58759', '58836', '59009', '59059', '59083', '59425', '59445', '59497', '59522', '59594', '59769', '59831', '60020', '60283', '60287', '60345', '60366', '60421', '60426', '60749', '60848', '6092', '60953', '61220', '61424', '61580', '61637', '61676', '61695', '61749', '61767', '6177', '61843', '61872', '6192', '61953', '6197', '62031', '62167', '62188', '62308', '62433', '6260', '6271', '62733', '62874', '63024', '63054', '63483', '63595', '63609', '63920', '63981', '64373', '64495', '64551', '64654', '64858', '64864', '64887', '65027', '65291', '65304', '65395', '65466', '65469', '65532', '65607', '65612', '6564', '65741', '65943', '66041', '66092', '66153', '66267', '66416', '66538', '66606', '66667', '66673', '66749', '66757', '66779', '66881', '67160', '67165', '67300', '67357', '67432', '67546', '67598', '67615', '67727', '67889', '67917', '67920', '68038', '68133', '68492', '68585', '68691', '68994', '6906', '69062', '69073', '69127', '69289', '69365', '69372', '69394', '69428', '69539', '69555', '69563', '70158', '70254', '7036', '70497', '70611', '70765', '70897', '71031', '711', '71139', '71238', '71439', '71672', '71814', '71830', '7186', '72108', '72173', '7221', '72245', '72483', '72566', '72679', '7275', '72759', '72772', '728', '7289', '72914', '72934', '73009', '73054', '73153', '73213', '7326', '73311', '73351', '73648', '73655', '74022', '74188', '74189', '74348', '74444', '74594', '74619', '74633', '74685', '74973', '75102', '75163', '75177', '75227', '75288', '75584', '75594', '75625', '75640', '75686', '75800', '75804', '75964', '76192', '76223', '76589', '76624', '76775', '76972', '77208', '77259', '77268', '77393', '77396', '77443', '77507', '77690', '77797', '77814', '77897', '77911', '78060', '78122', '78134', '78174', '78219', '78400', '78760', '78833', '78946', '78985', '79056', '79108', '7923', '79307', '79399', '79407', '7946', '79534', '79656', '79740', '79793', '79811', '79945', '80210', '80225', '80276', '80329', '80453', '80516', '80706', '8090', '8092', '8100', '8102', '81362', '81372', '81469', '81598', '81685', '81703', '8219', '8255', '831', '8320', '8326', '8396', '8506', '8551', '8617', '8676', '8692', '8788', '8892', '9155', '9349', '9352', '9370', '9412', '9495', '9634', '9645', '9913', '9963']
+Clients in Total: 813
+--- Random Initialization ---
+train_accuracy: 6.07158e-05, 10th percentile: 0, 50th percentile: 0, 90th percentile 0
+train_accuracy: 6.07158e-05, 10th percentile: 0, 50th percentile: 0, 90th percentile 0
+train_loss: 9.16936, 10th percentile: 8.76314, 50th percentile: 9.22076, 90th percentile 9.2301
+train_loss: 9.16936, 10th percentile: 8.76314, 50th percentile: 9.22076, 90th percentile 9.2301
+test_accuracy: 6.07158e-05, 10th percentile: 0, 50th percentile: 0, 90th percentile 0
+test_accuracy: 6.07158e-05, 10th percentile: 0, 50th percentile: 0, 90th percentile 0
+test_loss: 9.1711, 10th percentile: 8.77188, 50th percentile: 9.2208, 90th percentile 9.23003
+test_loss: 9.1711, 10th percentile: 8.77188, 50th percentile: 9.2208, 90th percentile 9.23003
+current time: 2021-04-12 00:28:37.944097
+--- Round 1 of 100: Training 1 Clients ---
+--- Round 1 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.0259644, 10th percentile: 0.00836158, 50th percentile: 0.0240964, 90th percentile 0.037037
+train_accuracy: 0.0259644, 10th percentile: 0.00836158, 50th percentile: 0.0240964, 90th percentile 0.037037
+train_loss: 8.71184, 10th percentile: 8.30997, 50th percentile: 8.74211, 90th percentile 8.82288
+train_loss: 8.71184, 10th percentile: 8.30997, 50th percentile: 8.74211, 90th percentile 8.82288
+test_accuracy: 0.0259644, 10th percentile: 0.00836158, 50th percentile: 0.0240964, 90th percentile 0.037037
+test_accuracy: 0.0259644, 10th percentile: 0.00836158, 50th percentile: 0.0240964, 90th percentile 0.037037
+test_loss: 8.71087, 10th percentile: 8.32689, 50th percentile: 8.74286, 90th percentile 8.82428
+test_loss: 8.71087, 10th percentile: 8.32689, 50th percentile: 8.74286, 90th percentile 8.82428
+current time: 2021-04-12 00:29:49.843336
+--- Round 2 of 100: Training 1 Clients ---
+--- Round 2 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0390617, 10th percentile: 0.011919, 50th percentile: 0.0349854, 90th percentile 0.0550399
+train_accuracy: 0.0390617, 10th percentile: 0.011919, 50th percentile: 0.0349854, 90th percentile 0.0550399
+train_loss: 8.49514, 10th percentile: 8.12515, 50th percentile: 8.51237, 90th percentile 8.7172
+train_loss: 8.49514, 10th percentile: 8.12515, 50th percentile: 8.51237, 90th percentile 8.7172
+test_accuracy: 0.0390617, 10th percentile: 0.011919, 50th percentile: 0.0349854, 90th percentile 0.0550399
+test_accuracy: 0.0390617, 10th percentile: 0.011919, 50th percentile: 0.0349854, 90th percentile 0.0550399
+test_loss: 8.49341, 10th percentile: 8.10061, 50th percentile: 8.50583, 90th percentile 8.70925
+test_loss: 8.49341, 10th percentile: 8.10061, 50th percentile: 8.50583, 90th percentile 8.70925
+current time: 2021-04-12 00:31:02.721177
+--- Round 3 of 100: Training 1 Clients ---
+--- Round 3 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.0307473, 10th percentile: 0.00822404, 50th percentile: 0.0273349, 90th percentile 0.0465116
+train_accuracy: 0.0307473, 10th percentile: 0.00822404, 50th percentile: 0.0273349, 90th percentile 0.0465116
+train_loss: 7.69028, 10th percentile: 7.24488, 50th percentile: 7.70091, 90th percentile 7.88072
+train_loss: 7.69028, 10th percentile: 7.24488, 50th percentile: 7.70091, 90th percentile 7.88072
+test_accuracy: 0.0307473, 10th percentile: 0.00822404, 50th percentile: 0.0273349, 90th percentile 0.0465116
+test_accuracy: 0.0307473, 10th percentile: 0.00822404, 50th percentile: 0.0273349, 90th percentile 0.0465116
+test_loss: 7.68711, 10th percentile: 7.24419, 50th percentile: 7.69467, 90th percentile 7.88239
+test_loss: 7.68711, 10th percentile: 7.24419, 50th percentile: 7.69467, 90th percentile 7.88239
+current time: 2021-04-12 00:32:16.355285
+--- Round 4 of 100: Training 1 Clients ---
+--- Round 4 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.0455025, 10th percentile: 0.0217391, 50th percentile: 0.0424973, 90th percentile 0.0634766
+train_accuracy: 0.0455025, 10th percentile: 0.0217391, 50th percentile: 0.0424973, 90th percentile 0.0634766
+train_loss: 6.52774, 10th percentile: 5.94745, 50th percentile: 6.50701, 90th percentile 6.84997
+train_loss: 6.52774, 10th percentile: 5.94745, 50th percentile: 6.50701, 90th percentile 6.84997
+test_accuracy: 0.0455025, 10th percentile: 0.0217391, 50th percentile: 0.0424973, 90th percentile 0.0634766
+test_accuracy: 0.0455025, 10th percentile: 0.0217391, 50th percentile: 0.0424973, 90th percentile 0.0634766
+test_loss: 6.52364, 10th percentile: 5.87464, 50th percentile: 6.50702, 90th percentile 6.84531
+test_loss: 6.52364, 10th percentile: 5.87464, 50th percentile: 6.50702, 90th percentile 6.84531
+current time: 2021-04-12 00:33:38.802964
+--- Round 5 of 100: Training 1 Clients ---
+--- Round 5 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.0598421, 10th percentile: 0.024802, 50th percentile: 0.0555556, 90th percentile 0.0859307
+train_accuracy: 0.0598421, 10th percentile: 0.024802, 50th percentile: 0.0555556, 90th percentile 0.0859307
+train_loss: 6.33375, 10th percentile: 5.61497, 50th percentile: 6.30832, 90th percentile 6.66433
+train_loss: 6.33375, 10th percentile: 5.61497, 50th percentile: 6.30832, 90th percentile 6.66433
+test_accuracy: 0.0598421, 10th percentile: 0.024802, 50th percentile: 0.0555556, 90th percentile 0.0859307
+test_accuracy: 0.0598421, 10th percentile: 0.024802, 50th percentile: 0.0555556, 90th percentile 0.0859307
+test_loss: 6.33085, 10th percentile: 5.61558, 50th percentile: 6.30306, 90th percentile 6.64873
+test_loss: 6.33085, 10th percentile: 5.61558, 50th percentile: 6.30306, 90th percentile 6.64873
+current time: 2021-04-12 00:34:51.832918
+--- Round 6 of 100: Training 1 Clients ---
+--- Round 6 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.0630797, 10th percentile: 0.0262369, 50th percentile: 0.0592593, 90th percentile 0.090158
+train_accuracy: 0.0630797, 10th percentile: 0.0262369, 50th percentile: 0.0592593, 90th percentile 0.090158
+train_loss: 6.30884, 10th percentile: 5.60466, 50th percentile: 6.28621, 90th percentile 6.61536
+train_loss: 6.30884, 10th percentile: 5.60466, 50th percentile: 6.28621, 90th percentile 6.61536
+test_accuracy: 0.0630797, 10th percentile: 0.0262369, 50th percentile: 0.0592593, 90th percentile 0.090158
+test_accuracy: 0.0630797, 10th percentile: 0.0262369, 50th percentile: 0.0592593, 90th percentile 0.090158
+test_loss: 6.30461, 10th percentile: 5.60381, 50th percentile: 6.27669, 90th percentile 6.62023
+test_loss: 6.30461, 10th percentile: 5.60381, 50th percentile: 6.27669, 90th percentile 6.62023
+current time: 2021-04-12 00:36:05.104318
+--- Round 7 of 100: Training 1 Clients ---
+--- Round 7 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+train_accuracy: 0.0635016, 10th percentile: 0.0260735, 50th percentile: 0.059501, 90th percentile 0.0905915
+train_accuracy: 0.0635016, 10th percentile: 0.0260735, 50th percentile: 0.059501, 90th percentile 0.0905915
+train_loss: 6.20116, 10th percentile: 5.50677, 50th percentile: 6.16791, 90th percentile 6.53651
+train_loss: 6.20116, 10th percentile: 5.50677, 50th percentile: 6.16791, 90th percentile 6.53651
+test_accuracy: 0.0635016, 10th percentile: 0.0260735, 50th percentile: 0.059501, 90th percentile 0.0905915
+test_accuracy: 0.0635016, 10th percentile: 0.0260735, 50th percentile: 0.059501, 90th percentile 0.0905915
+test_loss: 6.20088, 10th percentile: 5.48499, 50th percentile: 6.16329, 90th percentile 6.51837
+test_loss: 6.20088, 10th percentile: 5.48499, 50th percentile: 6.16329, 90th percentile 6.51837
+current time: 2021-04-12 00:37:21.350237
+--- Round 8 of 100: Training 1 Clients ---
+--- Round 8 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.0494915, 10th percentile: 0.0225587, 50th percentile: 0.0465829, 90th percentile 0.0713364
+train_accuracy: 0.0494915, 10th percentile: 0.0225587, 50th percentile: 0.0465829, 90th percentile 0.0713364
+train_loss: 6.18796, 10th percentile: 5.49008, 50th percentile: 6.1482, 90th percentile 6.50713
+train_loss: 6.18796, 10th percentile: 5.49008, 50th percentile: 6.1482, 90th percentile 6.50713
+test_accuracy: 0.0494915, 10th percentile: 0.0225587, 50th percentile: 0.0465829, 90th percentile 0.0713364
+test_accuracy: 0.0494915, 10th percentile: 0.0225587, 50th percentile: 0.0465829, 90th percentile 0.0713364
+test_loss: 6.18537, 10th percentile: 5.44435, 50th percentile: 6.12356, 90th percentile 6.50625
+test_loss: 6.18537, 10th percentile: 5.44435, 50th percentile: 6.12356, 90th percentile 6.50625
+current time: 2021-04-12 00:38:32.962210
+--- Round 9 of 100: Training 1 Clients ---
+--- Round 9 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.0225867, 10th percentile: 0.00750194, 50th percentile: 0.0217391, 90th percentile 0.0388473
+train_accuracy: 0.0225867, 10th percentile: 0.00750194, 50th percentile: 0.0217391, 90th percentile 0.0388473
+train_loss: 6.15633, 10th percentile: 5.44461, 50th percentile: 6.11125, 90th percentile 6.45287
+train_loss: 6.15633, 10th percentile: 5.44461, 50th percentile: 6.11125, 90th percentile 6.45287
+test_accuracy: 0.0225867, 10th percentile: 0.00750194, 50th percentile: 0.0217391, 90th percentile 0.0388473
+test_accuracy: 0.0225867, 10th percentile: 0.00750194, 50th percentile: 0.0217391, 90th percentile 0.0388473
+test_loss: 6.15668, 10th percentile: 5.46897, 50th percentile: 6.10351, 90th percentile 6.45789
+test_loss: 6.15668, 10th percentile: 5.46897, 50th percentile: 6.10351, 90th percentile 6.45789
+current time: 2021-04-12 00:39:44.267429
+--- Round 10 of 100: Training 1 Clients ---
+--- Round 10 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0733674, 10th percentile: 0.0348837, 50th percentile: 0.0691244, 90th percentile 0.100748
+train_accuracy: 0.0733674, 10th percentile: 0.0348837, 50th percentile: 0.0691244, 90th percentile 0.100748
+train_loss: 6.12306, 10th percentile: 5.43675, 50th percentile: 6.08316, 90th percentile 6.48421
+train_loss: 6.12306, 10th percentile: 5.43675, 50th percentile: 6.08316, 90th percentile 6.48421
+test_accuracy: 0.0733674, 10th percentile: 0.0348837, 50th percentile: 0.0691244, 90th percentile 0.100748
+test_accuracy: 0.0733674, 10th percentile: 0.0348837, 50th percentile: 0.0691244, 90th percentile 0.100748
+test_loss: 6.11707, 10th percentile: 5.31718, 50th percentile: 6.0823, 90th percentile 6.4871
+test_loss: 6.11707, 10th percentile: 5.31718, 50th percentile: 6.0823, 90th percentile 6.4871
+current time: 2021-04-12 00:41:10.060378
+--- Round 11 of 100: Training 1 Clients ---
+--- Round 11 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.0698853, 10th percentile: 0.0330818, 50th percentile: 0.065153, 90th percentile 0.0973788
+train_accuracy: 0.0698853, 10th percentile: 0.0330818, 50th percentile: 0.065153, 90th percentile 0.0973788
+train_loss: 5.96312, 10th percentile: 5.23925, 50th percentile: 5.93658, 90th percentile 6.29659
+train_loss: 5.96312, 10th percentile: 5.23925, 50th percentile: 5.93658, 90th percentile 6.29659
+test_accuracy: 0.0698853, 10th percentile: 0.0330818, 50th percentile: 0.065153, 90th percentile 0.0973788
+test_accuracy: 0.0698853, 10th percentile: 0.0330818, 50th percentile: 0.065153, 90th percentile 0.0973788
+test_loss: 5.96351, 10th percentile: 5.26006, 50th percentile: 5.9282, 90th percentile 6.29448
+test_loss: 5.96351, 10th percentile: 5.26006, 50th percentile: 5.9282, 90th percentile 6.29448
+current time: 2021-04-12 00:42:23.516878
+--- Round 12 of 100: Training 1 Clients ---
+--- Round 12 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.0267772, 10th percentile: 0.0105301, 50th percentile: 0.0240964, 90th percentile 0.0454339
+train_accuracy: 0.0267772, 10th percentile: 0.0105301, 50th percentile: 0.0240964, 90th percentile 0.0454339
+train_loss: 6.03318, 10th percentile: 5.26933, 50th percentile: 5.98169, 90th percentile 6.38537
+train_loss: 6.03318, 10th percentile: 5.26933, 50th percentile: 5.98169, 90th percentile 6.38537
+test_accuracy: 0.0267772, 10th percentile: 0.0105301, 50th percentile: 0.0240964, 90th percentile 0.0454339
+test_accuracy: 0.0267772, 10th percentile: 0.0105301, 50th percentile: 0.0240964, 90th percentile 0.0454339
+test_loss: 6.03234, 10th percentile: 5.29159, 50th percentile: 5.98707, 90th percentile 6.37759
+test_loss: 6.03234, 10th percentile: 5.29159, 50th percentile: 5.98707, 90th percentile 6.37759
+current time: 2021-04-12 00:43:39.054183
+--- Round 13 of 100: Training 1 Clients ---
+--- Round 13 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0646787, 10th percentile: 0.0359712, 50th percentile: 0.0613208, 90th percentile 0.0862991
+train_accuracy: 0.0646787, 10th percentile: 0.0359712, 50th percentile: 0.0613208, 90th percentile 0.0862991
+train_loss: 5.99221, 10th percentile: 5.27398, 50th percentile: 5.95095, 90th percentile 6.34849
+train_loss: 5.99221, 10th percentile: 5.27398, 50th percentile: 5.95095, 90th percentile 6.34849
+test_accuracy: 0.0646787, 10th percentile: 0.0359712, 50th percentile: 0.0613208, 90th percentile 0.0862991
+test_accuracy: 0.0646787, 10th percentile: 0.0359712, 50th percentile: 0.0613208, 90th percentile 0.0862991
+test_loss: 5.98981, 10th percentile: 5.22038, 50th percentile: 5.95854, 90th percentile 6.34421
+test_loss: 5.98981, 10th percentile: 5.22038, 50th percentile: 5.95854, 90th percentile 6.34421
+current time: 2021-04-12 00:44:57.026643
+--- Round 14 of 100: Training 1 Clients ---
+--- Round 14 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0884273, 10th percentile: 0.0476697, 50th percentile: 0.0839161, 90th percentile 0.116021
+train_accuracy: 0.0884273, 10th percentile: 0.0476697, 50th percentile: 0.0839161, 90th percentile 0.116021
+train_loss: 5.83843, 10th percentile: 5.17493, 50th percentile: 5.81176, 90th percentile 6.17976
+train_loss: 5.83843, 10th percentile: 5.17493, 50th percentile: 5.81176, 90th percentile 6.17976
+test_accuracy: 0.0884273, 10th percentile: 0.0476697, 50th percentile: 0.0839161, 90th percentile 0.116021
+test_accuracy: 0.0884273, 10th percentile: 0.0476697, 50th percentile: 0.0839161, 90th percentile 0.116021
+test_loss: 5.83995, 10th percentile: 5.1798, 50th percentile: 5.8097, 90th percentile 6.17511
+test_loss: 5.83995, 10th percentile: 5.1798, 50th percentile: 5.8097, 90th percentile 6.17511
+current time: 2021-04-12 00:46:11.653426
+--- Round 15 of 100: Training 1 Clients ---
+--- Round 15 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+train_accuracy: 0.0844667, 10th percentile: 0.0454545, 50th percentile: 0.0797872, 90th percentile 0.116642
+train_accuracy: 0.0844667, 10th percentile: 0.0454545, 50th percentile: 0.0797872, 90th percentile 0.116642
+train_loss: 5.81053, 10th percentile: 5.09617, 50th percentile: 5.7645, 90th percentile 6.16508
+train_loss: 5.81053, 10th percentile: 5.09617, 50th percentile: 5.7645, 90th percentile 6.16508
+test_accuracy: 0.0844667, 10th percentile: 0.0454545, 50th percentile: 0.0797872, 90th percentile 0.116642
+test_accuracy: 0.0844667, 10th percentile: 0.0454545, 50th percentile: 0.0797872, 90th percentile 0.116642
+test_loss: 5.80952, 10th percentile: 5.08388, 50th percentile: 5.77272, 90th percentile 6.1774
+test_loss: 5.80952, 10th percentile: 5.08388, 50th percentile: 5.77272, 90th percentile 6.1774
+current time: 2021-04-12 00:47:27.950977
+--- Round 16 of 100: Training 1 Clients ---
+--- Round 16 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.0938142, 10th percentile: 0.0526873, 50th percentile: 0.0882353, 90th percentile 0.12605
+train_accuracy: 0.0938142, 10th percentile: 0.0526873, 50th percentile: 0.0882353, 90th percentile 0.12605
+train_loss: 5.81342, 10th percentile: 5.07909, 50th percentile: 5.76324, 90th percentile 6.16843
+train_loss: 5.81342, 10th percentile: 5.07909, 50th percentile: 5.76324, 90th percentile 6.16843
+test_accuracy: 0.0938142, 10th percentile: 0.0526873, 50th percentile: 0.0882353, 90th percentile 0.12605
+test_accuracy: 0.0938142, 10th percentile: 0.0526873, 50th percentile: 0.0882353, 90th percentile 0.12605
+test_loss: 5.81126, 10th percentile: 5.04932, 50th percentile: 5.76964, 90th percentile 6.17883
+test_loss: 5.81126, 10th percentile: 5.04932, 50th percentile: 5.76964, 90th percentile 6.17883
+current time: 2021-04-12 00:48:38.389072
+--- Round 17 of 100: Training 1 Clients ---
+--- Round 17 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0963777, 10th percentile: 0.0533851, 50th percentile: 0.0902662, 90th percentile 0.128936
+train_accuracy: 0.0963777, 10th percentile: 0.0533851, 50th percentile: 0.0902662, 90th percentile 0.128936
+train_loss: 5.79792, 10th percentile: 5.06535, 50th percentile: 5.752, 90th percentile 6.16256
+train_loss: 5.79792, 10th percentile: 5.06535, 50th percentile: 5.752, 90th percentile 6.16256
+test_accuracy: 0.0963777, 10th percentile: 0.0533851, 50th percentile: 0.0902662, 90th percentile 0.128936
+test_accuracy: 0.0963777, 10th percentile: 0.0533851, 50th percentile: 0.0902662, 90th percentile 0.128936
+test_loss: 5.79658, 10th percentile: 5.01372, 50th percentile: 5.75403, 90th percentile 6.15574
+test_loss: 5.79658, 10th percentile: 5.01372, 50th percentile: 5.75403, 90th percentile 6.15574
+current time: 2021-04-12 00:49:51.210151
+--- Round 18 of 100: Training 1 Clients ---
+--- Round 18 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0846364, 10th percentile: 0.0513114, 50th percentile: 0.0799373, 90th percentile 0.10867
+train_accuracy: 0.0846364, 10th percentile: 0.0513114, 50th percentile: 0.0799373, 90th percentile 0.10867
+train_loss: 5.85016, 10th percentile: 5.12706, 50th percentile: 5.81446, 90th percentile 6.19342
+train_loss: 5.85016, 10th percentile: 5.12706, 50th percentile: 5.81446, 90th percentile 6.19342
+test_accuracy: 0.0846364, 10th percentile: 0.0513114, 50th percentile: 0.0799373, 90th percentile 0.10867
+test_accuracy: 0.0846364, 10th percentile: 0.0513114, 50th percentile: 0.0799373, 90th percentile 0.10867
+test_loss: 5.85041, 10th percentile: 5.15574, 50th percentile: 5.81222, 90th percentile 6.18287
+test_loss: 5.85041, 10th percentile: 5.15574, 50th percentile: 5.81222, 90th percentile 6.18287
+current time: 2021-04-12 00:51:03.863795
+--- Round 19 of 100: Training 1 Clients ---
+--- Round 19 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0928585, 10th percentile: 0.0494706, 50th percentile: 0.0863309, 90th percentile 0.122347
+train_accuracy: 0.0928585, 10th percentile: 0.0494706, 50th percentile: 0.0863309, 90th percentile 0.122347
+train_loss: 5.75703, 10th percentile: 5.0223, 50th percentile: 5.71339, 90th percentile 6.10004
+train_loss: 5.75703, 10th percentile: 5.0223, 50th percentile: 5.71339, 90th percentile 6.10004
+test_accuracy: 0.0928585, 10th percentile: 0.0494706, 50th percentile: 0.0863309, 90th percentile 0.122347
+test_accuracy: 0.0928585, 10th percentile: 0.0494706, 50th percentile: 0.0863309, 90th percentile 0.122347
+test_loss: 5.75878, 10th percentile: 5.07315, 50th percentile: 5.71763, 90th percentile 6.10584
+test_loss: 5.75878, 10th percentile: 5.07315, 50th percentile: 5.71763, 90th percentile 6.10584
+current time: 2021-04-12 00:52:16.546112
+--- Round 20 of 100: Training 1 Clients ---
+--- Round 20 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+train_accuracy: 0.0824197, 10th percentile: 0.0470711, 50th percentile: 0.0776362, 90th percentile 0.106035
+train_accuracy: 0.0824197, 10th percentile: 0.0470711, 50th percentile: 0.0776362, 90th percentile 0.106035
+train_loss: 5.73319, 10th percentile: 5.03999, 50th percentile: 5.69295, 90th percentile 6.08365
+train_loss: 5.73319, 10th percentile: 5.03999, 50th percentile: 5.69295, 90th percentile 6.08365
+test_accuracy: 0.0824197, 10th percentile: 0.0470711, 50th percentile: 0.0776362, 90th percentile 0.106035
+test_accuracy: 0.0824197, 10th percentile: 0.0470711, 50th percentile: 0.0776362, 90th percentile 0.106035
+test_loss: 5.73356, 10th percentile: 5.07213, 50th percentile: 5.68942, 90th percentile 6.06588
+test_loss: 5.73356, 10th percentile: 5.07213, 50th percentile: 5.68942, 90th percentile 6.06588
+current time: 2021-04-12 00:53:40.004972
+--- Round 21 of 100: Training 1 Clients ---
+--- Round 21 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.103052, 10th percentile: 0.0618258, 50th percentile: 0.0987319, 90th percentile 0.129118
+train_accuracy: 0.103052, 10th percentile: 0.0618258, 50th percentile: 0.0987319, 90th percentile 0.129118
+train_loss: 5.70536, 10th percentile: 5.00771, 50th percentile: 5.662, 90th percentile 6.0584
+train_loss: 5.70536, 10th percentile: 5.00771, 50th percentile: 5.662, 90th percentile 6.0584
+test_accuracy: 0.103052, 10th percentile: 0.0618258, 50th percentile: 0.0987319, 90th percentile 0.129118
+test_accuracy: 0.103052, 10th percentile: 0.0618258, 50th percentile: 0.0987319, 90th percentile 0.129118
+test_loss: 5.70259, 10th percentile: 4.97675, 50th percentile: 5.66929, 90th percentile 6.0583
+test_loss: 5.70259, 10th percentile: 4.97675, 50th percentile: 5.66929, 90th percentile 6.0583
+current time: 2021-04-12 00:54:55.681666
+--- Round 22 of 100: Training 1 Clients ---
+--- Round 22 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.103149, 10th percentile: 0.0576039, 50th percentile: 0.0987654, 90th percentile 0.135074
+train_accuracy: 0.103149, 10th percentile: 0.0576039, 50th percentile: 0.0987654, 90th percentile 0.135074
+train_loss: 5.69256, 10th percentile: 5.02046, 50th percentile: 5.64312, 90th percentile 6.05314
+train_loss: 5.69256, 10th percentile: 5.02046, 50th percentile: 5.64312, 90th percentile 6.05314
+test_accuracy: 0.103149, 10th percentile: 0.0576039, 50th percentile: 0.0987654, 90th percentile 0.135074
+test_accuracy: 0.103149, 10th percentile: 0.0576039, 50th percentile: 0.0987654, 90th percentile 0.135074
+test_loss: 5.69299, 10th percentile: 4.97625, 50th percentile: 5.65005, 90th percentile 6.04885
+test_loss: 5.69299, 10th percentile: 4.97625, 50th percentile: 5.65005, 90th percentile 6.04885
+current time: 2021-04-12 00:56:09.713698
+--- Round 23 of 100: Training 1 Clients ---
+--- Round 23 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.0912535, 10th percentile: 0.0506415, 50th percentile: 0.0854701, 90th percentile 0.118499
+train_accuracy: 0.0912535, 10th percentile: 0.0506415, 50th percentile: 0.0854701, 90th percentile 0.118499
+train_loss: 5.69405, 10th percentile: 4.97018, 50th percentile: 5.65532, 90th percentile 6.0432
+train_loss: 5.69405, 10th percentile: 4.97018, 50th percentile: 5.65532, 90th percentile 6.0432
+test_accuracy: 0.0912535, 10th percentile: 0.0506415, 50th percentile: 0.0854701, 90th percentile 0.118499
+test_accuracy: 0.0912535, 10th percentile: 0.0506415, 50th percentile: 0.0854701, 90th percentile 0.118499
+test_loss: 5.69196, 10th percentile: 4.9812, 50th percentile: 5.63963, 90th percentile 6.03971
+test_loss: 5.69196, 10th percentile: 4.9812, 50th percentile: 5.63963, 90th percentile 6.03971
+current time: 2021-04-12 00:57:22.420205
+--- Round 24 of 100: Training 1 Clients ---
+--- Round 24 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0914628, 10th percentile: 0.0482992, 50th percentile: 0.0851064, 90th percentile 0.119684
+train_accuracy: 0.0914628, 10th percentile: 0.0482992, 50th percentile: 0.0851064, 90th percentile 0.119684
+train_loss: 5.81875, 10th percentile: 5.11588, 50th percentile: 5.77551, 90th percentile 6.20094
+train_loss: 5.81875, 10th percentile: 5.11588, 50th percentile: 5.77551, 90th percentile 6.20094
+test_accuracy: 0.0914628, 10th percentile: 0.0482992, 50th percentile: 0.0851064, 90th percentile 0.119684
+test_accuracy: 0.0914628, 10th percentile: 0.0482992, 50th percentile: 0.0851064, 90th percentile 0.119684
+test_loss: 5.81383, 10th percentile: 5.11601, 50th percentile: 5.76665, 90th percentile 6.21682
+test_loss: 5.81383, 10th percentile: 5.11601, 50th percentile: 5.76665, 90th percentile 6.21682
+current time: 2021-04-12 00:58:42.499084
+--- Round 25 of 100: Training 1 Clients ---
+--- Round 25 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0857641, 10th percentile: 0.0468823, 50th percentile: 0.0809859, 90th percentile 0.1114
+train_accuracy: 0.0857641, 10th percentile: 0.0468823, 50th percentile: 0.0809859, 90th percentile 0.1114
+train_loss: 5.69456, 10th percentile: 5.03623, 50th percentile: 5.6475, 90th percentile 6.03855
+train_loss: 5.69456, 10th percentile: 5.03623, 50th percentile: 5.6475, 90th percentile 6.03855
+test_accuracy: 0.0857641, 10th percentile: 0.0468823, 50th percentile: 0.0809859, 90th percentile 0.1114
+test_accuracy: 0.0857641, 10th percentile: 0.0468823, 50th percentile: 0.0809859, 90th percentile 0.1114
+test_loss: 5.69258, 10th percentile: 5.01637, 50th percentile: 5.66036, 90th percentile 6.04041
+test_loss: 5.69258, 10th percentile: 5.01637, 50th percentile: 5.66036, 90th percentile 6.04041
+current time: 2021-04-12 01:00:01.992964
+--- Round 26 of 100: Training 1 Clients ---
+--- Round 26 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.106204, 10th percentile: 0.0625, 50th percentile: 0.101075, 90th percentile 0.135124
+train_accuracy: 0.106204, 10th percentile: 0.0625, 50th percentile: 0.101075, 90th percentile 0.135124
+train_loss: 5.66285, 10th percentile: 5.00927, 50th percentile: 5.62941, 90th percentile 6.00126
+train_loss: 5.66285, 10th percentile: 5.00927, 50th percentile: 5.62941, 90th percentile 6.00126
+test_accuracy: 0.106204, 10th percentile: 0.0625, 50th percentile: 0.101075, 90th percentile 0.135124
+test_accuracy: 0.106204, 10th percentile: 0.0625, 50th percentile: 0.101075, 90th percentile 0.135124
+test_loss: 5.66082, 10th percentile: 4.99116, 50th percentile: 5.62508, 90th percentile 6.01683
+test_loss: 5.66082, 10th percentile: 4.99116, 50th percentile: 5.62508, 90th percentile 6.01683
+current time: 2021-04-12 01:01:17.732211
+--- Round 27 of 100: Training 1 Clients ---
+--- Round 27 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0958983, 10th percentile: 0.055642, 50th percentile: 0.0895171, 90th percentile 0.125536
+train_accuracy: 0.0958983, 10th percentile: 0.055642, 50th percentile: 0.0895171, 90th percentile 0.125536
+train_loss: 5.64734, 10th percentile: 4.96563, 50th percentile: 5.60475, 90th percentile 6.00272
+train_loss: 5.64734, 10th percentile: 4.96563, 50th percentile: 5.60475, 90th percentile 6.00272
+test_accuracy: 0.0958983, 10th percentile: 0.055642, 50th percentile: 0.0895171, 90th percentile 0.125536
+test_accuracy: 0.0958983, 10th percentile: 0.055642, 50th percentile: 0.0895171, 90th percentile 0.125536
+test_loss: 5.64227, 10th percentile: 4.93461, 50th percentile: 5.6053, 90th percentile 6.00417
+test_loss: 5.64227, 10th percentile: 4.93461, 50th percentile: 5.6053, 90th percentile 6.00417
+current time: 2021-04-12 01:02:30.935336
+--- Round 28 of 100: Training 1 Clients ---
+--- Round 28 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.103695, 10th percentile: 0.0588235, 50th percentile: 0.0981964, 90th percentile 0.132714
+train_accuracy: 0.103695, 10th percentile: 0.0588235, 50th percentile: 0.0981964, 90th percentile 0.132714
+train_loss: 5.69684, 10th percentile: 5.03077, 50th percentile: 5.64895, 90th percentile 6.08263
+train_loss: 5.69684, 10th percentile: 5.03077, 50th percentile: 5.64895, 90th percentile 6.08263
+test_accuracy: 0.103695, 10th percentile: 0.0588235, 50th percentile: 0.0981964, 90th percentile 0.132714
+test_accuracy: 0.103695, 10th percentile: 0.0588235, 50th percentile: 0.0981964, 90th percentile 0.132714
+test_loss: 5.69779, 10th percentile: 4.9659, 50th percentile: 5.64713, 90th percentile 6.06863
+test_loss: 5.69779, 10th percentile: 4.9659, 50th percentile: 5.64713, 90th percentile 6.06863
+current time: 2021-04-12 01:03:42.153317
+--- Round 29 of 100: Training 1 Clients ---
+--- Round 29 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.0976857, 10th percentile: 0.0556999, 50th percentile: 0.0916031, 90th percentile 0.123937
+train_accuracy: 0.0976857, 10th percentile: 0.0556999, 50th percentile: 0.0916031, 90th percentile 0.123937
+train_loss: 5.61651, 10th percentile: 4.97629, 50th percentile: 5.56913, 90th percentile 5.96368
+train_loss: 5.61651, 10th percentile: 4.97629, 50th percentile: 5.56913, 90th percentile 5.96368
+test_accuracy: 0.0976857, 10th percentile: 0.0556999, 50th percentile: 0.0916031, 90th percentile 0.123937
+test_accuracy: 0.0976857, 10th percentile: 0.0556999, 50th percentile: 0.0916031, 90th percentile 0.123937
+test_loss: 5.61638, 10th percentile: 4.92823, 50th percentile: 5.56585, 90th percentile 5.95272
+test_loss: 5.61638, 10th percentile: 4.92823, 50th percentile: 5.56585, 90th percentile 5.95272
+current time: 2021-04-12 01:04:56.512720
+--- Round 30 of 100: Training 1 Clients ---
+--- Round 30 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.101549, 10th percentile: 0.0595238, 50th percentile: 0.0953947, 90th percentile 0.130012
+train_accuracy: 0.101549, 10th percentile: 0.0595238, 50th percentile: 0.0953947, 90th percentile 0.130012
+train_loss: 5.59678, 10th percentile: 4.90515, 50th percentile: 5.5446, 90th percentile 5.96313
+train_loss: 5.59678, 10th percentile: 4.90515, 50th percentile: 5.5446, 90th percentile 5.96313
+test_accuracy: 0.101549, 10th percentile: 0.0595238, 50th percentile: 0.0953947, 90th percentile 0.130012
+test_accuracy: 0.101549, 10th percentile: 0.0595238, 50th percentile: 0.0953947, 90th percentile 0.130012
+test_loss: 5.59879, 10th percentile: 4.92799, 50th percentile: 5.55114, 90th percentile 5.95171
+test_loss: 5.59879, 10th percentile: 4.92799, 50th percentile: 5.55114, 90th percentile 5.95171
+current time: 2021-04-12 01:06:10.284633
+--- Round 31 of 100: Training 1 Clients ---
+--- Round 31 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0556214, 10th percentile: 0.0296865, 50th percentile: 0.0513699, 90th percentile 0.0767851
+train_accuracy: 0.0556214, 10th percentile: 0.0296865, 50th percentile: 0.0513699, 90th percentile 0.0767851
+train_loss: 5.63841, 10th percentile: 4.89574, 50th percentile: 5.60121, 90th percentile 5.99345
+train_loss: 5.63841, 10th percentile: 4.89574, 50th percentile: 5.60121, 90th percentile 5.99345
+test_accuracy: 0.0556214, 10th percentile: 0.0296865, 50th percentile: 0.0513699, 90th percentile 0.0767851
+test_accuracy: 0.0556214, 10th percentile: 0.0296865, 50th percentile: 0.0513699, 90th percentile 0.0767851
+test_loss: 5.63671, 10th percentile: 4.92147, 50th percentile: 5.58948, 90th percentile 5.99419
+test_loss: 5.63671, 10th percentile: 4.92147, 50th percentile: 5.58948, 90th percentile 5.99419
+current time: 2021-04-12 01:07:25.744415
+--- Round 32 of 100: Training 1 Clients ---
+--- Round 32 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+train_accuracy: 0.0978327, 10th percentile: 0.0577818, 50th percentile: 0.091954, 90th percentile 0.127141
+train_accuracy: 0.0978327, 10th percentile: 0.0577818, 50th percentile: 0.091954, 90th percentile 0.127141
+train_loss: 5.60102, 10th percentile: 4.86368, 50th percentile: 5.55447, 90th percentile 5.96788
+train_loss: 5.60102, 10th percentile: 4.86368, 50th percentile: 5.55447, 90th percentile 5.96788
+test_accuracy: 0.0978327, 10th percentile: 0.0577818, 50th percentile: 0.091954, 90th percentile 0.127141
+test_accuracy: 0.0978327, 10th percentile: 0.0577818, 50th percentile: 0.091954, 90th percentile 0.127141
+test_loss: 5.60165, 10th percentile: 4.84669, 50th percentile: 5.54974, 90th percentile 5.98233
+test_loss: 5.60165, 10th percentile: 4.84669, 50th percentile: 5.54974, 90th percentile 5.98233
+current time: 2021-04-12 01:08:37.593898
+--- Round 33 of 100: Training 1 Clients ---
+--- Round 33 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+train_accuracy: 0.101679, 10th percentile: 0.0583865, 50th percentile: 0.0955056, 90th percentile 0.131861
+train_accuracy: 0.101679, 10th percentile: 0.0583865, 50th percentile: 0.0955056, 90th percentile 0.131861
+train_loss: 5.63151, 10th percentile: 4.86573, 50th percentile: 5.59387, 90th percentile 6.00781
+train_loss: 5.63151, 10th percentile: 4.86573, 50th percentile: 5.59387, 90th percentile 6.00781
+test_accuracy: 0.101679, 10th percentile: 0.0583865, 50th percentile: 0.0955056, 90th percentile 0.131861
+test_accuracy: 0.101679, 10th percentile: 0.0583865, 50th percentile: 0.0955056, 90th percentile 0.131861
+test_loss: 5.63433, 10th percentile: 4.91704, 50th percentile: 5.58652, 90th percentile 6.01088
+test_loss: 5.63433, 10th percentile: 4.91704, 50th percentile: 5.58652, 90th percentile 6.01088
+current time: 2021-04-12 01:09:46.254623
+--- Round 34 of 100: Training 1 Clients ---
+--- Round 34 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+train_accuracy: 0.108976, 10th percentile: 0.0647482, 50th percentile: 0.104839, 90th percentile 0.136328
+train_accuracy: 0.108976, 10th percentile: 0.0647482, 50th percentile: 0.104839, 90th percentile 0.136328
+train_loss: 5.59268, 10th percentile: 4.88256, 50th percentile: 5.55157, 90th percentile 5.96459
+train_loss: 5.59268, 10th percentile: 4.88256, 50th percentile: 5.55157, 90th percentile 5.96459
+test_accuracy: 0.108976, 10th percentile: 0.0647482, 50th percentile: 0.104839, 90th percentile 0.136328
+test_accuracy: 0.108976, 10th percentile: 0.0647482, 50th percentile: 0.104839, 90th percentile 0.136328
+test_loss: 5.59282, 10th percentile: 4.90395, 50th percentile: 5.55773, 90th percentile 5.96156
+test_loss: 5.59282, 10th percentile: 4.90395, 50th percentile: 5.55773, 90th percentile 5.96156
+current time: 2021-04-12 01:10:55.534796
+--- Round 35 of 100: Training 1 Clients ---
+--- Round 35 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.101163, 10th percentile: 0.0602157, 50th percentile: 0.0967742, 90th percentile 0.124985
+train_accuracy: 0.101163, 10th percentile: 0.0602157, 50th percentile: 0.0967742, 90th percentile 0.124985
+train_loss: 5.60059, 10th percentile: 4.91805, 50th percentile: 5.55296, 90th percentile 5.95653
+train_loss: 5.60059, 10th percentile: 4.91805, 50th percentile: 5.55296, 90th percentile 5.95653
+test_accuracy: 0.101163, 10th percentile: 0.0602157, 50th percentile: 0.0967742, 90th percentile 0.124985
+test_accuracy: 0.101163, 10th percentile: 0.0602157, 50th percentile: 0.0967742, 90th percentile 0.124985
+test_loss: 5.59959, 10th percentile: 4.8825, 50th percentile: 5.54699, 90th percentile 5.96435
+test_loss: 5.59959, 10th percentile: 4.8825, 50th percentile: 5.54699, 90th percentile 5.96435
+current time: 2021-04-12 01:12:07.450582
+--- Round 36 of 100: Training 1 Clients ---
+--- Round 36 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.0707172, 10th percentile: 0.0395212, 50th percentile: 0.0664653, 90th percentile 0.0930027
+train_accuracy: 0.0707172, 10th percentile: 0.0395212, 50th percentile: 0.0664653, 90th percentile 0.0930027
+train_loss: 5.6111, 10th percentile: 4.96267, 50th percentile: 5.55855, 90th percentile 5.95034
+train_loss: 5.6111, 10th percentile: 4.96267, 50th percentile: 5.55855, 90th percentile 5.95034
+test_accuracy: 0.0707172, 10th percentile: 0.0395212, 50th percentile: 0.0664653, 90th percentile 0.0930027
+test_accuracy: 0.0707172, 10th percentile: 0.0395212, 50th percentile: 0.0664653, 90th percentile 0.0930027
+test_loss: 5.61267, 10th percentile: 4.93448, 50th percentile: 5.57051, 90th percentile 5.95217
+test_loss: 5.61267, 10th percentile: 4.93448, 50th percentile: 5.57051, 90th percentile 5.95217
+current time: 2021-04-12 01:13:21.113582
+--- Round 37 of 100: Training 1 Clients ---
+--- Round 37 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.106005, 10th percentile: 0.0602617, 50th percentile: 0.100877, 90th percentile 0.136325
+train_accuracy: 0.106005, 10th percentile: 0.0602617, 50th percentile: 0.100877, 90th percentile 0.136325
+train_loss: 5.58282, 10th percentile: 4.90398, 50th percentile: 5.53578, 90th percentile 5.9539
+train_loss: 5.58282, 10th percentile: 4.90398, 50th percentile: 5.53578, 90th percentile 5.9539
+test_accuracy: 0.106005, 10th percentile: 0.0602617, 50th percentile: 0.100877, 90th percentile 0.136325
+test_accuracy: 0.106005, 10th percentile: 0.0602617, 50th percentile: 0.100877, 90th percentile 0.136325
+test_loss: 5.58209, 10th percentile: 4.89123, 50th percentile: 5.53562, 90th percentile 5.9508
+test_loss: 5.58209, 10th percentile: 4.89123, 50th percentile: 5.53562, 90th percentile 5.9508
+current time: 2021-04-12 01:14:39.875557
+--- Round 38 of 100: Training 1 Clients ---
+--- Round 38 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.108851, 10th percentile: 0.0641747, 50th percentile: 0.102506, 90th percentile 0.138292
+train_accuracy: 0.108851, 10th percentile: 0.0641747, 50th percentile: 0.102506, 90th percentile 0.138292
+train_loss: 5.60901, 10th percentile: 4.89113, 50th percentile: 5.56707, 90th percentile 5.9869
+train_loss: 5.60901, 10th percentile: 4.89113, 50th percentile: 5.56707, 90th percentile 5.9869
+test_accuracy: 0.108851, 10th percentile: 0.0641747, 50th percentile: 0.102506, 90th percentile 0.138292
+test_accuracy: 0.108851, 10th percentile: 0.0641747, 50th percentile: 0.102506, 90th percentile 0.138292
+test_loss: 5.6106, 10th percentile: 4.91646, 50th percentile: 5.57215, 90th percentile 5.98682
+test_loss: 5.6106, 10th percentile: 4.91646, 50th percentile: 5.57215, 90th percentile 5.98682
+current time: 2021-04-12 01:15:49.886237
+--- Round 39 of 100: Training 1 Clients ---
+--- Round 39 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+train_accuracy: 0.067035, 10th percentile: 0.0361884, 50th percentile: 0.0634278, 90th percentile 0.0903136
+train_accuracy: 0.067035, 10th percentile: 0.0361884, 50th percentile: 0.0634278, 90th percentile 0.0903136
+train_loss: 5.57588, 10th percentile: 4.87117, 50th percentile: 5.52723, 90th percentile 5.9511
+train_loss: 5.57588, 10th percentile: 4.87117, 50th percentile: 5.52723, 90th percentile 5.9511
+test_accuracy: 0.067035, 10th percentile: 0.0361884, 50th percentile: 0.0634278, 90th percentile 0.0903136
+test_accuracy: 0.067035, 10th percentile: 0.0361884, 50th percentile: 0.0634278, 90th percentile 0.0903136
+test_loss: 5.57408, 10th percentile: 4.90557, 50th percentile: 5.52773, 90th percentile 5.93657
+test_loss: 5.57408, 10th percentile: 4.90557, 50th percentile: 5.52773, 90th percentile 5.93657
+current time: 2021-04-12 01:17:01.075871
+--- Round 40 of 100: Training 1 Clients ---
+--- Round 40 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.103715, 10th percentile: 0.0604396, 50th percentile: 0.0978723, 90th percentile 0.131272
+train_accuracy: 0.103715, 10th percentile: 0.0604396, 50th percentile: 0.0978723, 90th percentile 0.131272
+train_loss: 5.55301, 10th percentile: 4.85494, 50th percentile: 5.49772, 90th percentile 5.93509
+train_loss: 5.55301, 10th percentile: 4.85494, 50th percentile: 5.49772, 90th percentile 5.93509
+test_accuracy: 0.103715, 10th percentile: 0.0604396, 50th percentile: 0.0978723, 90th percentile 0.131272
+test_accuracy: 0.103715, 10th percentile: 0.0604396, 50th percentile: 0.0978723, 90th percentile 0.131272
+test_loss: 5.55806, 10th percentile: 4.84644, 50th percentile: 5.51404, 90th percentile 5.93699
+test_loss: 5.55806, 10th percentile: 4.84644, 50th percentile: 5.51404, 90th percentile 5.93699
+current time: 2021-04-12 01:18:11.689825
+--- Round 41 of 100: Training 1 Clients ---
+--- Round 41 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+train_accuracy: 0.107885, 10th percentile: 0.0664979, 50th percentile: 0.102273, 90th percentile 0.135324
+train_accuracy: 0.107885, 10th percentile: 0.0664979, 50th percentile: 0.102273, 90th percentile 0.135324
+train_loss: 5.54091, 10th percentile: 4.90637, 50th percentile: 5.48824, 90th percentile 5.90377
+train_loss: 5.54091, 10th percentile: 4.90637, 50th percentile: 5.48824, 90th percentile 5.90377
+test_accuracy: 0.107885, 10th percentile: 0.0664979, 50th percentile: 0.102273, 90th percentile 0.135324
+test_accuracy: 0.107885, 10th percentile: 0.0664979, 50th percentile: 0.102273, 90th percentile 0.135324
+test_loss: 5.53606, 10th percentile: 4.82323, 50th percentile: 5.47995, 90th percentile 5.9044
+test_loss: 5.53606, 10th percentile: 4.82323, 50th percentile: 5.47995, 90th percentile 5.9044
+current time: 2021-04-12 01:19:27.531456
+--- Round 42 of 100: Training 1 Clients ---
+--- Round 42 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.109682, 10th percentile: 0.0676904, 50th percentile: 0.103896, 90th percentile 0.138503
+train_accuracy: 0.109682, 10th percentile: 0.0676904, 50th percentile: 0.103896, 90th percentile 0.138503
+train_loss: 5.51357, 10th percentile: 4.76756, 50th percentile: 5.46826, 90th percentile 5.90327
+train_loss: 5.51357, 10th percentile: 4.76756, 50th percentile: 5.46826, 90th percentile 5.90327
+test_accuracy: 0.109682, 10th percentile: 0.0676904, 50th percentile: 0.103896, 90th percentile 0.138503
+test_accuracy: 0.109682, 10th percentile: 0.0676904, 50th percentile: 0.103896, 90th percentile 0.138503
+test_loss: 5.51288, 10th percentile: 4.77877, 50th percentile: 5.46428, 90th percentile 5.87322
+test_loss: 5.51288, 10th percentile: 4.77877, 50th percentile: 5.46428, 90th percentile 5.87322
+current time: 2021-04-12 01:20:38.839440
+--- Round 43 of 100: Training 1 Clients ---
+--- Round 43 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.0920779, 10th percentile: 0.0573994, 50th percentile: 0.0869705, 90th percentile 0.114878
+train_accuracy: 0.0920779, 10th percentile: 0.0573994, 50th percentile: 0.0869705, 90th percentile 0.114878
+train_loss: 5.53786, 10th percentile: 4.81806, 50th percentile: 5.49803, 90th percentile 5.89539
+train_loss: 5.53786, 10th percentile: 4.81806, 50th percentile: 5.49803, 90th percentile 5.89539
+test_accuracy: 0.0920779, 10th percentile: 0.0573994, 50th percentile: 0.0869705, 90th percentile 0.114878
+test_accuracy: 0.0920779, 10th percentile: 0.0573994, 50th percentile: 0.0869705, 90th percentile 0.114878
+test_loss: 5.53894, 10th percentile: 4.88007, 50th percentile: 5.50035, 90th percentile 5.90116
+test_loss: 5.53894, 10th percentile: 4.88007, 50th percentile: 5.50035, 90th percentile 5.90116
+current time: 2021-04-12 01:21:51.697816
+--- Round 44 of 100: Training 1 Clients ---
+--- Round 44 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.102519, 10th percentile: 0.0601356, 50th percentile: 0.0966387, 90th percentile 0.128877
+train_accuracy: 0.102519, 10th percentile: 0.0601356, 50th percentile: 0.0966387, 90th percentile 0.128877
+train_loss: 5.51423, 10th percentile: 4.78706, 50th percentile: 5.47061, 90th percentile 5.88595
+train_loss: 5.51423, 10th percentile: 4.78706, 50th percentile: 5.47061, 90th percentile 5.88595
+test_accuracy: 0.102519, 10th percentile: 0.0601356, 50th percentile: 0.0966387, 90th percentile 0.128877
+test_accuracy: 0.102519, 10th percentile: 0.0601356, 50th percentile: 0.0966387, 90th percentile 0.128877
+test_loss: 5.50953, 10th percentile: 4.76636, 50th percentile: 5.46676, 90th percentile 5.87521
+test_loss: 5.50953, 10th percentile: 4.76636, 50th percentile: 5.46676, 90th percentile 5.87521
+current time: 2021-04-12 01:23:04.240489
+--- Round 45 of 100: Training 1 Clients ---
+--- Round 45 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.111332, 10th percentile: 0.0669931, 50th percentile: 0.10625, 90th percentile 0.139957
+train_accuracy: 0.111332, 10th percentile: 0.0669931, 50th percentile: 0.10625, 90th percentile 0.139957
+train_loss: 5.49469, 10th percentile: 4.78568, 50th percentile: 5.45419, 90th percentile 5.86677
+train_loss: 5.49469, 10th percentile: 4.78568, 50th percentile: 5.45419, 90th percentile 5.86677
+test_accuracy: 0.111332, 10th percentile: 0.0669931, 50th percentile: 0.10625, 90th percentile 0.139957
+test_accuracy: 0.111332, 10th percentile: 0.0669931, 50th percentile: 0.10625, 90th percentile 0.139957
+test_loss: 5.49156, 10th percentile: 4.8135, 50th percentile: 5.44023, 90th percentile 5.86444
+test_loss: 5.49156, 10th percentile: 4.8135, 50th percentile: 5.44023, 90th percentile 5.86444
+current time: 2021-04-12 01:24:15.823792
+--- Round 46 of 100: Training 1 Clients ---
+--- Round 46 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.108285, 10th percentile: 0.0641626, 50th percentile: 0.102187, 90th percentile 0.137229
+train_accuracy: 0.108285, 10th percentile: 0.0641626, 50th percentile: 0.102187, 90th percentile 0.137229
+train_loss: 5.53964, 10th percentile: 4.87229, 50th percentile: 5.48373, 90th percentile 5.91054
+train_loss: 5.53964, 10th percentile: 4.87229, 50th percentile: 5.48373, 90th percentile 5.91054
+test_accuracy: 0.108285, 10th percentile: 0.0641626, 50th percentile: 0.102187, 90th percentile 0.137229
+test_accuracy: 0.108285, 10th percentile: 0.0641626, 50th percentile: 0.102187, 90th percentile 0.137229
+test_loss: 5.53916, 10th percentile: 4.81864, 50th percentile: 5.48221, 90th percentile 5.91083
+test_loss: 5.53916, 10th percentile: 4.81864, 50th percentile: 5.48221, 90th percentile 5.91083
+current time: 2021-04-12 01:25:29.272583
+--- Round 47 of 100: Training 1 Clients ---
+--- Round 47 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0848312, 10th percentile: 0.0522846, 50th percentile: 0.0802568, 90th percentile 0.109541
+train_accuracy: 0.0848312, 10th percentile: 0.0522846, 50th percentile: 0.0802568, 90th percentile 0.109541
+train_loss: 5.54826, 10th percentile: 4.84069, 50th percentile: 5.50106, 90th percentile 5.92364
+train_loss: 5.54826, 10th percentile: 4.84069, 50th percentile: 5.50106, 90th percentile 5.92364
+test_accuracy: 0.0848312, 10th percentile: 0.0522846, 50th percentile: 0.0802568, 90th percentile 0.109541
+test_accuracy: 0.0848312, 10th percentile: 0.0522846, 50th percentile: 0.0802568, 90th percentile 0.109541
+test_loss: 5.54514, 10th percentile: 4.79143, 50th percentile: 5.48759, 90th percentile 5.92008
+test_loss: 5.54514, 10th percentile: 4.79143, 50th percentile: 5.48759, 90th percentile 5.92008
+current time: 2021-04-12 01:26:39.923409
+--- Round 48 of 100: Training 1 Clients ---
+--- Round 48 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.103129, 10th percentile: 0.0606643, 50th percentile: 0.0976268, 90th percentile 0.131571
+train_accuracy: 0.103129, 10th percentile: 0.0606643, 50th percentile: 0.0976268, 90th percentile 0.131571
+train_loss: 5.51189, 10th percentile: 4.79181, 50th percentile: 5.46035, 90th percentile 5.88074
+train_loss: 5.51189, 10th percentile: 4.79181, 50th percentile: 5.46035, 90th percentile 5.88074
+test_accuracy: 0.103129, 10th percentile: 0.0606643, 50th percentile: 0.0976268, 90th percentile 0.131571
+test_accuracy: 0.103129, 10th percentile: 0.0606643, 50th percentile: 0.0976268, 90th percentile 0.131571
+test_loss: 5.50906, 10th percentile: 4.78025, 50th percentile: 5.46308, 90th percentile 5.88636
+test_loss: 5.50906, 10th percentile: 4.78025, 50th percentile: 5.46308, 90th percentile 5.88636
+current time: 2021-04-12 01:27:55.797710
+--- Round 49 of 100: Training 1 Clients ---
+--- Round 49 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.114188, 10th percentile: 0.0692532, 50th percentile: 0.109868, 90th percentile 0.14282
+train_accuracy: 0.114188, 10th percentile: 0.0692532, 50th percentile: 0.109868, 90th percentile 0.14282
+train_loss: 5.49726, 10th percentile: 4.83021, 50th percentile: 5.4544, 90th percentile 5.86959
+train_loss: 5.49726, 10th percentile: 4.83021, 50th percentile: 5.4544, 90th percentile 5.86959
+test_accuracy: 0.114188, 10th percentile: 0.0692532, 50th percentile: 0.109868, 90th percentile 0.14282
+test_accuracy: 0.114188, 10th percentile: 0.0692532, 50th percentile: 0.109868, 90th percentile 0.14282
+test_loss: 5.49407, 10th percentile: 4.84506, 50th percentile: 5.44727, 90th percentile 5.85819
+test_loss: 5.49407, 10th percentile: 4.84506, 50th percentile: 5.44727, 90th percentile 5.85819
+current time: 2021-04-12 01:29:06.784513
+--- Round 50 of 100: Training 1 Clients ---
+--- Round 50 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.113297, 10th percentile: 0.0689655, 50th percentile: 0.107869, 90th percentile 0.142857
+train_accuracy: 0.113297, 10th percentile: 0.0689655, 50th percentile: 0.107869, 90th percentile 0.142857
+train_loss: 5.51751, 10th percentile: 4.86773, 50th percentile: 5.46762, 90th percentile 5.89975
+train_loss: 5.51751, 10th percentile: 4.86773, 50th percentile: 5.46762, 90th percentile 5.89975
+test_accuracy: 0.113297, 10th percentile: 0.0689655, 50th percentile: 0.107869, 90th percentile 0.142857
+test_accuracy: 0.113297, 10th percentile: 0.0689655, 50th percentile: 0.107869, 90th percentile 0.142857
+test_loss: 5.51149, 10th percentile: 4.84014, 50th percentile: 5.45639, 90th percentile 5.89313
+test_loss: 5.51149, 10th percentile: 4.84014, 50th percentile: 5.45639, 90th percentile 5.89313
+current time: 2021-04-12 01:30:21.763875
+--- Round 51 of 100: Training 1 Clients ---
+--- Round 51 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.0916345, 10th percentile: 0.0512821, 50th percentile: 0.0853659, 90th percentile 0.120451
+train_accuracy: 0.0916345, 10th percentile: 0.0512821, 50th percentile: 0.0853659, 90th percentile 0.120451
+train_loss: 5.56877, 10th percentile: 4.86238, 50th percentile: 5.53055, 90th percentile 5.95442
+train_loss: 5.56877, 10th percentile: 4.86238, 50th percentile: 5.53055, 90th percentile 5.95442
+test_accuracy: 0.0916345, 10th percentile: 0.0512821, 50th percentile: 0.0853659, 90th percentile 0.120451
+test_accuracy: 0.0916345, 10th percentile: 0.0512821, 50th percentile: 0.0853659, 90th percentile 0.120451
+test_loss: 5.57249, 10th percentile: 4.8901, 50th percentile: 5.52088, 90th percentile 5.94765
+test_loss: 5.57249, 10th percentile: 4.8901, 50th percentile: 5.52088, 90th percentile 5.94765
+current time: 2021-04-12 01:31:35.789417
+--- Round 52 of 100: Training 1 Clients ---
+--- Round 52 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+train_accuracy: 0.10867, 10th percentile: 0.0625196, 50th percentile: 0.103426, 90th percentile 0.138114
+train_accuracy: 0.10867, 10th percentile: 0.0625196, 50th percentile: 0.103426, 90th percentile 0.138114
+train_loss: 5.51108, 10th percentile: 4.80687, 50th percentile: 5.46751, 90th percentile 5.87817
+train_loss: 5.51108, 10th percentile: 4.80687, 50th percentile: 5.46751, 90th percentile 5.87817
+test_accuracy: 0.10867, 10th percentile: 0.0625196, 50th percentile: 0.103426, 90th percentile 0.138114
+test_accuracy: 0.10867, 10th percentile: 0.0625196, 50th percentile: 0.103426, 90th percentile 0.138114
+test_loss: 5.50934, 10th percentile: 4.8251, 50th percentile: 5.47159, 90th percentile 5.88469
+test_loss: 5.50934, 10th percentile: 4.8251, 50th percentile: 5.47159, 90th percentile 5.88469
+current time: 2021-04-12 01:32:52.640315
+--- Round 53 of 100: Training 1 Clients ---
+--- Round 53 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0944705, 10th percentile: 0.0556444, 50th percentile: 0.0902192, 90th percentile 0.118543
+train_accuracy: 0.0944705, 10th percentile: 0.0556444, 50th percentile: 0.0902192, 90th percentile 0.118543
+train_loss: 5.51098, 10th percentile: 4.86246, 50th percentile: 5.47228, 90th percentile 5.87118
+train_loss: 5.51098, 10th percentile: 4.86246, 50th percentile: 5.47228, 90th percentile 5.87118
+test_accuracy: 0.0944705, 10th percentile: 0.0556444, 50th percentile: 0.0902192, 90th percentile 0.118543
+test_accuracy: 0.0944705, 10th percentile: 0.0556444, 50th percentile: 0.0902192, 90th percentile 0.118543
+test_loss: 5.51269, 10th percentile: 4.83422, 50th percentile: 5.46312, 90th percentile 5.87277
+test_loss: 5.51269, 10th percentile: 4.83422, 50th percentile: 5.46312, 90th percentile 5.87277
+current time: 2021-04-12 01:34:04.738330
+--- Round 54 of 100: Training 1 Clients ---
+--- Round 54 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.116103, 10th percentile: 0.0703007, 50th percentile: 0.10989, 90th percentile 0.145991
+train_accuracy: 0.116103, 10th percentile: 0.0703007, 50th percentile: 0.10989, 90th percentile 0.145991
+train_loss: 5.48645, 10th percentile: 4.84096, 50th percentile: 5.42876, 90th percentile 5.8619
+train_loss: 5.48645, 10th percentile: 4.84096, 50th percentile: 5.42876, 90th percentile 5.8619
+test_accuracy: 0.116103, 10th percentile: 0.0703007, 50th percentile: 0.10989, 90th percentile 0.145991
+test_accuracy: 0.116103, 10th percentile: 0.0703007, 50th percentile: 0.10989, 90th percentile 0.145991
+test_loss: 5.48394, 10th percentile: 4.85719, 50th percentile: 5.42796, 90th percentile 5.85239
+test_loss: 5.48394, 10th percentile: 4.85719, 50th percentile: 5.42796, 90th percentile 5.85239
+current time: 2021-04-12 01:35:20.688104
+--- Round 55 of 100: Training 1 Clients ---
+--- Round 55 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.105753, 10th percentile: 0.0599114, 50th percentile: 0.0994764, 90th percentile 0.131064
+train_accuracy: 0.105753, 10th percentile: 0.0599114, 50th percentile: 0.0994764, 90th percentile 0.131064
+train_loss: 5.46853, 10th percentile: 4.76597, 50th percentile: 5.42302, 90th percentile 5.84185
+train_loss: 5.46853, 10th percentile: 4.76597, 50th percentile: 5.42302, 90th percentile 5.84185
+test_accuracy: 0.105753, 10th percentile: 0.0599114, 50th percentile: 0.0994764, 90th percentile 0.131064
+test_accuracy: 0.105753, 10th percentile: 0.0599114, 50th percentile: 0.0994764, 90th percentile 0.131064
+test_loss: 5.4701, 10th percentile: 4.78618, 50th percentile: 5.43196, 90th percentile 5.85044
+test_loss: 5.4701, 10th percentile: 4.78618, 50th percentile: 5.43196, 90th percentile 5.85044
+current time: 2021-04-12 01:36:36.262734
+--- Round 56 of 100: Training 1 Clients ---
+--- Round 56 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.0963139, 10th percentile: 0.0595756, 50th percentile: 0.0914205, 90th percentile 0.119973
+train_accuracy: 0.0963139, 10th percentile: 0.0595756, 50th percentile: 0.0914205, 90th percentile 0.119973
+train_loss: 5.55079, 10th percentile: 4.85745, 50th percentile: 5.49534, 90th percentile 5.94956
+train_loss: 5.55079, 10th percentile: 4.85745, 50th percentile: 5.49534, 90th percentile 5.94956
+test_accuracy: 0.0963139, 10th percentile: 0.0595756, 50th percentile: 0.0914205, 90th percentile 0.119973
+test_accuracy: 0.0963139, 10th percentile: 0.0595756, 50th percentile: 0.0914205, 90th percentile 0.119973
+test_loss: 5.55239, 10th percentile: 4.87162, 50th percentile: 5.50348, 90th percentile 5.94133
+test_loss: 5.55239, 10th percentile: 4.87162, 50th percentile: 5.50348, 90th percentile 5.94133
+current time: 2021-04-12 01:37:55.908060
+--- Round 57 of 100: Training 1 Clients ---
+--- Round 57 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+train_accuracy: 0.10804, 10th percentile: 0.0617915, 50th percentile: 0.102128, 90th percentile 0.138394
+train_accuracy: 0.10804, 10th percentile: 0.0617915, 50th percentile: 0.102128, 90th percentile 0.138394
+train_loss: 5.46866, 10th percentile: 4.82136, 50th percentile: 5.43221, 90th percentile 5.8245
+train_loss: 5.46866, 10th percentile: 4.82136, 50th percentile: 5.43221, 90th percentile 5.8245
+test_accuracy: 0.10804, 10th percentile: 0.0617915, 50th percentile: 0.102128, 90th percentile 0.138394
+test_accuracy: 0.10804, 10th percentile: 0.0617915, 50th percentile: 0.102128, 90th percentile 0.138394
+test_loss: 5.46503, 10th percentile: 4.81508, 50th percentile: 5.42835, 90th percentile 5.82701
+test_loss: 5.46503, 10th percentile: 4.81508, 50th percentile: 5.42835, 90th percentile 5.82701
+current time: 2021-04-12 01:39:14.671768
+--- Round 58 of 100: Training 1 Clients ---
+--- Round 58 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.10568, 10th percentile: 0.0581783, 50th percentile: 0.099531, 90th percentile 0.135053
+train_accuracy: 0.10568, 10th percentile: 0.0581783, 50th percentile: 0.099531, 90th percentile 0.135053
+train_loss: 5.46433, 10th percentile: 4.84435, 50th percentile: 5.42599, 90th percentile 5.8471
+train_loss: 5.46433, 10th percentile: 4.84435, 50th percentile: 5.42599, 90th percentile 5.8471
+test_accuracy: 0.10568, 10th percentile: 0.0581783, 50th percentile: 0.099531, 90th percentile 0.135053
+test_accuracy: 0.10568, 10th percentile: 0.0581783, 50th percentile: 0.099531, 90th percentile 0.135053
+test_loss: 5.46732, 10th percentile: 4.84396, 50th percentile: 5.42558, 90th percentile 5.83086
+test_loss: 5.46732, 10th percentile: 4.84396, 50th percentile: 5.42558, 90th percentile 5.83086
+current time: 2021-04-12 01:40:26.442959
+--- Round 59 of 100: Training 1 Clients ---
+--- Round 59 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.115514, 10th percentile: 0.068798, 50th percentile: 0.109647, 90th percentile 0.145439
+train_accuracy: 0.115514, 10th percentile: 0.068798, 50th percentile: 0.109647, 90th percentile 0.145439
+train_loss: 5.46076, 10th percentile: 4.78264, 50th percentile: 5.41846, 90th percentile 5.83629
+train_loss: 5.46076, 10th percentile: 4.78264, 50th percentile: 5.41846, 90th percentile 5.83629
+test_accuracy: 0.115514, 10th percentile: 0.068798, 50th percentile: 0.109647, 90th percentile 0.145439
+test_accuracy: 0.115514, 10th percentile: 0.068798, 50th percentile: 0.109647, 90th percentile 0.145439
+test_loss: 5.45842, 10th percentile: 4.783, 50th percentile: 5.42153, 90th percentile 5.8359
+test_loss: 5.45842, 10th percentile: 4.783, 50th percentile: 5.42153, 90th percentile 5.8359
+current time: 2021-04-12 01:41:45.109633
+--- Round 60 of 100: Training 1 Clients ---
+--- Round 60 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.112173, 10th percentile: 0.0642185, 50th percentile: 0.106573, 90th percentile 0.141839
+train_accuracy: 0.112173, 10th percentile: 0.0642185, 50th percentile: 0.106573, 90th percentile 0.141839
+train_loss: 5.47207, 10th percentile: 4.73588, 50th percentile: 5.43403, 90th percentile 5.85821
+train_loss: 5.47207, 10th percentile: 4.73588, 50th percentile: 5.43403, 90th percentile 5.85821
+test_accuracy: 0.112173, 10th percentile: 0.0642185, 50th percentile: 0.106573, 90th percentile 0.141839
+test_accuracy: 0.112173, 10th percentile: 0.0642185, 50th percentile: 0.106573, 90th percentile 0.141839
+test_loss: 5.47674, 10th percentile: 4.79653, 50th percentile: 5.43035, 90th percentile 5.86024
+test_loss: 5.47674, 10th percentile: 4.79653, 50th percentile: 5.43035, 90th percentile 5.86024
+current time: 2021-04-12 01:42:58.256906
+--- Round 61 of 100: Training 1 Clients ---
+--- Round 61 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.0914796, 10th percentile: 0.0526713, 50th percentile: 0.0859375, 90th percentile 0.115285
+train_accuracy: 0.0914796, 10th percentile: 0.0526713, 50th percentile: 0.0859375, 90th percentile 0.115285
+train_loss: 5.54439, 10th percentile: 4.88815, 50th percentile: 5.50051, 90th percentile 5.89593
+train_loss: 5.54439, 10th percentile: 4.88815, 50th percentile: 5.50051, 90th percentile 5.89593
+test_accuracy: 0.0914776, 10th percentile: 0.0526713, 50th percentile: 0.0859375, 90th percentile 0.115285
+test_accuracy: 0.0914776, 10th percentile: 0.0526713, 50th percentile: 0.0859375, 90th percentile 0.115285
+test_loss: 5.53966, 10th percentile: 4.89435, 50th percentile: 5.49287, 90th percentile 5.902
+test_loss: 5.53966, 10th percentile: 4.89435, 50th percentile: 5.49287, 90th percentile 5.902
+current time: 2021-04-12 01:44:13.129052
+--- Round 62 of 100: Training 1 Clients ---
+--- Round 62 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.116435, 10th percentile: 0.0676342, 50th percentile: 0.110634, 90th percentile 0.147348
+train_accuracy: 0.116435, 10th percentile: 0.0676342, 50th percentile: 0.110634, 90th percentile 0.147348
+train_loss: 5.44502, 10th percentile: 4.7777, 50th percentile: 5.40796, 90th percentile 5.80725
+train_loss: 5.44502, 10th percentile: 4.7777, 50th percentile: 5.40796, 90th percentile 5.80725
+test_accuracy: 0.116435, 10th percentile: 0.0676342, 50th percentile: 0.110634, 90th percentile 0.147348
+test_accuracy: 0.116435, 10th percentile: 0.0676342, 50th percentile: 0.110634, 90th percentile 0.147348
+test_loss: 5.44777, 10th percentile: 4.78916, 50th percentile: 5.40837, 90th percentile 5.8185
+test_loss: 5.44777, 10th percentile: 4.78916, 50th percentile: 5.40837, 90th percentile 5.8185
+current time: 2021-04-12 01:45:25.147328
+--- Round 63 of 100: Training 1 Clients ---
+--- Round 63 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.105736, 10th percentile: 0.0600401, 50th percentile: 0.100498, 90th percentile 0.134064
+train_accuracy: 0.105736, 10th percentile: 0.0600401, 50th percentile: 0.100498, 90th percentile 0.134064
+train_loss: 5.43385, 10th percentile: 4.74318, 50th percentile: 5.38049, 90th percentile 5.80193
+train_loss: 5.43385, 10th percentile: 4.74318, 50th percentile: 5.38049, 90th percentile 5.80193
+test_accuracy: 0.105736, 10th percentile: 0.0600401, 50th percentile: 0.100498, 90th percentile 0.134064
+test_accuracy: 0.105736, 10th percentile: 0.0600401, 50th percentile: 0.100498, 90th percentile 0.134064
+test_loss: 5.43332, 10th percentile: 4.7627, 50th percentile: 5.37462, 90th percentile 5.79343
+test_loss: 5.43332, 10th percentile: 4.7627, 50th percentile: 5.37462, 90th percentile 5.79343
+current time: 2021-04-12 01:46:36.942460
+--- Round 64 of 100: Training 1 Clients ---
+--- Round 64 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.107721, 10th percentile: 0.0615385, 50th percentile: 0.101562, 90th percentile 0.136094
+train_accuracy: 0.107721, 10th percentile: 0.0615385, 50th percentile: 0.101562, 90th percentile 0.136094
+train_loss: 5.45591, 10th percentile: 4.79549, 50th percentile: 5.41511, 90th percentile 5.80703
+train_loss: 5.45591, 10th percentile: 4.79549, 50th percentile: 5.41511, 90th percentile 5.80703
+test_accuracy: 0.107721, 10th percentile: 0.0615385, 50th percentile: 0.101562, 90th percentile 0.136094
+test_accuracy: 0.107721, 10th percentile: 0.0615385, 50th percentile: 0.101562, 90th percentile 0.136094
+test_loss: 5.45564, 10th percentile: 4.81662, 50th percentile: 5.41525, 90th percentile 5.81306
+test_loss: 5.45564, 10th percentile: 4.81662, 50th percentile: 5.41525, 90th percentile 5.81306
+current time: 2021-04-12 01:47:49.966598
+--- Round 65 of 100: Training 1 Clients ---
+--- Round 65 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.106271, 10th percentile: 0.0617284, 50th percentile: 0.100992, 90th percentile 0.131969
+train_accuracy: 0.106271, 10th percentile: 0.0617284, 50th percentile: 0.100992, 90th percentile 0.131969
+train_loss: 5.44235, 10th percentile: 4.77009, 50th percentile: 5.40014, 90th percentile 5.81212
+train_loss: 5.44235, 10th percentile: 4.77009, 50th percentile: 5.40014, 90th percentile 5.81212
+test_accuracy: 0.106271, 10th percentile: 0.0617284, 50th percentile: 0.100992, 90th percentile 0.131969
+test_accuracy: 0.106271, 10th percentile: 0.0617284, 50th percentile: 0.100992, 90th percentile 0.131969
+test_loss: 5.44123, 10th percentile: 4.77597, 50th percentile: 5.39064, 90th percentile 5.81709
+test_loss: 5.44123, 10th percentile: 4.77597, 50th percentile: 5.39064, 90th percentile 5.81709
+current time: 2021-04-12 01:49:03.561600
+--- Round 66 of 100: Training 1 Clients ---
+--- Round 66 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.105329, 10th percentile: 0.060241, 50th percentile: 0.0994475, 90th percentile 0.133333
+train_accuracy: 0.105329, 10th percentile: 0.060241, 50th percentile: 0.0994475, 90th percentile 0.133333
+train_loss: 5.53533, 10th percentile: 4.84286, 50th percentile: 5.49112, 90th percentile 5.92693
+train_loss: 5.53533, 10th percentile: 4.84286, 50th percentile: 5.49112, 90th percentile 5.92693
+test_accuracy: 0.105329, 10th percentile: 0.060241, 50th percentile: 0.0994475, 90th percentile 0.133333
+test_accuracy: 0.105329, 10th percentile: 0.060241, 50th percentile: 0.0994475, 90th percentile 0.133333
+test_loss: 5.52866, 10th percentile: 4.83145, 50th percentile: 5.48438, 90th percentile 5.91746
+test_loss: 5.52866, 10th percentile: 4.83145, 50th percentile: 5.48438, 90th percentile 5.91746
+current time: 2021-04-12 01:50:22.500136
+--- Round 67 of 100: Training 1 Clients ---
+--- Round 67 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.0970513, 10th percentile: 0.0554665, 50th percentile: 0.091047, 90th percentile 0.121972
+train_accuracy: 0.0970513, 10th percentile: 0.0554665, 50th percentile: 0.091047, 90th percentile 0.121972
+train_loss: 5.52519, 10th percentile: 4.79966, 50th percentile: 5.49614, 90th percentile 5.89157
+train_loss: 5.52519, 10th percentile: 4.79966, 50th percentile: 5.49614, 90th percentile 5.89157
+test_accuracy: 0.0970513, 10th percentile: 0.0554665, 50th percentile: 0.091047, 90th percentile 0.121972
+test_accuracy: 0.0970513, 10th percentile: 0.0554665, 50th percentile: 0.091047, 90th percentile 0.121972
+test_loss: 5.5224, 10th percentile: 4.84877, 50th percentile: 5.49094, 90th percentile 5.88395
+test_loss: 5.5224, 10th percentile: 4.84877, 50th percentile: 5.49094, 90th percentile 5.88395
+current time: 2021-04-12 01:51:46.396068
+--- Round 68 of 100: Training 1 Clients ---
+--- Round 68 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.0721931, 10th percentile: 0.0333333, 50th percentile: 0.0684581, 90th percentile 0.1
+train_accuracy: 0.0721931, 10th percentile: 0.0333333, 50th percentile: 0.0684581, 90th percentile 0.1
+train_loss: 5.7989, 10th percentile: 5.08279, 50th percentile: 5.76075, 90th percentile 6.20045
+train_loss: 5.7989, 10th percentile: 5.08279, 50th percentile: 5.76075, 90th percentile 6.20045
+test_accuracy: 0.0721931, 10th percentile: 0.0333333, 50th percentile: 0.0684581, 90th percentile 0.1
+test_accuracy: 0.0721931, 10th percentile: 0.0333333, 50th percentile: 0.0684581, 90th percentile 0.1
+test_loss: 5.80274, 10th percentile: 5.12169, 50th percentile: 5.75761, 90th percentile 6.19813
+test_loss: 5.80274, 10th percentile: 5.12169, 50th percentile: 5.75761, 90th percentile 6.19813
+current time: 2021-04-12 01:53:05.785689
+--- Round 69 of 100: Training 1 Clients ---
+--- Round 69 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.109949, 10th percentile: 0.0641026, 50th percentile: 0.10443, 90th percentile 0.134209
+train_accuracy: 0.109949, 10th percentile: 0.0641026, 50th percentile: 0.10443, 90th percentile 0.134209
+train_loss: 5.46686, 10th percentile: 4.80771, 50th percentile: 5.43642, 90th percentile 5.84213
+train_loss: 5.46686, 10th percentile: 4.80771, 50th percentile: 5.43642, 90th percentile 5.84213
+test_accuracy: 0.109949, 10th percentile: 0.0641026, 50th percentile: 0.10443, 90th percentile 0.134209
+test_accuracy: 0.109949, 10th percentile: 0.0641026, 50th percentile: 0.10443, 90th percentile 0.134209
+test_loss: 5.46408, 10th percentile: 4.78261, 50th percentile: 5.44029, 90th percentile 5.8385
+test_loss: 5.46408, 10th percentile: 4.78261, 50th percentile: 5.44029, 90th percentile 5.8385
+current time: 2021-04-12 01:54:18.466630
+--- Round 70 of 100: Training 1 Clients ---
+--- Round 70 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.114371, 10th percentile: 0.0682481, 50th percentile: 0.107249, 90th percentile 0.142681
+train_accuracy: 0.114371, 10th percentile: 0.0682481, 50th percentile: 0.107249, 90th percentile 0.142681
+train_loss: 5.46628, 10th percentile: 4.78094, 50th percentile: 5.42564, 90th percentile 5.83688
+train_loss: 5.46628, 10th percentile: 4.78094, 50th percentile: 5.42564, 90th percentile 5.83688
+test_accuracy: 0.114371, 10th percentile: 0.0682481, 50th percentile: 0.107249, 90th percentile 0.142681
+test_accuracy: 0.114371, 10th percentile: 0.0682481, 50th percentile: 0.107249, 90th percentile 0.142681
+test_loss: 5.46317, 10th percentile: 4.75842, 50th percentile: 5.42618, 90th percentile 5.84441
+test_loss: 5.46317, 10th percentile: 4.75842, 50th percentile: 5.42618, 90th percentile 5.84441
+current time: 2021-04-12 01:55:31.826542
+--- Round 71 of 100: Training 1 Clients ---
+--- Round 71 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.119218, 10th percentile: 0.0714286, 50th percentile: 0.11236, 90th percentile 0.147977
+train_accuracy: 0.119218, 10th percentile: 0.0714286, 50th percentile: 0.11236, 90th percentile 0.147977
+train_loss: 5.44168, 10th percentile: 4.79033, 50th percentile: 5.39988, 90th percentile 5.82146
+train_loss: 5.44168, 10th percentile: 4.79033, 50th percentile: 5.39988, 90th percentile 5.82146
+test_accuracy: 0.119218, 10th percentile: 0.0714286, 50th percentile: 0.11236, 90th percentile 0.147977
+test_accuracy: 0.119218, 10th percentile: 0.0714286, 50th percentile: 0.11236, 90th percentile 0.147977
+test_loss: 5.43851, 10th percentile: 4.79739, 50th percentile: 5.39653, 90th percentile 5.81599
+test_loss: 5.43851, 10th percentile: 4.79739, 50th percentile: 5.39653, 90th percentile 5.81599
+current time: 2021-04-12 01:56:43.762078
+--- Round 72 of 100: Training 1 Clients ---
+--- Round 72 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.0996966, 10th percentile: 0.0611966, 50th percentile: 0.0939831, 90th percentile 0.124475
+train_accuracy: 0.0996966, 10th percentile: 0.0611966, 50th percentile: 0.0939831, 90th percentile 0.124475
+train_loss: 5.45198, 10th percentile: 4.81689, 50th percentile: 5.41283, 90th percentile 5.82517
+train_loss: 5.45198, 10th percentile: 4.81689, 50th percentile: 5.41283, 90th percentile 5.82517
+test_accuracy: 0.0996966, 10th percentile: 0.0611966, 50th percentile: 0.0939831, 90th percentile 0.124475
+test_accuracy: 0.0996966, 10th percentile: 0.0611966, 50th percentile: 0.0939831, 90th percentile 0.124475
+test_loss: 5.45143, 10th percentile: 4.79759, 50th percentile: 5.42393, 90th percentile 5.82296
+test_loss: 5.45143, 10th percentile: 4.79759, 50th percentile: 5.42393, 90th percentile 5.82296
+current time: 2021-04-12 01:58:01.934596
+--- Round 73 of 100: Training 1 Clients ---
+--- Round 73 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+train_accuracy: 0.100727, 10th percentile: 0.0610201, 50th percentile: 0.096206, 90th percentile 0.122827
+train_accuracy: 0.100727, 10th percentile: 0.0610201, 50th percentile: 0.096206, 90th percentile 0.122827
+train_loss: 5.43559, 10th percentile: 4.78243, 50th percentile: 5.4088, 90th percentile 5.8161
+train_loss: 5.43559, 10th percentile: 4.78243, 50th percentile: 5.4088, 90th percentile 5.8161
+test_accuracy: 0.100727, 10th percentile: 0.0610201, 50th percentile: 0.096206, 90th percentile 0.122827
+test_accuracy: 0.100727, 10th percentile: 0.0610201, 50th percentile: 0.096206, 90th percentile 0.122827
+test_loss: 5.43616, 10th percentile: 4.75323, 50th percentile: 5.41107, 90th percentile 5.82117
+test_loss: 5.43616, 10th percentile: 4.75323, 50th percentile: 5.41107, 90th percentile 5.82117
+current time: 2021-04-12 01:59:23.649877
+--- Round 74 of 100: Training 1 Clients ---
+--- Round 74 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.112548, 10th percentile: 0.0673276, 50th percentile: 0.106, 90th percentile 0.140272
+train_accuracy: 0.112548, 10th percentile: 0.0673276, 50th percentile: 0.106, 90th percentile 0.140272
+train_loss: 5.41049, 10th percentile: 4.74302, 50th percentile: 5.38518, 90th percentile 5.78486
+train_loss: 5.41049, 10th percentile: 4.74302, 50th percentile: 5.38518, 90th percentile 5.78486
+test_accuracy: 0.112548, 10th percentile: 0.0673276, 50th percentile: 0.106, 90th percentile 0.140272
+test_accuracy: 0.112548, 10th percentile: 0.0673276, 50th percentile: 0.106, 90th percentile 0.140272
+test_loss: 5.40948, 10th percentile: 4.75497, 50th percentile: 5.38728, 90th percentile 5.78923
+test_loss: 5.40948, 10th percentile: 4.75497, 50th percentile: 5.38728, 90th percentile 5.78923
+current time: 2021-04-12 02:00:36.066883
+--- Round 75 of 100: Training 1 Clients ---
+--- Round 75 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.113493, 10th percentile: 0.0678175, 50th percentile: 0.106383, 90th percentile 0.140147
+train_accuracy: 0.113493, 10th percentile: 0.0678175, 50th percentile: 0.106383, 90th percentile 0.140147
+train_loss: 5.38933, 10th percentile: 4.73749, 50th percentile: 5.35546, 90th percentile 5.77371
+train_loss: 5.38933, 10th percentile: 4.73749, 50th percentile: 5.35546, 90th percentile 5.77371
+test_accuracy: 0.113493, 10th percentile: 0.0678175, 50th percentile: 0.106383, 90th percentile 0.140147
+test_accuracy: 0.113493, 10th percentile: 0.0678175, 50th percentile: 0.106383, 90th percentile 0.140147
+test_loss: 5.38708, 10th percentile: 4.69592, 50th percentile: 5.36077, 90th percentile 5.77098
+test_loss: 5.38708, 10th percentile: 4.69592, 50th percentile: 5.36077, 90th percentile 5.77098
+current time: 2021-04-12 02:01:47.998976
+--- Round 76 of 100: Training 1 Clients ---
+--- Round 76 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.118219, 10th percentile: 0.0715313, 50th percentile: 0.11194, 90th percentile 0.146664
+train_accuracy: 0.118219, 10th percentile: 0.0715313, 50th percentile: 0.11194, 90th percentile 0.146664
+train_loss: 5.39149, 10th percentile: 4.71768, 50th percentile: 5.35412, 90th percentile 5.79113
+train_loss: 5.39149, 10th percentile: 4.71768, 50th percentile: 5.35412, 90th percentile 5.79113
+test_accuracy: 0.118219, 10th percentile: 0.0715313, 50th percentile: 0.11194, 90th percentile 0.146664
+test_accuracy: 0.118219, 10th percentile: 0.0715313, 50th percentile: 0.11194, 90th percentile 0.146664
+test_loss: 5.39255, 10th percentile: 4.71646, 50th percentile: 5.3646, 90th percentile 5.80509
+test_loss: 5.39255, 10th percentile: 4.71646, 50th percentile: 5.3646, 90th percentile 5.80509
+current time: 2021-04-12 02:03:02.823405
+--- Round 77 of 100: Training 1 Clients ---
+--- Round 77 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.117091, 10th percentile: 0.0693087, 50th percentile: 0.111183, 90th percentile 0.14656
+train_accuracy: 0.117091, 10th percentile: 0.0693087, 50th percentile: 0.111183, 90th percentile 0.14656
+train_loss: 5.37618, 10th percentile: 4.69435, 50th percentile: 5.34221, 90th percentile 5.7755
+train_loss: 5.37618, 10th percentile: 4.69435, 50th percentile: 5.34221, 90th percentile 5.7755
+test_accuracy: 0.117091, 10th percentile: 0.0693087, 50th percentile: 0.111183, 90th percentile 0.14656
+test_accuracy: 0.117091, 10th percentile: 0.0693087, 50th percentile: 0.111183, 90th percentile 0.14656
+test_loss: 5.37321, 10th percentile: 4.71021, 50th percentile: 5.34039, 90th percentile 5.76682
+test_loss: 5.37321, 10th percentile: 4.71021, 50th percentile: 5.34039, 90th percentile 5.76682
+current time: 2021-04-12 02:04:14.494282
+--- Round 78 of 100: Training 1 Clients ---
+--- Round 78 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.117283, 10th percentile: 0.0702299, 50th percentile: 0.111111, 90th percentile 0.145101
+train_accuracy: 0.117283, 10th percentile: 0.0702299, 50th percentile: 0.111111, 90th percentile 0.145101
+train_loss: 5.37606, 10th percentile: 4.73097, 50th percentile: 5.33649, 90th percentile 5.77666
+train_loss: 5.37606, 10th percentile: 4.73097, 50th percentile: 5.33649, 90th percentile 5.77666
+test_accuracy: 0.117283, 10th percentile: 0.0702299, 50th percentile: 0.111111, 90th percentile 0.145101
+test_accuracy: 0.117283, 10th percentile: 0.0702299, 50th percentile: 0.111111, 90th percentile 0.145101
+test_loss: 5.37892, 10th percentile: 4.69149, 50th percentile: 5.33936, 90th percentile 5.76508
+test_loss: 5.37892, 10th percentile: 4.69149, 50th percentile: 5.33936, 90th percentile 5.76508
+current time: 2021-04-12 02:05:26.081959
+--- Round 79 of 100: Training 1 Clients ---
+--- Round 79 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.110633, 10th percentile: 0.0615764, 50th percentile: 0.104096, 90th percentile 0.141705
+train_accuracy: 0.110633, 10th percentile: 0.0615764, 50th percentile: 0.104096, 90th percentile 0.141705
+train_loss: 5.38015, 10th percentile: 4.72391, 50th percentile: 5.3552, 90th percentile 5.7705
+train_loss: 5.38015, 10th percentile: 4.72391, 50th percentile: 5.3552, 90th percentile 5.7705
+test_accuracy: 0.110633, 10th percentile: 0.0615764, 50th percentile: 0.104096, 90th percentile 0.141705
+test_accuracy: 0.110633, 10th percentile: 0.0615764, 50th percentile: 0.104096, 90th percentile 0.141705
+test_loss: 5.37622, 10th percentile: 4.72616, 50th percentile: 5.33756, 90th percentile 5.76583
+test_loss: 5.37622, 10th percentile: 4.72616, 50th percentile: 5.33756, 90th percentile 5.76583
+current time: 2021-04-12 02:06:41.344521
+--- Round 80 of 100: Training 1 Clients ---
+--- Round 80 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.12008, 10th percentile: 0.0689655, 50th percentile: 0.112676, 90th percentile 0.150772
+train_accuracy: 0.12008, 10th percentile: 0.0689655, 50th percentile: 0.112676, 90th percentile 0.150772
+train_loss: 5.40566, 10th percentile: 4.76957, 50th percentile: 5.37246, 90th percentile 5.82374
+train_loss: 5.40566, 10th percentile: 4.76957, 50th percentile: 5.37246, 90th percentile 5.82374
+test_accuracy: 0.12008, 10th percentile: 0.0689655, 50th percentile: 0.112676, 90th percentile 0.150772
+test_accuracy: 0.12008, 10th percentile: 0.0689655, 50th percentile: 0.112676, 90th percentile 0.150772
+test_loss: 5.40754, 10th percentile: 4.73842, 50th percentile: 5.37054, 90th percentile 5.82958
+test_loss: 5.40754, 10th percentile: 4.73842, 50th percentile: 5.37054, 90th percentile 5.82958
+current time: 2021-04-12 02:08:06.399559
+--- Round 81 of 100: Training 1 Clients ---
+--- Round 81 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.122209, 10th percentile: 0.0722196, 50th percentile: 0.115523, 90th percentile 0.150862
+train_accuracy: 0.122209, 10th percentile: 0.0722196, 50th percentile: 0.115523, 90th percentile 0.150862
+train_loss: 5.36792, 10th percentile: 4.76307, 50th percentile: 5.32976, 90th percentile 5.76961
+train_loss: 5.36792, 10th percentile: 4.76307, 50th percentile: 5.32976, 90th percentile 5.76961
+test_accuracy: 0.122209, 10th percentile: 0.0722196, 50th percentile: 0.115523, 90th percentile 0.150862
+test_accuracy: 0.122209, 10th percentile: 0.0722196, 50th percentile: 0.115523, 90th percentile 0.150862
+test_loss: 5.36663, 10th percentile: 4.73954, 50th percentile: 5.32825, 90th percentile 5.75812
+test_loss: 5.36663, 10th percentile: 4.73954, 50th percentile: 5.32825, 90th percentile 5.75812
+current time: 2021-04-12 02:09:18.444597
+--- Round 82 of 100: Training 1 Clients ---
+--- Round 82 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.109813, 10th percentile: 0.0663454, 50th percentile: 0.103099, 90th percentile 0.134404
+train_accuracy: 0.109813, 10th percentile: 0.0663454, 50th percentile: 0.103099, 90th percentile 0.134404
+train_loss: 5.3812, 10th percentile: 4.68663, 50th percentile: 5.34599, 90th percentile 5.76784
+train_loss: 5.3812, 10th percentile: 4.68663, 50th percentile: 5.34599, 90th percentile 5.76784
+test_accuracy: 0.109813, 10th percentile: 0.0663454, 50th percentile: 0.103099, 90th percentile 0.134404
+test_accuracy: 0.109813, 10th percentile: 0.0663454, 50th percentile: 0.103099, 90th percentile 0.134404
+test_loss: 5.38923, 10th percentile: 4.71524, 50th percentile: 5.35402, 90th percentile 5.77472
+test_loss: 5.38923, 10th percentile: 4.71524, 50th percentile: 5.35402, 90th percentile 5.77472
+current time: 2021-04-12 02:10:30.358567
+--- Round 83 of 100: Training 1 Clients ---
+--- Round 83 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+train_accuracy: 0.102117, 10th percentile: 0.0582275, 50th percentile: 0.0965435, 90th percentile 0.127857
+train_accuracy: 0.102117, 10th percentile: 0.0582275, 50th percentile: 0.0965435, 90th percentile 0.127857
+train_loss: 5.4318, 10th percentile: 4.70584, 50th percentile: 5.40598, 90th percentile 5.82669
+train_loss: 5.4318, 10th percentile: 4.70584, 50th percentile: 5.40598, 90th percentile 5.82669
+test_accuracy: 0.102117, 10th percentile: 0.0582275, 50th percentile: 0.0965435, 90th percentile 0.127857
+test_accuracy: 0.102117, 10th percentile: 0.0582275, 50th percentile: 0.0965435, 90th percentile 0.127857
+test_loss: 5.43666, 10th percentile: 4.78936, 50th percentile: 5.39751, 90th percentile 5.8466
+test_loss: 5.43666, 10th percentile: 4.78936, 50th percentile: 5.39751, 90th percentile 5.8466
+current time: 2021-04-12 02:11:45.067602
+--- Round 84 of 100: Training 1 Clients ---
+--- Round 84 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.116553, 10th percentile: 0.0689655, 50th percentile: 0.109568, 90th percentile 0.144255
+train_accuracy: 0.116553, 10th percentile: 0.0689655, 50th percentile: 0.109568, 90th percentile 0.144255
+train_loss: 5.42929, 10th percentile: 4.83851, 50th percentile: 5.40232, 90th percentile 5.83022
+train_loss: 5.42929, 10th percentile: 4.83851, 50th percentile: 5.40232, 90th percentile 5.83022
+test_accuracy: 0.116553, 10th percentile: 0.0689655, 50th percentile: 0.109568, 90th percentile 0.144255
+test_accuracy: 0.116553, 10th percentile: 0.0689655, 50th percentile: 0.109568, 90th percentile 0.144255
+test_loss: 5.42663, 10th percentile: 4.7851, 50th percentile: 5.39451, 90th percentile 5.8437
+test_loss: 5.42663, 10th percentile: 4.7851, 50th percentile: 5.39451, 90th percentile 5.8437
+current time: 2021-04-12 02:13:10.371871
+--- Round 85 of 100: Training 1 Clients ---
+--- Round 85 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.0963043, 10th percentile: 0.0514839, 50th percentile: 0.0901639, 90th percentile 0.12
+train_accuracy: 0.0963043, 10th percentile: 0.0514839, 50th percentile: 0.0901639, 90th percentile 0.12
+train_loss: 5.41266, 10th percentile: 4.77344, 50th percentile: 5.37751, 90th percentile 5.79487
+train_loss: 5.41266, 10th percentile: 4.77344, 50th percentile: 5.37751, 90th percentile 5.79487
+test_accuracy: 0.0963043, 10th percentile: 0.0514839, 50th percentile: 0.0901639, 90th percentile 0.12
+test_accuracy: 0.0963043, 10th percentile: 0.0514839, 50th percentile: 0.0901639, 90th percentile 0.12
+test_loss: 5.41421, 10th percentile: 4.76349, 50th percentile: 5.36789, 90th percentile 5.7976
+test_loss: 5.41421, 10th percentile: 4.76349, 50th percentile: 5.36789, 90th percentile 5.7976
+current time: 2021-04-12 02:14:22.796294
+--- Round 86 of 100: Training 1 Clients ---
+--- Round 86 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.120022, 10th percentile: 0.070597, 50th percentile: 0.114228, 90th percentile 0.146642
+train_accuracy: 0.120022, 10th percentile: 0.070597, 50th percentile: 0.114228, 90th percentile 0.146642
+train_loss: 5.38166, 10th percentile: 4.72717, 50th percentile: 5.3499, 90th percentile 5.79307
+train_loss: 5.38166, 10th percentile: 4.72717, 50th percentile: 5.3499, 90th percentile 5.79307
+test_accuracy: 0.120022, 10th percentile: 0.070597, 50th percentile: 0.114228, 90th percentile 0.146642
+test_accuracy: 0.120022, 10th percentile: 0.070597, 50th percentile: 0.114228, 90th percentile 0.146642
+test_loss: 5.38212, 10th percentile: 4.7557, 50th percentile: 5.35434, 90th percentile 5.77637
+test_loss: 5.38212, 10th percentile: 4.7557, 50th percentile: 5.35434, 90th percentile 5.77637
+current time: 2021-04-12 02:15:34.545181
+--- Round 87 of 100: Training 1 Clients ---
+--- Round 87 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.107526, 10th percentile: 0.0621296, 50th percentile: 0.100372, 90th percentile 0.131613
+train_accuracy: 0.107526, 10th percentile: 0.0621296, 50th percentile: 0.100372, 90th percentile 0.131613
+train_loss: 5.40802, 10th percentile: 4.78934, 50th percentile: 5.36212, 90th percentile 5.79381
+train_loss: 5.40802, 10th percentile: 4.78934, 50th percentile: 5.36212, 90th percentile 5.79381
+test_accuracy: 0.107526, 10th percentile: 0.0621296, 50th percentile: 0.100372, 90th percentile 0.131613
+test_accuracy: 0.107526, 10th percentile: 0.0621296, 50th percentile: 0.100372, 90th percentile 0.131613
+test_loss: 5.40873, 10th percentile: 4.80649, 50th percentile: 5.37201, 90th percentile 5.79975
+test_loss: 5.40873, 10th percentile: 4.80649, 50th percentile: 5.37201, 90th percentile 5.79975
+current time: 2021-04-12 02:16:48.728376
+--- Round 88 of 100: Training 1 Clients ---
+--- Round 88 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.1176, 10th percentile: 0.0705279, 50th percentile: 0.111111, 90th percentile 0.143897
+train_accuracy: 0.1176, 10th percentile: 0.0705279, 50th percentile: 0.111111, 90th percentile 0.143897
+train_loss: 5.3689, 10th percentile: 4.7909, 50th percentile: 5.33245, 90th percentile 5.75523
+train_loss: 5.3689, 10th percentile: 4.7909, 50th percentile: 5.33245, 90th percentile 5.75523
+test_accuracy: 0.1176, 10th percentile: 0.0705279, 50th percentile: 0.111111, 90th percentile 0.143897
+test_accuracy: 0.1176, 10th percentile: 0.0705279, 50th percentile: 0.111111, 90th percentile 0.143897
+test_loss: 5.36887, 10th percentile: 4.75773, 50th percentile: 5.33017, 90th percentile 5.75444
+test_loss: 5.36887, 10th percentile: 4.75773, 50th percentile: 5.33017, 90th percentile 5.75444
+current time: 2021-04-12 02:18:01.112949
+--- Round 89 of 100: Training 1 Clients ---
+--- Round 89 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+train_accuracy: 0.109338, 10th percentile: 0.0625, 50th percentile: 0.102857, 90th percentile 0.135041
+train_accuracy: 0.109338, 10th percentile: 0.0625, 50th percentile: 0.102857, 90th percentile 0.135041
+train_loss: 5.36455, 10th percentile: 4.69292, 50th percentile: 5.32202, 90th percentile 5.76522
+train_loss: 5.36455, 10th percentile: 4.69292, 50th percentile: 5.32202, 90th percentile 5.76522
+test_accuracy: 0.109338, 10th percentile: 0.0625, 50th percentile: 0.102857, 90th percentile 0.135041
+test_accuracy: 0.109338, 10th percentile: 0.0625, 50th percentile: 0.102857, 90th percentile 0.135041
+test_loss: 5.36269, 10th percentile: 4.701, 50th percentile: 5.32403, 90th percentile 5.76368
+test_loss: 5.36269, 10th percentile: 4.701, 50th percentile: 5.32403, 90th percentile 5.76368
+current time: 2021-04-12 02:19:13.104324
+--- Round 90 of 100: Training 1 Clients ---
+--- Round 90 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.117614, 10th percentile: 0.0697924, 50th percentile: 0.112, 90th percentile 0.144799
+train_accuracy: 0.117614, 10th percentile: 0.0697924, 50th percentile: 0.112, 90th percentile 0.144799
+train_loss: 5.3563, 10th percentile: 4.72003, 50th percentile: 5.30833, 90th percentile 5.7446
+train_loss: 5.3563, 10th percentile: 4.72003, 50th percentile: 5.30833, 90th percentile 5.7446
+test_accuracy: 0.117614, 10th percentile: 0.0697924, 50th percentile: 0.112, 90th percentile 0.144799
+test_accuracy: 0.117614, 10th percentile: 0.0697924, 50th percentile: 0.112, 90th percentile 0.144799
+test_loss: 5.35654, 10th percentile: 4.70415, 50th percentile: 5.30721, 90th percentile 5.7642
+test_loss: 5.35654, 10th percentile: 4.70415, 50th percentile: 5.30721, 90th percentile 5.7642
+current time: 2021-04-12 02:20:24.426123
+--- Round 91 of 100: Training 1 Clients ---
+--- Round 91 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.120848, 10th percentile: 0.0724503, 50th percentile: 0.114901, 90th percentile 0.146789
+train_accuracy: 0.120848, 10th percentile: 0.0724503, 50th percentile: 0.114901, 90th percentile 0.146789
+train_loss: 5.35264, 10th percentile: 4.74259, 50th percentile: 5.30736, 90th percentile 5.75966
+train_loss: 5.35264, 10th percentile: 4.74259, 50th percentile: 5.30736, 90th percentile 5.75966
+test_accuracy: 0.120848, 10th percentile: 0.0724503, 50th percentile: 0.114901, 90th percentile 0.146789
+test_accuracy: 0.120848, 10th percentile: 0.0724503, 50th percentile: 0.114901, 90th percentile 0.146789
+test_loss: 5.35152, 10th percentile: 4.73079, 50th percentile: 5.30828, 90th percentile 5.75092
+test_loss: 5.35152, 10th percentile: 4.73079, 50th percentile: 5.30828, 90th percentile 5.75092
+current time: 2021-04-12 02:21:38.243284
+--- Round 92 of 100: Training 1 Clients ---
+--- Round 92 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.118523, 10th percentile: 0.0710124, 50th percentile: 0.112, 90th percentile 0.146002
+train_accuracy: 0.118523, 10th percentile: 0.0710124, 50th percentile: 0.112, 90th percentile 0.146002
+train_loss: 5.36264, 10th percentile: 4.76024, 50th percentile: 5.31693, 90th percentile 5.73475
+train_loss: 5.36264, 10th percentile: 4.76024, 50th percentile: 5.31693, 90th percentile 5.73475
+test_accuracy: 0.118523, 10th percentile: 0.0710124, 50th percentile: 0.112, 90th percentile 0.146002
+test_accuracy: 0.118523, 10th percentile: 0.0710124, 50th percentile: 0.112, 90th percentile 0.146002
+test_loss: 5.35579, 10th percentile: 4.72521, 50th percentile: 5.31111, 90th percentile 5.73226
+test_loss: 5.35579, 10th percentile: 4.72521, 50th percentile: 5.31111, 90th percentile 5.73226
+current time: 2021-04-12 02:22:57.178442
+--- Round 93 of 100: Training 1 Clients ---
+--- Round 93 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.116604, 10th percentile: 0.0682639, 50th percentile: 0.109375, 90th percentile 0.146304
+train_accuracy: 0.116604, 10th percentile: 0.0682639, 50th percentile: 0.109375, 90th percentile 0.146304
+train_loss: 5.35787, 10th percentile: 4.7375, 50th percentile: 5.32198, 90th percentile 5.74352
+train_loss: 5.35787, 10th percentile: 4.7375, 50th percentile: 5.32198, 90th percentile 5.74352
+test_accuracy: 0.116604, 10th percentile: 0.0682639, 50th percentile: 0.109375, 90th percentile 0.146304
+test_accuracy: 0.116604, 10th percentile: 0.0682639, 50th percentile: 0.109375, 90th percentile 0.146304
+test_loss: 5.35554, 10th percentile: 4.72091, 50th percentile: 5.30953, 90th percentile 5.74194
+test_loss: 5.35554, 10th percentile: 4.72091, 50th percentile: 5.30953, 90th percentile 5.74194
+current time: 2021-04-12 02:24:11.820603
+--- Round 94 of 100: Training 1 Clients ---
+--- Round 94 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+train_accuracy: 0.121229, 10th percentile: 0.0732489, 50th percentile: 0.114943, 90th percentile 0.148541
+train_accuracy: 0.121229, 10th percentile: 0.0732489, 50th percentile: 0.114943, 90th percentile 0.148541
+train_loss: 5.32753, 10th percentile: 4.64075, 50th percentile: 5.28671, 90th percentile 5.72775
+train_loss: 5.32753, 10th percentile: 4.64075, 50th percentile: 5.28671, 90th percentile 5.72775
+test_accuracy: 0.121229, 10th percentile: 0.0732489, 50th percentile: 0.114943, 90th percentile 0.148541
+test_accuracy: 0.121229, 10th percentile: 0.0732489, 50th percentile: 0.114943, 90th percentile 0.148541
+test_loss: 5.3261, 10th percentile: 4.69359, 50th percentile: 5.28015, 90th percentile 5.7151
+test_loss: 5.3261, 10th percentile: 4.69359, 50th percentile: 5.28015, 90th percentile 5.7151
+current time: 2021-04-12 02:25:25.384880
+--- Round 95 of 100: Training 1 Clients ---
+--- Round 95 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35927)[0m compress
+train_accuracy: 0.121093, 10th percentile: 0.0736383, 50th percentile: 0.114925, 90th percentile 0.148379
+train_accuracy: 0.121093, 10th percentile: 0.0736383, 50th percentile: 0.114925, 90th percentile 0.148379
+train_loss: 5.32402, 10th percentile: 4.69402, 50th percentile: 5.28262, 90th percentile 5.70881
+train_loss: 5.32402, 10th percentile: 4.69402, 50th percentile: 5.28262, 90th percentile 5.70881
+test_accuracy: 0.121093, 10th percentile: 0.0736383, 50th percentile: 0.114925, 90th percentile 0.148379
+test_accuracy: 0.121093, 10th percentile: 0.0736383, 50th percentile: 0.114925, 90th percentile 0.148379
+test_loss: 5.32188, 10th percentile: 4.64831, 50th percentile: 5.2774, 90th percentile 5.73184
+test_loss: 5.32188, 10th percentile: 4.64831, 50th percentile: 5.2774, 90th percentile 5.73184
+current time: 2021-04-12 02:26:39.031559
+--- Round 96 of 100: Training 1 Clients ---
+--- Round 96 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.123353, 10th percentile: 0.07355, 50th percentile: 0.117201, 90th percentile 0.152205
+train_accuracy: 0.123353, 10th percentile: 0.07355, 50th percentile: 0.117201, 90th percentile 0.152205
+train_loss: 5.31997, 10th percentile: 4.62784, 50th percentile: 5.27449, 90th percentile 5.72905
+train_loss: 5.31997, 10th percentile: 4.62784, 50th percentile: 5.27449, 90th percentile 5.72905
+test_accuracy: 0.123353, 10th percentile: 0.07355, 50th percentile: 0.117201, 90th percentile 0.152205
+test_accuracy: 0.123353, 10th percentile: 0.07355, 50th percentile: 0.117201, 90th percentile 0.152205
+test_loss: 5.32306, 10th percentile: 4.69698, 50th percentile: 5.2724, 90th percentile 5.72854
+test_loss: 5.32306, 10th percentile: 4.69698, 50th percentile: 5.2724, 90th percentile 5.72854
+current time: 2021-04-12 02:27:50.932532
+--- Round 97 of 100: Training 1 Clients ---
+--- Round 97 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+train_accuracy: 0.119968, 10th percentile: 0.0695685, 50th percentile: 0.113333, 90th percentile 0.145926
+train_accuracy: 0.119968, 10th percentile: 0.0695685, 50th percentile: 0.113333, 90th percentile 0.145926
+train_loss: 5.3013, 10th percentile: 4.65375, 50th percentile: 5.25716, 90th percentile 5.6919
+train_loss: 5.3013, 10th percentile: 4.65375, 50th percentile: 5.25716, 90th percentile 5.6919
+test_accuracy: 0.119968, 10th percentile: 0.0695685, 50th percentile: 0.113333, 90th percentile 0.145926
+test_accuracy: 0.119968, 10th percentile: 0.0695685, 50th percentile: 0.113333, 90th percentile 0.145926
+test_loss: 5.30577, 10th percentile: 4.65044, 50th percentile: 5.27115, 90th percentile 5.6973
+test_loss: 5.30577, 10th percentile: 4.65044, 50th percentile: 5.27115, 90th percentile 5.6973
+current time: 2021-04-12 02:29:02.483905
+--- Round 98 of 100: Training 1 Clients ---
+--- Round 98 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.120479, 10th percentile: 0.0714969, 50th percentile: 0.114286, 90th percentile 0.148477
+train_accuracy: 0.120479, 10th percentile: 0.0714969, 50th percentile: 0.114286, 90th percentile 0.148477
+train_loss: 5.30575, 10th percentile: 4.67363, 50th percentile: 5.25578, 90th percentile 5.69492
+train_loss: 5.30575, 10th percentile: 4.67363, 50th percentile: 5.25578, 90th percentile 5.69492
+test_accuracy: 0.120479, 10th percentile: 0.0714969, 50th percentile: 0.114286, 90th percentile 0.148477
+test_accuracy: 0.120479, 10th percentile: 0.0714969, 50th percentile: 0.114286, 90th percentile 0.148477
+test_loss: 5.30517, 10th percentile: 4.66338, 50th percentile: 5.26019, 90th percentile 5.68899
+test_loss: 5.30517, 10th percentile: 4.66338, 50th percentile: 5.26019, 90th percentile 5.68899
+current time: 2021-04-12 02:30:14.672504
+--- Round 99 of 100: Training 1 Clients ---
+--- Round 99 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35904)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35923)[0m compress
+train_accuracy: 0.122313, 10th percentile: 0.0740741, 50th percentile: 0.115234, 90th percentile 0.148884
+train_accuracy: 0.122313, 10th percentile: 0.0740741, 50th percentile: 0.115234, 90th percentile 0.148884
+train_loss: 5.3348, 10th percentile: 4.6779, 50th percentile: 5.27924, 90th percentile 5.74137
+train_loss: 5.3348, 10th percentile: 4.6779, 50th percentile: 5.27924, 90th percentile 5.74137
+test_accuracy: 0.122313, 10th percentile: 0.0740741, 50th percentile: 0.115234, 90th percentile 0.148884
+test_accuracy: 0.122313, 10th percentile: 0.0740741, 50th percentile: 0.115234, 90th percentile 0.148884
+test_loss: 5.33324, 10th percentile: 4.66626, 50th percentile: 5.29511, 90th percentile 5.74502
+test_loss: 5.33324, 10th percentile: 4.66626, 50th percentile: 5.29511, 90th percentile 5.74502
+current time: 2021-04-12 02:31:29.525960
+--- Round 100 of 100: Training 1 Clients ---
+--- Round 100 of 100: Training 1 Clients ---
+BATCH SIZE = 10
+[2m[36m(pid=35923)[0m compress
+[2m[36m(pid=35902)[0m compress
+[2m[36m(pid=35914)[0m compress
+[2m[36m(pid=35898)[0m compress
+[2m[36m(pid=35927)[0m compress
+[2m[36m(pid=35930)[0m compress
+[2m[36m(pid=35932)[0m compress
+[2m[36m(pid=35913)[0m compress
+[2m[36m(pid=35919)[0m compress
+[2m[36m(pid=35904)[0m compress
+train_accuracy: 0.121472, 10th percentile: 0.0764016, 50th percentile: 0.113497, 90th percentile 0.146739
+train_accuracy: 0.121472, 10th percentile: 0.0764016, 50th percentile: 0.113497, 90th percentile 0.146739
+train_loss: 5.37143, 10th percentile: 4.74564, 50th percentile: 5.34345, 90th percentile 5.75936
+train_loss: 5.37143, 10th percentile: 4.74564, 50th percentile: 5.34345, 90th percentile 5.75936
+test_accuracy: 0.121472, 10th percentile: 0.0764016, 50th percentile: 0.113497, 90th percentile 0.146739
+test_accuracy: 0.121472, 10th percentile: 0.0764016, 50th percentile: 0.113497, 90th percentile 0.146739
+test_loss: 5.36979, 10th percentile: 4.74618, 50th percentile: 5.35032, 90th percentile 5.75251
+test_loss: 5.36979, 10th percentile: 4.74618, 50th percentile: 5.35032, 90th percentile 5.75251
